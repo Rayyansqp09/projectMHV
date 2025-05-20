@@ -288,6 +288,26 @@ td span:nth-child(2) {
     font-weight: 900;
 }
 
+/* CSS */
+.Dt-btn {
+  padding: 2px 10px;
+  font-size: 70%;
+  background-color: #000000;
+  color: rgb(251, 247, 247);
+  border: none;
+  border-radius: 50px; /* pill-style */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+  display: block;
+  margin: 2% auto;
+  margin-bottom: 0;
+
+}
+ .Dt-btn:hover {
+    background-color: #0669d2;
+  }
+
 /* looking for tab */
 
 .looking-box {
@@ -365,5 +385,146 @@ footer p {
   color: #25D366; /* WhatsApp green */
 }
 
+/* admin */
+
+/* Same styles as before */
+ /* Ensure overlay covers full screen */
+#modalOverlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+/* When modal is active, change to flex */
+#modalOverlay.active {
+  display: flex;
+}
 
 
+/* Center modal content */
+.modal-content {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.form-head{
+  margin-top: 0;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+/* Color Themes */
+.mbappe-theme input {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.haaland-theme input {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.vinicius-theme input {
+  border-color: #f1c40f;
+  color: #f1c40f;
+}
+.submit-btn {
+  width: 48%;
+  padding: 10px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #05f250; /* Default blue */
+  color: white;
+}
+
+.done-btn {
+  background-color: #05f250; /* Gray for Done */
+}
+.successPopup{
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 9999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.vinicius-theme .submit-btn:hover,
+.done-btn:hover,.successPopup:hover {
+  background-color:#f1c40f; /* Same hover color */
+  color: white;
+}
+.mbappe-theme .submit-btn:hover,
+.done-btn:hover,.successPopup:hover {
+  background-color: #007bff; /* Same hover color */
+  color: white;
+}
+.haaland-theme .submit-btn:hover,
+.done-btn:hover,.successPopup:hover {
+  background-color:#dc3545; /* Same hover color */
+  color: white;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 4%;
+  margin-top: 16px;
+}

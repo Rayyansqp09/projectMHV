@@ -1,0 +1,115 @@
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal-content">
+    <form action="/admin/sts-update" id="statsForm" method="POST" enctype="multipart/form-data">
+      <!-- Player Selection -->
+      <div class="form-group">
+        <p id="statCategoryDisplay" style="font-weight: bold;"></p>
+        <input name="statCategory" id="statCategoryInput" disabled>
+      </div>
+
+      <div class="form-group">
+        <label for="playerSelect">Select Player</label>
+        <select id="playerSelect" name="playerSelect" class="player-select">
+          <option value="mbappe">Mbappé</option>
+          <option value="haaland">Haaland</option>
+          <option value="vinicius">Vinícius</option>
+        </select>
+      </div>
+
+      <!-- Goals -->
+      <div class="form-group">
+        <label for="goals">Goals</label>
+        <input type="number" id="goals" name="goals" placeholder="Enter new goals">
+      </div>
+
+      <!-- Assists -->
+      <div class="form-group">
+        <label for="assists">Assists</label>
+        <input type="number" id="assists" name="assists" placeholder="Enter new assists">
+      </div>
+
+      <!-- Games -->
+      <div class="form-group">
+        <label for="games">Games</label>
+        <input type="number" id="games" name="games" placeholder="Enter new games">
+      </div>
+
+      <div class="button-row">
+        <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+        <button type="button" class="submit-btn done-btn" id="doneBtn">Done</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Success popup at top -->
+<div class="successPopup" id="successPopup">
+  ✅ Data updated
+</div>
+
+<script>
+  // Current stats
+  const playerStats = {
+    mbappe: { goals: 41, assists: 18, games: 45 },
+    haaland: { goals: 39, assists: 10, games: 44 },
+    vinicius: { goals: 27, assists: 12, games: 42 }
+  };
+
+  // Theme and values
+  document.getElementById("playerSelect").addEventListener("change", function () {
+    const selected = this.value;
+    const form = document.getElementById("statsForm");
+    form.classList.remove("mbappe-theme", "haaland-theme", "vinicius-theme");
+    form.classList.add(`${selected}-theme`);
+
+    const stats = playerStats[selected];
+    document.getElementById("goals").value = stats.goals;
+    document.getElementById("assists").value = stats.assists;
+    document.getElementById("games").value = stats.games;
+  });
+
+  // Show popup
+  document.getElementById('statsForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Prevent form from reloading the page
+
+    const formData = new FormData(this);
+
+    const response = await fetch('/admin/sts-update', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      // ✅ Only show popup if the backend confirms success
+      showSuccessMessage();
+    } else {
+      alert("Failed to submit data.");
+    }
+  });
+
+  function showSuccessMessage() {
+    const popup = document.getElementById("successPopup");
+    popup.style.display = "block";
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 2000);
+  }
+
+
+  // Handle submit without closing modal
+  document.getElementById("submitBtn").addEventListener("click", function (e) {
+
+    showSuccessMessage();
+    // Optional: Update playerStats object here if needed
+  });
+
+  // Done closes modal
+  document.getElementById("doneBtn").addEventListener("click", function () {
+    document.getElementById("modalOverlay").style.display = "none";
+  });
+
+  // Set initial state
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("playerSelect").dispatchEvent(new Event("change"));
+  });
+</script>

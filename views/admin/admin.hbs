@@ -1,0 +1,140 @@
+   <div class="looking-box">
+      <h2 class="lookingbox-title">ARE YOU LOOKING FOR</h2>
+      <div class="text-group">
+        <div class="text-item"><a>UCL STATS</a></div>
+        <div class="text-item"><a href="">WORLD CUP STATS</a></div>
+        <div class="text-item"><a href="">LEAGUE STATS</a></div>
+        <div class="text-item"><a href="">STATS BY SESON</a></div>
+        <div class="text-item"><a href="">STATS BY AGE</a></div>
+        <div class="text-item"><a href="">Option 6</a></div>
+        <div class="text-item"><a href="">Option 7</a></div>
+        <div class="text-item"><a href="">Option 8</a></div>
+        <div class="text-item"><a href="">Option 9</a></div>
+        <div class="text-item"><a href="">Option 7</a></div>
+        <div class="text-item"><a href="">Option 8</a></div>
+        <div class="text-item"><a href="">Option 9</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="table-container">
+    <h2 class="stat-title">ALL TIME STATS</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="mbappe-text">MBAPPE</th>
+          <th class="haaland-text">HAALAND</th>
+          <th class="vini-text">VINICIUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mbappe-text">90<br><span class="stat-name">GAMES</span></td>
+          <td class="haaland-text">0<br><span class="stat-name">GAMES</span></td>
+          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
+        </tr>
+        <tr>
+          <td class="mbappe-text">2<br><span class="stat-name">GOALS</span></td>
+          <td class="haaland-text">99<br><span class="stat-name">GOALS</span></td>
+          <td class="vini-text">267<br><span class="stat-name">GOALS</span></td>
+        </tr>
+        <tr>
+          <td class="mbappe-text">3<br><span class="stat-name">ASSIST</span></td>
+          <td class="haaland-text">78<br><span class="stat-name">ASSIST</span></td>
+          <td class="vini-text">99<br><span class="stat-name">ASSIST</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="ALL TIME STATS">UPDATE</button>
+
+  </div>
+
+  <div class="table-container">
+    <h2 class="stat-title">ALL TIME STATS</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="mbappe-text">MBAPPE</th>
+          <th class="haaland-text">HAALAND</th>
+          <th class="vini-text">VINICIUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mbappe-text">98<br><span class="stat-name">GAMES</span></td>
+          <td class="haaland-text">199<br><span class="stat-name">GAMES</span></td>
+          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
+        </tr>
+        <tr>
+          <td class="mbappe-text">25<br><span class="stat-name">GAMES</span></td>
+          <td class="haaland-text">99<br><span class="stat-name">GAMES</span></td>
+          <td class="vini-text">267<br><span class="stat-name">GAMES</span></td>
+        </tr>
+        <tr>
+          <td class="mbappe-text">3<br><span class="stat-name">GAMES</span></td>
+          <td class="haaland-text">78<br><span class="stat-name">GAMES</span></td>
+          <td class="vini-text">99<br><span class="stat-name">GAMES</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+    <button class="Dt-btn" onclick="toggleModal()">UPDATE</button>
+  </div>
+
+    <div class="table-container">
+    <h2 class="stat-title">CLUB STATS</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="mbappe-text">MBAPPE</th>
+          <th class="haaland-text">HAALAND</th>
+          <th class="vini-text">VINICIUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mbappe-text">45<br><span class="stat-name">GAMES</span></td>
+          <td class="haaland-text">199<br><span class="stat-name">GAMES</span></td>
+          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
+        </tr>
+        <tr>
+          <td class="mbappe-text">2<br><span class="stat-name">GAMES</span></td>
+          <td class="haaland-text">99<br><span class="stat-name">GAMES</span></td>
+          <td class="vini-text">267<br><span class="stat-name">GAMES</span></td>
+        </tr>
+        <tr>
+          <td class="mbappe-text">3<br><span class="stat-name">GAMES</span></td>
+          <td class="haaland-text">78<br><span class="stat-name">GAMES</span></td>
+          <td class="vini-text">99<br><span class="stat-name">GAMES</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+    <button class="Dt-btn" onclick="toggleModal()">UPDATE</button>
+  </div>
+
+  {{>sts-update}}
+
+ <script>
+ function toggleModal(button) {
+  const stat = button.getAttribute("data-stat");
+  document.getElementById("statCategoryDisplay").textContent = stat;
+  document.getElementById("statCategoryInput").value = stat;
+  const modal = document.getElementById("modalOverlay");
+  modal.style.display = "flex"; // ensure it uses flex to center
+  modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+}
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('statsForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+       
+        // You can add fetch or form submission logic here
+        toggleModal(); // Close the modal
+      });
+    }
+  });
+</script>

@@ -4,34 +4,34 @@
       <!-- Player Selection -->
       <div class="form-group">
         <p id="statCategoryDisplay" style="font-weight: bold;"></p>
-        <input name="statCategory" id="statCategoryInput" disabled>
+        <input name="statname" id="statCategoryInput" >
       </div>
 
       <div class="form-group">
         <label for="playerSelect">Select Player</label>
-        <select id="playerSelect" name="playerSelect" class="player-select">
-          <option value="mbappe">Mbappé</option>
-          <option value="haaland">Haaland</option>
-          <option value="vinicius">Vinícius</option>
+        <select id="playerSelect" name="Name" class="player-select">
+          <option class="dropdown-btn-form" value="Mbappe" >Mbappé</option>
+          <option class="dropdown-btn-form" value="Haaland">Haaland</option>
+          <option class="dropdown-btn-form" value="Vinicius">Vinícius</option>
         </select>
       </div>
 
       <!-- Goals -->
       <div class="form-group">
         <label for="goals">Goals</label>
-        <input type="number" id="goals" name="goals" placeholder="Enter new goals">
+        <input type="number" id="Goals" name="Goals" placeholder="Enter new goals">
       </div>
 
       <!-- Assists -->
       <div class="form-group">
         <label for="assists">Assists</label>
-        <input type="number" id="assists" name="assists" placeholder="Enter new assists">
+        <input type="number" id="Assists" name="Assists" placeholder="Enter new assists">
       </div>
 
       <!-- Games -->
       <div class="form-group">
-        <label for="games">Games</label>
-        <input type="number" id="games" name="games" placeholder="Enter new games">
+        <label for="Games">Games</label>
+        <input type="number" id="Games" name="Games" placeholder="Enter new games">
       </div>
 
       <div class="button-row">
@@ -63,9 +63,9 @@
     form.classList.add(`${selected}-theme`);
 
     const stats = playerStats[selected];
-    document.getElementById("goals").value = stats.goals;
-    document.getElementById("assists").value = stats.assists;
-    document.getElementById("games").value = stats.games;
+    document.getElementById("Goals").value = stats.goals;
+    document.getElementById("Assists").value = stats.assists;
+    document.getElementById("Games").value = stats.games;
   });
 
   // Show popup

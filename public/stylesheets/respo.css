@@ -70,7 +70,6 @@
     vertical-align: middle;
     padding: 0px;
     font-size: 25px;
-    background-color: black;
     font-weight: 900;
     font-family: 'Montserrat', sans-serif;
     line-height: 1.3;
@@ -84,21 +83,6 @@
     position: absolute;
     font-family: sans-serif;
     font-weight: 100;
-  }
-
-  .mbappe-text {
-    color: #263AB2;
-    border: 2px solid #263AB2;
-  }
-
-  .haaland-text {
-    color: #C5001A;
-    border: 2px solid #b11d31;
-  }
-
-  .vini-text {
-    color: #FEE715;
-    border: 2px solid #b3b820;
   }
 
   .looking-box {
@@ -143,6 +127,22 @@
 
   .social-icons a {
     font-size: 18px;
+  }
+
+  /* admin */
+
+ .modal-content {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  .form-group input {
+    padding: 6px;
   }
 
 }
@@ -239,6 +239,10 @@
     font-family: sans-serif;
     font-weight: 100;
   }
+
+ .modal-content {
+    width: 90%;
+  }
 }
 
 /* Tablet-lap (768px to 1000px) */
@@ -283,5 +287,8 @@
   .img3 {
     left: -4%;
     width: 90% !important;
+  }
+  .modal-content {
+    width: 80%;
   }
 }

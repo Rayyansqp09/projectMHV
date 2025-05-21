@@ -18,109 +18,115 @@
   </section>
 
   <div class="table-container">
-    <h2 class="stat-title">ALL TIME STATS</h2>
-    <table>
-      <thead>
-        <tr>
-          <th class="mbappe-text">MBAPPE</th>
-          <th class="haaland-text">HAALAND</th>
-          <th class="vini-text">VINICIUS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="mbappe-text">90<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">0<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">2<br><span class="stat-name">GOALS</span></td>
-          <td class="haaland-text">99<br><span class="stat-name">GOALS</span></td>
-          <td class="vini-text">267<br><span class="stat-name">GOALS</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">3<br><span class="stat-name">ASSIST</span></td>
-          <td class="haaland-text">78<br><span class="stat-name">ASSIST</span></td>
-          <td class="vini-text">99<br><span class="stat-name">ASSIST</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <h2 name="" class="stat-title">ALL TIME STATS</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="mbappe-text">MBAPPE</th>
+        <th class="haaland-text">HAALAND</th>
+        <th class="vini-text">VINICIUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mbappe-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
+        <td class="haaland-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
+        <td class="vini-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="haaland-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="vini-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.Assists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
+      </tr>
+    </tbody>
+  </table>
     <button class="Dt-btn"><a href="">Detailed Stats</a></button>
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="ALL TIME STATS">UPDATE</button>
 
   </div>
 
   <div class="table-container">
-    <h2 class="stat-title">ALL TIME STATS</h2>
-    <table>
-      <thead>
-        <tr>
-          <th class="mbappe-text">MBAPPE</th>
-          <th class="haaland-text">HAALAND</th>
-          <th class="vini-text">VINICIUS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="mbappe-text">98<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">199<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">25<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">99<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">267<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">3<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">78<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">99<br><span class="stat-name">GAMES</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <h2 name="club" class="stat-title">ALL TIME CLUB STATS</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="mbappe-text">MBAPPE</th>
+        <th class="haaland-text">HAALAND</th>
+        <th class="vini-text">VINICIUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="haaland-text">{{haaland.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="vini-text">{{vini.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="haaland-text">{{haaland.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="vini-text">{{vini.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
+      </tr>
+    </tbody>
+  </table>
     <button class="Dt-btn"><a href="">Detailed Stats</a></button>
-    <button class="Dt-btn" onclick="toggleModal()">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
   </div>
 
     <div class="table-container">
-    <h2 class="stat-title">CLUB STATS</h2>
-    <table>
-      <thead>
-        <tr>
-          <th class="mbappe-text">MBAPPE</th>
-          <th class="haaland-text">HAALAND</th>
-          <th class="vini-text">VINICIUS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="mbappe-text">45<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">199<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">2<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">99<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">267<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">3<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">78<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">99<br><span class="stat-name">GAMES</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <h2 name="int" class="stat-title" id="ALL TIME INT STATS">ALL TIME INT STATS</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="mbappe-text">MBAPPE</th>
+        <th class="haaland-text">HAALAND</th>
+        <th class="vini-text">VINICIUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mbappe-text">{{mbappe.intGames}}<br><span class="stat-name">GAMES</span></td>
+        <td class="haaland-text">{{haaland.intGames}}<br><span class="stat-name">GAMES</span></td>
+        <td class="vini-text">{{vini.intGames}}<br><span class="stat-name">GAMES</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.intGoals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="haaland-text">{{haaland.intGoals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="vini-text">{{vini.intGoals}}<br><span class="stat-name">GOALS</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.intAssists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="haaland-text">{{haaland.intAssists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="vini-text">{{vini.intAssists}}<br><span class="stat-name">ASSIST</span></td>
+      </tr>
+    </tbody>
+  </table>
     <button class="Dt-btn"><a href="">Detailed Stats</a></button>
-    <button class="Dt-btn" onclick="toggleModal()">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
   </div>
 
   {{>sts-update}}
 
  <script>
- function toggleModal(button) {
-  const stat = button.getAttribute("data-stat");
-  document.getElementById("statCategoryDisplay").textContent = stat;
-  document.getElementById("statCategoryInput").value = stat;
+function toggleModal(button) {
+  // Find the closest table-container and get the h2 inside it
+  const headingElement = button.closest(".table-container").querySelector("h2");
+
+  // ✅ Display the heading text inside the modal
+  document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+
+  // ✅ Send the 'name' attribute value to the backend via hidden input
+  document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+
   const modal = document.getElementById("modalOverlay");
   modal.style.display = "flex"; // ensure it uses flex to center
   modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll

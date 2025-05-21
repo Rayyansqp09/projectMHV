@@ -1,0 +1,126 @@
+/* admin */
+
+/* Same styles as before */
+ /* Ensure overlay covers full screen */
+#modalOverlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+/* When modal is active, change to flex */
+#modalOverlay.active {
+  display: flex;
+}
+
+
+/* Center modal content */
+.modal-content {
+  background: white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.form-head{
+  margin-top: 0;
+}
+.form-group {
+  margin: 15px;
+  
+}
+
+.form-group label {
+ display: block !important;
+  color: black !important;
+  font-size: 18px !important;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  /* transition: border-color 0.3s ease; */
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 4%;
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+.submit-btn {
+  width: 48%;
+  padding: 10px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #05f250; /* Default blue */
+  color: white;
+}
+
+.done-btn {
+  background-color: #05f250; /* Gray for Done */
+}
+.successPopup{
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 9999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Color Themes */
+.mbappe-theme input {
+  border-color: #007bff;
+  
+}
+
+.haaland-theme input {
+  border-color: #dc3545;
+  
+}
+
+.vinicius-theme input {
+  border-color: #f1c40f;
+ 
+}
+.dropdown-btn-form{
+  border-color: black !important;
+}
+.dbname{
+  /* visibility: hidden; */
+}

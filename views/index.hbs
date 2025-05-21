@@ -1,114 +1,111 @@
-    <div class="looking-box">
-      <h2 class="lookingbox-title">ARE YOU LOOKING FOR</h2>
-      <div class="text-group">
-        <div class="text-item"><a>UCL STATS</a></div>
-        <div class="text-item"><a href="">WORLD CUP STATS</a></div>
-        <div class="text-item"><a href="">LEAGUE STATS</a></div>
-        <div class="text-item"><a href="">STATS BY SESON</a></div>
-        <div class="text-item"><a href="">STATS BY AGE</a></div>
-        <div class="text-item"><a href="">Option 6</a></div>
-        <div class="text-item"><a href="">Option 7</a></div>
-        <div class="text-item"><a href="">Option 8</a></div>
-        <div class="text-item"><a href="">Option 9</a></div>
-        <div class="text-item"><a href="">Option 7</a></div>
-        <div class="text-item"><a href="">Option 8</a></div>
-        <div class="text-item"><a href="">Option 9</a></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="table-container">
-    <h2 class="stat-title">ALL TIME STATS</h2>
-    <table>
-      <thead>
-        <tr>
-          <th class="mbappe-text">MBAPPE</th>
-          <th class="haaland-text">HAALAND</th>
-          <th class="vini-text">VINICIUS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="mbappe-text">1<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">199<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">2<br><span class="stat-name">GOALS</span></td>
-          <td class="haaland-text">99<br><span class="stat-name">GOALS</span></td>
-          <td class="vini-text">267<br><span class="stat-name">GOALS</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">3<br><span class="stat-name">ASSIST</span></td>
-          <td class="haaland-text">78<br><span class="stat-name">ASSIST</span></td>
-          <td class="vini-text">99<br><span class="stat-name">ASSIST</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+<div class="looking-box">
+  <h2 class="lookingbox-title">ARE YOU LOOKING FOR</h2>
+  <div class="text-group">
+    <div class="text-item"><a>UCL STATS</a></div>
+    <div class="text-item"><a href="">WORLD CUP STATS</a></div>
+    <div class="text-item"><a href="">LEAGUE STATS</a></div>
+    <div class="text-item"><a href="">STATS BY SESON</a></div>
+    <div class="text-item"><a href="">STATS BY AGE</a></div>
+    <div class="text-item"><a href="">Option 6</a></div>
+    <div class="text-item"><a href="">Option 7</a></div>
+    <div class="text-item"><a href="">Option 8</a></div>
+    <div class="text-item"><a href="">Option 9</a></div>
+    <div class="text-item"><a href="">Option 7</a></div>
+    <div class="text-item"><a href="">Option 8</a></div>
+    <div class="text-item"><a href="">Option 9</a></div>
   </div>
+</div>
+</section>
 
-  <div class="table-container">
-    <h2 class="stat-title">ALL TIME STATS</h2>
-    <table>
-      <thead>
-        <tr>
-          <th class="mbappe-text">MBAPPE</th>
-          <th class="haaland-text">HAALAND</th>
-          <th class="vini-text">VINICIUS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="mbappe-text"><br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">199<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">2<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">99<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">267<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">3<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">78<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">99<br><span class="stat-name">GAMES</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="Dt-btn"><a href="">Detailed Stats</a></button>
-  </div>
+<div class="table-container">
+  <h2 class="stat-title">ALL TIME STATS</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="mbappe-text">MBAPPE</th>
+        <th class="haaland-text">HAALAND</th>
+        <th class="vini-text">VINICIUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mbappe-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
+        <td class="haaland-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
+        <td class="vini-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="haaland-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="vini-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.Assists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+</div>
 
-    <div class="table-container">
-    <h2 class="stat-title">ALL TIME STATS</h2>
-    <table>
-      <thead>
-        <tr>
-          <th class="mbappe-text">MBAPPE</th>
-          <th class="haaland-text">HAALAND</th>
-          <th class="vini-text">VINICIUS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="mbappe-text"><br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">199<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">189<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">2<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">99<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">267<br><span class="stat-name">GAMES</span></td>
-        </tr>
-        <tr>
-          <td class="mbappe-text">3<br><span class="stat-name">GAMES</span></td>
-          <td class="haaland-text">78<br><span class="stat-name">GAMES</span></td>
-          <td class="vini-text">99<br><span class="stat-name">GAMES</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="Dt-btn"><a href="">Detailed Stats</a></button>
-  </div>
+<div class="table-container">
+  <h2 class="stat-title">ALL TIME CLUB STATS</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="mbappe-text">MBAPPE</th>
+        <th class="haaland-text">HAALAND</th>
+        <th class="vini-text">VINICIUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="haaland-text">{{haaland.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="vini-text">{{vini.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="haaland-text">{{haaland.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="vini-text">{{vini.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+</div>
 
-
- 
+<div class="table-container">
+  <h2 class="stat-title">ALL TIME INT STATS</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="mbappe-text">MBAPPE</th>
+        <th class="haaland-text">HAALAND</th>
+        <th class="vini-text">VINICIUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mbappe-text">{{mbappe.intGames}}<br><span class="stat-name">GAMES</span></td>
+        <td class="haaland-text">{{haaland.intGames}}<br><span class="stat-name">GAMES</span></td>
+        <td class="vini-text">{{vini.intGames}}<br><span class="stat-name">GAMES</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.intGoals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="haaland-text">{{haaland.intGoals}}<br><span class="stat-name">GOALS</span></td>
+        <td class="vini-text">{{vini.intGoals}}<br><span class="stat-name">GOALS</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.intAssists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="haaland-text">{{haaland.intAssists}}<br><span class="stat-name">ASSIST</span></td>
+        <td class="vini-text">{{vini.intAssists}}<br><span class="stat-name">ASSIST</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+</div>

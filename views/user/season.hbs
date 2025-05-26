@@ -1,0 +1,93 @@
+<div class="football-dropdown-container">
+    <div class="football-dropdown">
+        <select id="seasonSelect">
+            <option value="season2024">-- Choose Season --</option>
+            <option value="season2024">2024-25 (Ongoing Season)</option>
+            <option value="season2023">2023-24</option>
+            <option value="season2022">2022-23</option>
+            <option value="season2021">2021-22</option>
+            <option value="season2020">2020-21</option>
+            <option value="season2019">2019-20</option>
+            <option value="season2018">2018-19</option>
+            <option value="season2017">2017-18</option>
+            <option value="season2016">2016-17</option>
+            <option value="season2015">2015-16</option>
+            <option value="season2014">2014-15</option>
+        </select>
+
+
+        <div class="season-content" id="season2024">
+            {{> season/2024-25 }}
+        </div>
+
+        <div class="season-content" id="season2023">
+            {{> season/2023-24 }}
+        </div>
+
+        <div class="season-content" id="season2022">
+            {{> season/2022-23 }}
+        </div>
+
+        <div class="season-content" id="season2021">
+            {{> season/2021-22 }}
+        </div>
+
+        <div class="season-content" id="season2020">
+            {{> season/2020-21 }}
+        </div>
+
+        <div class="season-content" id="season2019">
+            {{> season/2019-20 }}
+        </div>
+
+        <div class="season-content" id="season2018">
+            {{> season/2018-19 }}
+        </div>
+
+        <div class="season-content" id="season2017">
+            {{> season/2017-18 }}
+        </div>
+
+        <div class="season-content" id="season2016">
+            {{> season/2016-17 }}
+        </div>
+
+        <div class="season-content" id="season2015">
+            {{> season/2015-16 }}
+        </div>
+
+        <div class="season-content" id="season2014">
+            {{> season/2014-15 }}
+        </div>
+
+        <script>
+              window.addEventListener("DOMContentLoaded", () => {
+    const select = document.getElementById("seasonSelect");
+    const contents = document.querySelectorAll(".season-content");
+
+    function showSeasonContent(seasonId) {
+      contents.forEach(div => div.classList.remove("active"));
+      const selectedDiv = document.getElementById(seasonId);
+      if (selectedDiv) selectedDiv.classList.add("active");
+    }
+
+    // Show content based on initial selected option (2024)
+    showSeasonContent(select.value);
+
+    // When dropdown changes
+    select.addEventListener("change", function () {
+      showSeasonContent(this.value);
+    });
+  });
+  
+            const select = document.getElementById("seasonSelect");
+            const contents = document.querySelectorAll(".season-content");
+
+            select.addEventListener("change", function () {
+                contents.forEach(div => div.classList.remove("active"));
+                const selected = this.value;
+                if (selected) {
+                    document.getElementById(selected).classList.add("active");
+                }
+            });
+        </script>

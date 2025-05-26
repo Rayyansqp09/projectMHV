@@ -28,19 +28,24 @@
 </head>
 
 <body>
-  
- {{#if admin}}
- {{>admin-header}}
- {{else}}
- {{>user-header}}
- {{/if}}
+
+ {{#unless header}}
+  {{#if admin}}
+    {{> admin-header}}
+  {{else}}
+    {{> user-header}}
+  {{/if}}
+{{/unless}}
+
+
+ 
  {{{body}}}
 
   <footer>
     <p>&copy; 2025 Your Website Name. All rights reserved.</p>
     <p>
-      <a href="/privacy-policy.html">Privacy Policy</a> |
-      <a href="/terms.html">Terms & Conditions</a>
+      <a href="/policy">Privacy Policy</a> |
+      <a href="/policy#terms">Terms & Conditions</a>
     </p>
     <div class="social-icons">
       <a href="https://twitter.com/" target="_blank" aria-label="X (Twitter)">

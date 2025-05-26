@@ -25,7 +25,8 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, '0.0.0.0'); // 👈 This makes your server accessible via your laptop's IP
+console.log("Server running on http://<your-ip>:3000");
 server.on('error', onError);
 server.on('listening', onListening);
 

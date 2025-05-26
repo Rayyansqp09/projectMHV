@@ -1,12 +1,23 @@
+ <style>
+    .extra-row { display: none; }
+    .animate-slide {
+      animation: slideDown 0.4s ease forwards;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
 <div class="looking-box">
   <h2 class="lookingbox-title">ARE YOU LOOKING FOR</h2>
   <div class="text-group">
-    <div class="text-item"><a>UCL STATS</a></div>
-    <div class="text-item"><a href="">WORLD CUP STATS</a></div>
+    <div class="text-item"><a href="club-stats/ucl">UCL STATS</a></div>
+    <div class="text-item"><a href="int-stats/wc">WORLD CUP STATS</a></div>
     <div class="text-item"><a href="">LEAGUE STATS</a></div>
-    <div class="text-item"><a href="">STATS BY SESON</a></div>
-    <div class="text-item"><a href="">STATS BY AGE</a></div>
-    <div class="text-item"><a href="">Option 6</a></div>
+    <div class="text-item"><a href="season">STATS BY SESON</a></div>
+    <div class="text-item"><a href="/age">STATS BY AGE</a></div>
+    <div class="text-item"><a href="year">STATS BY YEAR</a></div>
     <div class="text-item"><a href="">Option 7</a></div>
     <div class="text-item"><a href="">Option 8</a></div>
     <div class="text-item"><a href="">Option 9</a></div>
@@ -17,95 +28,106 @@
 </div>
 </section>
 
-<div class="table-container">
-  <h2 class="stat-title">ALL TIME STATS</h2>
-  <table>
-    <thead>
-      <tr>
-        <th class="mbappe-text">MBAPPE</th>
-        <th class="haaland-text">HAALAND</th>
-        <th class="vini-text">VINICIUS</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="mbappe-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
-        <td class="haaland-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
-        <td class="vini-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
-      </tr>
-      <tr>
-        <td class="mbappe-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
-        <td class="haaland-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
-        <td class="vini-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
-      </tr>
-      <tr>
-        <td class="mbappe-text">{{mbappe.Assists}}<br><span class="stat-name">ASSIST</span></td>
-        <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
-        <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
-      </tr>
-    </tbody>
-  </table>
-  <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+<div class="tab-container">
+  <div class="tab active" data-target="allTime">All Time Stats</div>
+  <div class="tab" data-target="thisSeason">This Season Stats</div>
+  <div class="tab" data-target="other">Other</div>
 </div>
 
-<div class="table-container">
-  <h2 class="stat-title">ALL TIME CLUB STATS</h2>
-  <table>
-    <thead>
-      <tr>
-        <th class="mbappe-text">MBAPPE</th>
-        <th class="haaland-text">HAALAND</th>
-        <th class="vini-text">VINICIUS</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
-        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
-        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
-      </tr>
-      <tr>
-        <td class="mbappe-text">{{mbappe.clubGoals}}<br><span class="stat-name">GOALS</span></td>
-        <td class="haaland-text">{{haaland.clubGoals}}<br><span class="stat-name">GOALS</span></td>
-        <td class="vini-text">{{vini.clubGoals}}<br><span class="stat-name">GOALS</span></td>
-      </tr>
-      <tr>
-        <td class="mbappe-text">{{mbappe.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
-        <td class="haaland-text">{{haaland.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
-        <td class="vini-text">{{vini.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
-      </tr>
-    </tbody>
-  </table>
-  <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+<!-- Content Sections -->
+<div id="allTime" class="content active">
+  {{> pages/home }}
 </div>
 
-<div class="table-container">
-  <h2 class="stat-title">ALL TIME INT STATS</h2>
-  <table>
-    <thead>
-      <tr>
-        <th class="mbappe-text">MBAPPE</th>
-        <th class="haaland-text">HAALAND</th>
-        <th class="vini-text">VINICIUS</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="mbappe-text">{{mbappe.intGames}}<br><span class="stat-name">GAMES</span></td>
-        <td class="haaland-text">{{haaland.intGames}}<br><span class="stat-name">GAMES</span></td>
-        <td class="vini-text">{{vini.intGames}}<br><span class="stat-name">GAMES</span></td>
-      </tr>
-      <tr>
-        <td class="mbappe-text">{{mbappe.intGoals}}<br><span class="stat-name">GOALS</span></td>
-        <td class="haaland-text">{{haaland.intGoals}}<br><span class="stat-name">GOALS</span></td>
-        <td class="vini-text">{{vini.intGoals}}<br><span class="stat-name">GOALS</span></td>
-      </tr>
-      <tr>
-        <td class="mbappe-text">{{mbappe.intAssists}}<br><span class="stat-name">ASSIST</span></td>
-        <td class="haaland-text">{{haaland.intAssists}}<br><span class="stat-name">ASSIST</span></td>
-        <td class="vini-text">{{vini.intAssists}}<br><span class="stat-name">ASSIST</span></td>
-      </tr>
-    </tbody>
-  </table>
-  <button class="Dt-btn"><a href="">Detailed Stats</a></button>
+<div id="thisSeason" class="content">
+  {{> season/2024-25 }}
 </div>
+
+<div id="other" class="content">
+  <!-- Other content -->
+</div>
+
+  {{>sts-update}}
+
+<script>
+
+   const tabs = document.querySelectorAll('.tab');
+const contents = document.querySelectorAll('.content');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    // Toggle tab active state
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    // Show the correct content
+    contents.forEach(content => content.classList.remove('active'));
+    const target = tab.dataset.target;
+    const activeContent = document.getElementById(target);
+    if (activeContent) {
+      activeContent.classList.add('active');
+    }
+  });
+});
+
+   document.querySelectorAll('.Dt-btn2').forEach(button => {
+  button.addEventListener('click', function () {
+    const container = this.closest('.table-container'); // Locate the current section
+    if (!container) return;
+
+    const table = container.querySelector('table'); // Find the table inside this section
+    const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
+
+    hiddenRows.forEach(row => {
+      row.style.display = 'table-row'; // Show row
+      row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+    });
+
+    this.style.display = 'none'; // Hide "More" button
+  });
+});
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const links = document.querySelectorAll("a.dynamic-link");
+  const basePath = window.location.pathname.split("/").slice(0, 2).join("/"); 
+  // This will keep only the first subfolder, e.g., "/int-Stats"
+
+  links.forEach(link => {
+    const originalHref = link.getAttribute("href");
+
+    // If it's already absolute or an external link, skip
+    if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+
+    // Update href to include base path (not full current path)
+    link.setAttribute("href", `${basePath}/${originalHref}`);
+  });
+});
+
+
+function toggleModal(button) {
+  // Find the closest table-container and get the h2 inside it
+  const headingElement = button.closest(".table-container").querySelector("h2");
+
+  // ✅ Display the heading text inside the modal
+  document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+
+  // ✅ Send the 'name' attribute value to the backend via hidden input
+  document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+  
+
+  const modal = document.getElementById("modalOverlay");
+  modal.style.display = "flex"; // ensure it uses flex to center
+  modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+}
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('statsForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+       
+        // You can add fetch or form submission logic here
+        toggleModal(); // Close the modal
+      });
+    }
+  });
+</script>

@@ -50,23 +50,37 @@
 <script>
   // Current stats
   const playerStats = {
-    mbappe: { goals: 41, assists: 18, games: 45 },
-    haaland: { goals: 39, assists: 10, games: 44 },
-    vinicius: { goals: 27, assists: 12, games: 42 }
+    
+    mbappe: {
+      goals: {{mbappe.Goals}},
+      assists: {{mbappe.Assists}},
+      games: {{mbappe.Games}}
+    },
+    haaland: {
+      goals: {{haaland.Goals}},
+      assists: {{haaland.Assists}},
+      games: {{haaland.Games}}
+    },
+    vinicius: {
+      goals: {{vini.Goals}},  // Note: fix to use proper field
+      assists: {{vini.Assists}},
+      games: {{vini.Games}}
+    }
   };
 
   // Theme and values
   document.getElementById("playerSelect").addEventListener("change", function () {
-    const selected = this.value;
-    const form = document.getElementById("statsForm");
-    form.classList.remove("mbappe-theme", "haaland-theme", "vinicius-theme");
-    form.classList.add(`${selected}-theme`);
+  const selected = this.value.toLowerCase();
+  const form = document.getElementById("statsForm");
+  form.classList.remove("mbappe-theme", "haaland-theme", "vinicius-theme");
+  form.classList.add(`${selected}-theme`);
 
-    const stats = playerStats[selected];
-    document.getElementById("Goals").value = stats.goals;
-    document.getElementById("Assists").value = stats.assists;
-    document.getElementById("Games").value = stats.games;
-  });
+  const stats = playerStats[selected];
+  document.getElementById("Goals").value = stats.goals;
+  document.getElementById("Assists").value = stats.assists;
+  document.getElementById("Games").value = stats.games;
+});
+
 
   // Show popup
   document.getElementById('statsForm').addEventListener('submit', async function (e) {

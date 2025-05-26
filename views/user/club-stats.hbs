@@ -1,0 +1,348 @@
+<div class="table-container">
+    <h2 name="" class="stat-title">ALL TIME CLUB STATS</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="mbappe-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+             <tr>
+                <td class="mbappe-text">{{mbappe.Goals}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="haaland-text">{{haaland.Goals}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="vini-text">{{vini.Goals}}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.Assists}}<br><span class="stat-name">ASSIST</span></td>
+                <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
+                <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+                <td class="haaland-text">{{haaland.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+                <td class="vini-text">{{vini.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+                <td class="haaland-text">{{haaland.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+                <td class="vini-text">{{vini.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="clubComp">
+    <h2 name="club" class="stat-title">LEAGUE STATS</h2>
+    
+
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="haaland-text">{{haaland.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="vini-text">{{vini.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+     <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed League Stats</a></button>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h2 name="club" class="stat-title">TOP 5 LEAGUES STATS</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr>
+                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="haaland-text">{{haaland.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="vini-text">{{vini.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">UCL STATS</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr>
+                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="haaland-text">{{haaland.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="vini-text">{{vini.hattrics}}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+     <button class="Dt-btn"><a class="dynamic-link" href="ucl">Detailed UCL Stats</a></button>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">DOMESTIC CUPS</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr>
+                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">DOMESTIC SUPER CUPS</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr>
+                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="superCup">
+    <h2 name="int" class="stat-title">UEFA SUPER CUP</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr>
+                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+{{>sts-update}}
+
+<script>
+
+    window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
+
+    if (hash === '#clubComp','#superCup','#clubWc') {
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      const offset = 80; // adjust if you have a fixed header
+      const duration = 1000;
+
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+      const startPosition = window.scrollY;
+      const distance = targetPosition - startPosition;
+      let startTime = null;
+
+      function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
+
+      function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
+
+      requestAnimationFrame(animation);
+    }
+  });
+
+     document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll("a.dynamic-link");
+    const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
+
+    links.forEach(link => {
+      const originalHref = link.getAttribute("href");
+
+      // If it's already absolute or an external link, skip
+      if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+
+      // Update href to include current path
+      link.setAttribute("href", `${basePath}/${originalHref}`);
+    });
+  });
+
+
+    function toggleModal(button) {
+        // Find the closest table-container and get the h2 inside it
+        const headingElement = button.closest(".table-container").querySelector("h2");
+
+        // ✅ Display the heading text inside the modal
+        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+
+        // ✅ Send the 'name' attribute value to the backend via hidden input
+        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+
+
+        const modal = document.getElementById("modalOverlay");
+        modal.style.display = "flex"; // ensure it uses flex to center
+        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('statsForm');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+
+                // You can add fetch or form submission logic here
+                toggleModal(); // Close the modal
+            });
+        }
+    });
+</script>

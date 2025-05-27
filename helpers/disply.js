@@ -3,7 +3,7 @@ const db = require('../config/connection');
 module.exports = {
 
    getStats: function (tableNames, callback) {
-  const validTables = ['all_time', 'club_comp', 'int_comp'];
+  const validTables = ['all_time', 'club_comp', 'int_comp','votes'];
   const results = {};
 
   // If tableNames is a string, convert it to an array

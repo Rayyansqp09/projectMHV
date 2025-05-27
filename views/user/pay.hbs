@@ -1,0 +1,77 @@
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+<div class="page-container">
+  <div class="donation-container">
+    <h1>Support Us</h1>
+    <p>
+      Mbappé vs Haaland vs Vinícius is a passion project created to deliver
+      real-time football stats for fans across the world. If you love what we’re doing,
+      feel free to support us. Every donation keeps the project alive and growing.
+    </p>
+    <button class="donate-button" id="donateBtn">
+      Donate Now
+    </button>
+  </div>
+</div>
+
+<div class="footer2-card" onclick="location.href='/report'">
+  <span>Report an issue</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="footer2-card" onclick="location.href='/suggestion'">
+  <span>I have a suggestion</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="footer2-follow">
+  <p>Follow us</p>
+  <div class="footer2-icons">
+    <a href="https://twitter.com/yourhandle" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" class="footer2-icon" />
+    </a>
+    <a href="https://wa.me/yourphonenumber" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" class="footer2-icon" />
+    </a>
+  </div>
+</div>
+
+
+
+  
+
+
+  <script>
+document.getElementById("donateBtn").onclick = async function () {
+  const response = await fetch("/pay", { method: "POST" });
+  const data = await response.json();
+
+  const options = {
+    key: "rzp_test_41qaGoGnSDVd5u",
+    amount: 10000,
+    currency: "INR",
+    name: "Mbappe vs Haaland vs Vinicius",
+    description: "Fan Donation",
+    order_id: data.orderId,
+    handler: function (response) {
+   Swal.fire({
+      icon: 'success',
+      title: 'Thank You!',
+      text: 'Thank you for your support and donation!',
+      confirmButtonText: 'Awesome',
+      confirmButtonColor: '#3085d6',
+      background: '#f0f9ff',
+    });
+  },
+  theme: {
+    color: "#3399cc"
+  }
+};
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+};
+</script>

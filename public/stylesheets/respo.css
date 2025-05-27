@@ -8,8 +8,6 @@
   }
 
 .custom-navbar {
-  background-color: #2A303B;
-  color: rgb(211, 206, 206);
   padding: 0 10px;
   font-family: sans-serif;
   position: fixed;
@@ -27,6 +25,7 @@
   padding: 7px 10px;
   cursor: pointer;
   font-size: 12px;
+  font-weight: 700;
   flex: 0 0 auto;
   white-space: nowrap;
 }
@@ -41,7 +40,6 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #444;
   padding: 10px;
   z-index: 1000;
   min-width: 220px;
@@ -59,7 +57,6 @@
 .dropdown-heading {
   margin: 0 0 5px 0;
   font-size: 12px;
-  color: #ddd;
 }
 
 .link-row a, .link-grid a {
@@ -83,10 +80,10 @@
   display: flex;
   justify-content: center;
   gap: 4%;
-  background-color: #0f111a;
+
   padding: 12px auto;
   border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  
   margin-bottom: 0.5rem;
   flex-wrap: wrap;
   margin-top: 4%;
@@ -98,8 +95,7 @@
   cursor: pointer;
   font-size: 10px;
   font-weight: 500;
-  color: #666;
-  background-color: #2A303B;
+ 
 
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
@@ -108,9 +104,9 @@
   .container {
     height: 150px;
     padding: 0% 1rem !important;
-    max-width: 95%;
-    padding: 0 1rem !important;
-    margin: 32px auto;
+    max-width: 100%;
+    padding: 0 0rem !important;
+    margin: 36px auto;
   }
 
 
@@ -143,28 +139,27 @@
     width: 140% !important;
   } */
   .img1 {
-    left: -129%;
-    width: 144% !important;
+    left: -109%;
+    width: 124% !important;
   }
 
   .img2 {
-    left: -129%;
-    width: 144% !important;
+    left: -119%;
+    width: 124% !important;
   }
 
   .img3 {
     left: -17%;
-    width: 130% !important;
+    width: 110% !important;
   }
 
   .table-container {
     max-width: 800px;
     margin: 1.5rem 10px;
-    background-color: #2A303B;
+    
     padding: 10px 0%;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgb(95, 90, 90);
+   
   }
 
   table {
@@ -189,6 +184,10 @@
     font-family: 'Montserrat', sans-serif;
     line-height: 2.2;
     padding: 2px 2px;
+
+  }
+  th{
+    font-size: 12px;
   }
 
   td span:nth-child(2) {
@@ -220,9 +219,9 @@
     width: 90%;
     margin: 40px auto;
     text-align: center;
-    background-color: #2A303B;
+   
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
     border: 1px solid rgb(95, 90, 90);
   }
 
@@ -235,7 +234,7 @@
   }
 
   .lookingbox-title {
-    font-size: 10px;
+    font-size: 14px;
     margin-top: 10px;
     font-family: 'Exo 2', sans-serif;
     margin-bottom: 0px;
@@ -244,7 +243,7 @@
   .text-item {
     padding: 3px;
     cursor: pointer;
-    font-size: 8px;
+    font-size: 10px;
     transition: color 0.3s ease, text-decoration 0.3s ease;
   }
 
@@ -278,7 +277,37 @@
     padding: 6px;
   }
 
+  .donation-container {
+    margin: 5px;
+    padding: 30px;
+  }
 
+  .footer2-card {
+  padding: 15px 20px;
+  margin: 10px auto;
+  max-width: 280px;
+}
+
+.donation-container {
+  padding: 20px;
+  max-width: 300px;
+  max-height: 400px;
+  margin-bottom: 2px;
+  /* Reduce space below donation box */
+}
+.donation-container h1 {
+  margin-bottom: 15px;
+}
+.donation-container p {
+  line-height: 1.5;
+  font-size: 14px;
+}
+.donate-button {
+  padding: 15px 30px;
+  font-size: 16px;
+  margin-top: 5px;
+  
+}
 }
 
 @media (min-width: 376px) and (max-width: 500px) {
@@ -296,10 +325,10 @@
   display: flex;
   justify-content: center;
   gap: 4%;
-  background-color: #0f111a;
+ 
   padding: 12px auto;
   border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+ 
   margin-bottom: 0.5rem;
   flex-wrap: wrap;
   margin-top: 4%;
@@ -311,9 +340,7 @@
   cursor: pointer;
   font-size: 10px;
   font-weight: 500;
-  color: #666;
-  background-color: #2A303B;
-
+ 
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
   border-radius: 8px;
@@ -366,10 +393,10 @@
   .table-container {
     max-width: 800px;
     margin: 1.5rem 10px;
-    background-color: #2A303B;
+    
     padding: 10px 0%;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
     border: 1px solid rgb(95, 90, 90);
   }
 
@@ -426,10 +453,8 @@
     width: 90%;
     margin: 40px auto;
     text-align: center;
-    background-color: #2A303B;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgb(95, 90, 90);
+   
   }
 
   .text-group {
@@ -468,6 +493,43 @@
     font-size: 18px;
   }
 
+  .donation-container {
+    margin: 5px;
+    padding: 30px;
+  }
+
+    .donation-container {
+    margin: 5px;
+    padding: 30px;
+  }
+
+  .footer2-card {
+  padding: 15px 20px;
+  margin: 10px auto;
+  max-width: 280px;
+}
+
+.donation-container {
+  padding: 20px;
+  max-width: 300px;
+  max-height: 400px;
+  margin-bottom: 2px;
+  /* Reduce space below donation box */
+}
+.donation-container h1 {
+  margin-bottom: 15px;
+}
+.donation-container p {
+  line-height: 1.5;
+  font-size: 14px;
+}
+.donate-button {
+  padding: 15px 30px;
+  font-size: 16px;
+  margin-top: 5px;
+  
+}
+
   /* admin */
 
   .modal-content {
@@ -494,8 +556,7 @@
   }
  
  .custom-navbar {
-  background-color: #2A303B;
-  color: rgb(211, 206, 206);
+ 
   padding: 0 10px;
   font-family: sans-serif;
   position: fixed;
@@ -564,10 +625,10 @@
   .table-container {
     max-width: 800px;
     margin: 7rem 7%;
-    background-color: #2A303B;
+   
     padding: 20px 60px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+   
     border: 1px solid rgb(95, 90, 90);
   }
 
@@ -595,7 +656,7 @@
     vertical-align: middle;
     padding: 0px;
     font-size: 30px;
-    background-color: black;
+   
     font-weight: 900;
     font-family: 'Montserrat', sans-serif;
     line-height: 1;
@@ -674,4 +735,56 @@
   .modal-content {
     width: 80%;
   }
+}
+
+
+@media screen and (max-width: 768px) {
+  .vote-heading {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .vote-cards {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    justify-content: flex-start;
+    padding: 0 1rem;
+  }
+
+  .vote-card {
+    flex: 0 0 auto;
+    width: 180px;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .player-name {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0.3rem;
+  }
+
+  .vote-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .vote-card p {
+    font-size: 0.85rem;
+  }
+
+  .total-votes {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+  }
+  .vote-cards::-webkit-scrollbar {
+  display: none;
+}
+.vote-cards {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 }

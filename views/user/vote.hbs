@@ -1,0 +1,104 @@
+<div class="vote-container">
+  <h2 class="vote-heading">Vote for Your Best Player</h2>
+  <div class="vote-cards">
+
+    <!-- Mbappe -->
+    <div class="vote-card blue">
+      <h3 class="player-name blue-border">Mbappe</h3>
+      <p>{{voteData.Mbappe.count}} votes ({{voteData.Mbappe.percentage}}%)</p>
+    <button class="vote-btn blue-btn" data-player="Mbappe">Vote Mbappe</button>
+    </div>
+
+    <!-- Haaland -->
+    <div class="vote-card red">
+      <h3 class="player-name red-border">Haaland</h3>
+      <p>{{voteData.Haaland.count}} votes ({{voteData.Haaland.percentage}}%)</p>
+     <button class="vote-btn red-btn" data-player="Haaland">Vote Haaland</button>
+    </div>
+
+    <!-- Vinicius -->
+    <div class="vote-card yellow">
+      <h3 class="player-name yellow-border">Vinicius</h3>
+      <p>{{voteData.Vinicius.count}} votes ({{voteData.Vinicius.percentage}}%)</p>
+       <button class="vote-btn yellow-btn" data-player="Vinicius">Vote Vinicius</button>
+    </div>
+
+  </div>
+
+  {{#if totalVotes}}
+  <p class="total-votes">Total Votes: {{totalVotes}}</p>
+  {{/if}}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.vote-btn');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        const player = this.getAttribute('data-player');
+
+        if (document.cookie.includes('voted=true')) {
+          showPopup('You have already voted!', 'gray');
+          return;
+        }
+
+        fetch('/vote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ player_name: player })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            document.cookie = "voted=true; max-age=86400"; // 1 day
+
+            // Update UI percentages
+            for (let key in data.voteData) {
+              document.querySelector(`.percentage-${key}`).textContent = data.voteData[key].percentage + '%';
+            }
+
+            // Show modern popup
+            const color =
+              player === 'Mbappe' ? '#007bff' :
+              player === 'Haaland' ? '#dc3545' :
+              '#ffc107';
+
+            showPopup(`Thanks for voting ${player}!`, color);
+          }
+        });
+      });
+    });
+
+    function showPopup(message, bgColor) {
+      const popup = document.createElement('div');
+      popup.textContent = message;
+      popup.style.position = 'fixed';
+      popup.style.top = '20px';
+      popup.style.left = '50%';
+      popup.style.transform = 'translateX(-50%)';
+      popup.style.padding = '15px 25px';
+      popup.style.color = 'white';
+      popup.style.fontWeight = '600';
+      popup.style.borderRadius = '10px';
+      popup.style.backgroundColor = bgColor;
+      popup.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+      popup.style.zIndex = '1000';
+      popup.style.opacity = '0';
+      popup.style.transition = 'opacity 0.3s ease';
+
+      document.body.appendChild(popup);
+
+      // Trigger fade-in
+      setTimeout(() => {
+        popup.style.opacity = '1';
+      }, 10);
+
+      // Fade out and remove after 3 sec
+      setTimeout(() => {
+        popup.style.opacity = '0';
+        setTimeout(() => popup.remove(), 300);
+      }, 3000);
+    }
+  });
+</script>

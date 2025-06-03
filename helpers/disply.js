@@ -32,7 +32,7 @@ module.exports = {
       });
     }
   },
-    updateStats: function (tableName, data, callback) {
+  updateStats: function (tableName, data, callback) {
         const playerName = data.Name;
         const statPrefix = data.statname;
 

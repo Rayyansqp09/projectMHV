@@ -77,3 +77,21 @@
   </div>
 
   <div class="line"></div>
+
+
+  <script>
+     document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll("a.dynamic-link");
+    const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
+
+    links.forEach(link => {
+      const originalHref = link.getAttribute("href");
+
+      // If it's already absolute or an external link, skip
+      if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+
+      // Update href to include current path
+      link.setAttribute("href", `${basePath}/${originalHref}`);
+    });
+  });
+  </script>

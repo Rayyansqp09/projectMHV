@@ -30,29 +30,20 @@ a:hover {
 
 /* Navbar */
 .custom-navbar {
-  background-color: #2A303B;
+  background-color: #0f111a;
   color: rgb(211, 206, 206);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   padding: 0 10px;
-  font-family: sans-serif;
-  border-bottom: 2px solid transparent !important;
-  filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.6));
+  font-family: 'Lato', sans-serif;
+  border-bottom: 1px solid transparent !important;
 
-  box-shadow:
-    0 5px 10px rgba(0, 0, 0, 0.6),
-    /* outer deep shadow */
-    0 4px 6px rgba(0, 0, 0, 0.4),
-    /* mid shadow */
-    inset 0 2px 4px rgba(255, 255, 255, 0.05),
-    /* inner light at top */
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-  /* inner shadow bottom */
+
 
   /* Subtle gradient for more depth illusion */
-  background-image: linear-gradient(145deg, #2e343e, #252b33);
+  /* background-image: linear-gradient(145deg, #2e343e, #252b33); */
 
 
   /* 👇 Sticky navbar styles */
@@ -67,7 +58,7 @@ a:hover {
   position: relative;
   padding: 5px 20px;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 100;
 }
 
 .dropdown-menu {
@@ -141,6 +132,7 @@ a:hover {
   padding: 10px;
   color: rgb(211, 206, 206);
   text-decoration: none;
+  font-weight: 500;
 }
 
 .dropdown-menu a:hover {
@@ -163,6 +155,7 @@ a:hover {
   min-width: 200px;
   z-index: 1000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  
 }
 
 .nav-item.dropdown:hover .follow-dropdown {
@@ -553,9 +546,9 @@ p {
     padding: 8px 12px;
   }
 
-  .content {
+  /* .content {
     padding: 20px;
-  }
+  } */
 }
 
 .table-container {
@@ -580,7 +573,7 @@ p {
   /* inner shadow bottom */
 
   /* Subtle gradient for more depth illusion */
- 
+
 }
 
 
@@ -590,6 +583,7 @@ table {
   border-collapse: separate;
   table-layout: fixed;
   /* Ensures equal column width */
+  margin-top: 10px;
 
 }
 
@@ -714,8 +708,9 @@ td span:nth-child(2) {
   /* keep pure white */
   font-weight: 900;
   font-size: 2rem;
-  letter-spacing: 1px;
+  letter-spacing: 0px;
   text-transform: uppercase;
+  margin-bottom: 0 !important;
 
   /* Minimal realistic 3D with subtle light */
   text-shadow:
@@ -745,6 +740,29 @@ td span:nth-child(2) {
   /* Bold and strong */
   margin-top: 0;
   /* Removes extra top space */
+}
+
+.stat-titleabove {
+  font-family: 'Overpass', sans-serif;
+  text-align: center;
+  color: #ffffff;
+  /* keep pure white */
+  font-weight: 900;
+  font-size: 40px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 2rem;
+
+  /* Minimal realistic 3D with subtle light */
+  text-shadow:
+    0 1px 2px rgba(86, 82, 82, 0.342),
+    /* soft shadow for depth */
+    1px 0 1px rgb(255, 255, 255);
+  /* faint white light on left side */
+
+  background: linear-gradient(120deg, #ffffff 60%, #e6e6e6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 
@@ -863,6 +881,7 @@ footer {
   padding: 20px 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
+  width: 100% !important;
 }
 
 footer p {
@@ -1207,25 +1226,31 @@ footer p {
   transition: 0.3s ease;
 }
 
-.footer2-card:hover {
+.footer2-card:hover,
+.footer3-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-.footer2-card span {
+.footer2-card span,
+.footer3-card span {
   font-size: 16px;
   color: #1e88e5;
   font-weight: 600;
 }
 
-.footer2-arrow {
+.footer2-arrow,
+.footer3-arrow {
   font-size: 20px;
   transition: transform 0.2s ease;
 }
 
-.footer2-card:hover .footer2-arrow {
+
+.footer2-card:hover .footer2-arrow,
+.footer3-card:hover .footer3-arrow {
   transform: translateX(5px);
 }
+
 
 .footer2-follow {
   text-align: center;
@@ -1259,4 +1284,23 @@ footer p {
 .footer2-icon:hover {
   transform: scale(1.1);
   filter: none;
+}
+
+.footer3-card {
+  background: linear-gradient(145deg, #2A303B);
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1), -8px -8px 15px rgba(82, 79, 79, 0.7);
+  border-radius: 15px;
+  padding: 20px 25px;
+  margin: 1.3rem auto;
+  max-width: 43.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.table-container-st {
+
+ margin-bottom: 0.5rem;
 }

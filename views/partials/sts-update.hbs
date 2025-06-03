@@ -4,13 +4,15 @@
       <!-- Player Selection -->
       <div class="form-group">
         <p id="statCategoryDisplay" style="font-weight: bold;"></p>
-        <input name="statname" id="statCategoryInput" >
+        <input name="statname" id="statCategoryInput">
+        <input type="hidden" name="tableName" id="tableNameInput">
+
       </div>
 
       <div class="form-group">
         <label for="playerSelect">Select Player</label>
         <select id="playerSelect" name="Name" class="player-select">
-          <option class="dropdown-btn-form" value="Mbappe" >Mbappé</option>
+          <option class="dropdown-btn-form" value="Mbappe">Mbappé</option>
           <option class="dropdown-btn-form" value="Haaland">Haaland</option>
           <option class="dropdown-btn-form" value="Vinicius">Vinícius</option>
         </select>
@@ -50,36 +52,36 @@
 <script>
   // Current stats
   const playerStats = {
-    
+
     mbappe: {
-      goals: {{mbappe.Goals}},
-      assists: {{mbappe.Assists}},
-      games: {{mbappe.Games}}
+      goals: {{ mbappe.Goals }},
+  assists: { { mbappe.Assists } },
+  games: { { mbappe.Games } }
     },
-    haaland: {
-      goals: {{haaland.Goals}},
-      assists: {{haaland.Assists}},
-      games: {{haaland.Games}}
-    },
-    vinicius: {
-      goals: {{vini.Goals}},  // Note: fix to use proper field
-      assists: {{vini.Assists}},
-      games: {{vini.Games}}
-    }
+  haaland: {
+    goals: { { haaland.Goals } },
+    assists: { { haaland.Assists } },
+    games: { { haaland.Games } }
+  },
+  vinicius: {
+    goals: { { vini.Goals } },  // Note: fix to use proper field
+    assists: { { vini.Assists } },
+    games: { { vini.Games } }
+  }
   };
 
   // Theme and values
   document.getElementById("playerSelect").addEventListener("change", function () {
-  const selected = this.value.toLowerCase();
-  const form = document.getElementById("statsForm");
-  form.classList.remove("mbappe-theme", "haaland-theme", "vinicius-theme");
-  form.classList.add(`${selected}-theme`);
+    const selected = this.value.toLowerCase();
+    const form = document.getElementById("statsForm");
+    form.classList.remove("mbappe-theme", "haaland-theme", "vinicius-theme");
+    form.classList.add(${ selected } - theme);
 
-  const stats = playerStats[selected];
-  document.getElementById("Goals").value = stats.goals;
-  document.getElementById("Assists").value = stats.assists;
-  document.getElementById("Games").value = stats.games;
-});
+    const stats = playerStats[selected];
+    document.getElementById("Goals").value = stats.goals;
+    document.getElementById("Assists").value = stats.assists;
+    document.getElementById("Games").value = stats.games;
+  });
 
 
   // Show popup
@@ -126,4 +128,5 @@
   document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("playerSelect").dispatchEvent(new Event("change"));
   });
+
 </script>

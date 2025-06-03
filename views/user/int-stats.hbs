@@ -113,7 +113,7 @@
     {{/if}}
 </div>
 
-<div class="table-container" id="int-comp">
+<div class="table-container table-container-st" id="int-comp">
     <h2 name="club" class="stat-title">WORLD CUP STATS</h2>
     
 
@@ -154,7 +154,13 @@
     {{/if}}
 </div>
 
-<div class="table-container">
+</div>
+<div class="footer3-card" onclick="location.href='/report'">
+    <span>More Detailed World Cup Stats</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container table-container-st">
     <h2 name="club" class="stat-title">COPA/EURO STATS</h2>
 
     <table>
@@ -192,6 +198,11 @@
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
     {{/if}}
+</div>
+</div>
+<div class="footer3-card" onclick="location.href='/report'">
+    <span>More Detailed Copa/Euro Stats</span>
+    <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="table-container">

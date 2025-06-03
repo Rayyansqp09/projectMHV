@@ -1,43 +1,37 @@
 const db = require('../config/connection');
+const validTables = require('../config/table'); // your table list
 
 module.exports = {
 
    getStats: function (tableNames, callback) {
-  const validTables = ['all_time', 'club_comp', 'int_comp','votes'];
-  const results = {};
+    const results = {};
 
-  // If tableNames is a string, convert it to an array
-  if (typeof tableNames === 'string') {
-    tableNames = [tableNames];
-  }
-
-  let completed = 0;
-
-  for (const table of tableNames) {
-    if (!validTables.includes(table)) {
-      return callback(new Error('Invalid table name: ' + table), null);
+    if (typeof tableNames === 'string') {
+      tableNames = [tableNames];
     }
 
-    const query = `SELECT * FROM ${table}`;
-    db.get().query(query, (err, rows) => {
-      if (err) {
-        return callback(err, null);
+    let completed = 0;
+
+    for (const table of tableNames) {
+      if (!validTables.includes(table)) {
+        return callback(new Error('Invalid table name: ' + table), null);
       }
 
-      results[table] = rows;
-      completed++;
+      // Use backticks around table name for safety
+      const query = `SELECT * FROM \`${table}\``;
 
-      if (completed === tableNames.length) {
-        // If only one table, return just that result for backward compatibility
-        if (tableNames.length === 1) {
-          return callback(null, rows);
-        } else {
-          return callback(null, results);
+      db.get().query(query, (err, rows) => {
+        if (err) return callback(err, null);
+
+        results[table] = rows;
+        completed++;
+
+        if (completed === tableNames.length) {
+          return callback(null, tableNames.length === 1 ? rows : results);
         }
-      }
-    });
-  }
-},
+      });
+    }
+  },
     updateStats: function (tableName, data, callback) {
         const playerName = data.Name;
         const statPrefix = data.statname;

@@ -12,7 +12,6 @@
             <option value="season2017">2017-18</option>
             <option value="season2016">2016-17</option>
             <option value="season2015">2015-16</option>
-            <option value="season2014">2014-15</option>
         </select>
 
 
@@ -56,30 +55,26 @@
             {{> season/2015-16 }}
         </div>
 
-        <div class="season-content" id="season2014">
-            {{> season/2014-15 }}
-        </div>
-
         <script>
-              window.addEventListener("DOMContentLoaded", () => {
-    const select = document.getElementById("seasonSelect");
-    const contents = document.querySelectorAll(".season-content");
+            window.addEventListener("DOMContentLoaded", () => {
+                const select = document.getElementById("seasonSelect");
+                const contents = document.querySelectorAll(".season-content");
 
-    function showSeasonContent(seasonId) {
-      contents.forEach(div => div.classList.remove("active"));
-      const selectedDiv = document.getElementById(seasonId);
-      if (selectedDiv) selectedDiv.classList.add("active");
-    }
+                function showSeasonContent(seasonId) {
+                    contents.forEach(div => div.classList.remove("active"));
+                    const selectedDiv = document.getElementById(seasonId);
+                    if (selectedDiv) selectedDiv.classList.add("active");
+                }
 
-    // Show content based on initial selected option (2024)
-    showSeasonContent(select.value);
+                // Show content based on initial selected option (2024)
+                showSeasonContent(select.value);
 
-    // When dropdown changes
-    select.addEventListener("change", function () {
-      showSeasonContent(this.value);
-    });
-  });
-  
+                // When dropdown changes
+                select.addEventListener("change", function () {
+                    showSeasonContent(this.value);
+                });
+            });
+
             const select = document.getElementById("seasonSelect");
             const contents = document.querySelectorAll(".season-content");
 
@@ -90,4 +85,20 @@
                     document.getElementById(selected).classList.add("active");
                 }
             });
+
+            function toggleModal(button) {
+                // Find the closest table-container and get the h2 inside it
+                const headingElement = button.closest(".table-container").querySelector("h2");
+
+                // ✅ Display the heading text inside the modal
+                document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+
+                // ✅ Send the 'name' attribute value to the backend via hidden input
+                document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+
+
+                const modal = document.getElementById("modalOverlay");
+                modal.style.display = "flex"; // ensure it uses flex to center
+                modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+            }
         </script>

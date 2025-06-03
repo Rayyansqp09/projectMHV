@@ -10,24 +10,19 @@
         </thead>
         <tbody>
             <tr>
-                <td class="mbappe-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="haaland-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="vini-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="mbappe-text">{{mbappe_all.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland_all.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini_all.clubGames}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="haaland-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="vini-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
-            </tr>
-             <tr>
-                <td class="mbappe-text">{{mbappe.Goals}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="haaland-text">{{haaland.Goals}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="vini-text">{{vini.Goals}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="mbappe-text">{{mbappe_all.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland_all.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini_all.Goals}}<br><span class="stat-name">GOALS</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.Assists}}<br><span class="stat-name">ASSIST</span></td>
-                <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
-                <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
+                <td class="mbappe-text">{{mbappe_all.Assists}}<br><span class="stat-name">ASSIST</span></td>
+                <td class="haaland-text">{{haaland_all.Assists}}<br><span class="stat-name">ASSIST</span></td>
+                <td class="vini-text">{{vini_all.Assists}}<br><span class="stat-name">ASSIST</span></td>
             </tr>
             <tr>
                 <td class="mbappe-text">{{mbappe.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
@@ -41,15 +36,15 @@
             </tr>
         </tbody>
     </table>
-    
+
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
     {{/if}}
 </div>
 
 <div class="table-container" id="clubComp">
-    <h2 name="club" class="stat-title">LEAGUE STATS</h2>
-    
+    <h2 name="l" class="stat-title">LEAGUE STATS</h2>
+
 
     <table>
         <thead>
@@ -61,13 +56,13 @@
         </thead>
         <tbody>
             <tr>
-                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
-                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
-                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="mbappe-text">{{mbappe_club.lGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland_club.lGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini_club.lGames}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
-                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="mbappe-text">{{mbappe_club.lGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland_club.lGoals}}<br><span class="stat-name">GOALS</span></td>
                 <td class="vini-text">{{vini.braces}}<br><span class="stat-name">GOALS</span></td>
             </tr>
             <tr>
@@ -82,9 +77,9 @@
             </tr>
         </tbody>
     </table>
-     <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed League Stats</a></button>
+    <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed League Stats</a></button>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" data-table="club">UPDATE</button>
     {{/if}}
 </div>
 
@@ -100,7 +95,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
@@ -127,7 +122,7 @@
     {{/if}}
 </div>
 
-<div class="table-container">
+<div class="table-container table-container-st">
     <h2 name="int" class="stat-title">UCL STATS</h2>
     <table>
         <thead>
@@ -138,10 +133,10 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
-                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
-                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
-                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            <tr>
+                <td class="mbappe-text">{{mbappe_club.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland_club.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini_club.uclGames}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
                 <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
@@ -160,10 +155,14 @@
             </tr>
         </tbody>
     </table>
-     <button class="Dt-btn"><a class="dynamic-link" href="ucl">Detailed UCL Stats</a></button>
+    <button class="Dt-btn"><a class="dynamic-link" href="ucl">Detailed UCL Stats</a></button>
     {{#if admin}}
     <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
     {{/if}}
+</div>
+<div class="footer3-card" onclick="location.href='/report'">
+    <span>More Detailed UEFA Champions League</span>
+    <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="table-container">
@@ -177,7 +176,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
@@ -210,7 +209,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
@@ -243,7 +242,40 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">FIFA CLUB WORLD CUP</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
                 <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
@@ -270,70 +302,70 @@
 <script>
 
     window.addEventListener('DOMContentLoaded', () => {
-    const hash = window.location.hash;
+        const hash = window.location.hash;
 
-    if (hash === '#clubComp','#superCup','#clubWc') {
-      const target = document.querySelector(hash);
-      if (!target) return;
+        if (hash === '#clubComp', '#superCup', '#clubWc') {
+            const target = document.querySelector(hash);
+            if (!target) return;
 
-      const offset = 80; // adjust if you have a fixed header
-      const duration = 1000;
+            const offset = 80; // adjust if you have a fixed header
+            const duration = 1000;
 
-      const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-      const startPosition = window.scrollY;
-      const distance = targetPosition - startPosition;
-      let startTime = null;
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
 
-      function animation(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-      }
+            function animation(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
 
-      function easeInOutQuad(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-      }
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
 
-      requestAnimationFrame(animation);
-    }
-  });
-
-     document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll("a.dynamic-link");
-    const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
-
-    links.forEach(link => {
-      const originalHref = link.getAttribute("href");
-
-      // If it's already absolute or an external link, skip
-      if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
-
-      // Update href to include current path
-      link.setAttribute("href", `${basePath}/${originalHref}`);
+            requestAnimationFrame(animation);
+        }
     });
-  });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("a.dynamic-link");
+        const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
+
+        links.forEach(link => {
+            const originalHref = link.getAttribute("href");
+
+            // If it's already absolute or an external link, skip
+            if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+
+            // Update href to include current path
+            link.setAttribute("href", `${basePath}/${originalHref}`);
+        });
+    });
 
 
-    function toggleModal(button) {
-        // Find the closest table-container and get the h2 inside it
-        const headingElement = button.closest(".table-container").querySelector("h2");
+   function toggleModal(button) {
+    const headingElement = button.closest(".table-container").querySelector("h2");
 
-        // ✅ Display the heading text inside the modal
-        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+    document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+    document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
 
-        // ✅ Send the 'name' attribute value to the backend via hidden input
-        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+    // ✅ Add this to pass table name
+    const tableName = button.getAttribute("data-table");
+    document.getElementById("tableNameInput").value = tableName;
 
+    const modal = document.getElementById("modalOverlay");
+    modal.style.display = "flex";
+    modal.scrollIntoView({ behavior: "smooth", block: "center" });
+}
 
-        const modal = document.getElementById("modalOverlay");
-        modal.style.display = "flex"; // ensure it uses flex to center
-        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-    }
 
     document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('statsForm');

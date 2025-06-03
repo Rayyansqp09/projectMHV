@@ -11,9 +11,9 @@
       real-time football stats for fans across the world. If you love what we’re doing,
       feel free to support us. Every donation keeps the project alive and growing.
     </p>
-    <button class="donate-button" id="donateBtn">
-      Donate Now
-    </button>
+   <p>Enter donation amount (INR):</p>
+<input type="number" id="donationAmount" min="1" placeholder="Amout" /><br>
+<button class="donate-button" id="donateBtn">Donate Now</button>
   </div>
 </div>
 
@@ -39,37 +39,51 @@
   </div>
 </div>
 
-
-
-  
-
-
-  <script>
+ <script>
 document.getElementById("donateBtn").onclick = async function () {
-  const response = await fetch("/pay", { method: "POST" });
+  const amountInput = document.getElementById("donationAmount").value;
+  const amount = parseInt(amountInput);
+
+  if (!amount || amount < 1) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Amount',
+      text: 'Please enter a valid donation amount.',
+      confirmButtonColor: '#d33',
+    });
+    return;
+  }
+
+  // convert to paise
+  const response = await fetch("/pay", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount: amount * 100 })
+  });
+
   const data = await response.json();
 
   const options = {
     key: "rzp_test_41qaGoGnSDVd5u",
-    amount: 10000,
+    amount: amount * 100,
     currency: "INR",
     name: "Mbappe vs Haaland vs Vinicius",
     description: "Fan Donation",
     order_id: data.orderId,
     handler: function (response) {
-   Swal.fire({
-      icon: 'success',
-      title: 'Thank You!',
-      text: 'Thank you for your support and donation!',
-      confirmButtonText: 'Awesome',
-      confirmButtonColor: '#3085d6',
-      background: '#f0f9ff',
-    });
-  },
-  theme: {
-    color: "#3399cc"
-  }
-};
+      Swal.fire({
+        icon: 'success',
+        title: 'Thank You!',
+        text: 'Thank you for your support and donation!',
+        confirmButtonText: 'Awesome',
+        confirmButtonColor: '#3085d6',
+        background: '#f0f9ff',
+      });
+    },
+    theme: {
+      color: "#3399cc"
+    }
+  };
 
   const rzp = new Razorpay(options);
   rzp.open();

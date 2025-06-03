@@ -1,4 +1,4 @@
-<div class="table-container">
+<div class="table-container table-container-st">
   <h2 name="" class="stat-title">ALL TIME STATS</h2>
   <table>
     <thead>
@@ -24,27 +24,37 @@
         <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
         <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
       </tr>
-       <!-- Hidden Rows -->
-        <tr class="extra-row" style="display: none;">
-            <td class="mbappe-text">{{mbappe.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-            <td class="haaland-text">{{haaland.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-            <td class="vini-text">{{vini.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-        </tr>
-        <tr class="extra-row" style="display: none;">
-            <td class="mbappe-text">{{mbappe.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-            <td class="haaland-text">{{haaland.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-            <td class="vini-text">{{vini.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-        </tr>
+      <!-- Hidden Rows -->
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+        <td class="haaland-text">{{haaland.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+        <td class="vini-text">{{vini.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+        <td class="haaland-text">{{haaland.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+        <td class="vini-text">{{vini.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+      </tr>
     </tbody>
   </table>
   <button class="Dt-btn2" id="showMoreBtn">More</button>
   <button class="Dt-btn"><a class="dynamic-link" href="alltime">Detailed Stats</a></button>
-   {{#if admin}}
-   <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
-   {{/if}}
+  {{#if admin}}
+  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+  {{/if}}
 </div>
 
-<div class="table-container">
+
+<div class="footer3-card" onclick="location.href='/alltime#goal'">
+  <span>Hattricks,Free Kick Goals,Otside The Box Goals Etc</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+<div class="footer3-card" onclick="location.href='/alltime#final'">
+  <span>All Time Stats In Finals</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container table-container-st">
   <h2 name="club" class="stat-title">ALL TIME CLUB STATS</h2>
   <table>
     <thead>
@@ -74,11 +84,16 @@
   </table>
   <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed Stats</a></button>
   {{#if admin}}
-   <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
-   {{/if}}
+  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+  {{/if}}
 </div>
 
-<div class="table-container">
+<div class="footer3-card" onclick="location.href='/ucl'">
+  <span>UEFA Champions League</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container table-container-st">
   <h2 name="int" class="stat-title">ALL TIME INT STATS</h2>
   <table>
     <thead>
@@ -106,151 +121,156 @@
       </tr>
     </tbody>
   </table>
-  <button class="Dt-btn"><a class="dynamic-link" href="/int-stats">Detailed Stats</a></button>
-   {{#if admin}}
-   <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
-   {{/if}}
+  <button class="Dt-btn"><a class="dynamic-link" href="int-stats">Detailed Stats</a></button>
+  {{#if admin}}
+  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+  {{/if}}
+</div>
+
+<div class="footer3-card" onclick="location.href='/int-stats/wc'">
+  <span>World Cup</span>
+  <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="table-container">
-    <h2 name="int" class="stat-title">INDIVIDUAL AWARDS&ACHIVMENTS</h2>
-    <table>
-        <thead>
-            <tr>
-                <th class="mbappe-text">MBAPPE</th>
-                <th class="haaland-text">HAALAND</th>
-                <th class="vini-text">VINICIUS</th>
-            </tr>
-        </thead>
-        <tbody>
-           <tr>
-                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
-                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
-                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">FIFA BEST</span></td>
-                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">FIFA BEST</span></td>
-                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">FIFA BEST</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
-                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
-                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
-                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
-                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">UCL POTT</span></td>
-                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">UCL POTT</span></td>
-                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">UCL POTT</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
-                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
-                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
-            </tr>
-            <tr class="extra-row" style="display: none;">
-                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">WC POTT</span></td>
-                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">WC POTT</span></td>
-                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">WC POTT</span></td>
-            </tr>
-            <tr class="extra-row" style="display: none;">
-                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
-                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
-                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
-            </tr>
-            <tr class="extra-row" style="display: none;">
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
-            </tr>
-             <tr class="extra-row" style="display: none;">
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
-            </tr>
-            <tr class="extra-row" style="display: none;">
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
-            </tr>
-            <tr class="extra-row" style="display: none;">
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
-            </tr>
-             <tr class="extra-row" style="display: none;">
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
-            </tr>
-            <tr class="extra-row" style="display: none;">
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
-            </tr>
-           
-        </tbody>
-    </table>
-    <button class="Dt-btn2 show-more-btn">More</button>
-    {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
-    {{/if}}
+  <h2 name="int" class="stat-title">INDIVIDUAL AWARDS&ACHIVMENTS</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="mbappe-text">MBAPPE</th>
+        <th class="haaland-text">HAALAND</th>
+        <th class="vini-text">VINICIUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
+        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
+        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">FIFA BEST</span></td>
+        <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">FIFA BEST</span></td>
+        <td class="vini-text">{{vini.braces}}<br><span class="stat-name">FIFA BEST</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
+        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
+        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
+        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
+        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">UCL POTT</span></td>
+        <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">UCL POTT</span></td>
+        <td class="vini-text">{{vini.braces}}<br><span class="stat-name">UCL POTT</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
+        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
+        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
+      </tr>
+      <tr>
+        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
+        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
+        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">WC POTT</span></td>
+        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">WC POTT</span></td>
+        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">WC POTT</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
+        <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
+        <td class="vini-text">{{vini.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
+        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
+        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
+        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
+        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+      </tr>
+      <tr class="extra-row" style="display: none;">
+        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+  <button class="Dt-btn2 show-more-btn">More</button>
+  {{#if admin}}
+  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+  {{/if}}
 </div>
 
- {{>sts-update}}
+{{>sts-update}}
 
 <script>
 
-   const tabs = document.querySelectorAll('.tab');
-const contents = document.querySelectorAll('.content');
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.content');
 
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    // Toggle tab active state
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Toggle tab active state
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
-    // Show the correct content
-    contents.forEach(content => content.classList.remove('active'));
-    const target = tab.dataset.target;
-    const activeContent = document.getElementById(target);
-    if (activeContent) {
-      activeContent.classList.add('active');
-    }
-  });
-});
-
-   document.querySelectorAll('.Dt-btn2').forEach(button => {
-  button.addEventListener('click', function () {
-    const container = this.closest('.table-container'); // Locate the current section
-    if (!container) return;
-
-    const table = container.querySelector('table'); // Find the table inside this section
-    const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
-
-    hiddenRows.forEach(row => {
-      row.style.display = 'table-row'; // Show row
-      row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+      // Show the correct content
+      contents.forEach(content => content.classList.remove('active'));
+      const target = tab.dataset.target;
+      const activeContent = document.getElementById(target);
+      if (activeContent) {
+        activeContent.classList.add('active');
+      }
     });
-
-    this.style.display = 'none'; // Hide "More" button
   });
-});
+
+  document.querySelectorAll('.Dt-btn2').forEach(button => {
+    button.addEventListener('click', function () {
+      const container = this.closest('.table-container'); // Locate the current section
+      if (!container) return;
+
+      const table = container.querySelector('table'); // Find the table inside this section
+      const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
+
+      hiddenRows.forEach(row => {
+        row.style.display = 'table-row'; // Show row
+        row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+      });
+
+      this.style.display = 'none'; // Hide "More" button
+    });
+  });
 
   document.addEventListener("DOMContentLoaded", function () {
     const links = document.querySelectorAll("a.dynamic-link");
@@ -267,27 +287,27 @@ tabs.forEach(tab => {
     });
   });
 
-function toggleModal(button) {
-  // Find the closest table-container and get the h2 inside it
-  const headingElement = button.closest(".table-container").querySelector("h2");
+  function toggleModal(button) {
+    // Find the closest table-container and get the h2 inside it
+    const headingElement = button.closest(".table-container").querySelector("h2");
 
-  // ✅ Display the heading text inside the modal
-  document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+    // ✅ Display the heading text inside the modal
+    document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
 
-  // ✅ Send the 'name' attribute value to the backend via hidden input
-  document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
-  
+    // ✅ Send the 'name' attribute value to the backend via hidden input
+    document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
 
-  const modal = document.getElementById("modalOverlay");
-  modal.style.display = "flex"; // ensure it uses flex to center
-  modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-}
 
-  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById("modalOverlay");
+    modal.style.display = "flex"; // ensure it uses flex to center
+    modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('statsForm');
     if (form) {
-      form.addEventListener('submit', function(e) {
-       
+      form.addEventListener('submit', function (e) {
+
         // You can add fetch or form submission logic here
         toggleModal(); // Close the modal
       });

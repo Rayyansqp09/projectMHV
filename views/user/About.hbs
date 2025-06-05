@@ -1,0 +1,143 @@
+<section class="mvhv-about-wrapper">
+    <div class="mvhv-about-container">
+
+        <!-- About Section -->
+        <h1 class="mvhv-title">About MbappevsHaalandvsVinicius</h1>
+
+        <p class="mvhv-text">
+            <strong>MbappevsHaalandvsVinicius</strong> is a next-generation football comparison platform created for one
+            purpose — to offer fans a fast, fair, and frustration-free way to explore and compare the careers of
+            <strong>Kylian Mbappé</strong>, <strong>Erling Haaland</strong>, and <strong>Vinícius Júnior</strong>.
+        </p>
+
+        <p class="mvhv-text">
+            As football continues to evolve, so do the debates — and this platform was built from the ground up by a
+            solo football enthusiast who wears many hats: developer, designer, and dreamer. Whether you're team speed,
+            strength, or skill, we’ve built a neutral ground where the numbers speak for themselves.
+        </p>
+
+        <p class="mvhv-text">
+            The website delivers up-to-date, visually clean statistics that allow fans to dive deep into goals, assists,
+            appearances, trophies, and more — all without unnecessary distractions. Simplicity is our power.
+        </p>
+
+        <p class="mvhv-text">
+            We focus on user-first design, lightweight performance, and reliable stat accuracy. Whether you're in a
+            heated debate, building content, or just curious about your favorite player's journey — this site makes it
+            easy.
+        </p>
+
+        <p class="mvhv-highlight">
+            Our vision is simple: Keep it fast. Keep it fair. Keep it fan-focused.
+        </p>
+
+        <!-- Contact Section -->
+        <h2 class="mvhv-subtitle">📞 Contact Us</h2>
+        <p class="mvhv-text">
+            Got feedback, ideas, or just want to say hi? Reach out anytime. We're building this with love — and your
+            input makes it better.
+        </p>
+        <p class="mvhv-text">
+            📧 Email: <a
+                href="mailto:support@mbappevshaalandvsvinicius.com">support@mbappevshaalandvsvinicius.com</a><br>
+            🌍 Based on the internet, made for football lovers worldwide.
+        </p>
+
+        <!-- Donation Section -->
+        <h2 class="mvhv-subtitle">💖 Support the Project</h2>
+        <p class="mvhv-text">
+            Running this site isn’t free — servers, updates, stats, you name it. If you’ve enjoyed your time here,
+            consider dropping a small donation.
+        </p>
+        <p class="mvhv-text">
+            Think of it as helping a fellow fan keep the football fire burning. Plus, it helps us add cooler features —
+            like stat timelines, trophy maps, and more!
+        </p>
+        <a href="/donate" class="mvhv-donate-button">⚽ Buy Us a Coffee</a>
+
+        <!-- Advertise Section -->
+        <h2 class="mvhv-subtitle">📢 Advertise With Us</h2>
+        <p class="mvhv-text">
+            Want to promote your football-related page, product, or service to our audience? We'd love to collaborate!
+        </p>
+        <button id="mvhvAdBtn" class="mvhv-donate-button" >📩 Advertise Now</button>
+
+        <!-- Social Media Section -->
+        <h2 class="mvhv-subtitle">📲 Follow Us on Social Media</h2>
+        <p class="mvhv-text">
+            We’re just getting started. Stay connected to watch us grow, suggest features, and share the football love!
+        </p>
+        <div class="mvhv-social-icons">
+            <a href="https://twitter.com/" target="_blank" aria-label="X (Twitter)">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://wa.me/yourphonenumber" target="_blank" aria-label="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
+{{>ads}}
+<script>
+  // Open modal on button click
+  document.getElementById("mvhvAdBtn").addEventListener("click", () => {
+    document.getElementById("mvhvAdModal").style.display = "flex";
+  });
+
+  // Close modal on close icon click
+  document.getElementById("mvhvCloseModal").addEventListener("click", () => {
+    document.getElementById("mvhvAdModal").style.display = "none";
+  });
+
+  // Close modal if clicking outside the modal content
+  window.addEventListener("click", function (e) {
+    if (e.target.id === "mvhvAdModal") {
+      document.getElementById("mvhvAdModal").style.display = "none";
+    }
+  });
+
+  // Form submit handler with fetch
+  const adForm = document.getElementById("mvhvAdForm");
+  adForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      email: adForm.email.value,
+      name: adForm.name.value,
+      details: adForm.details.value,
+    };
+
+    try {
+      const res = await fetch("/send-advert", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // ✅ Show friendly popup
+        const popup = document.getElementById("mvhvSuccessPopup");
+        popup.style.display = "block";
+
+        // Hide after 4 seconds
+        setTimeout(() => {
+          popup.style.display = "none";
+        }, 4000);
+
+        // Reset form and close modal
+        adForm.reset();
+        document.getElementById("mvhvAdModal").style.display = "none";
+      } else {
+        alert(data.message || "Failed to send your request.");
+      }
+    } catch (err) {
+      alert("Error sending request. Please try again.");
+      console.error(err);
+    }
+  });
+</script>
+
+

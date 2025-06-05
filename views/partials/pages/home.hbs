@@ -40,7 +40,7 @@
   <button class="Dt-btn2" id="showMoreBtn">More</button>
   <button class="Dt-btn"><a class="dynamic-link" href="alltime">Detailed Stats</a></button>
   {{#if admin}}
-  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time" >UPDATE</button>
   {{/if}}
 </div>
 
@@ -84,7 +84,7 @@
   </table>
   <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed Stats</a></button>
   {{#if admin}}
-  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time">UPDATE</button>
   {{/if}}
 </div>
 
@@ -123,7 +123,7 @@
   </table>
   <button class="Dt-btn"><a class="dynamic-link" href="int-stats">Detailed Stats</a></button>
   {{#if admin}}
-  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time">UPDATE</button>
   {{/if}}
 </div>
 
@@ -133,7 +133,7 @@
 </div>
 
 <div class="table-container">
-  <h2 name="int" class="stat-title">INDIVIDUAL AWARDS&ACHIVMENTS</h2>
+  <h2 name="" class="stat-title">INDIVIDUAL AWARDS&ACHIVMENTS</h2>
   <table>
     <thead>
       <tr>
@@ -228,7 +228,7 @@
   </table>
   <button class="Dt-btn2 show-more-btn">More</button>
   {{#if admin}}
-  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time">UPDATE</button>
   {{/if}}
 </div>
 
@@ -287,21 +287,27 @@
     });
   });
 
-  function toggleModal(button) {
-    // Find the closest table-container and get the h2 inside it
-    const headingElement = button.closest(".table-container").querySelector("h2");
+   function toggleModal(button) {
+  // Find the closest table-container and get the h2 inside it
+  const headingElement = button.closest(".table-container").querySelector("h2");
 
-    // ✅ Display the heading text inside the modal
-    document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+  // Display the heading text inside the modal
+  document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
 
-    // ✅ Send the 'name' attribute value to the backend via hidden input
-    document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+  // Send the 'name' attribute value to the backend via hidden input
+  document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
 
+  const tableName = button.getAttribute("table");
+  document.getElementById("tableNameDisplay").textContent = "Table Name";
+  document.getElementById("tableNameInput").value = tableName;
 
-    const modal = document.getElementById("modalOverlay");
-    modal.style.display = "flex"; // ensure it uses flex to center
-    modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-  }
+  // Instead of modal.style.display = "flex", add active class
+  const modal = document.getElementById("modalOverlay");
+  modal.classList.add("active");
+
+  modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+}
+
 
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('statsForm');

@@ -1,19 +1,31 @@
-<div id="modalOverlay" class="modal-overlay">
+<div id="modalOverlay" class="modalOverlay">
+  <button id="closeBtn" class="close-btn">&times;</button>
   <div class="modal-content">
-    <form action="/admin/sts-update" id="statsForm" method="POST" enctype="multipart/form-data">
+    <form action="/admin/sts-update" class="mbappe-theme" id="statsForm" method="POST" enctype="multipart/form-data">
       <!-- Player Selection -->
       <div class="form-group">
         <p id="statCategoryDisplay" style="font-weight: bold;"></p>
-        <input name="statname" id="statCategoryInput" >
+        <input name="statname" id="statCategoryInput">
       </div>
+      <div class="form-group">
+        <p id="tableNameDisplay" style="font-weight: bold;"></p>
+        <input name="tablename" id="tableNameInput">
+      </div>
+
 
       <div class="form-group">
         <label for="playerSelect">Select Player</label>
         <select id="playerSelect" name="Name" class="player-select">
-          <option class="dropdown-btn-form" value="Mbappe" >Mbappé</option>
+          <option class="dropdown-btn-form" value="Mbappe">Mbappé</option>
           <option class="dropdown-btn-form" value="Haaland">Haaland</option>
           <option class="dropdown-btn-form" value="Vinicius">Vinícius</option>
         </select>
+      </div>
+
+      <!-- Games -->
+      <div class="form-group">
+        <label for="Games">Games</label>
+        <input type="number" id="Games" name="Games" placeholder="Enter new games">
       </div>
 
       <!-- Goals -->
@@ -28,15 +40,10 @@
         <input type="number" id="Assists" name="Assists" placeholder="Enter new assists">
       </div>
 
-      <!-- Games -->
-      <div class="form-group">
-        <label for="Games">Games</label>
-        <input type="number" id="Games" name="Games" placeholder="Enter new games">
-      </div>
-
       <div class="button-row">
         <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
         <button type="button" class="submit-btn done-btn" id="doneBtn">Done</button>
+
       </div>
     </form>
   </div>
@@ -47,60 +54,43 @@
   ✅ Data updated
 </div>
 
+
 <script>
   // Current stats
   const playerStats = {
-    
     mbappe: {
-      goals: {{mbappe.Goals}},
-      assists: {{mbappe.Assists}},
-      games: {{mbappe.Games}}
+      goals: {{ mbappe.Goals }},
+  assists: { { mbappe.Assists } },
+  games: { { mbappe.Games } }
     },
-    haaland: {
-      goals: {{haaland.Goals}},
-      assists: {{haaland.Assists}},
-      games: {{haaland.Games}}
-    },
-    vinicius: {
-      goals: {{vini.Goals}},  // Note: fix to use proper field
-      assists: {{vini.Assists}},
-      games: {{vini.Games}}
-    }
+  haaland: {
+    goals: { { haaland.Goals } },
+    assists: { { haaland.Assists } },
+    games: { { haaland.Games } }
+  },
+  vinicius: {
+    goals: { { vini.Goals } },
+    assists: { { vini.Assists } },
+    games: { { vini.Games } }
+  }
   };
 
   // Theme and values
   document.getElementById("playerSelect").addEventListener("change", function () {
-  const selected = this.value.toLowerCase();
-  const form = document.getElementById("statsForm");
-  form.classList.remove("mbappe-theme", "haaland-theme", "vinicius-theme");
-  form.classList.add(`${selected}-theme`);
+    const selected = this.value.toLowerCase();
+    const form = document.getElementById("statsForm");
 
-  const stats = playerStats[selected];
-  document.getElementById("Goals").value = stats.goals;
-  document.getElementById("Assists").value = stats.assists;
-  document.getElementById("Games").value = stats.games;
-});
+    // Remove all themes before adding the selected one
+    form.classList.remove("mbappe-theme", "haaland-theme", "vinicius-theme");
+    form.classList.add(`${selected}-theme`);
 
-
-  // Show popup
-  document.getElementById('statsForm').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Prevent form from reloading the page
-
-    const formData = new FormData(this);
-
-    const response = await fetch('/admin/sts-update', {
-      method: 'POST',
-      body: formData
-    });
-
-    if (response.ok) {
-      // ✅ Only show popup if the backend confirms success
-      showSuccessMessage();
-    } else {
-      alert("Failed to submit data.");
-    }
+    const stats = playerStats[selected];
+    document.getElementById("Goals").value = stats.goals;
+    document.getElementById("Assists").value = stats.assists;
+    document.getElementById("Games").value = stats.games;
   });
 
+  // Show popup after successful submission
   function showSuccessMessage() {
     const popup = document.getElementById("successPopup");
     popup.style.display = "block";
@@ -109,6 +99,30 @@
     }, 2000);
   }
 
+  // Submit form
+  document.getElementById('statsForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Prevent reload
+
+    const formData = new FormData(this);
+    const selectedPlayer = document.getElementById("playerSelect").value.toLowerCase();
+
+    const response = await fetch('/admin/sts-update', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      showSuccessMessage();
+
+      // ✅ Update playerStats object (optional, but useful)
+      playerStats[selectedPlayer].goals = document.getElementById("Goals").value;
+      playerStats[selectedPlayer].assists = document.getElementById("Assists").value;
+      playerStats[selectedPlayer].games = document.getElementById("Games").value;
+
+    } else {
+      alert("Failed to submit data.");
+    }
+  });
 
   // Handle submit without closing modal
   document.getElementById("submitBtn").addEventListener("click", function (e) {
@@ -117,10 +131,12 @@
     // Optional: Update playerStats object here if needed
   });
 
+
   // Done closes modal
   document.getElementById("doneBtn").addEventListener("click", function () {
     document.getElementById("modalOverlay").style.display = "none";
   });
+
 
   // Set initial state
   document.addEventListener("DOMContentLoaded", () => {

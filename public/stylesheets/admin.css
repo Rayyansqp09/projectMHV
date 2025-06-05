@@ -20,6 +20,15 @@
 #modalOverlay.active {
   display: flex;
 }
+.modalOverlay {
+  display: none; /* Hidden by default */
+  /* other styles */
+}
+
+.modalOverlay.active {
+  display: flex; /* or block/flex depending on your modal layout */
+}
+
 
 
 /* Center modal content */
@@ -124,3 +133,15 @@
 .dbname{
   /* visibility: hidden; */
 }
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: #444;
+  cursor: pointer;
+  z-index: 1001;
+}
+

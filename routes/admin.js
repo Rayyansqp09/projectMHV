@@ -28,20 +28,23 @@ router.get('/', function (req, res, next) {
 
 router.post('/sts-update', upload.none(), function (req, res) {
   const formData = req.body;
-  console.log(req.body)
-  const tableName = 'all_time';
+  console.log(req.body);
+
+  const tableName = formData.tablename;  // Get the table name dynamically from form data
+  delete formData.tablename;              // Optional: remove it from formData if not needed in updateStats
 
   displayHelper.updateStats(tableName, formData, function (err, result) {
     if (err) {
       return res.status(500).send('Database update failed.');
     }
-    // Send back updated data for all players (if needed)
-    db.get().query('SELECT * FROM all_time', (err, rows) => {
+    // Send back updated data for that table
+    db.get().query(`SELECT * FROM ${tableName}`, (err, rows) => {
       if (err) return res.status(500).send('Failed to fetch updated data.');
       res.status(200).json(rows);
     });
   });
 });
+
 
 
 

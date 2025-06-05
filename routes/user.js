@@ -14,23 +14,60 @@ const razorpay = new Razorpay({
   key_secret: "ocb2j8L3oFTm6K9PJlqXOhjt",
 });
 
+const nodemailer = require('nodemailer');
+
+// Replace these with your actual email and app password or token
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // or 'zoho', 'hotmail', etc.
+  auth: {
+    user: 'mhdrayyan86@gmail.com',
+    pass: 'omcbanpfsyumxqdt' // Use an app-specific password if using Gmail
+  }
+});
 
 
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  displayHelper.getStats('all_time', (err, stats) => {
+  const seasons = ['2024_25', 'all_time'];
+
+  displayHelper.getStats(seasons, (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-    const mbappe = stats.find(p => p.Name === 'Mbappe');
-    const haaland = stats.find(p => p.Name === 'Haaland');
-    const vini = stats.find(p => p.Name === 'Vinicius');
-    res.render('index', { admin: false, mbappe, haaland, vini }); // Pass stats to the frontend
 
+    // All-time stats
+    const allTimeStats = stats['all_time'] || [];
+    const mbappe = allTimeStats.find(p => p.Name === 'Mbappe') || {};
+    const haaland = allTimeStats.find(p => p.Name === 'Haaland') || {};
+    const vini = allTimeStats.find(p => p.Name === 'Vinicius') || {};
+
+    // Latest season stats (2024_25)
+    const season = '2024_25';
+    const cleanKey = season.replace('_', '');
+    const seasonStats = stats[season] || [];
+
+    const mbappeSeason = seasonStats.find(p => p.Name === 'Mbappe') || {};
+    const haalandSeason = seasonStats.find(p => p.Name === 'Haaland') || {};
+    const viniciusSeason = seasonStats.find(p => p.Name === 'Vinicius') || {};
+
+    // Construct final data
+    const data = {
+      admin: false,
+      mbappe,
+      haaland,
+      vini,
+      [`mbappe_${cleanKey}`]: mbappeSeason,
+      [`haaland_${cleanKey}`]: haalandSeason,
+      [`vinicius_${cleanKey}`]: viniciusSeason,
+      [`season_${cleanKey}`]: seasonStats
+    };
+
+    res.render('index', data);
   });
 });
+
 router.get('/alltime', function (req, res, next) {
   displayHelper.getStats('all_time', (err, stats) => {
     if (err) {
@@ -60,14 +97,14 @@ router.get('/club-stats', function (req, res, next) {
     const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
     const vini_club = stats.club.find(p => p.Name === 'Vinicius');
 
-    // console.log('Mbappe All-Time:', mbappe_all);
-    // console.log('Mbappe Club:', mbappe_club);
+    console.log('Mbappe All-Time:', mbappe_all);
+    console.log('Mbappe Club:', mbappe_club);
 
-    // console.log('Haaland All-Time:', haaland_all);
-    // console.log('Haaland Club:', haaland_club);
+    console.log('Haaland All-Time:', haaland_all);
+    console.log('Haaland Club:', haaland_club);
 
-    // console.log('Vinicius All-Time:', vini_all);
-    // console.log('Vinicius Club:', vini_club);
+    console.log('Vinicius All-Time:', vini_all);
+    console.log('Vinicius Club:', vini_club);
 
     res.render('user/club-stats', {
       admin: false,
@@ -97,6 +134,42 @@ router.get('/int-stats', function (req, res, next) {
 router.get('/policy', (req, res) => {
   res.render('user/policy', { header: false }); // Make sure views/policy.ejs (or .pug, .hbs) exists
 });
+router.get('/about', (req, res) => {
+  res.render('user/About', { header: false }); // Make sure views/policy.ejs (or .pug, .hbs) exists
+});
+// POST /send-advert
+router.post("/send-advert", async (req, res) => {
+  const { email, name, details } = req.body;
+
+  if (!email || !name || !details) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
+
+  const mailOptions = {
+    from: email, // this is the user's email input
+    to: 'mhdrayyan86@gmail.com', // your receiving email (e.g., Gmail, Zoho, Outlook)
+    subject: `Advertisement Request from ${name}`,
+    text: `
+📝 New Ad Request Submission
+
+👤 Name/Page/Product: ${name}
+📧 Email: ${email}
+
+🗒️ Details:
+${details}
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: "Your request has been sent successfully!" });
+  } catch (error) {
+    console.error("Email send error:", error);
+    res.status(500).json({ message: "Failed to send. Please try again later." });
+  }
+});
+
+
 
 router.get('/pay', (req, res) => {
   res.render('user/pay', { header: false }); // Make sure views/policy.ejs (or .pug, .hbs) exists
@@ -245,7 +318,7 @@ router.get('/club-stats/:comp', function (req, res, next) {
     const haaland = stats.find(p => p.Name === 'Haaland');
     const vini = stats.find(p => p.Name === 'Vinicius');
 
-    console.log(mbappe,haaland,vini)
+    console.log(mbappe, haaland, vini)
 
     // Dynamically render the matching .hbs page like user/ucl.hbs, user/wc.hbs, etc.
     res.render(`user/${comp}`, {
@@ -281,7 +354,7 @@ router.get('/int-stats/:comp', function (req, res, next) {
     const haaland_cu = stats.copa_euro.find(p => p.Name === 'Haaland');
     const vini_cu = stats.copa_euro.find(p => p.Name === 'Vinicius');
 
-    console.log(mbappe_wc,haaland_wc,vini_wc,mbappe_cu,haaland_cu,vini_cu)
+    console.log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
 
     res.render(`user/${comp}`, {
       admin: false,
@@ -322,7 +395,7 @@ router.get('/:time', function (req, res, next) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-    console.log(stats)
+    // console.log(stats)
     const data = {};
 
     for (const season of seasons) {

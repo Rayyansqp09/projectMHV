@@ -43,12 +43,13 @@
     </table>
 
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="ucl" >UPDATE</button>
     {{/if}}
 </div>
 
 <div class="table-container">
     <h2 name="int" class="stat-title">UCL KNOCKOUT</h2>
+     <h2 name="club" class="stat-title2">(Including Play-off Games)</h2>
     <table>
         <thead>
             <tr>
@@ -274,7 +275,7 @@
     });
 
 
-    function toggleModal(button) {
+     function toggleModal(button) {
         // Find the closest table-container and get the h2 inside it
         const headingElement = button.closest(".table-container").querySelector("h2");
 
@@ -283,6 +284,10 @@
 
         // ✅ Send the 'name' attribute value to the backend via hidden input
         document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+        const tableName = button.getAttribute("table");
+        document.getElementById("tableNameDisplay").textContent = "Table Name";
+        document.getElementById("tableNameInput").value = tableName;
+
 
 
         const modal = document.getElementById("modalOverlay");

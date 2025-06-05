@@ -263,6 +263,10 @@
 
         // ✅ Send the 'name' attribute value to the backend via hidden input
         document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+        const tableName = button.getAttribute("table");
+        document.getElementById("tableNameDisplay").textContent = "Table Name";
+        document.getElementById("tableNameInput").value = tableName;
+
 
 
         const modal = document.getElementById("modalOverlay");

@@ -286,7 +286,7 @@
     });
 
 
-    function toggleModal(button) {
+   function toggleModal(button) {
         // Find the closest table-container and get the h2 inside it
         const headingElement = button.closest(".table-container").querySelector("h2");
 
@@ -295,6 +295,10 @@
 
         // ✅ Send the 'name' attribute value to the backend via hidden input
         document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+        const tableName = button.getAttribute("table");
+        document.getElementById("tableNameDisplay").textContent = "Table Name";
+        document.getElementById("tableNameInput").value = tableName;
+
 
 
         const modal = document.getElementById("modalOverlay");

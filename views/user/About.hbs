@@ -2,7 +2,7 @@
     <div class="mvhv-about-container">
 
         <!-- About Section -->
-        <h1 class="mvhv-title">About MbappevsHaalandvsVinicius</h1>
+        <h1 class="mvhv-title">About</h1>
 
         <p class="mvhv-text">
             <strong>MbappevsHaalandvsVinicius</strong> is a next-generation football comparison platform created for one
@@ -32,7 +32,7 @@
         </p>
 
         <!-- Contact Section -->
-        <h2 class="mvhv-subtitle">📞 Contact Us</h2>
+        <h2 id="contact" class="mvhv-subtitle">📞 Contact Us</h2>
         <p class="mvhv-text">
             Got feedback, ideas, or just want to say hi? Reach out anytime. We're building this with love — and your
             input makes it better.
@@ -53,17 +53,17 @@
             Think of it as helping a fellow fan keep the football fire burning. Plus, it helps us add cooler features —
             like stat timelines, trophy maps, and more!
         </p>
-        <a href="/donate" class="mvhv-donate-button">⚽ Buy Us a Coffee</a>
+        <a href="/pay" class="mvhv-donate-button">⚽ Buy Us a Coffee</a>
 
         <!-- Advertise Section -->
-        <h2 class="mvhv-subtitle">📢 Advertise With Us</h2>
+        <h2 id="ads" class="mvhv-subtitle">📢 Advertise With Us</h2>
         <p class="mvhv-text">
             Want to promote your football-related page, product, or service to our audience? We'd love to collaborate!
         </p>
         <button id="mvhvAdBtn" class="mvhv-donate-button" >📩 Advertise Now</button>
 
         <!-- Social Media Section -->
-        <h2 class="mvhv-subtitle">📲 Follow Us on Social Media</h2>
+        <h2 id="follow" class="mvhv-subtitle">📲 Follow Us on Social Media</h2>
         <p class="mvhv-text">
             We’re just getting started. Stay connected to watch us grow, suggest features, and share the football love!
         </p>
@@ -138,6 +138,39 @@
       console.error(err);
     }
   });
+
+   window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash;
+
+        if (hash === '#contact', '#ads', '#follow') {
+            const target = document.querySelector(hash);
+            if (!target) return;
+
+            const offset = 80; // adjust if you have a fixed header
+            const duration = 1000;
+
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+    });
+
 </script>
-
-

@@ -812,7 +812,7 @@ td span:nth-child(2) {
   width: 90%;
   max-width: 1000px;
   margin: 60px auto;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif; 
   text-align: center;
   border-radius: 12px;
   border: 1px solid rgb(95, 90, 90);
@@ -1182,6 +1182,8 @@ footer p {
 
 .blue-btn {
   background: #007bff;
+  color: black;
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
 }
 
 .blue-btn:hover {
@@ -1201,6 +1203,8 @@ footer p {
 
 .red-btn {
   background: #ff4d4d;
+  color: black;
+   box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
 }
 
 .red-btn:hover {
@@ -1221,6 +1225,7 @@ footer p {
 .yellow-btn {
   background: #fdd835;
   color: black;
+   box-shadow: 0 0 12px rgba(255, 255, 0, 0.5);
 }
 
 .yellow-btn:hover {
@@ -1382,7 +1387,7 @@ footer p {
 }
 
 .mvhv-title {
-  font-size: 2.8rem;
+  font-size: 2.9rem;
   color: #00ffe0;
   text-align: center;
   margin-bottom: 30px;
@@ -1417,7 +1422,7 @@ footer p {
   padding: 12px 28px;
   margin-top: 10px;
   background-color: #00ffe0;
-  color: #0f111a;
+  color: #0f111a !important;
   text-decoration: none;
   font-weight: bold;
   border-radius: 8px;
@@ -1536,4 +1541,136 @@ footer p {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+}
+
+/* Wrapper & container */
+#fbv-wrapper {
+  background-color: #0f111a;
+  color: #e0e0e0;
+  padding: 70px 25px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.fbv-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* Titles */
+.fbv-title {
+  font-size: 2.9rem;
+  color: #00ffe0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.fbv-subtitle {
+  font-size: 1.8rem;
+  color: #00ffe0;
+  margin-top: 50px;
+  margin-bottom: 15px;
+  border-left: 4px solid #00ffe0;
+  padding-left: 10px;
+}
+
+/* Text paragraphs */
+.fbv-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #c9c9c9;
+}
+
+/* Buttons */
+.fbv-button {
+  display: inline-block;
+  padding: 12px 28px;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  color: #0f111a;
+  margin-top: 10px;
+}
+
+.fbv-primary-button {
+  background-color: #00ffe0;
+}
+
+.fbv-primary-button:hover {
+  background-color: #00d6b7;
+}
+
+.fbv-secondary-button {
+   background-color: #00ffe0;
+  color: #000000;
+}
+
+.fbv-secondary-button:hover {
+  background-color: #00d6b7;
+  color: #0f111a;
+}
+
+/* Modal Overlay */
+.fbv-modal-overlay {
+  display: flex; /* will be none initially via inline style */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content Box */
+.fbv-modal-content {
+  background-color: #1a1e27;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  color: #eaeaea;
+  position: relative;
+}
+
+/* Modal Title */
+.fbv-modal-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #00ffe0;
+}
+
+/* Modal Close Button */
+.fbv-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Form inputs and textarea */
+#fbv-modal-form input,
+#fbv-modal-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  background-color: #0f111a;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 5px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#fbv-modal-form textarea {
+  resize: vertical;
+  min-height: 80px;
 }

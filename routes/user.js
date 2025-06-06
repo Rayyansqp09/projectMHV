@@ -137,7 +137,7 @@ router.get('/policy', (req, res) => {
 router.get('/about', (req, res) => {
   res.render('user/About', { header: false }); // Make sure views/policy.ejs (or .pug, .hbs) exists
 });
-// POST /send-advert
+
 router.post("/send-advert", async (req, res) => {
   const { email, name, details } = req.body;
 
@@ -168,6 +168,50 @@ ${details}
     res.status(500).json({ message: "Failed to send. Please try again later." });
   }
 });
+
+
+router.get('/feedback', (req, res) => {
+  res.render('user/feedback', { header: false });
+});
+
+router.post('/feedback/report', async (req, res) => {
+  const { email, statsSection, currentStats, correctStats } = req.body;
+
+  if (!email || !statsSection || !currentStats || !correctStats) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
+
+  const mailOptions = {
+    from: email, // user’s email input
+    to: 'mhdrayyan86@gmail.com', // your email
+    subject: `Inaccurate Statistics Report from ${email}`,
+    text: `📊 Inaccurate Statistics Report
+
+📧 Reporter Email: ${email}
+
+📍 Stats Display Section Title:
+${statsSection}
+
+⚠️ Current (Inaccurate) Stats:
+${currentStats}
+
+✅ Correct Stats:
+${correctStats}
+
+Please review and correct the stats as soon as possible.
+    `
+  };
+
+  try {
+    // Use your configured transporter here (reuse transporter from your app)
+    await transporter.sendMail(mailOptions);
+    res.json({ success: true, message: 'Report sent successfully.' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ success: false, message: 'Failed to send email.' });
+  }
+});
+
 
 
 

@@ -1,0 +1,141 @@
+<div id="fbv-wrapper" class="fbv-wrapper">
+
+    <div class="fbv-container">
+
+        <!-- Feedback Section -->
+        <section class="fbv-section fbv-feedback">
+            <h2 class="fbv-title">Feedback</h2>
+            <p class="fbv-text">
+                We appreciate your feedback. Please click the button below to comment on our Twitter post.
+            </p>
+            <button id="fbv-feedback-btn" class="fbv-button fbv-primary-button">Go to Twitter Feedback</button>
+        </section>
+
+        <!-- Suggestion Section -->
+        <section class="fbv-section fbv-suggestion">
+            <h2 class="fbv-subtitle">I have a suggestion</h2>
+            <p class="fbv-text">
+                Suggestions can only be sent through our Twitter account. Please cooperate by using the feedback section
+                above.
+            </p>
+            <button id="fbv-feedback-btn" class="fbv-button fbv-primary-button">Go to Twitter Feedback</button>
+        </section>
+
+        <!-- Inaccurate Stats Section -->
+        <section class="fbv-section fbv-inaccurate-stats">
+            <h2 class="fbv-subtitle">Inaccurate Statistics</h2>
+            <p class="fbv-text">
+                We try our maximum to provide accurate statistics from credible sources.
+                But if you see any inaccurate statistics, we sincerely apologize.
+                It may be an error. Please report it and we will correct it immediately.
+            </p>
+            <button id="fbv-inaccurate-btn" class="fbv-button fbv-secondary-button">Report Inaccurate Stats</button>
+        </section>
+
+        <!-- Report an Issue Section -->
+        <section class="fbv-section fbv-report-issue">
+            <h2 class="fbv-subtitle">Report an Issue</h2>
+            <p class="fbv-text">
+                If you face any issues with the site or content, please describe them below.
+            </p>
+            <button id="fbv-report-btn" class="fbv-button fbv-secondary-button">Report an Issue</button>
+        </section>
+
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="fbv-modal-overlay" class="fbv-modal-overlay" style="display:none;">
+        <div class="fbv-modal-content">
+            <button id="fbv-modal-close" class="fbv-modal-close" aria-label="Close">&times;</button>
+            <h3 id="fbv-modal-title" class="fbv-modal-title"></h3>
+            <form id="fbv-modal-form" class="fbv-modal-form">
+
+                <label for="fbv-email">Your Email:</label>
+                <input type="email" id="fbv-email" name="email" placeholder="Your email" required />
+
+                <div id="fbv-modal-dynamic-fields"></div>
+
+                <button type="submit" class="fbv-button fbv-primary-button">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const twitterUrl = 'https://twitter.com/YourTwitterHandle/status/YourPostID'; // Replace with your real Twitter link
+
+        const feedbackBtn = document.getElementById('fbv-feedback-btn');
+        const inaccurateBtn = document.getElementById('fbv-inaccurate-btn');
+        const reportBtn = document.getElementById('fbv-report-btn');
+
+        const modalOverlay = document.getElementById('fbv-modal-overlay');
+        const modalClose = document.getElementById('fbv-modal-close');
+        const modalTitle = document.getElementById('fbv-modal-title');
+        const modalDynamicFields = document.getElementById('fbv-modal-dynamic-fields');
+        const modalForm = document.getElementById('fbv-modal-form');
+
+        feedbackBtn.addEventListener('click', () => {
+            window.open(twitterUrl, '_blank');
+        });
+
+        inaccurateBtn.addEventListener('click', () => openModal('Report Inaccurate Statistics'));
+        reportBtn.addEventListener('click', () => openModal('Report an Issue'));
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', e => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        modalForm.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(modalForm);
+            const data = Object.fromEntries(formData.entries());
+
+            console.log('Feedback form data:', data);
+
+            // TODO: Replace with actual backend email submission logic
+
+            alert('Thank you for your submission! We will get back to you soon.');
+
+            modalForm.reset();
+            closeModal();
+        });
+
+        function openModal(type) {
+            modalTitle.textContent = type;
+            modalDynamicFields.innerHTML = '';
+
+            if (type === 'Report Inaccurate Statistics') {
+                modalDynamicFields.innerHTML = `
+        <label for="fbv-stats-section">Stats Displaying Section Title:</label>
+        <input type="text" id="fbv-stats-section" name="stats_section" placeholder="Section title" required />
+        
+        <label for="fbv-current-stats">Current Stats:</label>
+        <textarea id="fbv-current-stats" name="current_stats" placeholder="Current inaccurate stats" required></textarea>
+        
+        <label for="fbv-correct-stats">Correct Stats:</label>
+        <textarea id="fbv-correct-stats" name="correct_stats" placeholder="Correct stats" required></textarea>
+      `;
+            } else if (type === 'Report an Issue') {
+                modalDynamicFields.innerHTML = `
+        <label for="fbv-issue-description">Issue Description:</label>
+        <textarea id="fbv-issue-description" name="issue_description" placeholder="Describe the issue" required></textarea>
+      `;
+            }
+
+            modalOverlay.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modalOverlay.style.display = 'none';
+        }
+    });
+
+</script>

@@ -138,34 +138,18 @@ router.get('/about', (req, res) => {
   res.render('user/About', { header: false }); // Make sure views/policy.ejs (or .pug, .hbs) exists
 });
 
-router.post("/send-advert", async (req, res) => {
+router.post('/send-advert', async (req, res) => {
   const { email, name, details } = req.body;
 
-  if (!email || !name || !details) {
-    return res.status(400).json({ message: "All fields are required." });
-  }
-
-  const mailOptions = {
-    from: email, // this is the user's email input
-    to: 'mhdrayyan86@gmail.com', // your receiving email (e.g., Gmail, Zoho, Outlook)
-    subject: `Advertisement Request from ${name}`,
-    text: `
-📝 New Ad Request Submission
-
-👤 Name/Page/Product: ${name}
-📧 Email: ${email}
-
-🗒️ Details:
-${details}
-    `
-  };
+  const subject = "📢 New Advertise Inquiry";
+  const text = `From: ${email}\nName: ${name}\n\nDetails:\n${details}`;
 
   try {
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: "Your request has been sent successfully!" });
-  } catch (error) {
-    console.error("Email send error:", error);
-    res.status(500).json({ message: "Failed to send. Please try again later." });
+    await displayHelper.sendUniversalEmail({ from: email, subject, text });
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Email send failed:", err);
+    res.status(500).json({ success: false, error: "Email failed to send" });
   }
 });
 
@@ -174,45 +158,45 @@ router.get('/feedback', (req, res) => {
   res.render('user/feedback', { header: false });
 });
 
-router.post('/feedback/report', async (req, res) => {
-  const { email, statsSection, currentStats, correctStats } = req.body;
-
-  if (!email || !statsSection || !currentStats || !correctStats) {
-    return res.status(400).json({ message: "All fields are required." });
-  }
-
-  const mailOptions = {
-    from: email, // user’s email input
-    to: 'mhdrayyan86@gmail.com', // your email
-    subject: `Inaccurate Statistics Report from ${email}`,
-    text: `📊 Inaccurate Statistics Report
-
-📧 Reporter Email: ${email}
-
-📍 Stats Display Section Title:
-${statsSection}
-
-⚠️ Current (Inaccurate) Stats:
-${currentStats}
-
-✅ Correct Stats:
-${correctStats}
-
-Please review and correct the stats as soon as possible.
-    `
-  };
-
+// Route for Feedback form (Report an Issue)
+router.post('/send-feedback', async (req, res) => {
   try {
-    // Use your configured transporter here (reuse transporter from your app)
-    await transporter.sendMail(mailOptions);
-    res.json({ success: true, message: 'Report sent successfully.' });
-  } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ success: false, message: 'Failed to send email.' });
+    const { email, message } = req.body;
+
+    const subject = 'New Feedback Received';
+    const text = `Feedback from: ${email}\n\nMessage:\n${message}`;
+
+    await displayHelper.sendUniversalEmail({
+      from: email,
+      subject,
+      text
+    });
+
+    res.json({ success: true, message: 'Feedback sent successfully!' });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
+// Route for Inaccurate Statistics report form
+router.post('/send-inaccurate-report', async (req, res) => {
+  try {
+    const { email, statTitle, currentStat, correctStat, extra } = req.body;
 
+    const subject = 'Inaccurate Statistics Report';
+    const text = `Report from: ${email}\n\nInaccurate Stat Title: ${statTitle}\nCurrent Stat: ${currentStat}\nCorrect Stat: ${correctStat}\nExtra Details: ${extra || 'N/A'}`;
+
+    await displayHelper.sendUniversalEmail({
+      from: email,
+      subject,
+      text
+    });
+
+    res.json({ success: true, message: 'Report sent successfully!' });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
 
 
 router.get('/pay', (req, res) => {

@@ -1,3 +1,30 @@
+/* Responsive tweaks for mobile */
+@media (max-width: 600px) {
+  #fbv-inaccurate-modal .fbv-modal-content {
+    width: 95%;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  #fbv-inaccurate-modal .fbv-modal-title {
+    font-size: 1.2rem;
+  }
+
+  #fbv-inaccurate-form input,
+  #fbv-inaccurate-form textarea {
+    padding: 8px;
+    font-size: 14px;
+    margin: 8px 0 16px;
+  }
+
+  #fbv-inaccurate-form button {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
+
+
+
 /* Mobile short (max-width: 480px) */
 @media (max-width: 376px) {
   .dropdown-menu {
@@ -289,7 +316,7 @@
     border-radius: 15px;
     padding: 20px 25px;
     margin: 2px auto 10px auto;
-    max-width: 20rem;
+    max-width: 19rem;
 
   }
 
@@ -308,6 +335,8 @@
     font-size: 12px;
 
   }
+
+  
 
   /* admin */
 

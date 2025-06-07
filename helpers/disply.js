@@ -1,9 +1,29 @@
 const db = require('../config/connection');
-const validTables = require('../config/table'); // your table list
+const validTables = require('../config/table');
+const nodemailer = require("nodemailer");
+
+// Define the email sending function
+async function sendUniversalEmail({ from, subject, text }) {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: 'mhdrayyan86@gmail.com',
+    pass: 'omcbanpfsyumxqdt'
+    }
+  });
+
+  await transporter.sendMail({
+    from,
+    to: "support@mbappevshaalandvsvinicius.com",
+    subject,
+    text
+  });
+}
 
 module.exports = {
 
-   getStats: function (tableNames, callback) {
+  // Get stats from one or multiple tables
+  getStats: function (tableNames, callback) {
     const results = {};
 
     if (typeof tableNames === 'string') {
@@ -17,7 +37,6 @@ module.exports = {
         return callback(new Error('Invalid table name: ' + table), null);
       }
 
-      // Use backticks around table name for safety
       const query = `SELECT * FROM \`${table}\``;
 
       db.get().query(query, (err, rows) => {
@@ -32,30 +51,33 @@ module.exports = {
       });
     }
   },
+
+  // Update stats for a player in a specific table
   updateStats: function (tableName, data, callback) {
-        const playerName = data.Name;
-        const statPrefix = data.statname;
+    const playerName = data.Name;
+    const statPrefix = data.statname;
 
-        delete data.Name;
-        delete data.statname;
+    delete data.Name;
+    delete data.statname;
 
-        const fields = Object.keys(data).map(key => `${statPrefix}${key}`);
-        const values = Object.values(data);
+    const fields = Object.keys(data).map(key => `${statPrefix}${key}`);
+    const values = Object.values(data);
 
-        const setClause = fields.map(field => `${field} = ?`).join(', ');
-        const sql = `UPDATE ${tableName} SET ${setClause} WHERE Name = ?`;
+    const setClause = fields.map(field => `${field} = ?`).join(', ');
+    const sql = `UPDATE ${tableName} SET ${setClause} WHERE Name = ?`;
 
-        db.get().query(sql, [...values, playerName], (err, result) => {
-            if (err) return callback(err);
-            callback(null, result);
+    db.get().query(sql, [...values, playerName], (err, result) => {
+      if (err) return callback(err);
+      callback(null, result);
 
-            console.log('Table:', tableName);
-            console.log('Player Name:', playerName);
-            console.log('Stat Prefix:', statPrefix);
-            console.log('Fields:', fields);
-            console.log('Values:', values);
+      console.log('Table:', tableName);
+      console.log('Player Name:', playerName);
+      console.log('Stat Prefix:', statPrefix);
+      console.log('Fields:', fields);
+      console.log('Values:', values);
+    });
+  },
 
-        });
-    }
-
-}
+  // ✅ Add the email function to module.exports
+  sendUniversalEmail
+};

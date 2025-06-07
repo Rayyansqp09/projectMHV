@@ -1455,10 +1455,8 @@ footer p {
   display: none;
   position: fixed;
   z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
@@ -1500,6 +1498,7 @@ footer p {
   border: 1px solid #333;
   border-radius: 5px;
 }
+
 
 #mvhvAdForm input[type="email"] {
   /* Same styling as other inputs */
@@ -1584,7 +1583,7 @@ footer p {
 /* Buttons */
 .fbv-button {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 10px 28px;
   font-weight: bold;
   border-radius: 8px;
   font-size: 1rem;
@@ -1592,7 +1591,7 @@ footer p {
   border: none;
   transition: all 0.3s ease;
   color: #0f111a;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .fbv-primary-button {
@@ -1674,3 +1673,92 @@ footer p {
   resize: vertical;
   min-height: 80px;
 }
+
+/* Inaccurate Stats Modal Overlay */
+#fbv-inaccurate-modal {
+  display: flex; /* initially hidden with inline style display:none */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+
+   padding: 16px;
+    font-size: 13px;
+}
+
+/* Inaccurate Stats Modal Content Box */
+#fbv-inaccurate-modal .fbv-modal-content {
+  background-color: #1a1e27;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  color: #eaeaea;
+  position: relative;
+}
+
+/* Inaccurate Stats Modal Title */
+#fbv-inaccurate-modal .fbv-modal-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #00ffe0;
+}
+
+/* Inaccurate Stats Modal Close Button */
+#fbv-inaccurate-modal .fbv-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Inputs and textarea inside the inaccurate stats form */
+#fbv-inaccurate-form input,
+#fbv-inaccurate-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  background-color: #0f111a;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 5px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#fbv-inaccurate-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.mvhv-popup-wait {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  color: #00ffe0; /* bright cyan to match modal title */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.mvhv-popup-wait .mvhv-popup-box1 {
+  background-color: #1a1e27;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ffe0;
+  max-width: 350px;
+}
+

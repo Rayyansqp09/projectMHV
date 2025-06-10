@@ -7,8 +7,8 @@ async function sendUniversalEmail({ from, subject, text }) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: 'mhdrayyan86@gmail.com',
-    pass: 'omcbanpfsyumxqdt'
+      user:process.env.EMAIL_USER,
+    pass:process.env.EMAIL_PASS
     }
   });
 

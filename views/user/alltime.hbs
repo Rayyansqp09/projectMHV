@@ -29,20 +29,9 @@
                 <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
                 <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
             </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-                <td class="haaland-text">{{haaland.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-                <td class="vini-text">{{vini.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-                <td class="haaland-text">{{haaland.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-                <td class="vini-text">{{vini.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-            </tr>
+
         </tbody>
     </table>
-    <!-- More button -->
-    <button id="showMoreBtn">More</button>
 
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
@@ -109,9 +98,9 @@
                 <td class="vini-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">FREE KICK ATTEMPTS</span></td>
-                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">FREE KICK ATTEMPTS</span></td>
-                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">FREE KICK ATTEMPTS</span></td>
+                <td class="mbappe-text">{{mbappe.fkatmpts}}<br><span class="stat-name">FREE KICK ATTEMPTS</span></td>
+                <td class="haaland-text">{{haaland.fkatmpts}}<br><span class="stat-name">FREE KICK ATTEMPTS</span></td>
+                <td class="vini-text">{{vini.fkatmpts}}<br><span class="stat-name">FREE KICK ATTEMPTS</span></td>
             </tr>
             <tr>
                 <td class="mbappe-text">{{mbappe.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
@@ -119,26 +108,25 @@
                 <td class="vini-text">{{vini.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">ATTEMPTS PER GOAL RATIO</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">ATTEMPTS PER GOAL RATIO</span>
+                <td class="mbappe-text">{{mbappe.fkapgr}}<br><span class="stat-name">ATTEMPTS PER GOAL RATIO</span></td>
+                <td class="haaland-text">{{haaland.fkapgr}}<br><span class="stat-name">ATTEMPTS PER GOAL RATIO</span></td>
+                <td class="vini-text">{{vini.fkapgr}}<br><span class="stat-name">ATTEMPTS PER GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="haaland-text">{{haaland.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="vini-text">{{vini.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX GOALS</span></td>
+                <td class="haaland-text">{{haaland.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX GOALS</span>
                 </td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">ATTEMPTS PER GOAL RATIO</span></td>
+                <td class="vini-text">{{vini.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX GOALS</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">PENALTY GOALS</span></td>
-                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">PENALTY GOALS</span></td>
-                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">PENALTY GOALS</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.fkGoals}}<br><span class="stat-name">OUTSIDE THE BOX GOALS</span></td>
-                <td class="haaland-text">{{haaland.fkGoals}}<br><span class="stat-name">OUTSIDE THE BOX GOALS</span>
-                </td>
-                <td class="vini-text">{{vini.fkGoals}}<br><span class="stat-name">OUTSIDE THE BOX GOALS</span></td>
-            </tr>
-            <tr>
-                <td class="mbappe-text">{{mbappe.fkGoals}}<br><span class="stat-name">INSIDE THE BOX GOALS</span></td>
-                <td class="haaland-text">{{haaland.fkGoals}}<br><span class="stat-name">INSIDE THE BOX GOALS</span></td>
-                <td class="vini-text">{{vini.fkGoals}}<br><span class="stat-name">INSIDE THE BOX GOALS</span></td>
+                <td class="mbappe-text">{{mbappe.ibGoals}}<br><span class="stat-name">INSIDE THE BOX GOALS</span></td>
+                <td class="haaland-text">{{haaland.ibGoals}}<br><span class="stat-name">INSIDE THE BOX GOALS</span></td>
+                <td class="vini-text">{{vini.ibGoals}}<br><span class="stat-name">INSIDE THE BOX GOALS</span></td>
             </tr>
         </tbody>
     </table>
@@ -185,47 +173,55 @@
 <script>
 
     window.addEventListener('DOMContentLoaded', () => {
-    const hash = window.location.hash;
+        const hash = window.location.hash;
 
-    if (hash === '#goal','final') {
-      const target = document.querySelector(hash);
-      if (!target) return;
+        if (hash === '#goal', 'final') {
+            const target = document.querySelector(hash);
+            if (!target) return;
 
-      const offset = 80; // adjust if you have a fixed header
-      const duration = 1000;
+            const offset = 80; // adjust if you have a fixed header
+            const duration = 1000;
 
-      const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-      const startPosition = window.scrollY;
-      const distance = targetPosition - startPosition;
-      let startTime = null;
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
 
-      function animation(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-      }
+            function animation(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
 
-      function easeInOutQuad(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-      }
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
 
-      requestAnimationFrame(animation);
-    }
-  });
-
-    document.getElementById('showMoreBtn').addEventListener('click', function () {
-        const hiddenRows = document.querySelectorAll('.extra-row');
-        hiddenRows.forEach(row => {
-            row.style.display = 'table-row';
-        });
-        this.style.display = 'none'; // Hide the button after showing
+            requestAnimationFrame(animation);
+        }
     });
 
+   document.querySelectorAll('.Dt-btn2').forEach(button => {
+        button.addEventListener('click', function () {
+            const container = this.closest('.table-container'); // Locate the current section
+            if (!container) return;
+
+            const table = container.querySelector('table'); // Find the table inside this section
+            const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
+
+            hiddenRows.forEach(row => {
+                row.style.display = 'table-row'; // Show row
+                row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+            });
+
+            this.style.display = 'none'; // Hide "More" button
+        });
+    });
 
     document.addEventListener("DOMContentLoaded", function () {
         const links = document.querySelectorAll("a.dynamic-link");
@@ -243,7 +239,7 @@
     });
 
 
-     function toggleModal(button) {
+    function toggleModal(button) {
         // Find the closest table-container and get the h2 inside it
         const headingElement = button.closest(".table-container").querySelector("h2");
 

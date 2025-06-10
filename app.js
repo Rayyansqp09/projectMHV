@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('dotenv').config();
+
+
 
 var adminRouter = require('./routes/admin');
 var userRouter = require('./routes/user');
@@ -53,16 +56,17 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Connect to DB and start server
 db.connect((err) => {
   if (err) {
-    console.log("DB connection error:", err);
+    console.error(`[${new Date().toISOString()}] ❌ DB connection error:`, err);
   } else {
-    console.log("Database connected");
+    console.log(`[${new Date().toISOString()}] ✅ Database connected successfully`);
+
     app.listen(3001, () => {
-      console.log("Server running on http://localhost:3001");
+      console.log(`[${new Date().toISOString()}] 🚀 Server started on http://localhost:3001`);
     });
   }
 });
+
 
 module.exports = app;

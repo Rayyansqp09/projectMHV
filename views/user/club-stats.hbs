@@ -15,19 +15,19 @@
                 <td class="vini-text">{{vini_all.clubGames}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe_all.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="haaland-text">{{haaland_all.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="vini-text">{{vini_all.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="mbappe-text">{{mbappe_all.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland_all.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vini_all.clubGoals}}<br><span class="stat-name">GOALS</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe_all.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="haaland-text">{{haaland_all.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="vini-text">{{vini_all.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="mbappe-text">{{mbappe_all.clubGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="haaland-text">{{haaland_all.clubGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="vini-text">{{vini_all.clubGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe_all.Assists}}<br><span class="stat-name">ASSIST</span></td>
-                <td class="haaland-text">{{haaland_all.Assists}}<br><span class="stat-name">ASSIST</span></td>
-                <td class="vini-text">{{vini_all.Assists}}<br><span class="stat-name">ASSIST</span></td>
+                <td class="mbappe-text">{{mbappe_all.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
+                <td class="haaland-text">{{haaland_all.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
+                <td class="vini-text">{{vini_all.clubAssists}}<br><span class="stat-name">ASSIST</span></td>
             </tr>
         </tbody>
     </table>
@@ -37,7 +37,7 @@
     {{/if}}
 </div>
 
-<h2 name="" id="clubComp" class="stat-titleabove">STATS BY CLUB COMPETETION</h2>
+<h2 name="" id="clubComp" class="stat-titleabove">STATS BY CLUB COMPETITION</h2>
 <div class="table-container">
     <h2 name="l" class="stat-title">LEAGUE STATS</h2>
 
@@ -116,7 +116,7 @@
 </div>
 
 <div class="table-container table-container-st">
-    <h2 name="int" class="stat-title">UEFA Champions League </h2>
+    <h2 name="int" class="stat-title">UEFA Champions League</h2>
     <table>
         <thead>
             <tr>
@@ -166,7 +166,7 @@
     <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
     {{/if}}
 </div>
-<div class="footer3-card" onclick="location.href='/report'">
+<div class="footer3-card" onclick="location.href='/club-stats/ucl'">
     <span>More Detailed UEFA Champions League</span>
     <span class="footer2-arrow">&#8594;</span>
 </div>
@@ -291,7 +291,7 @@
     {{/if}}
 </div>
 
-<div class="table-container">
+<div class="table-container" id="clubWc">
     <h2 name="int" class="stat-title">FIFA CLUB WORLD CUP</h2>
     <table>
         <thead>

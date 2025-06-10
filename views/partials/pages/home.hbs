@@ -24,23 +24,11 @@
         <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
         <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
       </tr>
-      <!-- Hidden Rows -->
-      <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-        <td class="haaland-text">{{haaland.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-        <td class="vini-text">{{vini.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-      </tr>
-      <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-        <td class="haaland-text">{{haaland.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-        <td class="vini-text">{{vini.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-      </tr>
     </tbody>
   </table>
-  <button class="Dt-btn2" id="showMoreBtn">More</button>
   <button class="Dt-btn"><a class="dynamic-link" href="alltime">Detailed Stats</a></button>
   {{#if admin}}
-  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time" >UPDATE</button>
+  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time">UPDATE</button>
   {{/if}}
 </div>
 
@@ -88,13 +76,13 @@
   {{/if}}
 </div>
 
-<div class="footer3-card" onclick="location.href='/ucl'">
+<div class="footer3-card" onclick="location.href='/club-stats/ucl'">
   <span>UEFA Champions League</span>
   <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="table-container table-container-st">
-  <h2 name="int" class="stat-title">ALL TIME INT STATS</h2>
+  <h2 name="int" class="stat-title">ALL TIME INTERNATIONAL STATS</h2>
   <table>
     <thead>
       <tr>
@@ -133,7 +121,7 @@
 </div>
 
 <div class="table-container">
-  <h2 name="" class="stat-title">INDIVIDUAL AWARDS&ACHIVMENTS</h2>
+  <h2 name="" class="stat-title">INDIVIDUAL AWARDS & ACHIEVEMENTS</h2>
   <table>
     <thead>
       <tr>
@@ -144,84 +132,84 @@
     </thead>
     <tbody>
       <tr>
-        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
-        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
-        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">BALLON D’OR</span></td>
+        <td class="mbappe-text">{{ mbappe.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
+        <td class="haaland-text">{{ haaland.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
+        <td class="vini-text">{{ vini.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
       </tr>
       <tr>
-        <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">FIFA BEST</span></td>
-        <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">FIFA BEST</span></td>
-        <td class="vini-text">{{vini.braces}}<br><span class="stat-name">FIFA BEST</span></td>
+        <td class="mbappe-text">{{ mbappe.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
+        <td class="haaland-text">{{ haaland.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
+        <td class="vini-text">{{ vini.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
       </tr>
       <tr>
-        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
-        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
-        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
+        <td class="mbappe-text">{{ mbappe.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
+        <td class="haaland-text">{{ haaland.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
+        <td class="vini-text">{{ vini.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
       </tr>
       <tr>
-        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
-        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
-        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">UEFA BEST</span></td>
+        <td class="mbappe-text">{{ mbappe.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
+        <td class="haaland-text">{{ haaland.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
+        <td class="vini-text">{{ vini.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
       </tr>
       <tr>
-        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
-        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
-        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+        <td class="mbappe-text">{{ mbappe.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+        <td class="haaland-text">{{ haaland.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+        <td class="vini-text">{{ vini.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
       </tr>
       <tr>
-        <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">UCL POTT</span></td>
-        <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">UCL POTT</span></td>
-        <td class="vini-text">{{vini.braces}}<br><span class="stat-name">UCL POTT</span></td>
+        <td class="mbappe-text">{{ mbappe.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
+        <td class="haaland-text">{{ haaland.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
+        <td class="vini-text">{{ vini.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
       </tr>
       <tr>
-        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
-        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
-        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">UCL YOUNG POTT</span></td>
+        <td class="mbappe-text">{{ mbappe.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
+        <td class="haaland-text">{{ haaland.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
+        <td class="vini-text">{{ vini.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
       </tr>
       <tr>
-        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
-        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
-        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">UCL TOP SCORER</span></td>
+        <td class="mbappe-text">{{ mbappe.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
+        <td class="haaland-text">{{ haaland.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
+        <td class="vini-text">{{ vini.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
       </tr>
       <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">WC POTT</span></td>
-        <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">WC POTT</span></td>
-        <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">WC POTT</span></td>
+        <td class="mbappe-text">{{ mbappe.wcpott }}<br><span class="stat-name">WC POTT</span></td>
+        <td class="haaland-text">{{ haaland.wcpott }}<br><span class="stat-name">WC POTT</span></td>
+        <td class="vini-text">{{ vini.wcpott }}<br><span class="stat-name">WC POTT</span></td>
       </tr>
       <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
-        <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
-        <td class="vini-text">{{vini.braces}}<br><span class="stat-name">WC YOUNG POTT</span></td>
+        <td class="mbappe-text">{{ mbappe.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
+        <td class="haaland-text">{{ haaland.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
+        <td class="vini-text">{{ vini.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
       </tr>
       <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
-        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
-        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO POTT</span></td>
+        <td class="mbappe-text">{{ mbappe.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
+        <td class="haaland-text">{{ haaland.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
+        <td class="vini-text">{{ vini.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
       </tr>
       <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
-        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
-        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+        <td class="mbappe-text">{{ mbappe.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+        <td class="haaland-text">{{ haaland.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+        <td class="vini-text">{{ vini.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
       </tr>
       <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
-        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
-        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+        <td class="mbappe-text">{{ mbappe.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+        <td class="haaland-text">{{ haaland.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+        <td class="vini-text">{{ vini.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
       </tr>
       <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
-        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
-        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE POTT</span></td>
+        <td class="mbappe-text">{{ mbappe.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
+        <td class="haaland-text">{{ haaland.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
+        <td class="vini-text">{{ vini.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
       </tr>
       <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
-        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
-        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+        <td class="mbappe-text">{{ mbappe.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+        <td class="haaland-text">{{ haaland.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+        <td class="vini-text">{{ vini.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
       </tr>
       <tr class="extra-row" style="display: none;">
-        <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
-        <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
-        <td class="vini-text">{{vini.poker}}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+        <td class="mbappe-text">{{ mbappe.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+        <td class="haaland-text">{{ haaland.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+        <td class="vini-text">{{ vini.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
       </tr>
 
     </tbody>
@@ -287,26 +275,26 @@
     });
   });
 
-   function toggleModal(button) {
-  // Find the closest table-container and get the h2 inside it
-  const headingElement = button.closest(".table-container").querySelector("h2");
+  function toggleModal(button) {
+    // Find the closest table-container and get the h2 inside it
+    const headingElement = button.closest(".table-container").querySelector("h2");
 
-  // Display the heading text inside the modal
-  document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+    // Display the heading text inside the modal
+    document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
 
-  // Send the 'name' attribute value to the backend via hidden input
-  document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+    // Send the 'name' attribute value to the backend via hidden input
+    document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
 
-  const tableName = button.getAttribute("table");
-  document.getElementById("tableNameDisplay").textContent = "Table Name";
-  document.getElementById("tableNameInput").value = tableName;
+    const tableName = button.getAttribute("table");
+    document.getElementById("tableNameDisplay").textContent = "Table Name";
+    document.getElementById("tableNameInput").value = tableName;
 
-  // Instead of modal.style.display = "flex", add active class
-  const modal = document.getElementById("modalOverlay");
-  modal.classList.add("active");
+    // Instead of modal.style.display = "flex", add active class
+    const modal = document.getElementById("modalOverlay");
+    modal.classList.add("active");
 
-  modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-}
+    modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+  }
 
 
   document.addEventListener('DOMContentLoaded', function () {

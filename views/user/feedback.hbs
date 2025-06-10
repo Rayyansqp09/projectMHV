@@ -6,19 +6,29 @@
         <section class="fbv-section fbv-feedback">
             <h2 class="fbv-title">Feedback</h2>
             <p class="fbv-text">
-                We appreciate your feedback. Please click the button below to comment on our Twitter post.
+                We value your feedback.
+                To help us improve, please click the button below to leave a comment on our official post on X (formerly
+                Twitter).
+                Your input helps us build a better experience for all football fans.<br>
+                <em>Note: An X account is required to submit feedback. We appreciate your cooperation.</em>
             </p>
-            <button id="fbv-feedback-btn" class="fbv-button fbv-primary-button">Go to Twitter Feedback</button>
+            <a id="fbv-feedback-btn" class="fbv-button fbv-primary-button" href="/google">Go to X Feedback Post</a>
         </section>
 
         <!-- Suggestion Section -->
-        <section class="fbv-section fbv-suggestion">
+        <section class="fbv-section fbv-suggestion" id="suggestion">
             <h2 class="fbv-subtitle">I have a suggestion</h2>
             <p class="fbv-text">
-                Suggestions can only be sent through our Twitter account. Please cooperate by using the feedback section
-                above.
+                Have a suggestion?
+                We’re always looking to improve. If you have a feature idea, content improvement, or any creative input,
+                we’d love to hear it.
+                Please click the button below to share your suggestion on our official post on X (formerly Twitter).
+                Note: An X account is required to submit suggestions. Thank you for your cooperation.
             </p>
-            <button id="fbv-feedback-btn" class="fbv-button fbv-primary-button">Go to Twitter Feedback</button>
+            <a href="https://twitter.com/" target="_blank" class="fbv-button fbv-primary-button">
+                Feedback
+            </a>
+
         </section>
 
         <!-- Inaccurate Stats Section -->
@@ -74,7 +84,7 @@
 
             <div id="fbv-inaccurate-dynamic-fields">
                 <label for="fbv-stat-title">Inaccurate Stat Title:</label>
-                <input type="text" id="fbv-stat-title" name="statTitle" placeholder="e.g. Goals by Player X" required />
+                <input type="text" id="fbv-stat-title" name="statTitle" placeholder="e.g. ALL TIME CLUB STATS" required />
 
                 <label for="fbv-current-stat">Current Stat (on site):</label>
                 <input type="text" id="fbv-current-stat" name="currentStat" placeholder="e.g. 30 goals" required />
@@ -106,11 +116,11 @@
 </div>
 
 <script>
-  
+
     window.addEventListener('DOMContentLoaded', () => {
         const hash = window.location.hash;
 
-        if (hash === '#report') {
+        if (hash === '#report', '#suggestion') {
             const target = document.querySelector(hash);
             if (!target) return;
 
@@ -188,75 +198,75 @@
             }
         });
     });
-document.addEventListener("DOMContentLoaded", () => {
-  const feedbackForm = document.getElementById('fbv-modal-form');
-  const inaccurateForm = document.getElementById('fbv-inaccurate-form');
+    document.addEventListener("DOMContentLoaded", () => {
+        const feedbackForm = document.getElementById('fbv-modal-form');
+        const inaccurateForm = document.getElementById('fbv-inaccurate-form');
 
-  const sendingPopup = document.getElementById('emailSendingPopup');
-  const successPopup = document.getElementById('mvhvSuccessPopup');
+        const sendingPopup = document.getElementById('emailSendingPopup');
+        const successPopup = document.getElementById('mvhvSuccessPopup');
 
-  function showPopup(popup) {
-    popup.style.display = 'flex';
-  }
+        function showPopup(popup) {
+            popup.style.display = 'flex';
+        }
 
-  function hidePopup(popup) {
-    popup.style.display = 'none';
-  }
+        function hidePopup(popup) {
+            popup.style.display = 'none';
+        }
 
-  async function sendForm(url, data, formElement, modalElement) {
-    showPopup(sendingPopup);
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      const result = await res.json();
+        async function sendForm(url, data, formElement, modalElement) {
+            showPopup(sendingPopup);
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
 
-      hidePopup(sendingPopup);
+                hidePopup(sendingPopup);
 
-      if (result.success) {
-        showPopup(successPopup);
-        formElement.reset();
-        modalElement.style.display = 'none';
+                if (result.success) {
+                    showPopup(successPopup);
+                    formElement.reset();
+                    modalElement.style.display = 'none';
 
-        setTimeout(() => {
-          hidePopup(successPopup);
-        }, 3000);
-      } else {
-        alert('Failed to send: ' + result.error);
-      }
-    } catch (err) {
-      hidePopup(sendingPopup);
-      alert('Error sending: ' + err.message);
-    }
-  }
+                    setTimeout(() => {
+                        hidePopup(successPopup);
+                    }, 3000);
+                } else {
+                    alert('Failed to send: ' + result.error);
+                }
+            } catch (err) {
+                hidePopup(sendingPopup);
+                alert('Error sending: ' + err.message);
+            }
+        }
 
-  feedbackForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-    const email = feedbackForm.email.value;
-    const message = feedbackForm.querySelector('#fbv-message').value;
-    const modalOverlay = document.getElementById('fbv-modal-overlay');
+            const email = feedbackForm.email.value;
+            const message = feedbackForm.querySelector('#fbv-message').value;
+            const modalOverlay = document.getElementById('fbv-modal-overlay');
 
-    sendForm('/send-feedback', { email, message }, feedbackForm, modalOverlay);
-  });
+            sendForm('/send-feedback', { email, message }, feedbackForm, modalOverlay);
+        });
 
-  inaccurateForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+        inaccurateForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-    const formData = {
-      email: inaccurateForm.email.value,
-      statTitle: inaccurateForm.statTitle.value,
-      currentStat: inaccurateForm.currentStat.value,
-      correctStat: inaccurateForm.correctStat.value,
-      extra: inaccurateForm.extra.value
-    };
-    const modalOverlay = document.getElementById('fbv-inaccurate-modal');
+            const formData = {
+                email: inaccurateForm.email.value,
+                statTitle: inaccurateForm.statTitle.value,
+                currentStat: inaccurateForm.currentStat.value,
+                correctStat: inaccurateForm.correctStat.value,
+                extra: inaccurateForm.extra.value
+            };
+            const modalOverlay = document.getElementById('fbv-inaccurate-modal');
 
-    sendForm('/send-inaccurate-report', formData, inaccurateForm, modalOverlay);
-  });
-});
+            sendForm('/send-inaccurate-report', formData, inaccurateForm, modalOverlay);
+        });
+    });
 
 
 </script>

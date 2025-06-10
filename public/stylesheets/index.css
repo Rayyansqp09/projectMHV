@@ -221,7 +221,8 @@ a:hover {
   height: 350px;
   box-sizing: border-box;
   padding: 0 7rem !important;
-  margin: 39px auto;
+  margin: 39px auto 0 auto; /* Top margin stays 39px, bottom margin set to 0 */
+  /* rest unchanged */
   max-width: 70%;
   overflow: hidden;
   position: relative;
@@ -540,7 +541,7 @@ p {
 
 .table-container {
   max-width: 700px;
-  margin: 3rem auto;
+  margin: 2.5rem auto;
   background: linear-gradient(145deg, #272b38, #2A303B);
   box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1), -8px -8px 15px rgba(82, 79, 79, 0.7);
   padding: 20px 110px;
@@ -694,7 +695,7 @@ td span:nth-child(2) {
   color: #ffffff;
   /* keep pure white */
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 1.8rem;
   letter-spacing: 0px;
   text-transform: uppercase;
   margin-bottom: 0 !important;
@@ -738,7 +739,8 @@ td span:nth-child(2) {
   font-size: 40px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 0 !important;
 
   /* Minimal realistic 3D with subtle light */
   text-shadow:
@@ -810,25 +812,19 @@ td span:nth-child(2) {
 
 .looking-box {
   width: 90%;
+  height: 12rem;
   max-width: 1000px;
   margin: 60px auto;
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   border-radius: 12px;
   border: 1px solid rgb(95, 90, 90);
   padding: 1% 20px;
-  background: linear-gradient(145deg, #191c24, #2A303B);
-  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1), -8px -8px 15px rgba(82, 79, 79, 0.7);
+  background: linear-gradient(145deg, #2A303B);
+  box-shadow: 0 4px 6px rgba(108, 104, 104, 0.1);
 
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.6),
-    /* outer deep shadow */
-    0 4px 6px rgba(0, 0, 0, 0.4),
-    /* mid shadow */
-    inset 0 2px 4px rgba(255, 255, 255, 0.05),
-    /* inner light at top */
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-  /* inner shadow bottom */
+
+
 
   /* Subtle gradient for more depth illusion */
   /* background-image: linear-gradient(145deg, #2e343e, #252b33); */
@@ -838,21 +834,24 @@ td span:nth-child(2) {
   font-size: 20px;
   color: #fafbf4;
   margin-bottom: 23px;
+  margin-top: 0.4rem;
+  /* font-weight: 600; */
 }
 
 .text-group {
   margin-bottom: 0px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
+  gap: 15px;
   justify-items: center;
 }
 
 .text-item {
-  color: #1DE9B6;
+  color: #1e88e5;
   padding: 4px 10px;
-  cursor: pointer;
-  font-size: 13px;
+  cursor: default;
+
+  font-size: 12px;
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
@@ -1204,7 +1203,7 @@ footer p {
 .red-btn {
   background: #ff4d4d;
   color: black;
-   box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
 }
 
 .red-btn:hover {
@@ -1225,7 +1224,7 @@ footer p {
 .yellow-btn {
   background: #fdd835;
   color: black;
-   box-shadow: 0 0 12px rgba(255, 255, 0, 0.5);
+  box-shadow: 0 0 12px rgba(255, 255, 0, 0.5);
 }
 
 .yellow-btn:hover {
@@ -1455,8 +1454,10 @@ footer p {
   display: none;
   position: fixed;
   z-index: 999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
@@ -1593,6 +1594,14 @@ footer p {
   color: #0f111a;
   margin-top: 8px;
 }
+.fbv-button,
+.fbv-button:link,
+.fbv-button:visited {
+  color: rgb(0, 0, 0);               /* Text color */
+  text-decoration: none;      /* Remove underline */
+  display: inline-block;      /* Make it behave like a button */
+}
+
 
 .fbv-primary-button {
   background-color: #00ffe0;
@@ -1603,7 +1612,7 @@ footer p {
 }
 
 .fbv-secondary-button {
-   background-color: #00ffe0;
+  background-color: #00ffe0;
   color: #000000;
 }
 
@@ -1614,7 +1623,8 @@ footer p {
 
 /* Modal Overlay */
 .fbv-modal-overlay {
-  display: flex; /* will be none initially via inline style */
+  display: flex;
+  /* will be none initially via inline style */
   position: fixed;
   z-index: 999;
   left: 0;
@@ -1676,7 +1686,8 @@ footer p {
 
 /* Inaccurate Stats Modal Overlay */
 #fbv-inaccurate-modal {
-  display: flex; /* initially hidden with inline style display:none */
+  display: flex;
+  /* initially hidden with inline style display:none */
   position: fixed;
   z-index: 999;
   left: 0;
@@ -1687,8 +1698,8 @@ footer p {
   justify-content: center;
   align-items: center;
 
-   padding: 16px;
-    font-size: 13px;
+  padding: 16px;
+  font-size: 13px;
 }
 
 /* Inaccurate Stats Modal Content Box */
@@ -1741,13 +1752,17 @@ footer p {
 
 .mvhv-popup-wait {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
-  color: #00ffe0; /* bright cyan to match modal title */
+  color: #00ffe0;
+  /* bright cyan to match modal title */
   font-family: 'Segoe UI', sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
@@ -1761,4 +1776,71 @@ footer p {
   box-shadow: 0 0 15px #00ffe0;
   max-width: 350px;
 }
+
+.scroll-label {
+  width: 100%;
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 0.8rem 7rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #0f111a;
+  cursor: pointer;
+  user-select: none;
+  perspective: 800px;
+}
+
+.scroll-label span {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+
+  /* Neon gradient for realistic depth */
+  background: linear-gradient(120deg, #00ffe0, #00c2aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Soft inner + outer shadows for realistic depth */
+  text-shadow:
+    0 1px 0 #0b0f14,
+    0 2px 6px rgba(0, 255, 224, 0.3),
+    0 4px 12px rgba(0, 255, 224, 0.2);
+
+  animation: scroll-text 15s linear infinite;
+  transform: rotateX(1.5deg);
+}
+
+@keyframes scroll-text {
+  0% {
+    transform: translateX(100%) rotateX(1.5deg);
+  }
+  100% {
+    transform: translateX(-100%) rotateX(1.5deg);
+  }
+}
+
+.scroll-label:hover span {
+  animation-play-state: paused;
+  text-shadow:
+    0 1px 0 #0b0f14,
+    0 2px 6px #00ffe0,
+    0 4px 15px rgba(0, 255, 224, 0.4),
+    0 6px 30px rgba(0, 255, 224, 0.3);
+}
+
+@media (max-width: 480px) {
+  .scroll-label {
+    max-width: 90%;
+    padding: 0.8rem 1.2rem;
+  }
+  .scroll-label span {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+  }
+}
+
 

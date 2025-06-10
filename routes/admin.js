@@ -4,46 +4,86 @@ const multer = require('multer');
 const upload = multer(); // For parsing multipart/form-data
 const displayHelper = require('../helpers/disply');
 const db = require('../config/connection');
+require('dotenv').config();
 
 
 
 /* GET users listing. */
+/* GET home page. */
 router.get('/', function (req, res, next) {
-  console.log('Admin route /admin accessed');
-  displayHelper.getStats('all_time', (err, stats) => {
+    console.log('Admin route /admin accessed');
+  const seasons = ['2024_25', 'all_time'];
+
+  displayHelper.getStats(seasons, (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-    const mbappe = stats.find(p => p.Name === 'Mbappe');
-    const haaland = stats.find(p => p.Name === 'Haaland');
-    const vini = stats.find(p => p.Name === 'Vinicius');
-    res.render('index', { admin: true, mbappe, haaland, vini }); // Pass stats to the frontend
 
+    console.log(stats)
+
+    // All-time stats
+    const allTimeStats = stats['all_time'] || [];
+    const mbappe = allTimeStats.find(p => p.Name === 'Mbappe') || {};
+    const haaland = allTimeStats.find(p => p.Name === 'Haaland') || {};
+    const vini = allTimeStats.find(p => p.Name === 'Vinicius') || {};
+
+    // Latest season stats (2024_25)
+    const season = '2024_25';
+    const cleanKey = season.replace('_', '');
+    const seasonStats = stats[season] || [];
+
+    const mbappeSeason = seasonStats.find(p => p.Name === 'Mbappe') || {};
+    const haalandSeason = seasonStats.find(p => p.Name === 'Haaland') || {};
+    const viniciusSeason = seasonStats.find(p => p.Name === 'Vinicius') || {};
+
+    // Construct final data
+    const data = {
+      admin: true,
+      mbappe,
+      haaland,
+      vini,
+      [`mbappe_${cleanKey}`]: mbappeSeason,
+      [`haaland_${cleanKey}`]: haalandSeason,
+      [`vinicius_${cleanKey}`]: viniciusSeason,
+      [`season_${cleanKey}`]: seasonStats
+    };
+
+    res.render('index', data);
   });
 });
+
 // router.get('/sts-update', function(req, res) {
 //   res.send('GET /sts-update route');
 // });
 
 router.post('/sts-update', upload.none(), function (req, res) {
   const formData = req.body;
-  console.log(req.body);
+  console.log(`[${new Date().toISOString()}] 🛠️ Admin requested stats update:`, formData);
 
-  const tableName = formData.tablename;  // Get the table name dynamically from form data
-  delete formData.tablename;              // Optional: remove it from formData if not needed in updateStats
+  const tableName = formData.tablename;
+  delete formData.tablename;
 
   displayHelper.updateStats(tableName, formData, function (err, result) {
     if (err) {
+      console.error(`[${new Date().toISOString()}] ❌ Failed to update stats for table "${tableName}":`, err);
       return res.status(500).send('Database update failed.');
     }
-    // Send back updated data for that table
+
+    // ✅ Successful update log
+    console.log(`[${new Date().toISOString()}] ✅ Admin updated stats for "${tableName}" from IP: ${req.ip}`);
+
     db.get().query(`SELECT * FROM ${tableName}`, (err, rows) => {
-      if (err) return res.status(500).send('Failed to fetch updated data.');
+      if (err) {
+        console.error(`[${new Date().toISOString()}] ❌ Failed to fetch updated data from "${tableName}":`, err);
+        return res.status(500).send('Failed to fetch updated data.');
+      }
+
       res.status(200).json(rows);
     });
   });
 });
+
 
 
 
@@ -98,18 +138,41 @@ router.get('/club-stats', function (req, res, next) {
   });
 });
 router.get('/int-stats', function (req, res, next) {
-  displayHelper.getStats('all_time', (err, stats) => {
+  displayHelper.getStats(['all_time', 'intr'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-    const mbappe = stats.find(p => p.Name === 'Mbappe');
-    const haaland = stats.find(p => p.Name === 'Haaland');
-    const vini = stats.find(p => p.Name === 'Vinicius');
-    res.render('user/int-stats', { admin: true, mbappe, haaland, vini }); // Pass stats to the frontend
+    const mbappe_all = stats.all_time.find(p => p.Name === 'Mbappe');
+    const mbappe_intr = stats.intr.find(p => p.Name === 'Mbappe');
 
+    const haaland_all = stats.all_time.find(p => p.Name === 'Haaland');
+    const haaland_intr = stats.intr.find(p => p.Name === 'Haaland');
+
+    const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
+    const vini_intr = stats.intr.find(p => p.Name === 'Vinicius');
+
+    console.log('Mbappe All-Time:', mbappe_all);
+    console.log('Mbappe Intr:', mbappe_intr);
+
+    console.log('Haaland All-Time:', haaland_all);
+    console.log('Haaland Intr:', haaland_intr);
+
+    console.log('Vinicius All-Time:', vini_all);
+    console.log('Vinicius Intr:', vini_intr);
+
+    res.render('user/int-stats', {
+      admin: true,
+      mbappe_all,
+      mbappe_intr,
+      haaland_all,
+      haaland_intr,
+      vini_all,
+      vini_intr
+    });
   });
 });
+
 router.get('/club-stats/:comp', function (req, res, next) {
   const comp = req.params.comp;
 
@@ -229,7 +292,5 @@ router.get('/:time', function (req, res, next) {
     });
   });
 });
-
-
 
 module.exports = router;

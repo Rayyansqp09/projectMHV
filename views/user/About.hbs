@@ -34,13 +34,19 @@
     <!-- Contact Section -->
     <h2 id="contact" class="mvhv-subtitle">📞 Contact Us</h2>
     <p class="mvhv-text">
-      Got feedback, ideas, or just want to say hi? Reach out anytime. We're building this with love — and your
-      input makes it better.
+      We’d love to hear from you.
+      Have feedback, suggestions, or just want to connect? Feel free to reach out anytime. This project is built with
+      passion, and your insights help us make it even better
     </p>
     <p class="mvhv-text">
-      📧 Email: <a href="mailto:support@mbappevshaalandvsvinicius.com">support@mbappevshaalandvsvinicius.com</a><br>
+      
+      <img src="https://abs.twimg.com/favicons/twitter.2.ico" alt="X Logo" style="width: 16px; vertical-align: middle; margin-right: 6px;">
+      <strong>X:</strong> <a href="https://x.com/yourAccount" target="_blank">@yourAccount</a><br>
+
+      📧 <strong>Email:</strong> <a href="mailto:support@mbappevshaalandvsvinicius.com">support@mbappevshaalandvsvinicius.com</a><br>
       🌍 Based on the internet, made for football lovers worldwide.
     </p>
+
 
     <!-- Donation Section -->
     <h2 class="mvhv-subtitle">💖 Support the Project</h2>
@@ -81,39 +87,39 @@
 
 <script>
 
-    window.addEventListener('DOMContentLoaded', () => {
-        const hash = window.location.hash;
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
 
-        if (hash === '#follow', '#report', '#ads') {
-            const target = document.querySelector(hash);
-            if (!target) return;
+    if (hash === '#follow', '#report', '#ads') {
+      const target = document.querySelector(hash);
+      if (!target) return;
 
-            const offset = 80; // adjust if you have a fixed header
-            const duration = 1000;
+      const offset = 80; // adjust if you have a fixed header
+      const duration = 1000;
 
-            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-            const startPosition = window.scrollY;
-            const distance = targetPosition - startPosition;
-            let startTime = null;
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+      const startPosition = window.scrollY;
+      const distance = targetPosition - startPosition;
+      let startTime = null;
 
-            function animation(currentTime) {
-                if (!startTime) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
+      function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
 
-            function easeInOutQuad(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
+      function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
 
-            requestAnimationFrame(animation);
-        }
-    });
+      requestAnimationFrame(animation);
+    }
+  });
 
   document.getElementById("mvhvAdBtn").addEventListener("click", () => {
     document.getElementById("mvhvAdModal").style.display = "flex";

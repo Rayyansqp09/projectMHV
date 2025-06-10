@@ -27,17 +27,17 @@
                 <td class="haaland-text">{{haaland_202324.Assists}}<br><span class="stat-name">ASSIST</span></td>
                 <td class="vini-text">{{vinicius_202324.Assists}}<br><span class="stat-name">ASSIST</span></td>
             </tr>
-        <!-- Hidden Rows -->
+    
     </tbody>
   </table>
 
-  <button class="Dt-btn2" id="showMoreBtn">More</button>
+  
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
     {{/if}}
 </div>
 <div class="table-container">
-    <h2 name="int" class="stat-title">2023-24 CLUB COMPETETION</h2>
+    <h2 name="int" class="stat-title">CLUB COMPETETION</h2>
     <table>
         <thead>
             <tr>
@@ -70,7 +70,7 @@
 </div>
 
 <div class="table-container">
-    <h2 name="int" class="stat-title">2023-24 INTERNATIONAL</h2>
+    <h2 name="int" class="stat-title">INTERNATIONAL</h2>
     <table>
         <thead>
             <tr>
@@ -103,7 +103,7 @@
 </div>
 
 <div class="table-container">
-    <h2 name="int" class="stat-title">2023-24 LEAGUE</h2>
+    <h2 name="int" class="stat-title">LEAGUE</h2>
     <table>
         <thead>
             <tr> 
@@ -136,7 +136,7 @@
 </div>
 
 <div class="table-container">
-    <h2 name="int" class="stat-title">2023-24 UEFA Champions League</h2>
+    <h2 name="int" class="stat-title">UEFA Champions League</h2>
     <table>
         <thead>
             <tr>
@@ -168,8 +168,52 @@
     {{/if}}
 </div>
 
+<div class="footer3-card" onclick="location.href='/club-stats/ucl'">
+  <span>All Time UEFA Champions League Stats</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+
 <div class="table-container">
-    <h2 name="int" class="stat-title">2023-24 FINAL STATS</h2>
+    <h2 name="int" class="stat-title">copa america/euro cup</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vinicius_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vinicius_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vinicius_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="footer3-card" onclick="location.href='/int-stats/copa-euro'">
+    <span>All Time Copa/Euro Stats</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">FINAL STATS</h2>
 
     <table>
         <thead>

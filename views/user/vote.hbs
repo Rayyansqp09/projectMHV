@@ -6,7 +6,7 @@
     <div class="vote-card blue">
       <h3 class="player-name blue-border">Mbappe</h3>
       <p>
-        <span class="count-Mbappe">{{voteData.Mbappe.count}}</span> votes
+        <span style="visibility: hidden;"  class="count-Mbappe">{{voteData.Mbappe.count}}</span> votes
         (<span class="percentage-Mbappe">{{voteData.Mbappe.percentage}}</span>%)
       </p>
       <button class="vote-btn blue-btn" data-player="Mbappe">Vote Mbappe</button>
@@ -16,7 +16,7 @@
     <div class="vote-card red">
       <h3 class="player-name red-border">Haaland</h3>
       <p>
-        <span class="count-Haaland">{{voteData.Haaland.count}}</span> votes
+        <span style="visibility: hidden;" class="count-Haaland">{{voteData.Haaland.count}}</span> votes
         (<span class="percentage-Haaland">{{voteData.Haaland.percentage}}</span>%)
       </p>
       <button class="vote-btn red-btn" data-player="Haaland">Vote Haaland</button>
@@ -26,7 +26,7 @@
     <div class="vote-card yellow">
       <h3 class="player-name yellow-border">Vinicius</h3>
       <p>
-        <span class="count-Vinicius">{{voteData.Vinicius.count}}</span> votes
+        <span style="visibility: hidden;" class="count-Vinicius">{{voteData.Vinicius.count}}</span> votes
         (<span class="percentage-Vinicius">{{voteData.Vinicius.percentage}}</span>%)
       </p>
       <button class="vote-btn yellow-btn" data-player="Vinicius">Vote Vinicius</button>
@@ -36,8 +36,21 @@
   </div>
 
   {{#if totalVotes}}
-  <p class="total-votes">Total Votes: {{totalVotes}}</p>
+  <p class="total-votes" style="visibility: hidden;">Total Votes: {{totalVotes}}</p>
   {{/if}}
+</div>
+
+<div class="footer2-follow">
+  <p>Follow us</p>
+  <div class="footer2-icons">
+    <a href="https://twitter.com/yourhandle" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" class="footer2-icon" />
+    </a>
+    <a href="https://wa.me/yourphonenumber" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp"
+        class="footer2-icon" />
+    </a>
+  </div>
 </div>
 
 <script>

@@ -1,7 +1,7 @@
 <div class="football-dropdown-container">
     <div class="football-dropdown">
         <select id="seasonSelect">
-            <option value="season2024">-- Choose Season --</option>
+            <option value="">-- Choose Season --</option>
             <option value="season2024">2024-25 (Ongoing Season)</option>
             <option value="season2023">2023-24</option>
             <option value="season2022">2022-23</option>
@@ -14,91 +14,82 @@
             <option value="season2015">2015-16</option>
         </select>
 
-
         <div class="season-content" id="season2024">
-            {{> season/2024-25 }}
+            {{> season/2024-25}}
         </div>
-
         <div class="season-content" id="season2023">
-            {{> season/2023-24 }}
+            {{> season/2023-24}}
         </div>
-
         <div class="season-content" id="season2022">
-            {{> season/2022-23 }}
+            {{> season/2022-23}}
         </div>
-
         <div class="season-content" id="season2021">
-            {{> season/2021-22 }}
+            {{> season/2021-22}}
         </div>
-
         <div class="season-content" id="season2020">
-            {{> season/2020-21 }}
+            {{> season/2020-21}}
         </div>
-
         <div class="season-content" id="season2019">
-            {{> season/2019-20 }}
+            {{> season/2019-20}}
         </div>
-
         <div class="season-content" id="season2018">
-            {{> season/2018-19 }}
+            {{> season/2018-19}}
         </div>
-
         <div class="season-content" id="season2017">
-            {{> season/2017-18 }}
+            {{> season/2017-18}}
         </div>
-
         <div class="season-content" id="season2016">
-            {{> season/2016-17 }}
+            {{> season/2016-17}}
         </div>
-
         <div class="season-content" id="season2015">
-            {{> season/2015-16 }}
+            {{> season/2015-16}}
         </div>
+    </div>
+</div>
 
-        <script>
-            window.addEventListener("DOMContentLoaded", () => {
-                const select = document.getElementById("seasonSelect");
-                const contents = document.querySelectorAll(".season-content");
+<div class="footer2-card" onclick="location.href='/feedback#report'">
+  <span>Report an Inaccurate issue</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
 
-                function showSeasonContent(seasonId) {
-                    contents.forEach(div => div.classList.remove("active"));
-                    const selectedDiv = document.getElementById(seasonId);
-                    if (selectedDiv) selectedDiv.classList.add("active");
-                }
+<div class="footer2-card" onclick="location.href='/suggestion'">
+  <span>I have a suggestion</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
 
-                // Show content based on initial selected option (2024)
-                showSeasonContent(select.value);
+<style>
+    .season-content {
+        display: none;
+    }
+    .season-content.active {
+        display: block;
+    }
+</style>
 
-                // When dropdown changes
-                select.addEventListener("change", function () {
-                    showSeasonContent(this.value);
-                });
-            });
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const select = document.getElementById("seasonSelect");
+        const contents = document.querySelectorAll(".season-content");
 
-            const select = document.getElementById("seasonSelect");
-            const contents = document.querySelectorAll(".season-content");
-
-            select.addEventListener("change", function () {
-                contents.forEach(div => div.classList.remove("active"));
-                const selected = this.value;
-                if (selected) {
-                    document.getElementById(selected).classList.add("active");
-                }
-            });
-
-            function toggleModal(button) {
-                // Find the closest table-container and get the h2 inside it
-                const headingElement = button.closest(".table-container").querySelector("h2");
-
-                // ✅ Display the heading text inside the modal
-                document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
-
-                // ✅ Send the 'name' attribute value to the backend via hidden input
-                document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
-
-
-                const modal = document.getElementById("modalOverlay");
-                modal.style.display = "flex"; // ensure it uses flex to center
-                modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+        function showSeasonContent(seasonId) {
+            contents.forEach(div => div.classList.remove("active"));
+            const target = document.getElementById(seasonId);
+            if (target) {
+                target.classList.add("active");
             }
-        </script>
+        }
+
+        // Initially show current season (2024-25)
+        const defaultSeason = "season2024";
+        select.value = defaultSeason;
+        showSeasonContent(defaultSeason);
+
+        // Change event
+        select.addEventListener("change", function () {
+            const selectedSeason = this.value;
+            if (selectedSeason) {
+                showSeasonContent(selectedSeason);
+            }
+        });
+    });
+</script>

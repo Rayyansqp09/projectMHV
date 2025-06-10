@@ -2,7 +2,7 @@
 
 <div class="table-container">
     <h2 name="" class="stat-title">ALL COMPETITION</h2>
-       <h2 name="club" class="stat-title2">(Including National Team Games)</h2>
+    <h2 name="club" class="stat-title2">(Including National Team Games)</h2>
     <table>
         <thead>
             <tr>
@@ -27,27 +27,15 @@
                 <td class="haaland-text">{{haaland_202425.Assists}}<br><span class="stat-name">ASSIST</span></td>
                 <td class="vini-text">{{vinicius_202425.Assists}}<br><span class="stat-name">ASSIST</span></td>
             </tr>
-        <!-- Hidden Rows -->
-        <tr class="extra-row" style="display: none;">
-            <td class="mbappe-text">{{mbappe.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-            <td class="haaland-text">{{haaland.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-            <td class="vini-text">{{vini.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-        </tr>
-        <tr class="extra-row" style="display: none;">
-            <td class="mbappe-text">{{mbappe.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-            <td class="haaland-text">{{haaland.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-            <td class="vini-text">{{vini.shotonTarget}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-        </tr>
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 
-  <button class="Dt-btn2" id="showMoreBtn">More</button>
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
     {{/if}}
 </div>
 <div class="table-container">
-    <h2 name="int" class="stat-title">2024-25 CLUB COMPETETION</h2>
+    <h2 name="int" class="stat-title">CLUB COMPETETION</h2>
     <table>
         <thead>
             <tr>
@@ -57,7 +45,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe_202425.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland_202425.clubGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vinicius_202425.clubGames}}<br><span class="stat-name">GAMES</span></td>
@@ -80,7 +68,7 @@
 </div>
 
 <div class="table-container">
-    <h2 name="int" class="stat-title">2024-25 INTERNATIONAL</h2>
+    <h2 name="int" class="stat-title">INTERNATIONAL</h2>
     <table>
         <thead>
             <tr>
@@ -90,7 +78,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe_202425.intGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland_202425.intGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vinicius_202425.intGames}}<br><span class="stat-name">GAMES</span></td>
@@ -113,17 +101,17 @@
 </div>
 
 <div class="table-container">
-    <h2 name="int" class="stat-title">2024-25 LEAGUE</h2>
+    <h2 name="int" class="stat-title">LEAGUE</h2>
     <table>
         <thead>
-            <tr> 
+            <tr>
                 <th class="mbappe-text">MBAPPE</th>
                 <th class="haaland-text">HAALAND</th>
                 <th class="vini-text">VINICIUS</th>
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe_202425.lGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland_202425.lGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vinicius_202425.lGames}}<br><span class="stat-name">GAMES</span></td>
@@ -146,7 +134,7 @@
 </div>
 
 <div class="table-container">
-    <h2 name="int" class="stat-title">2024-25 UEFA Champions League</h2>
+    <h2 name="int" class="stat-title">UEFA Champions League</h2>
     <table>
         <thead>
             <tr>
@@ -156,7 +144,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe_202425.uclGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland_202425.uclGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vinicius_202425.uclGames}}<br><span class="stat-name">GAMES</span></td>
@@ -178,8 +166,52 @@
     {{/if}}
 </div>
 
+<div class="footer3-card" onclick="location.href='/club-stats/ucl'">
+  <span>All Time UEFA Champions League Stats</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+
 <div class="table-container">
-    <h2 name="int" class="stat-title">2024-25 FINAL STATS</h2>
+    <h2 name="int" class="stat-title">club World Cup</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vinicius_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vinicius_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vinicius_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="footer3-card" onclick="location.href='/club-stats/#clubWc'">
+    <span>All Time Club World Cup Stats</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">FINAL STATS</h2>
 
     <table>
         <thead>
@@ -190,7 +222,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe_202425.finalGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="haaland-text">{{haaland_202425.finalGames}}<br><span class="stat-name">GAMES</span></td>
                 <td class="vini-text">{{vinicius_202425.finalGames}}<br><span class="stat-name">GAMES</span></td>
@@ -200,7 +232,7 @@
                 <td class="haaland-text">{{haaland_202425.finalGoals}}<br><span class="stat-name">GOALS</span></td>
                 <td class="vini-text">{{vinicius_202425.finalGoals}}<br><span class="stat-name">GOALS</span></td>
             </tr>
-              <tr>
+            <tr>
                 <td class="mbappe-text">{{mbappe_202425.finalAssists}}<br><span class="stat-name">GOALS</span></td>
                 <td class="haaland-text">{{haaland_202425.finalAssists}}<br><span class="stat-name">GOALS</span></td>
                 <td class="vini-text">{{vinicius_202425.finalAssists}}<br><span class="stat-name">GOALS</span></td>
@@ -216,42 +248,42 @@
 {{>sts-update}}
 
 <script>
-    
-   document.querySelectorAll('.Dt-btn2').forEach(button => {
-  button.addEventListener('click', function () {
-    const container = this.closest('.table-container'); // Locate the current section
-    if (!container) return;
 
-    const table = container.querySelector('table'); // Find the table inside this section
-    const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
+    document.querySelectorAll('.Dt-btn2').forEach(button => {
+        button.addEventListener('click', function () {
+            const container = this.closest('.table-container'); // Locate the current section
+            if (!container) return;
 
-    hiddenRows.forEach(row => {
-      row.style.display = 'table-row'; // Show row
-      row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+            const table = container.querySelector('table'); // Find the table inside this section
+            const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
+
+            hiddenRows.forEach(row => {
+                row.style.display = 'table-row'; // Show row
+                row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+            });
+
+            this.style.display = 'none'; // Hide "More" button
+        });
     });
 
-    this.style.display = 'none'; // Hide "More" button
-  });
-});
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("a.dynamic-link");
+        const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
 
-     document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll("a.dynamic-link");
-    const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
+        links.forEach(link => {
+            const originalHref = link.getAttribute("href");
 
-    links.forEach(link => {
-      const originalHref = link.getAttribute("href");
+            // If it's already absolute or an external link, skip
+            if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
 
-      // If it's already absolute or an external link, skip
-      if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
-
-      // Update href to include current path
-      link.setAttribute("href", `${basePath}/${originalHref}`);
+            // Update href to include current path
+            link.setAttribute("href", `${basePath}/${originalHref}`);
+        });
     });
-  });
 
 
-  function toggleModal(button) {
+    function toggleModal(button) {
         // Find the closest table-container and get the h2 inside it
         const headingElement = button.closest(".table-container").querySelector("h2");
 

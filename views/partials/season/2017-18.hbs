@@ -27,12 +27,9 @@
                 <td class="haaland-text">{{haaland_201718.Assists}}<br><span class="stat-name">ASSISTS</span></td>
                 <td class="vini-text">{{vinicius_201718.Assists}}<br><span class="stat-name">ASSISTS</span></td>
             </tr>
-
-            <!-- Hidden Rows -->
         </tbody>
     </table>
 
-    <button class="Dt-btn2" id="showMoreBtn">More</button>
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
     {{/if}}
@@ -145,7 +142,8 @@
 </div>
 
 <div class="table-container">
-    <h2 name="int" class="stat-title">UEFA Champions League</h2>
+    <h2 name="int" class="stat-title"> CLUB CONTINENTAL COMPETITIONS</h2>
+    <h2 name="club" class="stat-title2">(UEFA Champions League\Copa Libertadores\Copa Sudamericana)</h2>
     <table>
         <thead>
             <tr>
@@ -170,15 +168,51 @@
                 <td class="haaland-text">{{haaland_201718.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
                 <td class="vini-text">{{vinicius_201718.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
             </tr>
-
-
-
         </tbody>
     </table>
     {{#if admin}}
     <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
     {{/if}}
 </div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">World Cup</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="mbappe-text">MBAPPE</th>
+                <th class="haaland-text">HAALAND</th>
+                <th class="vini-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="haaland-text">{{haaland_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="vini-text">{{vinicius_202324.uclGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="haaland-text">{{haaland_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="vini-text">{{vinicius_202324.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="mbappe-text">{{mbappe_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="haaland-text">{{haaland_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="vini-text">{{vinicius_202324.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="footer3-card" onclick="location.href='/club-stats/ucl'">
+    <span>All Time World Cup Stats</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
 
 <div class="table-container">
     <h2 name="int" class="stat-title">FINAL STATS</h2>
@@ -256,7 +290,7 @@
     });
 
 
-     function toggleModal(button) {
+    function toggleModal(button) {
         // Find the closest table-container and get the h2 inside it
         const headingElement = button.closest(".table-container").querySelector("h2");
 

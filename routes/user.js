@@ -7,23 +7,24 @@ const { v4: uuidv4 } = require('uuid');
 const votedIPs = new Set(); // Temporary memory; use DB/IP logs in production
 const isTesting = true; // Change to false when deploying live
 const Razorpay = require("razorpay");
+const nodemailer = require('nodemailer');
+require('dotenv').config();
+
 
 
 const razorpay = new Razorpay({
-  key_id: "rzp_test_41qaGoGnSDVd5u",
-  key_secret: "ocb2j8L3oFTm6K9PJlqXOhjt",
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-const nodemailer = require('nodemailer');
-
-// Replace these with your actual email and app password or token
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // or 'zoho', 'hotmail', etc.
+  service: 'gmail',
   auth: {
-    user: 'mhdrayyan86@gmail.com',
-    pass: 'omcbanpfsyumxqdt' // Use an app-specific password if using Gmail
-  }
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
 });
+
 
 
 
@@ -36,6 +37,8 @@ router.get('/', function (req, res, next) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
+
+    console.log(stats)
 
     // All-time stats
     const allTimeStats = stats['all_time'] || [];
@@ -119,16 +122,38 @@ router.get('/club-stats', function (req, res, next) {
 });
 
 router.get('/int-stats', function (req, res, next) {
-  displayHelper.getStats('all_time', (err, stats) => {
+  displayHelper.getStats(['all_time', 'intr'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-    const mbappe = stats.find(p => p.Name === 'Mbappe');
-    const haaland = stats.find(p => p.Name === 'Haaland');
-    const vini = stats.find(p => p.Name === 'Vinicius');
-    res.render('user/int-stats', { admin: false, mbappe, haaland, vini }); // Pass stats to the frontend
+    const mbappe_all = stats.all_time.find(p => p.Name === 'Mbappe');
+    const mbappe_intr = stats.intr.find(p => p.Name === 'Mbappe');
 
+    const haaland_all = stats.all_time.find(p => p.Name === 'Haaland');
+    const haaland_intr = stats.intr.find(p => p.Name === 'Haaland');
+
+    const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
+    const vini_intr = stats.intr.find(p => p.Name === 'Vinicius');
+
+    console.log('Mbappe All-Time:', mbappe_all);
+    console.log('Mbappe Intr:', mbappe_intr);
+
+    console.log('Haaland All-Time:', haaland_all);
+    console.log('Haaland Intr:', haaland_intr);
+
+    console.log('Vinicius All-Time:', vini_all);
+    console.log('Vinicius Intr:', vini_intr);
+
+    res.render('user/int-stats', {
+      admin: false,
+      mbappe_all,
+      mbappe_intr,
+      haaland_all,
+      haaland_intr,
+      vini_all,
+      vini_intr
+    });
   });
 });
 router.get('/policy', (req, res) => {
@@ -227,11 +252,12 @@ router.post("/pay", async (req, res) => {
 });
 
 
-
 router.get('/vote', function (req, res, next) {
+  console.log(`[${new Date().toISOString()}] /vote page requested from IP: ${req.ip}`);
+
   displayHelper.getStats('votes', (err, votes) => {
     if (err) {
-      console.error('Error getting stats:', err);
+      console.error(`[${new Date().toISOString()}] Error getting stats:`, err);
       return res.status(500).send('Error loading stats');
     }
 
@@ -242,6 +268,13 @@ router.get('/vote', function (req, res, next) {
     });
 
     const totalVotes = voteCounts.Mbappe + voteCounts.Haaland + voteCounts.Vinicius;
+
+    console.log(`[${new Date().toISOString()}] Vote data fetched:`, {
+      Mbappe: voteCounts.Mbappe,
+      Haaland: voteCounts.Haaland,
+      Vinicius: voteCounts.Vinicius,
+      Total: totalVotes
+    });
 
     const voteData = {
       Mbappe: {
@@ -265,6 +298,7 @@ router.get('/vote', function (req, res, next) {
     });
   });
 });
+
 
 
 router.post('/vote', (req, res) => {
@@ -449,6 +483,7 @@ router.get('/:time', function (req, res, next) {
     });
   });
 });
+
 
 
 

@@ -43,7 +43,7 @@
 <div class="footer2-follow">
   <p>Follow us</p>
   <div class="footer2-icons">
-    <a href="https://twitter.com/yourhandle" target="_blank">
+    <a href="https://x.com/MvsHvsV" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" class="footer2-icon" />
     </a>
     <a href="https://wa.me/yourphonenumber" target="_blank">
@@ -58,8 +58,14 @@
     const buttons = document.querySelectorAll('.vote-btn');
 
     buttons.forEach(button => {
-      button.addEventListener('click', function () {
-        const player = this.getAttribute('data-player');
+    button.addEventListener('click', function () {
+      const player = this.getAttribute('data-player');
+
+      // ✅ Send event to Google Analytics
+      gtag('event', 'vote_clicked', {
+        'event_category': 'User',
+        'event_label': 'Voted for ' + player
+      });
 
         // Prevent multiple votes using cookie
         if (document.cookie.includes('voted=true')) {

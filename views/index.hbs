@@ -1,13 +1,24 @@
- <style>
-    .extra-row { display: none; }
-    .animate-slide {
-      animation: slideDown 0.4s ease forwards;
+<style>
+  .extra-row {
+    display: none;
+  }
+
+  .animate-slide {
+    animation: slideDown 0.4s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
     }
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-  </style>
+  }
+</style>
 
 <div class="looking-box">
   <h2 class="lookingbox-title">ARE YOU LOOKING FOR</h2>
@@ -47,12 +58,27 @@
 </div>
 
 <div id="other" class="content">
-  <!-- Other content -->
+  <div class="footer3-card" onclick="location.href='/int-stats/wc'">
+    <span>Detailed World Cup Stats</span>
+    <span class="footer2-arrow">&#8594;</span>
+  </div>
+  <div class="footer3-card" onclick="location.href='/club-stats/ucl'">
+    <span>More Detailed UEFA Champions League</span>
+    <span class="footer2-arrow">&#8594;</span>
+  </div>
+  <div class="footer3-card" onclick="location.href='/alltime#goal'">
+    <span>Hattricks,Free Kick Goals Etc</span>
+    <span class="footer2-arrow">&#8594;</span>
+  </div>
+  <div class="footer3-card" onclick="location.href='/alltime#final'">
+    <span>All Time Stats In Finals</span>
+    <span class="footer2-arrow">&#8594;</span>
+  </div>
 </div>
 
-  {{>sts-update}}
+{{>sts-update}}
 
-  <div class="footer2-card" onclick="location.href='/feedback#report'">
+<div class="footer2-card" onclick="location.href='/feedback#report'">
   <span>Report an issue</span>
   <span class="footer2-arrow">&#8594;</span>
 </div>
@@ -64,86 +90,86 @@
 
 <script>
 
-   const tabs = document.querySelectorAll('.tab');
-const contents = document.querySelectorAll('.content');
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.content');
 
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    // Toggle tab active state
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Toggle tab active state
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
-    // Show the correct content
-    contents.forEach(content => content.classList.remove('active'));
-    const target = tab.dataset.target;
-    const activeContent = document.getElementById(target);
-    if (activeContent) {
-      activeContent.classList.add('active');
-    }
-  });
-});
-
-   document.querySelectorAll('.Dt-btn2').forEach(button => {
-  button.addEventListener('click', function () {
-    const container = this.closest('.table-container'); // Locate the current section
-    if (!container) return;
-
-    const table = container.querySelector('table'); // Find the table inside this section
-    const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
-
-    hiddenRows.forEach(row => {
-      row.style.display = 'table-row'; // Show row
-      row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+      // Show the correct content
+      contents.forEach(content => content.classList.remove('active'));
+      const target = tab.dataset.target;
+      const activeContent = document.getElementById(target);
+      if (activeContent) {
+        activeContent.classList.add('active');
+      }
     });
-
-    this.style.display = 'none'; // Hide "More" button
   });
-});
+
+  document.querySelectorAll('.Dt-btn2').forEach(button => {
+    button.addEventListener('click', function () {
+      const container = this.closest('.table-container'); // Locate the current section
+      if (!container) return;
+
+      const table = container.querySelector('table'); // Find the table inside this section
+      const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
+
+      hiddenRows.forEach(row => {
+        row.style.display = 'table-row'; // Show row
+        row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+      });
+
+      this.style.display = 'none'; // Hide "More" button
+    });
+  });
 
   document.addEventListener("DOMContentLoaded", function () {
-  const links = document.querySelectorAll("a.dynamic-link");
-  const basePath = window.location.pathname.split("/").slice(0, 2).join("/"); 
-  // This will keep only the first subfolder, e.g., "/int-Stats"
+    const links = document.querySelectorAll("a.dynamic-link");
+    const basePath = window.location.pathname.split("/").slice(0, 2).join("/");
+    // This will keep only the first subfolder, e.g., "/int-Stats"
 
-  links.forEach(link => {
-    const originalHref = link.getAttribute("href");
+    links.forEach(link => {
+      const originalHref = link.getAttribute("href");
 
-    // If it's already absolute or an external link, skip
-    if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+      // If it's already absolute or an external link, skip
+      if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
 
-    // Update href to include base path (not full current path)
-    link.setAttribute("href", `${basePath}/${originalHref}`);
+      // Update href to include base path (not full current path)
+      link.setAttribute("href", `${basePath}/${originalHref}`);
+    });
   });
-});
 
 
-function toggleModal(button) {
-  // Find the closest table-container and get the h2 inside it
-  const headingElement = button.closest(".table-container").querySelector("h2");
+  function toggleModal(button) {
+    // Find the closest table-container and get the h2 inside it
+    const headingElement = button.closest(".table-container").querySelector("h2");
 
-  // Display the heading text inside the modal
-  document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+    // Display the heading text inside the modal
+    document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
 
-  // Send the 'name' attribute value to the backend via hidden input
-  document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+    // Send the 'name' attribute value to the backend via hidden input
+    document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
 
-  const tableName = button.getAttribute("table");
-  document.getElementById("tableNameDisplay").textContent = "Table Name";
-  document.getElementById("tableNameInput").value = tableName;
+    const tableName = button.getAttribute("table");
+    document.getElementById("tableNameDisplay").textContent = "Table Name";
+    document.getElementById("tableNameInput").value = tableName;
 
-  // Instead of modal.style.display = "flex", add active class
-  const modal = document.getElementById("modalOverlay");
-  modal.classList.add("active");
+    // Instead of modal.style.display = "flex", add active class
+    const modal = document.getElementById("modalOverlay");
+    modal.classList.add("active");
 
-  modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-}
+    modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+  }
 
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('statsForm');
     if (form) {
-      form.addEventListener('submit', function(e) {
-       
+      form.addEventListener('submit', function (e) {
+
         // You can add fetch or form submission logic here
         toggleModal(); // Close the modal
       });

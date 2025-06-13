@@ -80,7 +80,12 @@ router.get('/alltime', function (req, res, next) {
     const mbappe = stats.find(p => p.Name === 'Mbappe');
     const haaland = stats.find(p => p.Name === 'Haaland');
     const vini = stats.find(p => p.Name === 'Vinicius');
-    res.render('user/alltime', { admin: false, mbappe, haaland, vini }); // Pass stats to the frontend
+    res.render('user/alltime', {
+      title: 'All-Time Goal Scoring Stats | Mbappe vs Haaland vs Vinicius',
+      description: 'Compare all-time goal stats: hattricks, pokers, free-kick goals, and final match goals of Mbappe, Haaland, and Vinicius.',
+
+      admin: false, mbappe, haaland, vini
+    }); // Pass stats to the frontend
 
   });
 });
@@ -110,6 +115,9 @@ router.get('/club-stats', function (req, res, next) {
     console.log('Vinicius Club:', vini_club);
 
     res.render('user/club-stats', {
+      title: 'Mbappe vs Haaland vs Vinicius | Club Stats',
+      description: 'View and compare Club football stats of Mbappe, Haaland, and Vinicius across all competitions.',
+
       admin: false,
       mbappe_all,
       mbappe_club,
@@ -146,6 +154,9 @@ router.get('/int-stats', function (req, res, next) {
     console.log('Vinicius Intr:', vini_intr);
 
     res.render('user/int-stats', {
+      title: 'Mbappe vs Haaland vs Vinicius | International Stats',
+      description: 'View and compare international football stats of Mbappe, Haaland, and Vinicius across all competitions.',
+
       admin: false,
       mbappe_all,
       mbappe_intr,
@@ -157,10 +168,18 @@ router.get('/int-stats', function (req, res, next) {
   });
 });
 router.get('/policy', (req, res) => {
-  res.render('user/policy', { header: false }); // Make sure views/policy.ejs (or .pug, .hbs) exists
+  res.render('user/policy', {
+    title: 'Privacy Policy | MHVStats',
+    description: 'Read the privacy policy of MHVStats. Learn how we handle your data and respect your privacy while you use our site.',
+    header: false
+  }); // Make sure views/policy.ejs (or .pug, .hbs) exists
 });
 router.get('/about', (req, res) => {
-  res.render('user/About', { header: false }); // Make sure views/policy.ejs (or .pug, .hbs) exists
+  res.render('user/About', {
+    title: 'About MHVStats | Behind the Project',
+    description: 'Learn about the creator of MHVStats and the mission behind comparing the careers of Mbappe, Haaland, and Vinicius.',
+    header: false
+  }); // Make sure views/policy.ejs (or .pug, .hbs) exists
 });
 
 router.post('/send-advert', async (req, res) => {
@@ -180,7 +199,11 @@ router.post('/send-advert', async (req, res) => {
 
 
 router.get('/feedback', (req, res) => {
-  res.render('user/feedback', { header: false });
+  res.render('user/feedback', {
+    title: 'Give Feedback | MHVStats',
+    description: 'Send your feedback about Mbappe vs Haaland vs Vinicius stats. Help us improve accuracy and add features you care about.',
+    header: false
+  });
 });
 
 // Route for Feedback form (Report an Issue)
@@ -225,7 +248,11 @@ router.post('/send-inaccurate-report', async (req, res) => {
 
 
 router.get('/pay', (req, res) => {
-  res.render('user/pay', { header: false }); // Make sure views/policy.ejs (or .pug, .hbs) exists
+  res.render('user/pay', {
+    title: 'Support the Project | Donate to MHVStats',
+    description: 'Help maintain and grow MHVStats — your go-to site for comparing the stats of Mbappe, Haaland, and Vinicius. Every contribution counts!',
+    header: false
+  }); // Make sure views/policy.ejs (or .pug, .hbs) exists
 });
 
 router.post("/pay", async (req, res) => {
@@ -292,6 +319,8 @@ router.get('/vote', function (req, res, next) {
     };
 
     res.render('user/vote', {
+      title: 'Vote for Your Favorite Player | MHVStats',
+      description: 'Who is your favorite — Mbappe, Haaland, or Vinicius? Cast your vote and see who the fans support most.',
       admin: false,
       voteData,
       totalVotes
@@ -384,6 +413,9 @@ router.get('/club-stats/:comp', function (req, res, next) {
 
     // Dynamically render the matching .hbs page like user/ucl.hbs, user/wc.hbs, etc.
     res.render(`user/${comp}`, {
+      title: 'Mbappe vs Haaland vs Vinicius | Champions League Stats',
+      description: 'Compare goals, assists, and matches in the UEFA Champions League by Mbappe, Haaland, and Vinicius.',
+
       admin: false,
       mbappe,
       haaland,
@@ -399,6 +431,18 @@ router.get('/int-stats/:comp', function (req, res, next) {
   const allowedComps = ['wc', 'copa-euro'];
   if (!allowedComps.includes(comp)) {
     return res.status(404).send('Competition not found');
+  }
+
+  // SEO Title & Description
+  let title = '';
+  let description = '';
+
+  if (comp === 'wc') {
+    title = 'Mbappe vs Haaland vs Vinicius | FIFA World Cup Stats';
+    description = 'Compare World Cup stats of Mbappe, Haaland, and Vinicius — including goals, assists, and appearances.';
+  } else if (comp === 'copa-euro') {
+    title = 'Mbappe vs Haaland vs Vinicius | Copa America & Euro Stats';
+    description = 'Track and compare Copa America & Euro performances of Mbappe, Haaland, and Vinicius — goals, assists, and matches.';
   }
 
   // Always fetch both stats
@@ -419,6 +463,8 @@ router.get('/int-stats/:comp', function (req, res, next) {
     console.log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
 
     res.render(`user/${comp}`, {
+      title,
+      description,
       admin: false,
       mbappe_wc,
       haaland_wc,
@@ -477,9 +523,25 @@ router.get('/:time', function (req, res, next) {
       data[`season_${cleanKey}`] = table; // optional full table
     }
 
+    let pageTitle = '';
+    let metaDescription = '';
+
+    if (time === 'season') {
+      pageTitle = 'Mbappe vs Haaland vs Vinicius | Stats by season';
+      metaDescription = 'Compare football stats of Mbappe, Haaland, and Vinicius by each season from 2015-16 to 2024-25.';
+    } else if (time === 'year') {
+      pageTitle = 'Mbappe vs Haaland vs Vinicius | Stats by calender year';
+      metaDescription = 'Yearly performance breakdown of Mbappe, Haaland, and Vinicius — goals, assists, and matches.';
+    } else if (time === 'age') {
+      pageTitle = 'Mbappe vs Haaland vs Vinicius | Stats by Age';
+      metaDescription = 'See how Mbappe, Haaland, and Vinicius performed at different ages throughout their careers.';
+    }
+
     res.render(`user/${time}`, {
       admin: false,
-      ...data
+      ...data,
+      title: pageTitle,
+      description: metaDescription
     });
   });
 });

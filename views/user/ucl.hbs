@@ -1,3 +1,13 @@
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta name="keywords" content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe stats, Haaland stats, Vinicius stats, football comparison, Champions League stats, World Cup stats">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mhvstats.xyz{{@root._locals.originalUrl}}">
+
+
 <div class="table-container">
     <h1 name="" class="stat-title">ALL TIME UEFA Champions League STATS</h1>
     <table>
@@ -43,7 +53,7 @@
     </table>
 
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="ucl" >UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="ucl" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -77,7 +87,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ko" table="ucl" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -110,7 +120,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="gs" table="ucl" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -146,7 +156,7 @@
     </table>
   
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="semi" table="ucl" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -180,7 +190,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="sf" table="ucl" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -213,7 +223,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="ucl" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -252,7 +262,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="ucl" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -275,34 +285,5 @@
     });
 
 
-     function toggleModal(button) {
-        // Find the closest table-container and get the h2 inside it
-        const headingElement = button.closest(".table-container").querySelector("h2");
-
-        // ✅ Display the heading text inside the modal
-        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
-
-        // ✅ Send the 'name' attribute value to the backend via hidden input
-        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
-        const tableName = button.getAttribute("table");
-        document.getElementById("tableNameDisplay").textContent = "Table Name";
-        document.getElementById("tableNameInput").value = tableName;
-
-
-
-        const modal = document.getElementById("modalOverlay");
-        modal.style.display = "flex"; // ensure it uses flex to center
-        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('statsForm');
-        if (form) {
-            form.addEventListener('submit', function (e) {
-
-                // You can add fetch or form submission logic here
-                toggleModal(); // Close the modal
-            });
-        }
-    });
+    
 </script>

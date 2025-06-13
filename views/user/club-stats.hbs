@@ -1,5 +1,15 @@
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta name="keywords" content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe stats, Haaland stats, Vinicius stats, football comparison, Champions League stats, World Cup stats">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mhvstats.xyz{{@root._locals.originalUrl}}">
+
+
 <div class="table-container">
-    <h2 name="" class="stat-title">ALL TIME CLUB STATS</h2>
+    <h1 name="" class="stat-title">ALL TIME CLUB STATS</h1>
     <table>
         <thead>
             <tr>
@@ -33,7 +43,7 @@
     </table>
 
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="club" table="all_time" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -70,7 +80,7 @@
     </table>
     {{!-- <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed League Stats</a></button> --}}
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="club">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="l" table="club">UPDATE</button>
     {{/if}}
 </div>
 
@@ -111,7 +121,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="topl" table="club">UPDATE</button>
     {{/if}}
 </div>
 
@@ -163,7 +173,7 @@
     <button class="Dt-btn2" id="showMoreBtn">More</button>
     <button class="Dt-btn"><a class="dynamic-link" href="ucl">Detailed UCL Stats</a></button>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ucl" table="club">UPDATE</button>
     {{/if}}
 </div>
 <div class="footer3-card" onclick="location.href='/club-stats/ucl'">
@@ -204,7 +214,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="dcup" table="club" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -240,7 +250,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="dscup" table="club">UPDATE</button>
     {{/if}}
 </div>
 
@@ -287,7 +297,7 @@
     </table>
     <button class="Dt-btn2" id="showMoreBtn">More</button>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="uscup" table="club">UPDATE</button>
     {{/if}}
 </div>
 
@@ -333,7 +343,7 @@
     </table>
     <button class="Dt-btn2" id="showMoreBtn">More</button>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="cwc" table="club">UPDATE</button>
     {{/if}}
 </div>
 
@@ -391,36 +401,7 @@
     });
 
 
-    function toggleModal(button) {
-        // Find the closest table-container and get the h2 inside it
-        const headingElement = button.closest(".table-container").querySelector("h2");
-
-        // Display the heading text inside the modal
-        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
-
-        // Send the 'name' attribute value to the backend via hidden input
-        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
-
-        const tableName = button.getAttribute("table");
-        document.getElementById("tableNameDisplay").textContent = "Table Name";
-        document.getElementById("tableNameInput").value = tableName;
-
-        // Instead of modal.style.display = "flex", add active class
-        const modal = document.getElementById("modalOverlay");
-        modal.classList.add("active");
-
-        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-    }
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('statsForm');
-        if (form) {
-            form.addEventListener('submit', function (e) {
-
-                // You can add fetch or form submission logic here
-                toggleModal(); // Close the modal
-            });
-        }
-    });
+   
 
 
     document.querySelectorAll('.Dt-btn2').forEach(button => {

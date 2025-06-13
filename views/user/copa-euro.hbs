@@ -1,5 +1,14 @@
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta name="keywords" content="Mbappe vs Haaland, Copa America stats, Euro stats, World Cup goals, Vinicius Junior, football player comparison, Mbappe vs Vinicius, Haaland vs Mbappe">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="https://mhvstats.xyz/int-stats/{{@root._locals.originalUrl}}">
+<meta name="robots" content="index, follow">
+
+
 <div class="table-container">
-    <h2 name="" class="stat-title">ALL TIME Copa América/Euro Cup STATS</h2>
+    <h1 name="" class="stat-title">ALL TIME Copa América/Euro Cup STATS</h1>
     <table>
         <thead>
             <tr>
@@ -44,7 +53,7 @@
 
     <button class="Dt-btn2" id="showMoreBtn">More</button>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="copa_euro">UPDATE</button>
     {{/if}}
 </div>
 
@@ -78,7 +87,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ko" table="copa_euro" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -112,7 +121,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="gs" table="copa_euro">UPDATE</button>
     {{/if}}
 </div>
 
@@ -149,7 +158,7 @@
     </table>
     <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed World Cup Stats</a></button>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="semi" table="copa_euro" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -185,7 +194,7 @@
     </table>
     <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed Copa/Euro Stats</a></button>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="sf" table="copa_euro" >UPDATE</button>
     {{/if}}
 </div>
 
@@ -219,7 +228,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="copa_euro">UPDATE</button>
     {{/if}}
 </div>
 
@@ -260,7 +269,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="copa_euro">UPDATE</button>
     {{/if}}
 </div>
 
@@ -302,34 +311,5 @@
     });
 
 
-      function toggleModal(button) {
-        // Find the closest table-container and get the h2 inside it
-        const headingElement = button.closest(".table-container").querySelector("h2");
-
-        // ✅ Display the heading text inside the modal
-        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
-
-        // ✅ Send the 'name' attribute value to the backend via hidden input
-        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
-        const tableName = button.getAttribute("table");
-        document.getElementById("tableNameDisplay").textContent = "Table Name";
-        document.getElementById("tableNameInput").value = tableName;
-
-
-
-        const modal = document.getElementById("modalOverlay");
-        modal.style.display = "flex"; // ensure it uses flex to center
-        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('statsForm');
-        if (form) {
-            form.addEventListener('submit', function (e) {
-
-                // You can add fetch or form submission logic here
-                toggleModal(); // Close the modal
-            });
-        }
-    });
+    
 </script>

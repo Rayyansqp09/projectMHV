@@ -40,6 +40,16 @@
         <input type="number" id="Assists" name="Assists" placeholder="Enter new assists">
       </div>
 
+      <div class="form-group">
+        <label for="customStatName">Custom Stat Name</label>
+        <input type="text" id="customStatName" name="customStatName" placeholder="e.g., GoalRatio">
+      </div>
+
+      <div class="form-group">
+        <label for="customStatValue">Custom Stat Value</label>
+        <input type="text" id="customStatValue" name="customStatValue" placeholder="e.g., 0.89">
+      </div>
+
       <div class="button-row">
         <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
         <button type="button" class="submit-btn done-btn" id="doneBtn">Done</button>
@@ -56,24 +66,6 @@
 
 
 <script>
-  // Current stats
-  const playerStats = {
-    mbappe: {
-      goals: {{ mbappe.Goals }},
-  assists: { { mbappe.Assists } },
-  games: { { mbappe.Games } }
-    },
-  haaland: {
-    goals: { { haaland.Goals } },
-    assists: { { haaland.Assists } },
-    games: { { haaland.Games } }
-  },
-  vinicius: {
-    goals: { { vini.Goals } },
-    assists: { { vini.Assists } },
-    games: { { vini.Games } }
-  }
-  };
 
   // Theme and values
   document.getElementById("playerSelect").addEventListener("change", function () {
@@ -100,42 +92,28 @@
   }
 
   // Submit form
-  document.getElementById('statsForm').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Prevent reload
+ const statsForm = document.getElementById('statsForm');
+let isSubmitting = false;
+let submitCount = 0;
 
-    const formData = new FormData(this);
-    const selectedPlayer = document.getElementById("playerSelect").value.toLowerCase();
+statsForm.addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    const response = await fetch('/admin/sts-update', {
-      method: 'POST',
-      body: formData
-    });
+  submitCount++;
+  console.log(`🔥 Submit triggered #${submitCount}`);
 
-    if (response.ok) {
-      showSuccessMessage();
+  if (isSubmitting) {
+    console.warn('Duplicate submit blocked');
+    return;
+  }
+  isSubmitting = true;
 
-      // ✅ Update playerStats object (optional, but useful)
-      playerStats[selectedPlayer].goals = document.getElementById("Goals").value;
-      playerStats[selectedPlayer].assists = document.getElementById("Assists").value;
-      playerStats[selectedPlayer].games = document.getElementById("Games").value;
+  const formData = new FormData(this);
+  const response = await fetch('/admin/sts-update', { method: 'POST', body: formData });
 
-    } else {
-      alert("Failed to submit data.");
-    }
-  });
-
-  // Handle submit without closing modal
-  document.getElementById("submitBtn").addEventListener("click", function (e) {
-
-    showSuccessMessage();
-    // Optional: Update playerStats object here if needed
-  });
-
-
-  // Done closes modal
-  document.getElementById("doneBtn").addEventListener("click", function () {
-    document.getElementById("modalOverlay").style.display = "none";
-  });
+  response.ok ? showSuccessMessage() : alert('❌ Submit failed');
+  isSubmitting = false;
+});
 
 
   // Set initial state

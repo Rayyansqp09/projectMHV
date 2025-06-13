@@ -126,13 +126,13 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-
 .dropdown-menu a {
   display: block;
   padding: 10px;
   color: rgb(211, 206, 206);
   text-decoration: none;
   font-weight: 500;
+  
 }
 
 .dropdown-menu a:hover {
@@ -218,7 +218,7 @@ a:hover {
 /* Container and Box Layout */
 .container {
   display: flex;
-  height: 350px;
+  height: 359px;
   box-sizing: border-box;
   padding: 0 7rem !important;
   margin: 39px auto 0 auto; /* Top margin stays 39px, bottom margin set to 0 */
@@ -276,7 +276,7 @@ a:hover {
 .box2 img:first-child {
   position: absolute;
   bottom: 0;
-  right: -7%;
+  right: -4%;
   width: 99%;
   height: 99%;
   object-fit: cover;

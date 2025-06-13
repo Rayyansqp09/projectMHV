@@ -28,7 +28,7 @@
   </table>
   <button class="Dt-btn"><a class="dynamic-link" href="alltime">Detailed Stats</a></button>
   {{#if admin}}
-  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time">UPDATE</button>
+  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
   {{/if}}
 </div>
 
@@ -72,7 +72,7 @@
   </table>
   <button class="Dt-btn"><a class="dynamic-link" href="club-stats">Detailed Stats</a></button>
   {{#if admin}}
-   <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time">UPDATE</button>
+   <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="club" table="all_time">UPDATE</button>
   {{/if}}
 </div>
 
@@ -111,7 +111,7 @@
   </table>
   <button class="Dt-btn"><a class="dynamic-link" href="int-stats">Detailed Stats</a></button>
   {{#if admin}}
-  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time">UPDATE</button>
+  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="int" table="all_time">UPDATE</button>
   {{/if}}
 </div>
 
@@ -216,7 +216,7 @@
   </table>
   <button class="Dt-btn2 show-more-btn">More</button>
   {{#if admin}}
-  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS" table="all_time">UPDATE</button>
+  <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
   {{/if}}
 </div>
 
@@ -275,59 +275,5 @@
     });
   });
 
-  function toggleModal(button) {
-    if (!button) return;
-
-    // Find the closest table-container and its h2
-    const headingElement = button.closest(".table-container")?.querySelector("h2");
-    if (!headingElement) return;
-
-    // Set values in the modal
-    document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
-    document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
-
-    const tableName = button.getAttribute("table");
-    document.getElementById("tableNameDisplay").textContent = "Table Name";
-    document.getElementById("tableNameInput").value = tableName;
-
-    // Show modal
-    const modal = document.getElementById("modalOverlay");
-    modal.style.display = "flex";
-    modal.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
-function closeModal() {
-    const modal = document.getElementById("modalOverlay");
-    modal.style.display = "none";
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('statsForm');
-    if (form) {
-        form.addEventListener('button', function (e) {
-            e.preventDefault();
-            // Add your AJAX or fetch logic here
-            closeModal();
-        });
-    }
-
-    // Close modal on close button
-    document.querySelectorAll('.modal-close-btn').forEach(btn => {
-        btn.addEventListener('click', closeModal);
-    });
-
-    // Close modal when clicking outside the form
-    const overlay = document.getElementById('modalOverlay');
-    overlay.addEventListener('click', function () {
-        closeModal();
-    });
-
-    // Prevent clicks inside modal-content from closing it
-    const content = document.querySelector('.modal-content');
-    content.addEventListener('click', function (event) {
-        event.stopPropagation();
-    });
-});
-
-
+ 
 </script>

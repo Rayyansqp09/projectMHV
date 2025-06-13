@@ -52,31 +52,42 @@ module.exports = {
     }
   },
 
-  // Update stats for a player in a specific table
-  updateStats: function (tableName, data, callback) {
-    const playerName = data.Name;
-    const statPrefix = data.statname;
+ updateStats: function (tableName, data, callback) {
+  const playerName = data.Name;
+  const statPrefix = data.statname;
 
-    delete data.Name;
-    delete data.statname;
+  delete data.Name;
+  delete data.statname;
 
-    const fields = Object.keys(data).map(key => `${statPrefix}${key}`);
-    const values = Object.values(data);
+  // ✅ Remove helper inputs (NOT real columns)
+  delete data.customStatName;
+  delete data.customStatValue;
 
-    const setClause = fields.map(field => `${field} = ?`).join(', ');
-    const sql = `UPDATE ${tableName} SET ${setClause} WHERE Name = ?`;
+  // ✅ Filter out empty fields
+  const filteredData = Object.entries(data).filter(([key, value]) => {
+    return value !== null && value !== undefined && value !== '';
+  });
 
-    db.get().query(sql, [...values, playerName], (err, result) => {
-      if (err) return callback(err);
-      callback(null, result);
+  if (filteredData.length === 0) {
+    return callback(new Error('No valid fields to update'));
+  }
 
-      console.log('Table:', tableName);
-      console.log('Player Name:', playerName);
-      console.log('Stat Prefix:', statPrefix);
-      console.log('Fields:', fields);
-      console.log('Values:', values);
-    });
-  },
+  const fields = filteredData.map(([key]) => `\`${statPrefix}${key}\``); // ⛑ Backtick-protected
+  const values = filteredData.map(([, value]) => value);
+
+  const setClause = fields.map(field => `${field} = ?`).join(', ');
+  const sql = `UPDATE \`${tableName}\` SET ${setClause} WHERE Name = ?`;
+
+  db.get().query(sql, [...values, playerName], (err, result) => {
+    if (err) return callback(err);
+    callback(null, result);
+
+    console.log('✅ SQL:', sql);
+    console.log('➡️ Values:', values);
+  });
+}
+
+,
 
   // ✅ Add the email function to module.exports
   sendUniversalEmail

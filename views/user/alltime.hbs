@@ -1,5 +1,5 @@
 <div class="table-container">
-    <h2 name="" class="stat-title">ALL TIME STATS</h2>
+    <h1 name="" class="stat-title">ALL TIME STATS</h1>
     <table>
         <thead>
             <tr>
@@ -34,14 +34,14 @@
     </table>
 
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time" >UPDATE</button>
     {{/if}}
 </div>
 </div>
 
 
 <div class="table-container" id="goal">
-    <h2 name="club" class="stat-title">GOALSCORING STATS</h2>
+    <h1 name="club" class="stat-title">GOALSCORING STATS</h1>
     <h2 name="club" class="stat-title2">(Braces, Hattricks & Poker)</h2>
 
     <table>
@@ -76,12 +76,12 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="">UPDATE</button>
     {{/if}}
 </div>
 
 <div class="table-container">
-    <h2 name="club" class="stat-title">GOALS BY TYPE</h2>
+    <h1 name="club" class="stat-title">GOALS BY TYPE</h1>
 
     <table>
         <thead>
@@ -110,12 +110,12 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
     {{/if}}
 </div>
 
 <div class="table-container" id="final">
-    <h2 name="int" class="stat-title">ALL TIME STATS IN FINALS</h2>
+    <h1 name="int" class="stat-title">ALL TIME STATS IN FINALS</h1>
     <table>
         <thead>
             <tr>
@@ -144,7 +144,7 @@
     </table>
 
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="all_time">UPDATE</button>
     {{/if}}
 </div>
 {{>sts-update}}
@@ -218,34 +218,5 @@
     });
 
 
-    function toggleModal(button) {
-        // Find the closest table-container and get the h2 inside it
-        const headingElement = button.closest(".table-container").querySelector("h2");
-
-        // ✅ Display the heading text inside the modal
-        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
-
-        // ✅ Send the 'name' attribute value to the backend via hidden input
-        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
-        const tableName = button.getAttribute("table");
-        document.getElementById("tableNameDisplay").textContent = "Table Name";
-        document.getElementById("tableNameInput").value = tableName;
-
-
-
-        const modal = document.getElementById("modalOverlay");
-        modal.style.display = "flex"; // ensure it uses flex to center
-        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('statsForm');
-        if (form) {
-            form.addEventListener('submit', function (e) {
-
-                // You can add fetch or form submission logic here
-                toggleModal(); // Close the modal
-            });
-        }
-    });
+   
 </script>

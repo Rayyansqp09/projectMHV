@@ -166,7 +166,7 @@
   }
 
   .container {
-    height: 150px;
+    height: 159px;
     padding: 0% 1rem !important;
     max-width: 100%;
     padding: 0 0rem !important;
@@ -369,9 +369,16 @@
 
   /* admin */
 
-  .modal-content {
-    width: 95%;
-    padding: 10px;
+   .modal-content {
+    padding: 15px 20px;
+  }
+
+  .form-group label {
+    font-size: 16px;
+  }
+
+  .form-group input {
+    font-size: 14px;
   }
 
   .submit-btn {
@@ -379,8 +386,9 @@
     padding: 8px 0;
   }
 
-  .form-group input {
-    padding: 6px;
+  .close-btn {
+    font-size: 20px;
+    padding: 8px 14px;
   }
 
   .donation-container {
@@ -421,21 +429,63 @@
 
 @media (min-width: 377px) and (max-width: 500px) {
 
-  .dropdown-menu {
-
-    left: -90px;
-    /* Move 20px to the left */
-
+ .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -40%;
+    padding: 10px;
+    z-index: 1000;
+    min-width: 20px;
+    max-width: auto;
   }
 
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  /* Optional for dropdown content */
+  .dropdown-section {
+    margin-bottom: 10px;
+  }
+
+  .dropdown-heading {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+  }
+
+   /* Nav items */
+  .nav-item {
+    
+    padding: 10px 10px;
+  
+    font-size: 14px;
+    font-weight: 300;
+  
+    white-space: nowrap;
+  }
+
+  .nav-item:not(:last-child) {
+    margin-right: 10px;
+  }
+
+   .link-row a,
+  .link-grid a {
+    padding: 4px 6px;
+    font-size: 11px;
+    text-decoration: none;
+  }
+
+  .link-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 4px;
+  }
 
   .hide-on-mobile {
     display: none !important;
   }
 
-  .nav-item {
-    font-size: 14px;
-  }
 
   .tab-container {
     display: flex;
@@ -463,7 +513,7 @@
   }
 
   .container {
-    height: 150px;
+    height: 165px;
     padding: 0% 1rem !important;
     max-width: 90%;
     padding: 0 1rem !important;
@@ -731,6 +781,28 @@
 /* tab-phone (600px to 768px) */
 @media (min-width: 501px) and (max-width: 768px) {
 
+
+ .dropdown-menu {
+    top: 100%;
+    left: -60%;
+    padding: 10px;
+    z-index: 1000;
+    min-width: 20px;
+    max-width: auto;
+  }
+     .link-row a,
+  .link-grid a {
+    padding: 4px 6px;
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  .link-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 4px;
+  }
+
   .hide-on-mobile2 {
     display: none !important;
   }
@@ -759,7 +831,7 @@
   }
 
   .container {
-    height: 250px;
+    height: 255px;
     padding: 0% 4rem !important;
     max-width: 95%;
     margin: 34px auto;
@@ -916,6 +988,11 @@
 
 /* Tablet-lap (768px to 1000px) */
 @media (min-width: 768px) and (max-width: 1000px) {
+   .dropdown-menu {
+   
+    left: -70%;
+  }
+  
   .container {
     height: 250px;
     max-width: 95%;

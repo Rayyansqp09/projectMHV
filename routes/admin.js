@@ -64,13 +64,16 @@ router.post('/sts-update', upload.none(), function (req, res) {
   const tableName = formData.tablename;
   delete formData.tablename;
 
+  // ✅ Remove frontend helper fields
+  delete formData.customStatName;
+  delete formData.customStatValue;
+
   displayHelper.updateStats(tableName, formData, function (err, result) {
     if (err) {
       console.error(`[${new Date().toISOString()}] ❌ Failed to update stats for table "${tableName}":`, err);
       return res.status(500).send('Database update failed.');
     }
 
-    // ✅ Successful update log
     console.log(`[${new Date().toISOString()}] ✅ Admin updated stats for "${tableName}" from IP: ${req.ip}`);
 
     db.get().query(`SELECT * FROM ${tableName}`, (err, rows) => {
@@ -83,8 +86,6 @@ router.post('/sts-update', upload.none(), function (req, res) {
     });
   });
 });
-
-
 
 
 

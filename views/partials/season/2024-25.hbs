@@ -1,5 +1,7 @@
-<meta name="description" content="Compare the 2024-25 stats of Kylian Mbappé, Erling Haaland, and Vinícius Júnior. Goals, assists, matches, and more — updated after every match.">
-<title>Mbappe vs Haaland vs Vinicius | 2024-25 Stats Comparison</title>
+<title>Mbappe vs Haaland vs Vinicius | Compare Stats 2024-25</title>
+<meta name="description" content="Compare goals, assists, matches and stats of Kylian Mbappé, Erling Haaland, and Vinícius Júnior. Updated after every match.">
+<meta name="keywords" content="Mbappe stats, Haaland stats, Vinicius stats, Mbappe vs Haaland, Haaland vs Vinicius, football stats 2024, player comparison">
+
 
 
 <h1 name="" class="stat-titleabove">2024-25 SEASON STATS</h1>
@@ -285,37 +287,5 @@
             // Update href to include current path
             link.setAttribute("href", `${basePath}/${originalHref}`);
         });
-    });
-
-
-    function toggleModal(button) {
-        // Find the closest table-container and get the h2 inside it
-        const headingElement = button.closest(".table-container").querySelector("h2");
-
-        // ✅ Display the heading text inside the modal
-        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
-
-        // ✅ Send the 'name' attribute value to the backend via hidden input
-        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
-        const tableName = button.getAttribute("table");
-        document.getElementById("tableNameDisplay").textContent = "Table Name";
-        document.getElementById("tableNameInput").value = tableName;
-
-
-
-        const modal = document.getElementById("modalOverlay");
-        modal.style.display = "flex"; // ensure it uses flex to center
-        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('statsForm');
-        if (form) {
-            form.addEventListener('submit', function (e) {
-
-                // You can add fetch or form submission logic here
-                toggleModal(); // Close the modal
-            });
-        }
     });
 </script>

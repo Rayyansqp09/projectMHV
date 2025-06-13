@@ -63,13 +63,14 @@
     z-index: 999;
     white-space: nowrap;
     overflow: visible;
+    
   }
 
 
   /* Nav items */
   .nav-item {
     position: relative;
-    padding: 7px 10px;
+    padding: 10px 10px;
     cursor: pointer;
     font-size: 10px;
     font-weight: 300;
@@ -170,6 +171,7 @@
     max-width: 100%;
     padding: 0 0rem !important;
     margin: 36px auto 0 auto;
+    border-top: white;
   }
 
 
@@ -289,7 +291,7 @@
 
   .looking-box {
     width: 90%;
-    height: 145px;
+    height: 150px;
     margin: 40px auto;
     text-align: center;
     border-radius: 12px;
@@ -305,7 +307,7 @@
   }
 
   .lookingbox-title {
-    font-size: 12px;
+    font-size: 13px;
     margin-top: 10px;
     font-family: 'Exo 2', sans-serif;
     margin-bottom: 0px;
@@ -314,7 +316,7 @@
   .text-item {
     padding: 3px;
     cursor: pointer;
-    font-size: 8px;
+    font-size: 9px;
     transition: color 0.3s ease, text-decoration 0.3s ease;
     font-weight: 501;
   }
@@ -418,6 +420,13 @@
 }
 
 @media (min-width: 377px) and (max-width: 500px) {
+
+  .dropdown-menu {
+
+    left: -90px;
+    /* Move 20px to the left */
+
+  }
 
 
   .hide-on-mobile {

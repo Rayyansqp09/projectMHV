@@ -1,6 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  
   const modal = document.getElementById('modalOverlay');
   const updateButtons = document.querySelectorAll('.Dt-btn');
   const closeBtn = document.getElementById('closeBtn');

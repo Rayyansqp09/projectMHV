@@ -154,7 +154,7 @@ router.get('/int-stats', function (req, res, next) {
     console.log('Vinicius Intr:', vini_intr);
 
     res.render('user/int-stats', {
-      title: 'Mbappe vs Haaland vs Vinicius | International Stats',
+      title: 'International Stats | Mbappe vs Haaland vs Vinicius',
       description: 'View and compare international football stats of Mbappe, Haaland, and Vinicius across all competitions.',
 
       admin: false,

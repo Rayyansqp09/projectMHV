@@ -756,7 +756,7 @@ td span:nth-child(2) {
 
 
 /* CSS */
-.Dt-btn {
+.Dt-btnu {
   padding: 6px 16px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -777,7 +777,7 @@ td span:nth-child(2) {
   backdrop-filter: blur(2px);
 }
 
-.Dt-btn:hover {
+.Dt-btnu:hover {
   background: linear-gradient(145deg, #084298, #1479ff);
   color: #ffffff;
   box-shadow:

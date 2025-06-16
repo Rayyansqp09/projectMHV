@@ -6,7 +6,7 @@
     <div class="vote-card blue">
       <h3 class="player-name blue-border">Mbappe</h3>
       <p>
-        <span style="visibility: hidden;"  class="count-Mbappe">{{voteData.Mbappe.count}}</span> votes
+        <span style="visibility: hidden;" class="count-Mbappe">{{voteData.Mbappe.count}}</span> votes
         (<span class="percentage-Mbappe">{{voteData.Mbappe.percentage}}</span>%)
       </p>
       <button class="vote-btn blue-btn" data-player="Mbappe">Vote Mbappe</button>
@@ -58,14 +58,14 @@
     const buttons = document.querySelectorAll('.vote-btn');
 
     buttons.forEach(button => {
-    button.addEventListener('click', function () {
-      const player = this.getAttribute('data-player');
+      button.addEventListener('click', function () {
+        const player = this.getAttribute('data-player');
 
-      // ✅ Send event to Google Analytics
-      gtag('event', 'vote_clicked', {
-        'event_category': 'User',
-        'event_label': 'Voted for ' + player
-      });
+        // ✅ Send event to Google Analytics
+        gtag('event', 'vote_clicked', {
+          'event_category': 'User',
+          'event_label': 'Voted for ' + player
+        });
 
         // Prevent multiple votes using cookie
         if (document.cookie.includes('voted=true')) {
@@ -79,32 +79,37 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ player_name: player })
         })
-        .then(res => res.json())
-        .then(data => {
-          if (data.success && data.voteData) {
-            // Set vote cookie
-            document.cookie = "voted=true; max-age=86400"; // 1 day
+          .then(res => res.json())
+          .then(data => {
+            if (data.success && data.voteData) {
+              // ✅ GA4 Event: Vote submitted successfully
+              gtag('event', 'vote_submitted', {
+                voted_for: player
+              });
 
-            // Update percentage and count
-            for (let key in data.voteData) {
-              const percentEl = document.querySelector(`.percentage-${key}`);
-              const countEl = document.querySelector(`.count-${key}`);
-              if (percentEl) percentEl.textContent = data.voteData[key].percentage + '%';
-              if (countEl) countEl.textContent = data.voteData[key].count;
+              // Set vote cookie
+              document.cookie = "voted=true; max-age=86400"; // 1 day
+
+              // Update percentage and count
+              for (let key in data.voteData) {
+                const percentEl = document.querySelector(`.percentage-${key}`);
+                const countEl = document.querySelector(`.count-${key}`);
+                if (percentEl) percentEl.textContent = data.voteData[key].percentage + '%';
+                if (countEl) countEl.textContent = data.voteData[key].count;
+              }
+
+              // Show thank-you popup
+              const color =
+                player === 'Mbappe' ? '#007bff' :
+                  player === 'Haaland' ? '#dc3545' :
+                    '#ffc107';
+
+              showPopup(`😏 Nice pick! ${player} has your vote.`, color);
             }
-
-            // Show thank-you popup
-            const color =
-              player === 'Mbappe' ? '#007bff' :
-              player === 'Haaland' ? '#dc3545' :
-              '#ffc107';
-
-            showPopup(`😏 Nice pick! ${player} has your vote.`, color);
-          }
-        })
-        .catch(() => {
-          showPopup('Error submitting vote. Try again.', 'red');
-        });
+          })
+          .catch(() => {
+            showPopup('Error submitting vote. Try again.', 'red');
+          });
       });
     });
 

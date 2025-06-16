@@ -46,7 +46,7 @@
 
 
 /* Mobile short (max-width: 480px) */
-@media (max-width: 376px) {
+@media (max-width: 400px) {
   .dropdown-menu {
 
     left: -20px;
@@ -365,6 +365,13 @@
 
   }
 
+  .link-pair a,
+.link-pair span {
+ 
+  font-size: 12px;
+  
+}
+
 
 
   /* admin */
@@ -427,7 +434,29 @@
   }
 }
 
-@media (min-width: 377px) and (max-width: 500px) {
+@media (min-width: 401px) and (max-width: 500px) {
+
+
+   .custom-navbar {
+    padding: 3 10px;
+    font-family: sans-serif;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    white-space: nowrap;
+    overflow: visible;
+    }
+    .custom-navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.03); /* ✅ Very faint white line */
+  pointer-events: none;
+}
 
  .dropdown-menu {
     display: none;
@@ -459,8 +488,8 @@
     
     padding: 10px 10px;
   
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 13px;
+    font-weight: 200;
   
     white-space: nowrap;
   }
@@ -517,6 +546,8 @@
     padding: 0% 1rem !important;
     max-width: 90%;
     padding: 0 1rem !important;
+      margin: 47px auto 0 auto;
+    
   }
 
   .box {

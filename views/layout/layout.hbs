@@ -2,18 +2,32 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" type="image/png" href="/images/favicon.ico">
+ <!-- Standard desktop favicon -->
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+
+<!-- Android -->
+<link rel="icon" type="image/png" sizes="192x192" href="/images/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/images/android-chrome-512x512.png" />
+
+<!-- Apple iOS -->
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+
+<!-- Optional modern SVG -->
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+
+<!-- Manifest (make sure the file exists and includes proper icons) -->
+<link rel="manifest" href="/images/site.webmanifest" />
 
   <!-- Google tag (gtag.js) -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K14T15VP8P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K14T15VP8P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-K14T15VP8P');
-</script>
+    gtag('config', 'G-K14T15VP8P');
+  </script>
 
   <!-- Required meta tags -->
   <meta charset="utf-8" />
@@ -46,17 +60,20 @@
   <link rel="stylesheet" href="/stylesheets/respo.css" />
   <link rel="stylesheet" href="/stylesheets/admin.css" />
 
-<title>{{#if title}}{{title}}{{else}}Mbappe vs Haaland vs Vinicius | All Time  Stats Comparison{{/if}}</title>
-<meta name="description" content="{{#if description}}{{description}}{{else}}Compare the latest football stats of Kylian Mbappé, Erling Haaland, and Vinícius Júnior — goals, assists, matches, and more. Updated after every game.{{/if}}">
-<meta name="keywords" content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe 2024-25 stats, Haaland 2024-25, Vinicius 2024-25, football stats comparison, Mbappe vs Vinicius, player comparison, Haaland Goals">
-<meta name="description" content="Compare Mbappé transfer rumors, Haaland goals,Viníciu stats.">
-<meta name="keywords" content="Mbappé 2024-25, Haaland goals record, Vinícius Jr stats, Vinícius Jr goals, Mbappé vs Haaland, Haaland treble">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="{{title}}">
-<meta property="og:description" content="{{description}}">
-<meta property="og:url" content="https://mhvstats.xyz{{@root._locals.originalUrl}}">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://mhvstats.xyz/images/seo-preview.png">
+  <title>{{#if title}}{{title}}{{else}}Mbappe vs Haaland vs Vinicius | All Time Stats Comparison{{/if}}</title>
+  <meta name="description"
+    content="{{#if description}}{{description}}{{else}}Compare the latest football stats of Kylian Mbappé, Erling Haaland, and Vinícius Júnior — goals, assists, matches, and more. Updated after every game.{{/if}}">
+  <meta name="keywords"
+    content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe 2024-25 stats, Haaland 2024-25, Vinicius 2024-25, football stats comparison, Mbappe vs Vinicius, player comparison, Haaland Goals">
+  <meta name="description" content="Compare Mbappé transfer rumors, Haaland goals,Viníciu stats.">
+  <meta name="keywords"
+    content="Mbappé 2024-25, Haaland goals record, Vinícius Jr stats, Vinícius Jr goals, Mbappé vs Haaland, Haaland treble">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="https://mhvstats.xyz{{@root._locals.originalUrl}}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://mhvstats.xyz/images/seo-preview.png">
 
 
 
@@ -106,10 +123,11 @@
         <a href="/policy#terms">Terms & Conditions</a>
       </p>
       <div class="social-icons">
-        <a href="https://x.com/MvsHvsV" target="_blank" aria-label="X (Twitter)">
+        <a href="https://x.com/MHVstats" target="_blank" aria-label="X (Twitter)">
           <i class="fa-brands fa-x-twitter"></i>
         </a>
-        <a href="https://whatsapp.com/channel/0029VbAHqH1D8SE43me7bF0r" target="_blank" class="whatsapp" aria-label="WhatsApp">
+        <a href="https://whatsapp.com/channel/0029VbAHqH1D8SE43me7bF0r" target="_blank" class="whatsapp"
+          aria-label="WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
       </div>
@@ -122,8 +140,8 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 
-<!-- At the bottom of <body> -->
-<script src="/javascripts/script.js"></script>
+  <!-- At the bottom of <body> -->
+  <script src="/javascripts/script.js"></script>
 
 
 </body>

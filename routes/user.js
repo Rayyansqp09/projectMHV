@@ -27,7 +27,6 @@ const transporter = nodemailer.createTransport({
 
 
 
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
   const seasons = ['2024_25', 'all_time'];
@@ -38,7 +37,7 @@ router.get('/', function (req, res, next) {
       return res.status(500).send('Error loading stats');
     }
 
-    console.log(stats)
+    // console.log(stats)
 
     // All-time stats
     const allTimeStats = stats['all_time'] || [];
@@ -105,19 +104,19 @@ router.get('/club-stats', function (req, res, next) {
     const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
     const vini_club = stats.club.find(p => p.Name === 'Vinicius');
 
-    console.log('Mbappe All-Time:', mbappe_all);
-    console.log('Mbappe Club:', mbappe_club);
+    // console.log('Mbappe All-Time:', mbappe_all);
+    // console.log('Mbappe Club:', mbappe_club);
 
-    console.log('Haaland All-Time:', haaland_all);
-    console.log('Haaland Club:', haaland_club);
+    // console.log('Haaland All-Time:', haaland_all);
+    // console.log('Haaland Club:', haaland_club);
 
-    console.log('Vinicius All-Time:', vini_all);
-    console.log('Vinicius Club:', vini_club);
+    // console.log('Vinicius All-Time:', vini_all);
+    // console.log('Vinicius Club:', vini_club);
 
     res.render('user/club-stats', {
       title: 'Mbappe vs Haaland vs Vinicius | Club Stats',
       description: 'View and compare Club football stats of Mbappe, Haaland, and Vinicius across all competitions.',
-
+       canonical: '<link rel="canonical" href="https://mhvstats.xyz/club-stats/" />',
       admin: false,
       mbappe_all,
       mbappe_club,
@@ -144,19 +143,19 @@ router.get('/int-stats', function (req, res, next) {
     const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
     const vini_intr = stats.intr.find(p => p.Name === 'Vinicius');
 
-    console.log('Mbappe All-Time:', mbappe_all);
-    console.log('Mbappe Intr:', mbappe_intr);
+    // console.log('Mbappe All-Time:', mbappe_all);
+    // console.log('Mbappe Intr:', mbappe_intr);
 
-    console.log('Haaland All-Time:', haaland_all);
-    console.log('Haaland Intr:', haaland_intr);
+    // console.log('Haaland All-Time:', haaland_all);
+    // console.log('Haaland Intr:', haaland_intr);
 
-    console.log('Vinicius All-Time:', vini_all);
-    console.log('Vinicius Intr:', vini_intr);
+    // console.log('Vinicius All-Time:', vini_all);
+    // console.log('Vinicius Intr:', vini_intr);
 
     res.render('user/int-stats', {
       title: 'International Stats | Mbappe vs Haaland vs Vinicius',
       description: 'View and compare international football stats of Mbappe, Haaland, and Vinicius across all competitions.',
-
+      canonical: '<link rel="canonical" href="https://mhvstats.xyz/int-Stats/" />',
       admin: false,
       mbappe_all,
       mbappe_intr,
@@ -409,13 +408,13 @@ router.get('/club-stats/:comp', function (req, res, next) {
     const haaland = stats.find(p => p.Name === 'Haaland');
     const vini = stats.find(p => p.Name === 'Vinicius');
 
-    console.log(mbappe, haaland, vini)
+    // console.log(mbappe, haaland, vini)
 
     // Dynamically render the matching .hbs page like user/ucl.hbs, user/wc.hbs, etc.
     res.render(`user/${comp}`, {
       title: 'Mbappe vs Haaland vs Vinicius | Champions League Stats',
       description: 'Compare goals, assists, and matches in the UEFA Champions League by Mbappe, Haaland, and Vinicius.',
-
+      canonical: '<link rel="canonical" href="https://mhvstats.xyz/club-stats/ucl" />',
       admin: false,
       mbappe,
       haaland,
@@ -436,6 +435,7 @@ router.get('/int-stats/:comp', function (req, res, next) {
   // SEO Title & Description
   let title = '';
   let description = '';
+  let canonical = `https://mhvstats.xyz/int-Stats/${comp}`; // canonical URL
 
   if (comp === 'wc') {
     title = 'Mbappe vs Haaland vs Vinicius | FIFA World Cup Stats';
@@ -460,11 +460,12 @@ router.get('/int-stats/:comp', function (req, res, next) {
     const haaland_cu = stats.copa_euro.find(p => p.Name === 'Haaland');
     const vini_cu = stats.copa_euro.find(p => p.Name === 'Vinicius');
 
-    console.log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
+    // console.log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
 
     res.render(`user/${comp}`, {
       title,
       description,
+      canonical: `<link rel="canonical" href="${canonical}" />`,
       admin: false,
       mbappe_wc,
       haaland_wc,

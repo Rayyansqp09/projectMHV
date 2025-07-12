@@ -5,8 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 
-
-
 var adminRouter = require('./routes/admin');
 var userRouter = require('./routes/user');
 
@@ -15,10 +13,7 @@ var db = require('./config/connection');
 
 var app = express(); // Do not overwrite this later!
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-
+// ✅ View engine setup (register first)
 app.engine('hbs', hbs.engine({
   extname: 'hbs',
   defaultLayout: 'layout',
@@ -27,28 +22,42 @@ app.engine('hbs', hbs.engine({
   helpers: {
     json: function (context) {
       return JSON.stringify(context);
+    },
+    formatDate: function (datetime) {
+      if (!datetime) return "Not updated yet";
+      const date = new Date(datetime);
+      const options = {
+        year: "numeric", month: "short", day: "numeric",
+        hour: "2-digit", minute: "2-digit"
+      };
+      return date.toLocaleString("en-US", options);
     }
   }
 }));
 
-// Middlewares
+// ✅ Add this line: sets hbs as default rendering engine
+app.set('view engine', 'hbs');
+
+// ✅ And this: sets views directory
+app.set('views', path.join(__dirname, 'views'));
+
+// ✅ Middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+// ✅ Routes
 app.use('/admin', adminRouter);
 app.use('/', userRouter);
 
-
-// Catch 404
+// ✅ 404 handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// Error handler
+// ✅ Error handler
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -56,6 +65,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// ✅ DB Connect & Server Start
 db.connect((err) => {
   if (err) {
     console.error(`[${new Date().toISOString()}] ❌ DB connection error:`, err);
@@ -68,5 +78,5 @@ db.connect((err) => {
   }
 });
 
-
 module.exports = app;
+

@@ -37,7 +37,7 @@
 
     <div class="text-item"><a href="/feedback#report">REPORT AN ISSUE</a></div>
     <div class="text-item"><a href="/pay">DONATE</a></div>
-    <div class="text-item"><a href="/vote">VOTE NOW</a></div>
+    <div class="text-item"><a href="/vote#vote">VOTE NOW</a></div>
   </div>
 </div>
 </section>
@@ -58,22 +58,7 @@
 </div>
 
 <div id="other" class="content">
-  <div class="footer3-card" onclick="location.href='/int-stats/wc'">
-    <span>Detailed World Cup Stats</span>
-    <span class="footer2-arrow">&#8594;</span>
-  </div>
-  <div class="footer3-card" onclick="location.href='/club-stats/ucl'">
-    <span>More Detailed UEFA Champions League</span>
-    <span class="footer2-arrow">&#8594;</span>
-  </div>
-  <div class="footer3-card" onclick="location.href='/alltime#goal'">
-    <span>Hattricks,Free Kick Goals Etc</span>
-    <span class="footer2-arrow">&#8594;</span>
-  </div>
-  <div class="footer3-card" onclick="location.href='/alltime#final'">
-    <span>All Time Stats In Finals</span>
-    <span class="footer2-arrow">&#8594;</span>
-  </div>
+  {{> pages/other }}
 </div>
 
 {{>sts-update}}
@@ -125,6 +110,40 @@
       this.style.display = 'none'; // Hide "More" button
     });
   });
+
+   window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash;
+
+        if (hash === '#club', '#int') {
+            const target = document.querySelector(hash);
+            if (!target) return;
+
+            const offset = 80; // adjust if you have a fixed header
+            const duration = 1000;
+
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+    });
 
   document.addEventListener("DOMContentLoaded", function () {
     const links = document.querySelectorAll("a.dynamic-link");

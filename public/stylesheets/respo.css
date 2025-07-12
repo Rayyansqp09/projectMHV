@@ -43,6 +43,71 @@
   }
 }
 
+@media (max-width: 384px) {
+    .dropup-menu {
+    width: 230px !important;
+
+  }
+
+}
+
+/* Mobile short (max-width: 480px) */
+@media (max-width: 384px) {
+  .looking-box {
+    width: 90%;
+    height: 171px !important;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid rgb(95, 90, 90);
+  }
+
+  .text-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px !important;
+    margin-top: 10px;
+    justify-items: center;
+
+  }
+
+  .lookingbox-title {
+    font-size: 13px;
+    margin-top: 10px;
+    font-family: 'Exo 2', sans-serif;
+    margin-bottom: 0px;
+  }
+
+  .text-item {
+    padding: 3px;
+    cursor: pointer;
+    font-size: 9.5px !important;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    font-weight: 501;
+  }
+
+}
+
+@media (min-width: 366px) and (max-width: 385px) {
+  .looking-box {
+    width: 90%;
+    height: 173px !important;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid rgb(95, 90, 90);
+  }
+
+  .text-item {
+    padding: 3px;
+    cursor: pointer;
+    font-size: 10px !important;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    font-weight: 501;
+  }
+
+}
+
 
 
 /* Mobile short (max-width: 480px) */
@@ -63,7 +128,7 @@
     z-index: 999;
     white-space: nowrap;
     overflow: visible;
-    
+
   }
 
 
@@ -229,13 +294,12 @@
 
   table {
     margin: auto;
-    width: 85%;
-    height: 70%;
-    border-spacing: 4px;
+    width: 75%;
+
+    border-spacing: 3px;
     border-collapse: separate;
     table-layout: fixed;
     margin-top: 9px;
-
   }
 
   td {
@@ -246,11 +310,11 @@
     text-align: center;
     vertical-align: middle;
     padding: 0px;
-    font-size: 26px;
-    font-weight: 900;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 23px;
+    font-weight: 610;
     line-height: 2.2;
-    padding: 2px 2px;
+    padding: 0px 2px;
+    padding-bottom: 5px !important;
 
   }
 
@@ -263,7 +327,6 @@
     bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
-    color: rgb(209, 208, 213);
     font-size: 8px;
     font-family: sans-serif;
     font-weight: 500;
@@ -274,9 +337,17 @@
     width: 100%;
     /* ensures wrapping respects cell width */
     line-height: 0.9;
-    padding: 0 2px;
+    padding: 0px 2px;
     /* optional: padding to avoid touching edges */
   }
+
+  .stat-name {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+
+  }
+
+
 
   .stat-title {
     font-size: 17px;
@@ -291,8 +362,8 @@
 
   .looking-box {
     width: 90%;
-    height: 150px;
-    margin: 40px auto;
+    height: 165px;
+    margin: 20px auto;
     text-align: center;
     border-radius: 12px;
     border: 1px solid rgb(95, 90, 90);
@@ -304,6 +375,7 @@
     gap: 4px;
     margin-top: 10px;
     justify-items: center;
+
   }
 
   .lookingbox-title {
@@ -316,7 +388,7 @@
   .text-item {
     padding: 3px;
     cursor: pointer;
-    font-size: 9px;
+    font-size: 10px;
     transition: color 0.3s ease, text-decoration 0.3s ease;
     font-weight: 501;
   }
@@ -324,6 +396,88 @@
   .text-item:hover {
     color: #007bff;
     text-decoration: blue;
+  }
+
+  .bottom-bar {
+    font-size: 13px;
+    padding: 0.6rem 0rem;
+    flex-direction: row;
+    /* ✅ keep row layout */
+    align-items: center;
+  }
+
+  .label-left {
+    font-size: 15px;
+    margin-left: 10px;
+    font-weight: 900;
+  }
+
+  .label-right {
+    display: flex;
+    align-items: center;
+    gap: 2.9rem;
+    /* tighter gap */
+    font-size: 10px;
+  }
+
+  .menu-btn {
+    padding: 7px 10px;
+    font-weight: 900;
+    margin-right: 5px;
+  }
+
+  .menu-btn span {
+    font-size: 15px !important;
+    font-weight: 500;
+  }
+
+  .hamburger-icon {
+    stroke: white;
+    width: 26px;
+    height: 26px;
+  }
+
+  
+  .dropup-menu {
+    min-width: 180px;
+    bottom: 35px;
+    right: 0;
+    width: 290px;
+    margin-right: 0px;
+    margin-bottom: 18px;
+    height: auto;
+  }
+
+  .dropup-menu a {
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    padding-left: 20px;
+    padding-top: 10px;
+
+  }
+
+  .submenu {
+    left: 100%;
+    top: 0;
+    min-width: 150px;
+
+  }
+
+  .submenu a {
+    padding: 8px;
+    font-size: 13px;
+    padding-left: 24px;
+    /* 👈 Adds space to make it feel like a sub-item */
+    position: relative;
+  }
+
+  .submenu a::before {
+    content: "•";
+    position: absolute;
+    left: 12px;
+    font-size: 16px;
+    color: #888;
   }
 
   footer {
@@ -344,9 +498,6 @@
     margin: 2px auto 10px auto;
 
     max-width: 21rem;
-
-
-
   }
 
   .footer3-card span {
@@ -366,17 +517,17 @@
   }
 
   .link-pair a,
-.link-pair span {
- 
-  font-size: 12px;
-  
-}
+  .link-pair span {
+
+    font-size: 12px;
+
+  }
 
 
 
   /* admin */
 
-   .modal-content {
+  .modal-content {
     padding: 15px 20px;
   }
 
@@ -437,7 +588,7 @@
 @media (min-width: 401px) and (max-width: 500px) {
 
 
-   .custom-navbar {
+  .custom-navbar {
     padding: 3 10px;
     font-family: sans-serif;
     position: fixed;
@@ -446,19 +597,21 @@
     z-index: 999;
     white-space: nowrap;
     overflow: visible;
-    }
-    .custom-navbar::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.03); /* ✅ Very faint white line */
-  pointer-events: none;
-}
+  }
 
- .dropdown-menu {
+  .custom-navbar::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.03);
+    /* ✅ Very faint white line */
+    pointer-events: none;
+  }
+
+  .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
@@ -483,14 +636,14 @@
     font-size: 12px;
   }
 
-   /* Nav items */
+  /* Nav items */
   .nav-item {
-    
+
     padding: 10px 10px;
-  
+
     font-size: 13px;
     font-weight: 200;
-  
+
     white-space: nowrap;
   }
 
@@ -498,7 +651,7 @@
     margin-right: 10px;
   }
 
-   .link-row a,
+  .link-row a,
   .link-grid a {
     padding: 4px 6px;
     font-size: 11px;
@@ -546,8 +699,8 @@
     padding: 0% 1rem !important;
     max-width: 90%;
     padding: 0 1rem !important;
-      margin: 47px auto 0 auto;
-    
+    margin: 47px auto 0 auto;
+
   }
 
   .box {
@@ -666,7 +819,7 @@
     gap: 3px;
     margin-top: 10px;
     justify-items: center;
-    
+
   }
 
   .lookingbox-title {
@@ -680,14 +833,20 @@
   .text-item {
     padding: 3px;
     cursor: pointer;
-    font-size: 8px;
+    font-size: 9px;
     transition: color 0.3s ease, text-decoration 0.3s ease;
-  
+
   }
 
   .text-item:hover {
     color: #007bff;
     text-decoration: blue;
+  }
+
+    .dropup-menu {
+    
+    width: 270px;
+   
   }
 
   footer {
@@ -813,7 +972,7 @@
 @media (min-width: 501px) and (max-width: 768px) {
 
 
- .dropdown-menu {
+  .dropdown-menu {
     top: 100%;
     left: -60%;
     padding: 10px;
@@ -821,7 +980,8 @@
     min-width: 20px;
     max-width: auto;
   }
-     .link-row a,
+
+  .link-row a,
   .link-grid a {
     padding: 4px 6px;
     font-size: 13px;
@@ -914,9 +1074,9 @@
     border: 1px solid rgb(95, 90, 90);
   }
 
-   .looking-box {
+  .looking-box {
     width: 90%;
-     height: auto;
+    height: auto;
     margin: 40px auto;
     text-align: center;
     border-radius: 12px;
@@ -929,7 +1089,7 @@
     gap: 3px;
     margin-top: 10px;
     justify-items: center;
-    
+
   }
 
   .lookingbox-title {
@@ -944,7 +1104,7 @@
     cursor: pointer;
     font-size: 10px;
     transition: color 0.3s ease, text-decoration 0.3s ease;
-  
+
   }
 
   table {
@@ -1019,11 +1179,11 @@
 
 /* Tablet-lap (768px to 1000px) */
 @media (min-width: 768px) and (max-width: 1000px) {
-   .dropdown-menu {
-   
+  .dropdown-menu {
+
     left: -70%;
   }
-  
+
   .container {
     height: 250px;
     max-width: 95%;
@@ -1069,10 +1229,11 @@
   .modal-content {
     width: 80%;
   }
-   .looking-box {
-    
+
+  .looking-box {
+
     height: auto;
-    
+
   }
 
 

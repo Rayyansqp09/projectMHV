@@ -1,4 +1,4 @@
-<div class="table-container">
+<div class="table-container" id="alltime">
     <h1 name="" class="stat-title">ALL TIME STATS</h1>
     <table>
         <thead>
@@ -80,7 +80,7 @@
     {{/if}}
 </div>
 
-<div class="table-container">
+<div class="table-container" id="gtype">
     <h1 name="club" class="stat-title">GOALS BY TYPE</h1>
 
     <table>
@@ -154,7 +154,7 @@
     window.addEventListener('DOMContentLoaded', () => {
         const hash = window.location.hash;
 
-        if (hash === '#goal', 'final') {
+        if (hash === '#goal', '#final') {
             const target = document.querySelector(hash);
             if (!target) return;
 

@@ -132,3 +132,14 @@ window.onclick = function (e) {
     menu.style.display = 'none';
   });
 };
+
+// public/js/highlightStats.js
+document.addEventListener("DOMContentLoaded", function () {
+  const keywords = ['GAMES', 'GOALS', 'ASSISTS'];
+  document.querySelectorAll('.stat-name').forEach(el => {
+    if (keywords.includes(el.textContent.trim())) {
+      el.classList.add('highlight');
+    }
+  });
+});
+

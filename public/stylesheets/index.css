@@ -945,6 +945,12 @@ td span:nth-child(2) {
   position: absolute;
   bottom: 59px;
 
+  
+  /* Set max visible height */
+  overflow-y: auto;
+  /* 🧠 Optional smoother scroll experience */
+  scroll-behavior: smooth;
+
   right: 0;
   background-color: #2A303B;
   /* border: 1px solid #ccc; */

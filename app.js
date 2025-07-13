@@ -13,6 +13,31 @@ var db = require('./config/connection');
 
 var app = express(); // Do not overwrite this later!
 
+// ✅ Redirect EC2 domain to your actual domain
+app.use((req, res, next) => {
+  const host = req.headers.host;
+  if (host && host.includes('ec2-13-60-163-20.eu-north-1.compute.amazonaws.com')) {
+    return res.redirect(301, 'https://mhvstats.xyz' + req.originalUrl);
+  }
+  next();
+});
+
+app.get('/robots.txt', (req, res) => {
+  const host = req.headers.host;
+
+  // If user is accessing via EC2 domain
+  if (host.includes('ec2-13-60-163-20.eu-north-1.compute.amazonaws.com')) {
+    res.type('text/plain');
+    return res.send('User-agent: *\nDisallow: /');
+  }
+
+  // Otherwise, for your real domain mhvstats.xyz
+  res.type('text/plain');
+  return res.send('User-agent: *\nDisallow:');
+});
+
+
+
 // ✅ View engine setup (register first)
 app.engine('hbs', hbs.engine({
   extname: 'hbs',
@@ -56,6 +81,7 @@ app.use('/', userRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // ✅ Error handler
 app.use(function(err, req, res, next) {

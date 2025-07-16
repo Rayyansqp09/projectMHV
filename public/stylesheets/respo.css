@@ -44,7 +44,7 @@
 }
 
 @media (max-width: 384px) {
-    .dropup-menu {
+  .dropup-menu {
     width: 230px !important;
 
   }
@@ -307,6 +307,7 @@
     width: 10%;
     height: 3.6rem;
     border-radius: 8px;
+    border-width: 1.5px !important;
     text-align: center;
     vertical-align: middle;
     padding: 0px;
@@ -320,6 +321,8 @@
 
   th {
     font-size: 12px;
+    border-width: 1.5px !important;
+     padding: 6px 10px;
   }
 
   td span:nth-child(2) {
@@ -341,6 +344,7 @@
     /* optional: padding to avoid touching edges */
   }
 
+  
   .stat-name {
     font-size: 8px !important;
     font-weight: 700 !important;
@@ -348,8 +352,8 @@
   }
 
   .stat-name.highlight {
-   font-size: 9px !important;
-}
+    font-size: 9px !important;
+  }
 
 
 
@@ -405,7 +409,7 @@
 
   .bottom-bar {
     font-size: 13px;
-    padding: 0.6rem 0rem;
+    padding: 0.4rem 0rem;
     flex-direction: row;
     /* ✅ keep row layout */
     align-items: center;
@@ -442,7 +446,7 @@
     height: 26px;
   }
 
-  
+
   .dropup-menu {
     min-width: 180px;
     bottom: 35px;
@@ -476,7 +480,7 @@
     padding-left: 24px;
     /* 👈 Adds space to make it feel like a sub-item */
     position: relative;
-     font-weight: 400 !important;
+    font-weight: 400 !important;
   }
 
   .submenu a::before {
@@ -850,10 +854,10 @@
     text-decoration: blue;
   }
 
-    .dropup-menu {
-    
+  .dropup-menu {
+
     width: 270px;
-   
+
   }
 
   footer {

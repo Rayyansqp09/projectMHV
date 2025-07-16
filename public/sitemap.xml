@@ -1,55 +1,73 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://mhvstats.xyz/</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/alltime</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/season</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/feedback</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/vote</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/About</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/club-stats/</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/club-stats/ucl</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/int-stats/</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/int-stats/wc</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/int-stats/copa-euro</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/policy</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
-  <url>
-    <loc>https://mhvstats.xyz/pay</loc>
-    <lastmod>2025-06-14</lastmod>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
+<url>
+<loc>https://mhvstats.xyz/</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/club-stats</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/int-stats</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/season</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/year</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/alltime</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/club-stats/ucl</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/int-stats/wc</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/int-stats/copa-euro</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/pay</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/about</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/feedback</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/vote</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://mhvstats.xyz/policy</loc>
+<lastmod>2025-07-15T17:26:26+00:00</lastmod>
+<priority>0.80</priority>
+</url>
 </urlset>

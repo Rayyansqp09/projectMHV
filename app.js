@@ -25,15 +25,18 @@ app.use((req, res, next) => {
 app.get('/robots.txt', (req, res) => {
   const host = req.headers.host;
 
-  // If user is accessing via EC2 domain
   if (host.includes('ec2-13-60-163-20.eu-north-1.compute.amazonaws.com')) {
     res.type('text/plain');
-    return res.send('User-agent: *\nDisallow: /');
+    return res.send(`User-agent: *
+Disallow: /`);
   }
 
-  // Otherwise, for your real domain mhvstats.xyz
+  // For mhvstats.xyz (your real domain)
   res.type('text/plain');
-  return res.send('User-agent: *\nDisallow:');
+  return res.send(`User-agent: *
+Allow: /
+
+Sitemap: https://mhvstats.xyz/sitemap.xml`);
 });
 
 
@@ -78,13 +81,13 @@ app.use('/admin', adminRouter);
 app.use('/', userRouter);
 
 // ✅ 404 handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 
 // ✅ Error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);

@@ -57,6 +57,8 @@ router.get('/', function (req, res, next) {
     // Construct final data
     const data = {
       admin: false,
+      canonical: '<link rel="canonical" href="https://mhvstats.xyz/" />',
+
       mbappe,
       haaland,
       vini,
@@ -116,7 +118,7 @@ router.get('/club-stats', function (req, res, next) {
     res.render('user/club-stats', {
       title: 'Mbappe vs Haaland vs Vinicius | Club Stats',
       description: 'View and compare Club football stats of Mbappe, Haaland, and Vinicius across all competitions.',
-       canonical: '<link rel="canonical" href="https://mhvstats.xyz/club-stats/" />',
+      canonical: '<link rel="canonical" href="https://mhvstats.xyz/club-stats" />',
       admin: false,
       mbappe_all,
       mbappe_club,

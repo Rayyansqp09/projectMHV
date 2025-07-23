@@ -22,6 +22,8 @@ app.use((req, res, next) => {
   next();
 });
 
+
+
 app.get('/robots.txt', (req, res) => {
   const host = req.headers.host;
 

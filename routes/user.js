@@ -9,6 +9,9 @@ const isTesting = true; // Change to false when deploying live
 const Razorpay = require("razorpay");
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const NodeCache = require('node-cache');
+const pageCache = new NodeCache({ stdTTL: 900 }); // Cache for 5 minutes
+
 
 
 
@@ -29,6 +32,9 @@ const transporter = nodemailer.createTransport({
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  const cachedPage = pageCache.get('/');
+  if (cachedPage) return res.send(cachedPage);
+
   const seasons = ['2024_25', 'all_time'];
 
   displayHelper.getStats(seasons, (err, stats) => {
@@ -68,11 +74,18 @@ router.get('/', function (req, res, next) {
       [`season_${cleanKey}`]: seasonStats
     };
 
-    res.render('index', data);
+    res.render('index', data, (err, html) => {
+      if (err) return res.status(500).send('Error rendering page');
+      pageCache.set('/', html);   // 🔥 Cache it!
+      res.send(html);
+    });
   });
 });
 
 router.get('/alltime', function (req, res, next) {
+  const cachedPage = pageCache.get('/alltime');
+  if (cachedPage) return res.send(cachedPage);
+
   displayHelper.getStats('all_time', (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
@@ -84,13 +97,18 @@ router.get('/alltime', function (req, res, next) {
     res.render('user/alltime', {
       title: 'All-Time Goal Scoring Stats | Mbappe vs Haaland vs Vinicius',
       description: 'Compare all-time goal stats: hattricks, pokers, free-kick goals, and final match goals of Mbappe, Haaland, and Vinicius.',
-
       admin: false, mbappe, haaland, vini
-    }); // Pass stats to the frontend
-
+    }, (err, html) => {
+      if (err) return res.status(500).send('Error rendering page');
+      pageCache.set('/alltime', html);   // 🔥 Cache the rendered HTML
+      res.send(html);
+    });
   });
 });
 router.get('/club-stats', function (req, res, next) {
+  const cachedPage = pageCache.get('/club-stats');
+  if (cachedPage) return res.send(cachedPage);
+
   displayHelper.getStats(['all_time', 'club'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
@@ -115,6 +133,7 @@ router.get('/club-stats', function (req, res, next) {
     // console.log('Vinicius All-Time:', vini_all);
     // console.log('Vinicius Club:', vini_club);
 
+
     res.render('user/club-stats', {
       title: 'Mbappe vs Haaland vs Vinicius | Club Stats',
       description: 'View and compare Club football stats of Mbappe, Haaland, and Vinicius across all competitions.',
@@ -126,11 +145,18 @@ router.get('/club-stats', function (req, res, next) {
       haaland_club,
       vini_all,
       vini_club
+    }, (err, html) => {
+      if (err) return res.status(500).send('Error rendering page');
+      pageCache.set('/club-stats', html); // Cache the rendered HTML
+      res.send(html);
     });
   });
 });
 
 router.get('/int-stats', function (req, res, next) {
+  const cachedPage = pageCache.get('/int-stats');
+  if (cachedPage) return res.send(cachedPage);
+
   displayHelper.getStats(['all_time', 'intr'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
@@ -165,6 +191,10 @@ router.get('/int-stats', function (req, res, next) {
       haaland_intr,
       vini_all,
       vini_intr
+    }, (err, html) => {
+      if (err) return res.status(500).send('Error rendering page');
+      pageCache.set('/int-stats', html); // Store in cache
+      res.send(html);
     });
   });
 });

@@ -14,7 +14,7 @@ async function sendUniversalEmail({ from, subject, text }) {
 
   await transporter.sendMail({
     from,
-    to: "support@mbappevshaalandvsvinicius.com",
+    to: "helpmhv@gmail.com",
     subject,
     text
   });

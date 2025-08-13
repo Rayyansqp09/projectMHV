@@ -1,0 +1,467 @@
+{{!-- views/match-history.hbs --}}
+<section class="match-history-container">
+  <h2 class="match-history-title">Match History</h2>
+  <p class="match-history-subtitle">Complete record of all matches played</p>
+
+  <form class="filters-box" onsubmit="return false;">
+    <div class="filters-top">
+      <div class="form-field">
+        <label class="field-label">Competition</label>
+        <select name="competition" id="competition">
+          <option>All</option>
+          <option>Premier League</option>
+          <option value="La Liga">La Liga</option>
+          <option value="Série A">Série A (Brazilian League)</option>
+          <option>Bundesliga</option>
+          <option>Ligue 1</option>
+          <option>Champions League</option>
+          <option>Europa League</option>
+          <option>Conference League</option>
+          <option>Copa del Rey</option>
+          <option>FA Cup</option>
+          <option>Carabao Cup</option>
+          <option>Club World Cup</option>
+          <option>World Cup</option>
+          <option>Euro</option>
+          <option>Copa America</option>
+          <option>AFCON</option>
+          <option>Asian Cup</option>
+          <option>Nations League</option>
+          <option>Nations League</option>
+          <option>International non-friendly games</option>
+
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Stage</label>
+        <select name="stage" id="stage">
+          <option>All</option>
+          <option>League Stage</option>
+          <option>Group Stage</option>
+          <option>Knockout</option>
+          <option>Round of 16</option>
+          <option>Quarter Final</option>
+          <option>Semi Final</option>
+          <option>Final</option>
+          <option>Playoffs</option>
+          <option>3rd Place</option>
+          <option>Preliminary Round</option>
+        </select>
+
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Season</label>
+        <select name="season" id="season">
+          <option>All</option>
+          <option value="2024-25">2024-25</option>
+          <option value="2023-24">2023-24</option>
+          <option value="2022-23">2022-23</option>
+          <option value="2018-19">2018-19</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <!-- Add more seasons as needed -->
+        </select>
+      </div>
+
+
+
+      <div class="form-field">
+        <label class="field-label">Minimum Goals</label>
+        <input type="number" name="minGoals" id="minGoals" placeholder="Minimum Goals">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Minimum Assists</label>
+        <input type="number" name="minAssists" id="minAssists" placeholder="Minimum Assists">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Match Result</label>
+        <select name="rest" id="rest">
+          <option>All</option>
+          <option>Win</option>
+          <option>Lose</option>
+          <option>Draw</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" class="advanced-toggle" id="toggleAdvanced">
+      ⚙️ Advanced Filters <span id="arrow">▾</span>
+    </button>
+
+    <div class="advanced-filters hidden" id="advancedFilters">
+      <div class="form-field">
+        <label class="field-label">Goal Types</label>
+        <div class="dropdown-checkbox">
+          <button type="button" class="dropdown-toggle" onclick="toggleDropdown(this)">
+            Goal Types
+          </button>
+          <div class="dropdown-options hidden">
+
+            <label for="goal-penalty"><input id="goal-penalty" class="goal-type" type="checkbox" name="goalTypes"
+                value="Penalty">Penalty</label>
+
+            <label for="goal-freekick"><input id="goal-freekick" class="goal-type" type="checkbox" name="goalTypes"
+                value="Free Kick">Free Kick</label>
+
+
+            <label for="goal-outside"><input id="goal-outside" class="goal-type" type="checkbox" name="goalTypes"
+                value="Outside the Box">Outside the Box</label>
+
+            <label for="goal-inside"><input id="goal-inside" class="goal-type" type="checkbox" name="goalTypes"
+                value="Inside the Box">Inside the Box</label>
+
+            <label for="goal-header"><input id="goal-header" class="goal-type" type="checkbox" name="goalTypes"
+                value="Header">Header</label>
+
+            <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
+                value="dribblePast">Dribble Past 3+ Players</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Year</label>
+        <select name="year" id="year">
+          <option>All</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <!-- Add more years as needed -->
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Chances Created</label>
+        <input type="number" name="chancesCreated" id="chancesCreated" placeholder="Chances Created">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Dribbles</label>
+        <input type="number" name="dribbles" id="dribbles" placeholder="Dribbles">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Minutes Played</label>
+        <input type="number" name="minutesPlayed" id="minutesPlayed" placeholder="Minutes Played">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">For (team)</label>
+        <select name="for" id="for">
+          <option>All</option>
+          <option value="Real Madrid">Real Madrid</option>
+          <option value="Flamengo">Flamengo</option>
+          <option value="Brazil">Brazil</option>
+        </select>
+
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Against</label>
+        <input type="text" name="against" id="against" placeholder="Against">
+      </div>
+    </div>
+
+  </form>
+
+  <div class="filter-bottom-row">
+    <span class="match-count">Showing 100 of 250 matches</span>
+    <button type="button" class="clear-button sort-manual" id="sortBtn">Sort</button>
+    <div id="sortPopup" class="sort-popup hidden">
+      <label><input type="radio" name="sort" value="dateDesc"> Date: Newest → Oldest</label><br>
+      <label><input type="radio" name="sort" value="dateAsc"> Date: Oldest → Newest</label><br>
+    </div>
+
+    <button type="button" class="clear-button" id="clearFiltersBtn">Clear All Filters</button>
+  </div>
+
+
+  <div class="header-row">
+    <span><i data-lucide="calendar" class="icon-adjust icon-small"></i> Date</span>
+    <span>For</span>
+    <span>Against</span>
+    <span>🏆 Tournament</span>
+    <span>Stage</span>
+    <span>🎯 Goals</span>
+    <span>➡️ Assists</span>
+  </div>
+
+  <script id="initialMatchesData" type="application/json">
+  {{{matchesJSON}}}
+</script>
+
+
+  <!-- Match Card Component -->
+  <div id="matchesContainer"></div>
+
+
+  {{!-- <div class="pagination">
+    <button id="loadMoreBtn">Load More</button>
+  </div> --}}
+
+</section>
+
+<script>
+
+
+  document.getElementById('toggleAdvanced').addEventListener('click', () => {
+    const adv = document.getElementById('advancedFilters');
+    const arrow = document.getElementById('arrow');
+    adv.classList.toggle('hidden');
+    arrow.textContent = adv.classList.contains('hidden') ? '▾' : '▴';
+  });
+
+  function toggleCardDetails(button) {
+    const card = button.closest('.match-card');
+    card.classList.toggle('expanded');
+  }
+
+
+
+  function toggleDropdown(button) {
+    const dropdown = button.nextElementSibling;
+    dropdown.classList.toggle('hidden');
+  }
+
+  // Optional: Close on outside click
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.dropdown-checkbox').forEach(drop => {
+      if (!drop.contains(e.target)) {
+        drop.querySelector('.dropdown-options').classList.add('hidden');
+      }
+    });
+  });
+  const sortBtn = document.getElementById('sortBtn');
+  const sortPopup = document.getElementById('sortPopup');
+
+  // Toggle popup
+  sortBtn.addEventListener('click', () => {
+    sortPopup.classList.toggle('hidden');
+  });
+
+  // When sorting option selected
+  document.querySelectorAll('input[name="sort"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      sortPopup.classList.add('hidden'); // hide popup
+      updateFilter(0, false); // reload with sort
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    const isClickInside = sortPopup.contains(event.target) || sortBtn.contains(event.target);
+
+    if (!isClickInside && !sortPopup.classList.contains('hidden')) {
+      sortPopup.classList.add('hidden');
+    }
+  });
+
+
+</script>
+
+<script>
+
+  console.log('Script loaded');
+
+  let currentStart = 0;
+  const limit = 1000;
+  let currentTotal = 0;
+  lucide.createIcons();
+
+
+  const container = document.getElementById('matchesContainer');
+
+  // Select all filter fields
+  const filters = {
+    competition: document.getElementById('competition'),
+    stage: document.getElementById('stage'),
+    season: document.getElementById('season'),
+    year: document.getElementById('year'),
+    minGoals: document.getElementById('minGoals'),
+    minAssists: document.getElementById('minAssists'),
+    rest: document.getElementById('rest'),
+    chancesCreated: document.getElementById('chancesCreated'),
+    dribbles: document.getElementById('dribbles'),
+    minutesPlayed: document.getElementById('minutesPlayed'),
+    forTeam: document.getElementById('for'),
+    againstTeam: document.getElementById('against')
+  };
+
+  // Listen for input changes (text, number, select)
+  Object.values(filters).forEach(input => {
+    if (input) {
+      input.addEventListener('input', () => updateFilter(0, false));
+      input.addEventListener('change', () => updateFilter(0, false));
+
+    }
+  });
+
+  // GoalTypes (checkboxes)
+  document.querySelectorAll('.goal-type').forEach(box => {
+    box.addEventListener('change', () => updateFilter(0, false));
+
+  });
+
+  function updateFilter(append = false) {
+    const params = new URLSearchParams();
+
+    for (const [key, input] of Object.entries(filters)) {
+      if (input && input.value && input.value !== 'All') {
+        params.append(key, input.value);
+      }
+    }
+
+    const selectedSort = document.querySelector('input[name="sort"]:checked');
+    if (selectedSort) {
+      params.append('sortBy', selectedSort.value);
+    } else {
+      params.append('sortBy', 'dateDesc');
+    }
+
+    // Goal types (checkboxes)
+    const goalTypes = [];
+    document.querySelectorAll('.goal-type:checked').forEach(cb => goalTypes.push(cb.value));
+    goalTypes.forEach(type => params.append('goalTypes', type));
+
+
+    fetch(`/mhv/filter?${params.toString()}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log('Total matches:', data.matches.length);
+        data.matches.forEach((match, i) => {
+          console.log(`#${i + 1}`, match.No, match.date, match.forTeam, match.againstTeam);
+        });
+
+        // Now you can safely extract matches and total
+        const { matches, total } = data;
+        currentTotal = total;
+
+        const container = document.getElementById('matchesContainer');
+        if (!append) container.innerHTML = ''; // Clear only if not appending
+
+        if (!matches || !matches.length) {
+          if (!append) {
+            container.innerHTML = '<p>No matches found.</p>';
+            document.querySelector('.match-count').textContent = 'Showing 0 of 0 matches';
+          }
+          return;
+        }
+
+        matches.forEach(match => {
+          const card = document.createElement('div');
+          card.className = 'match-card';
+          card.innerHTML = `
+           <div class="card-content">
+      <div class="card-header">
+        <span class="match-date" style="display: inline-flex; align-items: center; gap: 6px;">
+          <i data-lucide="calendar" class="icon-adjust icon-small"></i> ${match.dateFormatted}
+        </span>
+
+        <span class="team-name for">${match.forTeam}</span>
+        <span class="team-name against">vs ${match.againstTeam}</span>
+        <span class="competition">🏆 ${match.competition}</span>
+        <span class="stage">${match.stage}</span>
+        <span class="goals">
+          <img src="/images/goal.png" alt="Goal" class="icon-img" />
+          ${match.goals}
+        </span>
+        <span class="assists">
+          <i data-lucide="arrow-right" class="icon-sm text-purple"></i> ${match.assists}
+        </span>
+      </div>
+
+      <div class="card-footer">
+        <button class="details-toggle" onclick="toggleCardDetails(this)">
+          Details <span class="arrow">▾</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-details">
+      <div class="details-grid">
+        <div class="performance">
+          <strong>Performance</strong>
+          <div><span class="label"><img src="/images/goal.png" alt="Goal" class="icon-img" /> Total Goals:</span><span class="value">${match.goals}</span></div>
+          <div><span class="label"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> Assists:</span><span class="value">${match.assists}</span></div>
+          <div><span class="label"><i data-lucide="trending-up" class="icon-sm text-blue"></i> Chances Created:</span><span class="value">${match.CC}</span></div>
+          <div><span class="label"><i data-lucide="zap" class="icon-sm dribble-icon align-icon"></i> Dribbles:</span><span class="value">${match.dribbles}</span></div>
+          <div><span class="label"><i data-lucide="clock" class="icon-sm text-blue-400 align-icon"></i> Minutes Played:</span><span class="value">${match.mnt}'</span></div>
+        </div>
+
+        <div class="goal-types">
+          <strong>Goal Types</strong>
+          <div><span class="goal-type">${match.goalTypes?.join(', ') || 'None'}</span></div>
+        </div>
+
+        <div class="final-score">
+          <strong>Final Score</strong>
+          <div class="score-box">
+            <div class="score">${match.scorFor}-${match.scorAgainst}</div>
+            <div class="teams"><span class="for-team-res"></span>${match.forTeam} vs <span class="against-team-res">${match.againstTeam}</span></div>
+            <div class="result-badge ${match.result}">${match.result}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+        `;
+          container.appendChild(card);
+        });
+
+
+        document.querySelectorAll('.team-name.against').forEach(span => {
+          const text = span.textContent.trim();
+          if (text.startsWith('vs ')) {
+            const team = text.replace('vs ', '');
+            span.innerHTML = 'vs <span class="against-name-only">' + team + '</span>';
+          }
+        });
+
+        if (!append) currentStart = 0; // ✅ reset on new filter
+
+        const newlyFetched = matches.length;
+        currentStart += newlyFetched;
+
+        const shown = Math.min(currentStart, currentTotal); // ✅ don't overshoot
+
+        document.querySelector('.match-count').textContent = `Showing ${total} of ${total} matches`;
+        if (window.lucide) lucide.createIcons();
+      })
+      .catch(err => console.error('Error fetching matches:', err));
+  }
+
+
+
+  document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+    // Clear all input/select fields
+    Object.entries(filters).forEach(([key, input]) => {
+      if (!input) return;
+
+      if (input.tagName === 'SELECT') {
+        input.selectedIndex = 0; // Default: "All"
+      } else {
+        input.value = ''; // Or '0' if you prefer numeric reset
+      }
+    });
+
+    // Clear checkboxes
+    document.querySelectorAll('.goal-type').forEach(box => {
+      box.checked = false;
+    });
+
+    // ✅ Reset URL (remove query string) so we don't refetch filtered results
+    history.replaceState(null, '', '/mhv');
+
+    // ✅ Explicitly call updateFilter to show all unfiltered matches
+    updateFilter();
+  });
+
+
+  window.addEventListener('load', () => updateFilter(0, false));
+
+
+
+
+</script>

@@ -16,6 +16,8 @@ var db = require('./config/connection');
 
 var app = express(); // Do not overwrite this later!
 
+
+
 // ✅ Redirect EC2 domain to your actual domain
 app.use((req, res, next) => {
   const host = req.headers.host;
@@ -64,9 +66,13 @@ app.engine('hbs', hbs.engine({
         hour: "2-digit", minute: "2-digit"
       };
       return date.toLocaleString("en-US", options);
+    },
+    eq: function (a, b) {
+      return a === b;
     }
   }
 }));
+
 
 // ✅ Add this line: sets hbs as default rendering engine
 app.set('view engine', 'hbs');

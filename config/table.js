@@ -7,6 +7,7 @@ const tableNames = [
   'intr',
   'copa_euro',
   'ucl',
+  'matches',
   '2015_16',
   '2016_17',
   '2017_18',

@@ -534,6 +534,19 @@
 
   }
 
+  /* Text paragraphs */
+.fbv-text,.mvhv-text {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.fbv-button {
+  padding: 6px 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
 
 
   /* admin */

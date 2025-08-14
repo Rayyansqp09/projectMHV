@@ -48,7 +48,6 @@
           <option>3rd Place</option>
           <option>Preliminary Round</option>
         </select>
-
       </div>
 
       <div class="form-field">
@@ -82,7 +81,7 @@
         <select name="rest" id="rest">
           <option>All</option>
           <option>Win</option>
-          <option>Lose</option>
+          <option>Loss</option>
           <option>Draw</option>
         </select>
       </div>
@@ -181,6 +180,7 @@
 
 
   <div class="header-row">
+     <span>Match no:</span>
     <span><i data-lucide="calendar" class="icon-adjust icon-small"></i> Date</span>
     <span>For</span>
     <span>Against</span>
@@ -190,20 +190,35 @@
     <span>➡️ Assists</span>
   </div>
 
-  <script id="initialMatchesData" type="application/json">
-  {{{matchesJSON}}}
-</script>
-
 
   <!-- Match Card Component -->
-  <div id="matchesContainer"></div>
+  <div id="matchesContainer">
 
+  </div>
 
-  {{!-- <div class="pagination">
-    <button id="loadMoreBtn">Load More</button>
-  </div> --}}
+  <!-- Loader -->
+  <div id="matchesContainer">
+    <div id="loader">Loading matches...</div>
+  </div>
 
+  <!-- Handlebars Template -->
+  <div id="matches-container">
+    {{#each matches}}
+    {{> match-card this}}
+    {{/each}}
+  </div>
+
+  <div class="pagination">
+    {{#if hasMore}}
+    <button id="load-more" data-offset="{{offset}}" data-limit="{{limit}}">
+      Load More
+    </button>
+    {{/if}}
+  </div>
 </section>
+
+{{!-- loadMoreBtn --}}
+
 
 <script>
 
@@ -263,205 +278,154 @@
 </script>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const competitionSelect = document.getElementById('competition');
+  const stageSelect = document.getElementById('stage');
+  const seasonSelect = document.getElementById('season');
+  const yearSelect = document.getElementById('year');
+  const minGoalsInput = document.getElementById('minGoals');
+  const minAssistsInput = document.getElementById('minAssists');
+  const chancesCreatedInput = document.getElementById('chancesCreated');
+  const dribblesInput = document.getElementById('dribbles');
+  const minutesPlayedInput = document.getElementById('minutesPlayed');
+  const resultSelect = document.getElementById('rest');
+  const goalTypeCheckboxes = document.querySelectorAll('.goal-type');
+  const forTeamSelect = document.getElementById('for');       // NEW
+  const againstTeamInput = document.getElementById('against'); // NEW
+  const loadMoreBtn = document.getElementById('load-more');
+  const container = document.getElementById('matches-container');
 
-  console.log('Script loaded');
-
-  let currentStart = 0;
-  const limit = 1000;
-  let currentTotal = 0;
-  lucide.createIcons();
-
-
-  const container = document.getElementById('matchesContainer');
-
-  // Select all filter fields
-  const filters = {
-    competition: document.getElementById('competition'),
-    stage: document.getElementById('stage'),
-    season: document.getElementById('season'),
-    year: document.getElementById('year'),
-    minGoals: document.getElementById('minGoals'),
-    minAssists: document.getElementById('minAssists'),
-    rest: document.getElementById('rest'),
-    chancesCreated: document.getElementById('chancesCreated'),
-    dribbles: document.getElementById('dribbles'),
-    minutesPlayed: document.getElementById('minutesPlayed'),
-    forTeam: document.getElementById('for'),
-    againstTeam: document.getElementById('against')
-  };
-
-  // Listen for input changes (text, number, select)
-  Object.values(filters).forEach(input => {
-    if (input) {
-      input.addEventListener('input', () => updateFilter(0, false));
-      input.addEventListener('change', () => updateFilter(0, false));
-
-    }
-  });
-
-  // GoalTypes (checkboxes)
-  document.querySelectorAll('.goal-type').forEach(box => {
-    box.addEventListener('change', () => updateFilter(0, false));
-
-  });
-
-  function updateFilter(append = false) {
-    const params = new URLSearchParams();
-
-    for (const [key, input] of Object.entries(filters)) {
-      if (input && input.value && input.value !== 'All') {
-        params.append(key, input.value);
-      }
-    }
-
-    const selectedSort = document.querySelector('input[name="sort"]:checked');
-    if (selectedSort) {
-      params.append('sortBy', selectedSort.value);
-    } else {
-      params.append('sortBy', 'dateDesc');
-    }
-
-    // Goal types (checkboxes)
-    const goalTypes = [];
-    document.querySelectorAll('.goal-type:checked').forEach(cb => goalTypes.push(cb.value));
-    goalTypes.forEach(type => params.append('goalTypes', type));
+  let currentOffset = 0;
+  let currentLimit = 100; // or any number you want
 
 
-    fetch(`/mhv/filter?${params.toString()}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log('Total matches:', data.matches.length);
-        data.matches.forEach((match, i) => {
-          console.log(`#${i + 1}`, match.No, match.date, match.forTeam, match.againstTeam);
-        });
+  // Current filter states
+  let currentCompetition = '';
+  let currentMinGoals = 0;
+  let currentMinAssists = 0;
+  let currentCC = 0;
+  let currentDribbles = 0;
+  let currentMnt = 0;
+  let currentStage = '';
+  let currentSeason = '';
+  let currentYear = '';
+  let currentResult = '';
+  let currentForTeam = '';    // NEW
+  let currentAgainstTeam = ''; // NEW
+  let currentGoalTypes = [];
 
-        // Now you can safely extract matches and total
-        const { matches, total } = data;
-        currentTotal = total;
+  function applyFilters() {
+    currentCompetition = competitionSelect.value;
+    currentMinGoals = parseInt(minGoalsInput.value) || 0;
+    currentMinAssists = parseInt(minAssistsInput.value) || 0;
+    currentCC = parseInt(chancesCreatedInput.value) || 0;
+    currentDribbles = parseInt(dribblesInput.value) || 0;
+    currentMnt = parseInt(minutesPlayedInput.value) || 0;
+    currentStage = stageSelect.value;
+    currentSeason = seasonSelect.value;
+    currentYear = yearSelect.value;
+    currentResult = resultSelect.value;
+    currentForTeam = forTeamSelect.value;                   // NEW
+    currentAgainstTeam = againstTeamInput.value.trim();     // NEW
+    currentGoalTypes = Array.from(goalTypeCheckboxes)
+      .filter(cb => cb.checked)
+      .map(cb => cb.value);
 
-        const container = document.getElementById('matchesContainer');
-        if (!append) container.innerHTML = ''; // Clear only if not appending
-
-        if (!matches || !matches.length) {
-          if (!append) {
-            container.innerHTML = '<p>No matches found.</p>';
-            document.querySelector('.match-count').textContent = 'Showing 0 of 0 matches';
-          }
-          return;
-        }
-
-        matches.forEach(match => {
-          const card = document.createElement('div');
-          card.className = 'match-card';
-          card.innerHTML = `
-           <div class="card-content">
-      <div class="card-header">
-        <span class="match-date" style="display: inline-flex; align-items: center; gap: 6px;">
-          <i data-lucide="calendar" class="icon-adjust icon-small"></i> ${match.dateFormatted}
-        </span>
-
-        <span class="team-name for">${match.forTeam}</span>
-        <span class="team-name against">vs ${match.againstTeam}</span>
-        <span class="competition">🏆 ${match.competition}</span>
-        <span class="stage">${match.stage}</span>
-        <span class="goals">
-          <img src="/images/goal.png" alt="Goal" class="icon-img" />
-          ${match.goals}
-        </span>
-        <span class="assists">
-          <i data-lucide="arrow-right" class="icon-sm text-purple"></i> ${match.assists}
-        </span>
-      </div>
-
-      <div class="card-footer">
-        <button class="details-toggle" onclick="toggleCardDetails(this)">
-          Details <span class="arrow">▾</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="card-details">
-      <div class="details-grid">
-        <div class="performance">
-          <strong>Performance</strong>
-          <div><span class="label"><img src="/images/goal.png" alt="Goal" class="icon-img" /> Total Goals:</span><span class="value">${match.goals}</span></div>
-          <div><span class="label"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> Assists:</span><span class="value">${match.assists}</span></div>
-          <div><span class="label"><i data-lucide="trending-up" class="icon-sm text-blue"></i> Chances Created:</span><span class="value">${match.CC}</span></div>
-          <div><span class="label"><i data-lucide="zap" class="icon-sm dribble-icon align-icon"></i> Dribbles:</span><span class="value">${match.dribbles}</span></div>
-          <div><span class="label"><i data-lucide="clock" class="icon-sm text-blue-400 align-icon"></i> Minutes Played:</span><span class="value">${match.mnt}'</span></div>
-        </div>
-
-        <div class="goal-types">
-          <strong>Goal Types</strong>
-          <div><span class="goal-type">${match.goalTypes?.join(', ') || 'None'}</span></div>
-        </div>
-
-        <div class="final-score">
-          <strong>Final Score</strong>
-          <div class="score-box">
-            <div class="score">${match.scorFor}-${match.scorAgainst}</div>
-            <div class="teams"><span class="for-team-res"></span>${match.forTeam} vs <span class="against-team-res">${match.againstTeam}</span></div>
-            <div class="result-badge ${match.result}">${match.result}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-        `;
-          container.appendChild(card);
-        });
-
-
-        document.querySelectorAll('.team-name.against').forEach(span => {
-          const text = span.textContent.trim();
-          if (text.startsWith('vs ')) {
-            const team = text.replace('vs ', '');
-            span.innerHTML = 'vs <span class="against-name-only">' + team + '</span>';
-          }
-        });
-
-        if (!append) currentStart = 0; // ✅ reset on new filter
-
-        const newlyFetched = matches.length;
-        currentStart += newlyFetched;
-
-        const shown = Math.min(currentStart, currentTotal); // ✅ don't overshoot
-
-        document.querySelector('.match-count').textContent = `Showing ${total} of ${total} matches`;
-        if (window.lucide) lucide.createIcons();
-      })
-      .catch(err => console.error('Error fetching matches:', err));
+    currentOffset = 0;
+    fetchMatches(
+      currentOffset,
+      currentLimit,
+      currentCompetition,
+      currentMinGoals,
+      currentMinAssists,
+      currentCC,
+      currentDribbles,
+      currentMnt,
+      currentStage,
+      currentSeason,
+      currentYear,
+      currentResult,
+      currentForTeam,       // NEW
+      currentAgainstTeam,   // NEW
+      currentGoalTypes,
+      true
+    );
   }
 
+  // Event listeners
+  competitionSelect.addEventListener('change', applyFilters);
+  minGoalsInput.addEventListener('input', applyFilters);
+  minAssistsInput.addEventListener('input', applyFilters);
+  chancesCreatedInput.addEventListener('input', applyFilters);
+  dribblesInput.addEventListener('input', applyFilters);
+  minutesPlayedInput.addEventListener('input', applyFilters);
+  stageSelect.addEventListener('change', applyFilters);
+  seasonSelect.addEventListener('change', applyFilters);
+  yearSelect.addEventListener('change', applyFilters);
+  resultSelect.addEventListener('change', applyFilters);
+  forTeamSelect.addEventListener('change', applyFilters);    // NEW
+  againstTeamInput.addEventListener('input', applyFilters);  // NEW
+  goalTypeCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
 
-
-  document.getElementById('clearFiltersBtn').addEventListener('click', () => {
-    // Clear all input/select fields
-    Object.entries(filters).forEach(([key, input]) => {
-      if (!input) return;
-
-      if (input.tagName === 'SELECT') {
-        input.selectedIndex = 0; // Default: "All"
-      } else {
-        input.value = ''; // Or '0' if you prefer numeric reset
-      }
-    });
-
-    // Clear checkboxes
-    document.querySelectorAll('.goal-type').forEach(box => {
-      box.checked = false;
-    });
-
-    // ✅ Reset URL (remove query string) so we don't refetch filtered results
-    history.replaceState(null, '', '/mhv');
-
-    // ✅ Explicitly call updateFilter to show all unfiltered matches
-    updateFilter();
+  loadMoreBtn?.addEventListener('click', () => {
+    fetchMatches(
+      currentOffset,
+      currentLimit,
+      currentCompetition,
+      currentMinGoals,
+      currentMinAssists,
+      currentCC,
+      currentDribbles,
+      currentMnt,
+      currentStage,
+      currentSeason,
+      currentYear,
+      currentResult,
+      currentForTeam,       // NEW
+      currentAgainstTeam,   // NEW
+      currentGoalTypes,
+      false
+    );
   });
 
+  function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset) {
+    let url = `/mhv?offset=${offset}&limit=${limit}`;
+    if (competition && competition !== 'All') url += `&competition=${encodeURIComponent(competition)}`;
+    if (minGoals > 0) url += `&minGoals=${minGoals}`;
+    if (minAssists > 0) url += `&minAssists=${minAssists}`;
+    if (CC > 0) url += `&CC=${CC}`;
+    if (dribbles > 0) url += `&dribbles=${dribbles}`;
+    if (mnt > 0) url += `&mnt=${mnt}`;
+    if (stage && stage !== 'All') url += `&stage=${encodeURIComponent(stage)}`;
+    if (season && season !== 'All') url += `&season=${encodeURIComponent(season)}`;
+    if (year && year !== 'All') url += `&year=${encodeURIComponent(year)}`;
+    if (result && result !== 'All') url += `&result=${encodeURIComponent(result)}`;
+    if (forTeam && forTeam !== 'All') url += `&forTeam=${encodeURIComponent(forTeam)}`; // NEW
+    if (againstTeam) url += `&againstTeam=${encodeURIComponent(againstTeam)}`;         // NEW
+    if (goalTypes.length > 0) url += `&goalTypes=${encodeURIComponent(goalTypes.join(','))}`;
 
-  window.addEventListener('load', () => updateFilter(0, false));
+    fetch(url)
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newMatches = doc.querySelectorAll('#matches-container .match-card');
 
+        if (reset) container.innerHTML = '';
 
+        newMatches.forEach(card => container.appendChild(card));
 
+        currentOffset += limit;
 
+        const newLoadMoreBtn = doc.getElementById('load-more');
+        if (!newLoadMoreBtn) {
+          loadMoreBtn.style.display = 'none';
+        } else {
+          loadMoreBtn.style.display = 'block';
+          loadMoreBtn.dataset.offset = currentOffset;
+        }
+      })
+      .catch(err => console.error(err));
+  }
+});
 </script>

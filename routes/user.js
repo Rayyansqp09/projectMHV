@@ -238,20 +238,151 @@ router.get('/feedback', (req, res) => {
 });
 
 router.get('/mhv', (req, res) => {
+  const limit = parseInt(req.query.limit) || 10;
+  const offset = parseInt(req.query.offset) || 0;
+  const competitionFilter = req.query.competition || '';
+  const stageFilter = req.query.stage || '';
+  const resultFilter = req.query.result || '';
+  const seasonFilter = req.query.season || 'All';
+  const yearFilter = req.query.year || 'All';
+  const minCC = parseInt(req.query.CC) || 0;           // Chances Created
+  const minDribbles = parseInt(req.query.dribbles) || 0;
+  const minMnt = parseInt(req.query.mnt) || 0;         // Minutes Played
+  const forTeamFilter = req.query.forTeam || 'All';
+  const againstTeamFilter = req.query.againstTeam || '';
+
+
+
+
+  const minGoals = parseInt(req.query.minGoals) || 0;
+  const minAssists = parseInt(req.query.minAssists) || 0;
+  const goalTypes = req.query.goalTypes ? req.query.goalTypes.split(',') : [];
+
   displayHelper.getStats('matches', (err, matches) => {
-    if (err) {
-      console.error('Error loading matches:', err);
-      return res.status(500).send('Error loading matches');
+    if (err) return res.status(500).send('Error loading matches');
+
+    matches.sort((a, b) => new Date(b.date) - new Date(a.date));
+    matches.forEach(m => m.dateFormatted = new Date(m.date).toLocaleDateString('en-GB'));
+
+    let filteredMatches = matches;
+
+    if (competitionFilter && competitionFilter !== 'All') {
+      filteredMatches = filteredMatches.filter(m => m.competition === competitionFilter);
+    }
+
+    if (stageFilter && stageFilter !== 'All') {
+      const stageLower = stageFilter.toLowerCase().trim();
+
+      const knockoutStages = [
+        'round of 16',
+        'quarter final',
+        'semi final',
+        'playoffs',
+        'final',
+        '3rd place',
+        'preliminary round'
+      ];
+
+      if (stageLower === 'knockout') {
+        // Show all knockout games
+        filteredMatches = filteredMatches.filter(m => {
+          const mStage = (m.stage || '').toLowerCase().trim();
+          return knockoutStages.includes(mStage);
+        });
+
+      } else if (stageLower === 'league stage') {
+        // Show all league matches (matchweek or any league stage)
+        filteredMatches = filteredMatches.filter(m => {
+          const mStage = (m.stage || '').toLowerCase().trim();
+          // Matchweek detection
+          const isMatchweek = /^matchweek\s*\d+$/i.test(m.stage || '');
+          // Not knockout, not group stage
+          return isMatchweek || (!knockoutStages.includes(mStage) && mStage !== 'group stage');
+        });
+
+      } else {
+        // Normal exact match
+        filteredMatches = filteredMatches.filter(m =>
+          (m.stage || '').toLowerCase().trim() === stageLower
+        );
+      }
+    }
+
+    if (seasonFilter && seasonFilter !== 'All') {
+      filteredMatches = filteredMatches.filter(m =>
+        (m.season || '').toLowerCase().trim() === seasonFilter.toLowerCase().trim()
+      );
+    }
+
+    if (minGoals > 0) {
+      filteredMatches = filteredMatches.filter(m => m.goals >= minGoals);
+    }
+
+    if (minAssists > 0) {
+      filteredMatches = filteredMatches.filter(m => m.assists >= minAssists);
+    }
+
+    if (resultFilter && resultFilter !== 'All') {
+      filteredMatches = filteredMatches.filter(m =>
+        (m.result || '').toLowerCase().trim() === resultFilter.toLowerCase().trim()
+      );
+    }
+
+    if (yearFilter && yearFilter !== 'All') {
+      filteredMatches = filteredMatches.filter(m => {
+        const matchYear = new Date(m.date).getFullYear().toString();
+        return matchYear === yearFilter;
+      });
+    }
+
+    if (minCC > 0) {
+      filteredMatches = filteredMatches.filter(m => m.CC >= minCC);
+    }
+
+    if (minDribbles > 0) {
+      filteredMatches = filteredMatches.filter(m => m.dribbles >= minDribbles);
+    }
+
+    if (minMnt > 0) {
+      filteredMatches = filteredMatches.filter(m => m.mnt >= minMnt);
+    }
+
+    if (forTeamFilter && forTeamFilter !== 'All') {
+      filteredMatches = filteredMatches.filter(m =>
+        (m.forTeam || '').toLowerCase().trim() === forTeamFilter.toLowerCase().trim()
+      );
+    }
+
+    if (againstTeamFilter && againstTeamFilter.trim() !== '') {
+      filteredMatches = filteredMatches.filter(m =>
+        (m.againstTeam || '').toLowerCase().trim().includes(againstTeamFilter.toLowerCase().trim())
+      );
+    }
+
+    if (goalTypes.length > 0) {
+      filteredMatches = filteredMatches.filter(m => {
+        const matchGoalTypes = Array.isArray(m.goalTypes)
+          ? m.goalTypes
+          : (m.goalTypes || '').split(',').map(t => t.trim());
+
+        // Convert everything to lowercase for comparison
+        const lowerMatchGoals = matchGoalTypes.map(t => t.toLowerCase());
+        const lowerSelectedGoals = goalTypes.map(t => t.toLowerCase());
+
+        // Must contain ALL selected goal types
+        return lowerSelectedGoals.every(type => lowerMatchGoals.includes(type));
+      });
     }
 
 
-    // ✅ Sort by latest date first
-    matches.sort((a, b) => new Date(b.date) - new Date(a.date));
-
+    const paginatedMatches = filteredMatches.slice(offset, offset + limit);
     // console.log(matches)
-
     res.render('user/mh-v', {
-      matchesJSON: JSON.stringify(matches) // ✅ Send MySQL data to frontend
+      matches: paginatedMatches,
+      offset: offset + limit,
+      limit,
+      hasMore: offset + limit < filteredMatches.length,
+      layout: 'layout'
     });
   });
 });
@@ -259,158 +390,96 @@ router.get('/mhv', (req, res) => {
 
 
 
+
+
+// Example: routes/mhv.js
+
 router.get('/mhv/filter', (req, res) => {
+  try {
+    const {
+      competition,
+      stage,
+      season,
+      year,
+      minGoals,
+      minAssists,
+      chancesCreated,
+      dribbles,
+      minutesPlayed,
+      forTeam,
+      againstTeam,
+      goalTypes,
+      sortBy
+    } = req.query;
 
-  const {
-    competition,
-    stage,
-    year,
-    minGoals,
-    minAssists,
-    rest,
-    goalTypes,
-    chancesCreated,
-    dribbles,
-    minutesPlayed,
-    forTeam,
-    againstTeam
-  } = req.query;
-
-  displayHelper.getStats('matches', (err, matches) => {
-    if (err) {
-      console.error('Error fetching matches from DB:', err);
-      return res.status(500).send('Database error');
-    }
-
-    // ✅ Sort by latest date first
-    matches.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-
-    console.log("Matches length:", matches.length);
-
-    let filtered = matches;
-
-    if (competition && competition !== 'All') {
-      if (competition === 'International non-friendly games') {
-        // Include all international competitions except friendlies
-        const allowedCompetitions = [
-          'World Cup',
-          'UEFA Euro',
-          'UEFA Nations League',
-          'Copa America',
-          'AFC Asian Cup',
-          'Africa Cup of Nations',
-          'UEFA Qualifiers',
-          'FIFA Qualifiers',
-          'CONMEBOL Qualifiers',
-          'AFC Qualifiers'
-          // ✅ Add more based on your DB names
-        ];
-        filtered = filtered.filter(m =>
-          allowedCompetitions.includes(m.competition)
-        );
-      } else {
-        filtered = filtered.filter(m => m.competition === competition);
+    displayHelper.getStats('matches', (err, matches) => {
+      if (err) {
+        console.error('Error fetching matches from DB:', err);
+        return res.status(500).send('Database error');
       }
-    }
 
-    if (stage && stage !== 'All') {
-      if (stage === 'League Stage') {
-        filtered = filtered.filter(m => typeof m.stage === 'string' && /^M\d+$/.test(m.stage));
-      } else if (stage === 'Knockout') {
-        filtered = filtered.filter(m =>
-          typeof m.stage === 'string' &&
-          ['Final', 'Semi Final', 'Quarter Final', 'Round of 16'].includes(m.stage)
-        );
+      console.log("1️⃣  Total matches from DB:", matches.length);
+      console.log("2️⃣  Filters received:", req.query);
+
+      let filtered = matches.filter(m => {
+        // Competition filter
+        if (competition && competition !== 'All') {
+          if (competition === 'International non-friendly games') {
+            if (['Friendly', 'Club Friendly'].includes(m.competition)) return false;
+          } else if (m.competition !== competition) return false;
+        }
+
+        // Stage filter
+        if (stage && stage !== 'All') {
+          if (stage === 'League Stage') {
+            if (!['Group Stage', 'League Stage'].includes(m.stage)) return false;
+          } else if (stage === 'Knockout') {
+            if (!['Quarter-final', 'Semi-final', 'Final', 'Round of 16'].includes(m.stage)) return false;
+          } else if (m.stage !== stage) return false;
+        }
+
+        if (season && season !== 'All' && m.ssn !== season) return false;
+        if (year && year !== 'All' && String(new Date(m.date).getFullYear()) !== String(year)) return false;
+
+        if (minGoals && Number(m.goals) < Number(minGoals)) return false;
+        if (minAssists && Number(m.assists) < Number(minAssists)) return false;
+        if (chancesCreated && Number(m.CC) < Number(chancesCreated)) return false;
+        if (dribbles && Number(m.dribbles) < Number(dribbles)) return false;
+        if (minutesPlayed && Number(m.mnt) < Number(minutesPlayed)) return false;
+
+        if (forTeam && forTeam !== 'All' && m.forTeam !== forTeam) return false;
+        if (againstTeam && againstTeam !== 'All' && m.againstTeam !== againstTeam) return false;
+
+        if (goalTypes && goalTypes !== 'All') {
+          const types = Array.isArray(goalTypes) ? goalTypes : [goalTypes];
+          const matchGoals = (m.goalTypes || '').split(',').map(t => t.trim().toLowerCase());
+          if (!types.some(type => matchGoals.includes(type.toLowerCase()))) return false;
+        }
+
+        return true;
+      });
+
+      // Sorting
+      if (sortBy === 'goalsDesc') {
+        filtered.sort((a, b) => b.goals - a.goals);
+      } else if (sortBy === 'dateAsc') {
+        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
       } else {
-        filtered = filtered.filter(m => m.stage === stage);
+        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
       }
-    }
 
-    if (req.query.season && req.query.season !== 'All') {
-      filtered = filtered.filter(m => m.ssn === req.query.season);
-    }
+      console.log("3️⃣  Matches after filtering:", filtered.length);
 
+      // Format dates
+      filtered.forEach(m => m.dateFormatted = new Date(m.date).toLocaleDateString('en-GB'));
+      console.log("Sending matches:", filtered);
 
-    if (year && year !== 'All') {
-      filtered = filtered.filter(m => {
-        const matchYear = new Date(m.date).getFullYear();
-        return matchYear == year;
-      });
-    }
-
-    if (minGoals && !isNaN(minGoals))
-      filtered = filtered.filter(m => m.goals >= parseInt(minGoals));
-
-    if (minAssists && !isNaN(minAssists))
-      filtered = filtered.filter(m => m.assists >= parseInt(minAssists));
-
-    if (rest && rest !== 'All')
-      filtered = filtered.filter(m => m.result === rest);
-
-    if (goalTypes) {
-      const goalArray = (Array.isArray(goalTypes) ? goalTypes : [goalTypes]).map(t => t.toLowerCase());
-
-      filtered = filtered.filter(m => {
-        if (!Array.isArray(m.goalTypes)) return false;
-
-        const matchGoalTypes = m.goalTypes.map(t => t.toLowerCase());
-
-        console.log("Checkbox goalTypes:", goalArray);
-        console.log("Match goalTypes:", matchGoalTypes);
-
-        return goalArray.some(type => matchGoalTypes.includes(type));
-      });
-    }
-
-    if (chancesCreated && !isNaN(chancesCreated))
-      filtered = filtered.filter(m => m.CC >= parseInt(chancesCreated));
-
-    if (dribbles && !isNaN(dribbles))
-      filtered = filtered.filter(m => m.dribbles >= parseInt(dribbles));
-
-    if (minutesPlayed && !isNaN(minutesPlayed))
-      filtered = filtered.filter(m => m.mnt >= parseInt(minutesPlayed));
-
-    if (forTeam && forTeam !== 'All')
-      filtered = filtered.filter(m => m.forTeam === forTeam);
-
-    if (againstTeam && againstTeam.trim() !== '') {
-      filtered = filtered.filter(m =>
-        (m.againstTeam || '').toLowerCase().includes(againstTeam.toLowerCase())
-      );
-    }
-
-
-    console.log("Filtered matches sent:", filtered.length);
-    console.log("Filtered count:", filtered.length);
-    // console.log("Sample match:", filtered[0]);
-
-    const sortBy = req.query.sortBy;
-
-    if (sortBy === 'dateDesc') {
-      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-    } else if (sortBy === 'dateAsc') {
-      filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
-    }
-
-
-    filtered = filtered.map(match => {
-      const dateObj = new Date(match.date);
-      const day = String(dateObj.getDate()).padStart(2, '0');
-      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-      const year = dateObj.getFullYear(); // full year
-      return {
-        ...match,
-        dateFormatted: `${day}-${month}-${year}`
-      };
+      res.json({ matches: filtered, total: filtered.length });
     });
-
-    res.json({
-      total: filtered.length,
-      matches: filtered // Send all filtered matches without slicing
-    });
-  });
+  } catch (err) {
+    console.error('Error filtering matches:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 

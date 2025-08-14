@@ -1,0 +1,43 @@
+<div class="match-card">
+  <div class="card-content">
+    <div class="card-header">
+      <span class="match-date" style="display:inline-flex;align-items:center;gap:6px;">
+        <i class="icon-adjust icon-small no"></i> {{No}}
+        <i data-lucide="calendar" class="icon-adjust icon-small"></i> {{dateFormatted}}
+      </span>
+      <span class="team-name for">{{forTeam}}</span>
+      <span class="team-name against">vs {{againstTeam}}</span>
+      <span class="competition">🏆 {{competition}}</span>
+      <span class="stage">{{stage}}</span>
+      <span class="goals"><img src="/images/goal.png" alt="Goal" class="icon-img" /> {{goals}}</span>
+      <span class="assists"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> {{assists}}</span>
+    </div>
+    <div class="card-footer">
+      <button class="details-toggle" onclick="toggleCardDetails(this)">Details <span class="arrow">▾</span></button>
+    </div>
+  </div>
+  <div class="card-details">
+    <div class="details-grid">
+      <div class="performance">
+        <strong>Performance</strong>
+        <div><span class="label"><img src="/images/goal.png" alt="Goal" class="icon-img" /> Total Goals:</span><span class="value">{{goals}}</span></div>
+        <div><span class="label"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> Assists:</span><span class="value">{{assists}}</span></div>
+        <div><span class="label"><i data-lucide="trending-up" class="icon-sm text-blue"></i> Chances Created:</span><span class="value">{{CC}}</span></div>
+        <div><span class="label"><i data-lucide="zap" class="icon-sm dribble-icon align-icon"></i> Dribbles:</span><span class="value">{{dribbles}}</span></div>
+        <div><span class="label"><i data-lucide="clock" class="icon-sm text-blue-400 align-icon"></i> Minutes Played:</span><span class="value">{{mnt}}'</span></div>
+      </div>
+      <div class="goal-types">
+        <strong>Goal Types</strong>
+        <div><span class="goal-type">{{#if goalTypes}}{{goalTypes}}{{else}}None{{/if}}</span></div>
+      </div>
+      <div class="final-score">
+        <strong>Final Score</strong>
+        <div class="score-box">
+          <div class="score">{{scorFor}}-{{scorAgainst}}</div>
+          <div class="teams">{{forTeam}} vs {{againstTeam}}</div>
+          <div class="result-badge {{result}}">{{result}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

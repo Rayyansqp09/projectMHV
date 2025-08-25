@@ -231,6 +231,7 @@
 .match-history-title {
   font-size: 2rem;
   font-weight: 700;
+  color: #000;
 }
 
 .match-history-subtitle {
@@ -374,6 +375,312 @@
   color: #555;
 }
 
+.btn-report {
+  padding: 10px 16px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-report:hover {
+  background: #c0392b;
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-box h2 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 8px 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-submit {
+  padding: 8px 14px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background: #219150;
+}
+
+.btn-cancel {
+  padding: 8px 14px;
+  background: #bdc3c7;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background: #95a5a6;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow-y: auto;
+  /* allow scrolling if content is tall */
+  padding: 20px;
+}
+
+/* Popup box */
+.popup-box {
+  background: #1a1f36;
+  color: #f1f1f1;
+  width: 600px;
+  /* adjust width */
+  max-width: 95%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  padding: 25px 30px;
+  position: relative;
+  max-height: 90vh;
+  /* max height so content doesn't overflow screen */
+  overflow-y: auto;
+  /* scroll if content exceeds max-height */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Form styling */
+.popup-box h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.popup-box form label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.popup-box form input,
+.popup-box form select,
+.popup-box form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2a2f4a;
+  color: #fff;
+  font-size: 14px;
+}
+
+.popup-box form textarea {
+  resize: vertical;
+}
+
+/* Buttons */
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-submit {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #45a049;
+}
+
+.btn-cancel {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn-cancel:hover {
+  background-color: #da190b;
+}
+
+/* Scrollbar styling */
+.popup-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup-box::-webkit-scrollbar-track {
+  background: #2a2f4a;
+  border-radius: 4px;
+}
+
+.popup-box::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.popup-box::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+.popup-actions .btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.popup-actions .btn-fetch {
+  background-color: #03b3ff !important;
+  
+}
+
+.popup-actions .btn-fetch:hover {
+  background-color: #bdc3c7;
+}
+
+.popup-actions .btn-submit {
+  background-color: #00ff62 !important;
+  color: #fff;
+}
+
+.popup-actions .btn-submit:hover {
+  background-color: #bdc3c7;
+}
+
+.popup-actions .btn-delete {
+  background-color: #e74c3c !important;
+  
+}
+
+.popup-actions .btn-delete:hover {
+  background-color: #bdc3c7;
+}
+
+.popup-actions .btn-cancel{
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+.popup-actions .btn-cancel:hover {
+  background-color: #95a5a6;
+}
+
+.sort-container {
+  position: relative;
+  /* so the popup is positioned relative to this */
+  margin-left: auto;
+  /* keeps button and popup aligned */
+
+}
+
+.sort-popup {
+  position: absolute;
+  top: 100%;
+  /* directly below button */
+  left: 0;
+  /* align left edges */
+  background: white;
+  border: 1px solid #ccc;
+  color: #000;
+  padding: 10px;
+  z-index: 100;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 220px;
+}
+
+.sort-popup.hidden {
+  display: none;
+}
+
+
 .clear-button {
   border: 1px solid #ccc;
   background: #fff;
@@ -382,7 +689,65 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 13px;
+  margin-right: 4px;
 }
+
+#matches-container {
+  max-height: 150vh;
+  /* Adjust based on your layout */
+  overflow-y: auto;
+  /* Enables vertical scrolling */
+  padding-right: 10px;
+  /* Space so content doesn't overlap scrollbar */
+  scrollbar-width: thin;
+  /* For Firefox - makes scrollbar slimmer */
+}
+
+/* For Chrome, Edge, Safari */
+#matches-container::-webkit-scrollbar {
+  width: 8px;
+  /* scrollbar width */
+}
+
+#matches-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* track color */
+  border-radius: 4px;
+}
+
+#matches-container::-webkit-scrollbar-thumb {
+  background: #888;
+  /* scrollbar color */
+  border-radius: 4px;
+}
+
+#matches-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* hover color */
+}
+
+#popupMessage {
+  position: fixed;
+  bottom: 300px !important;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  z-index: 9999;
+}
+
+#popupMessage.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
 
 .header-row {
   display: grid;
@@ -398,11 +763,18 @@
 }
 
 .header-row span {
-  white-space: nowrap; /* prevent breaking */
+  white-space: nowrap;
+  /* prevent breaking */
 }
 
 .icon-small.no {
-  margin-right: -25px !important; /* Moves it left */
+  margin-right: -25px !important;
+  /* Moves it left */
+}
+
+.icon-small.date {
+  color: #ff0202 !important;
+  /* Moves it left */
 }
 
 
@@ -429,6 +801,24 @@
     transform: translateY(0);
   }
 }
+
+#noMatchesMessage {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  margin: 20px auto;
+  font-weight: 500;
+  padding: 20px;
+  border: 2px dashed #555;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  width: 80%;
+}
+
+.hidden {
+  display: none;
+}
+
 
 .loader {
   text-align: center;
@@ -459,6 +849,19 @@
   color: #d1d5dc !important;
 }
 
+.date-text {
+  margin-left: 30px;
+}
+
+.match-teams {
+  display: inline-flex;
+  /* or display: flex */
+  gap: 10px;
+  /* fixed space between forTeam and againstTeam */
+  align-items: center;
+  /* vertically aligns both texts */
+}
+
 .team-name.for {
   font-weight: bold;
   color: #3498db;
@@ -468,15 +871,16 @@
   font-weight: 400;
   font-size: 14px;
   color: #D1D5DC;
-  margin-left: -70px;
-  /* adjust the value as needed */
+  margin-left: 0;
+  /* remove the fixed negative margin */
 }
+
 
 .against-name-only {
   font-weight: bold;
   color: #fa1515;
   /* yellow example */
-   font-size: 0.95rem !important;
+  font-size: 0.95rem !important;
 }
 
 .competition {
@@ -614,6 +1018,14 @@
   /* Tailwind's text-blue-400 */
 }
 
+.shot-icon {
+  color: #ee2e2e;
+}
+
+.bcc-icon {
+  color: #0dff00;
+}
+
 .performance .label {
   white-space: nowrap;
 }
@@ -640,6 +1052,8 @@
 .icon-small {
   width: 16px;
   height: 16px;
+  vertical-align: text-bottom;
+  /* stroke-width: 1.5; */
 }
 
 .score-box {
@@ -722,32 +1136,6 @@
 .final-score .team-name.against {
   font-weight: 600;
 }
-
-.sort-popup {
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-  color: #000;
-  padding: 10px;
-  z-index: 100;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  width: 220px;
-  top: 121%; /* below the button */
-  left: 680px;
-}
-
-.sort-popup.hidden {
-  display: none;
-}
-
-.sort-manual {
-  margin-left: auto; /* Pushes it to the far left */
-  /* OR manually position */
-  margin-left: 53rem;
-  /* You can use margin-top, margin-bottom, etc. as needed */
-}
-
 
 .pagination-form {
   text-align: center;

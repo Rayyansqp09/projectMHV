@@ -1,7 +1,7 @@
 {{!-- views/match-history.hbs --}}
 <section class="match-history-container">
-  <h2 class="match-history-title">Match History</h2>
-  <p class="match-history-subtitle">Complete record of all matches played</p>
+  <h1 class="match-history-title">Match History-Vinicius Jr</h1>
+  <p class="match-history-subtitle">Complete record of all matches played by Vinicius Jr</p>
 
   <form class="filters-box" onsubmit="return false;">
     <div class="filters-top">
@@ -9,27 +9,25 @@
         <label class="field-label">Competition</label>
         <select name="competition" id="competition">
           <option>All</option>
-          <option>Premier League</option>
           <option value="La Liga">La Liga</option>
-          <option value="Série A">Série A (Brazilian League)</option>
-          <option>Bundesliga</option>
-          <option>Ligue 1</option>
-          <option>Champions League</option>
-          <option>Europa League</option>
-          <option>Conference League</option>
-          <option>Copa del Rey</option>
-          <option>FA Cup</option>
-          <option>Carabao Cup</option>
-          <option>Club World Cup</option>
+          <option value="Champions League">Champions League </option>
           <option>World Cup</option>
-          <option>Euro</option>
-          <option>Copa America</option>
-          <option>AFCON</option>
-          <option>Asian Cup</option>
-          <option>Nations League</option>
-          <option>Nations League</option>
-          <option>International non-friendly games</option>
-
+          <option>Club World Cup</option>
+          <option>Copa del Rey</option>
+          <option value="Copa do brasil">Copa do brasil (Brazilian Domestic Cup)</option>
+          <option value="Supercopa de España">Supercopa de España (Spanish Super Cup)</option>
+          <option>UEFA Super Cup</option>
+          <option value="Intercontinental Cup ">Intercontinental Cup</option>
+          <option value="Série A">Série A (Brazilian League)</option>
+          <option value="Sudamericana">Copa Sudamericana</option>
+          <option value="Libertadores">Copa Libertadores</option>
+          <option>Segunda División B</option>
+          <option value="International Friendly ">International Friendly</option>
+          <option>Copa América</option>
+          <option value="WCQ">World Cup Qualifiers</option>
+          <option value="Copa América,WCQ,World Cup">International non-friendly games</option>
+          <option>Primeira Liga</option>
+          <option value=" Cariocão,Carioca-Taça Rio,Carioca - Final">Cariocão</option>
         </select>
       </div>
 
@@ -43,8 +41,8 @@
           <option>Round of 16</option>
           <option>Quarter Final</option>
           <option>Semi Final</option>
-          <option>Final</option>
-          <option>Playoffs</option>
+          <option value="Final,Final (1st Leg)">Final</option>
+          <option value="Knockout Play-offs,Playoffs">Playoffs</option>
           <option>3rd Place</option>
           <option>Preliminary Round</option>
         </select>
@@ -60,6 +58,7 @@
           <option value="2018-19">2018-19</option>
           <option value="2018">2018</option>
           <option value="2017">2017</option>
+          <option value="2017">2016</option>
           <!-- Add more seasons as needed -->
         </select>
       </div>
@@ -117,7 +116,16 @@
                 value="Header">Header</label>
 
             <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
-                value="dribblePast">Dribble Past 3+ Players</label>
+                value="Dribble past 3+ players">Dribble Past 3+ Players</label>
+
+            <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
+                value="Dribble past the keeper"> Dribble past the keeper</label>
+
+            <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
+                value="Chip over the keeper">Chip over the keeper</label>
+
+            <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
+                value="Chest">Chest</label>
           </div>
         </div>
       </div>
@@ -129,6 +137,13 @@
           <option value="2025">2025</option>
           <option value="2024">2024</option>
           <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
           <!-- Add more years as needed -->
         </select>
       </div>
@@ -153,6 +168,7 @@
         <select name="for" id="for">
           <option>All</option>
           <option value="Real Madrid">Real Madrid</option>
+          <option value="Real Madrid Castilla">Real Madrid Castilla</option>
           <option value="Flamengo">Flamengo</option>
           <option value="Brazil">Brazil</option>
         </select>
@@ -168,19 +184,158 @@
   </form>
 
   <div class="filter-bottom-row">
-    <span class="match-count">Showing 100 of 250 matches</span>
-    <button type="button" class="clear-button sort-manual" id="sortBtn">Sort</button>
-    <div id="sortPopup" class="sort-popup hidden">
-      <label><input type="radio" name="sort" value="dateDesc"> Date: Newest → Oldest</label><br>
-      <label><input type="radio" name="sort" value="dateAsc"> Date: Oldest → Newest</label><br>
+    <span class="match-count">
+      Showing {{showingMatches}} of {{totalMatches}} matches
+    </span>
+
+
+
+    <div class="sort-container">
+      <!-- Button to open popup -->
+      <button id="openMatchPopup" class="btn clear-button">Modify / Delete Match</button>
+      <button id="openAddMatchPopup" class="clear-button">Add Match</button>
+      <button id="openStatsPopup" class="btn-open clear-button sort-manual">Report Inaccurate Stats</button>
+      <button type="button" class="clear-button sort-manual" id="sortBtn">Sort</button>
+      <div id="sortPopup" class="sort-popup hidden">
+        <label><input type="radio" name="sort" value="dateDesc"> Date: Newest → Oldest</label><br>
+        <label><input type="radio" name="sort" value="dateAsc"> Date: Oldest → Newest</label><br>
+      </div>
     </div>
 
     <button type="button" class="clear-button" id="clearFiltersBtn">Clear All Filters</button>
   </div>
 
+  {{!-- Reprt popup --}}
+  <div id="statsPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-box">
+      <h2>Report Inaccurate Stats</h2>
+      <form id="statsReportForm">
+        <!-- Email -->
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+        <!-- Match ID -->
+        <label for="matchId">Match No or Date:</label>
+        <input type="text" id="matchId" name="matchId" required placeholder="Enter match ID">
+
+        <!-- Stat Name & Current Stat -->
+        <label for="statName">Stat Name & Current Stat:(According to the page)</label>
+        <input type="text" id="statName" name="statName" required placeholder="e.g., Dribbles: 10">
+
+        <!-- Correct Stat -->
+        <label for="correctStat">Correct Stat:</label>
+        <input type="text" id="correctStat" name="correctStat" required placeholder="Enter correct value">
+
+        <!-- Extra Information -->
+        <label for="extra">Extra Information (Optional):</label>
+        <textarea id="extra" name="extra" placeholder="Provide source or additional details"></textarea>
+
+        <!-- Buttons -->
+        <div class="popup-actions">
+          <button type="submit" class="btn-submit">Submit</button>
+          <button type="button" id="closeStatsPopup" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Please Wait Popup -->
+  <div id="emailSendingPopup" class="mvhv-popup-wait" style="display:none;">
+    <div class="mvhv-popup-box1">
+      <p>✉️ Please wait, sending your email...</p>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div id="mvhvSuccessPopup" class="mvhv-popup-success" style="display:none;">
+    <div class="mvhv-popup-box">
+      <p>📨 Your message was sent successfully! We'll get back to you soon.</p>
+    </div>
+  </div>
+
+  <!-- Add Match Popup -->
+  <div id="addMatchPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-box">
+      <h2>Add New Match</h2>
+      <form id="addMatchForm">
+        <label for="playerTable">Player:</label>
+        <select id="playerTable" name="playerTable" required>
+          <option value="mhmbappe">Mbappe</option>
+          <option value="mhhaaland">Haaland</option>
+          <option value="mhvinicius">Vinicius</option>
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="season">Season:</label>
+        <input type="text" id="season" name="season" required>
+
+        <label for="competition">Competition:</label>
+        <input type="text" id="competition" name="competition" required>
+
+        <label for="stage">Stage:</label>
+        <input type="text" id="stage" name="stage" required>
+
+        <label for="forTeam">For Team:</label>
+        <input type="text" id="forTeam" name="forTeam" required>
+
+        <label for="againstTeam">Against Team:</label>
+        <input type="text" id="againstTeam" name="againstTeam" required>
+
+        <label for="goals">Goals:</label>
+        <input type="number" id="goals" name="goals">
+
+        <label for="assists">Assists:</label>
+        <input type="number" id="assists" name="assists">
+
+        <label for="CC">CC:</label>
+        <input type="number" id="CC" name="CC">
+
+        <label for="BCC">BCC:</label>
+        <input type="number" id="BCC" name="BCC">
+
+        <label for="Shot">Shot:</label>
+        <input type="number" id="shot" name="shot">
+
+        <label for="dribbles">Dribbles:</label>
+        <input type="number" id="dribbles" name="dribbles">
+
+        <label for="mnt">Minute Played:</label>
+        <input type="number" id="mnt" name="mnt" required>
+
+        <label for="Motm">MOTM (1 or 0):</label>
+        <input type="number" id="motm" name="motm">
+
+        <label for="result">Result:</label>
+        <input type="text" id="result" name="result" required>
+
+        <label for="scorFor">Score For:</label>
+        <input type="number" id="scorFor" name="scorFor">
+
+        <label for="scorAgainst">Score Against:</label>
+        <input type="number" id="scorAgainst" name="scorAgainst">
+
+        <label for="goalTypes">Goal Types (comma separated):</label>
+        <input type="text" id="goalTypes" name="goalTypes">
+
+        <label for="astBy">Assist By:</label>
+        <input type="text" id="astBy" name="astBy">
+
+        <label for="astFor">Assist For:</label>
+        <input type="text" id="astFor" name="astFor">
+
+        <div class="popup-actions">
+          <button type="submit" class="btn-submit">Add</button>
+          <button type="button" id="closeAddMatchPopup" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <div class="header-row">
-     <span>Match no:</span>
+    <span>Match no</span>
     <span><i data-lucide="calendar" class="icon-adjust icon-small"></i> Date</span>
     <span>For</span>
     <span>Against</span>
@@ -207,6 +362,7 @@
     {{> match-card this}}
     {{/each}}
   </div>
+  <div id="noMatchesMessage" class="hidden">No matches found.</div>
 
   <div class="pagination">
     {{#if hasMore}}
@@ -219,7 +375,7 @@
 
 {{!-- loadMoreBtn --}}
 
-
+{{>filterPop}}
 <script>
 
 
@@ -250,182 +406,479 @@
       }
     });
   });
-  const sortBtn = document.getElementById('sortBtn');
-  const sortPopup = document.getElementById('sortPopup');
 
-  // Toggle popup
-  sortBtn.addEventListener('click', () => {
-    sortPopup.classList.toggle('hidden');
+  // Report form popup and send script
+  const statsPopup = document.getElementById("statsPopup");
+  const openStatsPopupBtn = document.getElementById("openStatsPopup");
+  const closeStatsPopupBtn = document.getElementById("closeStatsPopup");
+  const statsReportForm = document.getElementById("statsReportForm");
+
+  // Loading + Success popups
+  const sendingPopup = document.getElementById("emailSendingPopup");
+  const successPopup = document.getElementById("mvhvSuccessPopup");
+
+  // Open popup
+  openStatsPopupBtn.addEventListener("click", () => {
+    statsPopup.style.display = "flex";
   });
 
-  // When sorting option selected
-  document.querySelectorAll('input[name="sort"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      sortPopup.classList.add('hidden'); // hide popup
-      updateFilter(0, false); // reload with sort
-    });
+  // Close popup
+  closeStatsPopupBtn.addEventListener("click", () => {
+    statsPopup.style.display = "none";
   });
 
-  document.addEventListener('click', function (event) {
-    const isClickInside = sortPopup.contains(event.target) || sortBtn.contains(event.target);
+  // Submit form
+  statsReportForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    if (!isClickInside && !sortPopup.classList.contains('hidden')) {
-      sortPopup.classList.add('hidden');
+    const formData = {
+      email: document.getElementById("email").value,
+      statTitle: document.getElementById("matchId").value, // backend expects "statTitle" but we map it from matchId
+      currentStat: document.getElementById("statName").value,
+      correctStat: document.getElementById("correctStat").value,
+      extra: document.getElementById("extra").value
+    };
+
+    try {
+      // Show "Please wait" popup
+      sendingPopup.style.display = "flex";
+
+      const res = await fetch("/send-inaccurate-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      // Hide sending popup
+      sendingPopup.style.display = "none";
+
+      if (res.ok) {
+        // Show success popup
+        successPopup.style.display = "flex";
+
+        // Auto-hide after 3s
+        setTimeout(() => {
+          successPopup.style.display = "none";
+        }, 3000);
+
+        // Reset form & close modal
+        statsPopup.style.display = "none";
+        statsReportForm.reset();
+      } else {
+        alert("Failed to submit. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      sendingPopup.style.display = "none"; // hide wait popup if error
+      alert("Something went wrong. Please try again later.");
     }
   });
 
+  // add match
+  const addMatchPopup = document.getElementById("addMatchPopup");
+  const openAddMatchBtn = document.getElementById("openAddMatchPopup");
+  const closeAddMatchBtn = document.getElementById("closeAddMatchPopup");
+  const addMatchForm = document.getElementById("addMatchForm");
+
+  // Open popup
+  openAddMatchBtn.addEventListener("click", () => {
+    addMatchPopup.style.display = "flex";
+  });
+
+  // Close popup
+  closeAddMatchBtn.addEventListener("click", () => {
+    addMatchPopup.style.display = "none";
+  });
+
+  // Submit form
+  addMatchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = Object.fromEntries(new FormData(addMatchForm).entries());
+
+    // If goalTypes is a string, convert it to comma separated string if needed
+    if (formData.goalTypes) {
+      formData.goalTypes = formData.goalTypes.split(',').map(s => s.trim()).join(',');
+    }
+
+    try {
+      const res = await fetch("/admin/add-match", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        alert("Match added successfully!");
+        addMatchForm.reset();
+        addMatchPopup.style.display = "none";
+        // Optionally, refresh the matches list or append the new match dynamically
+      } else {
+        alert("Failed to add match. " + result.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
+    }
+  });
+
+  //Modify and delete
+  document.addEventListener("DOMContentLoaded", () => {
+    const matchPopup = document.getElementById("matchPopup");
+    const openMatchPopupBtn = document.getElementById("openMatchPopup");
+    const closeMatchPopupBtn = document.getElementById("closeMatchPopup");
+    const matchForm = document.getElementById("matchForm");
+    const fetchMatchBtn = document.getElementById("fetchMatch");
+    const deleteMatchBtn = document.getElementById("deleteMatch");
+    const playerSelect = document.getElementById("playerSelect");
+    const matchNumberInput = document.getElementById("matchNumber");
+
+
+    // Open popup
+    openMatchPopupBtn.addEventListener("click", () => {
+      matchPopup.style.display = "flex";
+    });
+
+    // Close popup
+    closeMatchPopupBtn.addEventListener("click", () => {
+      matchPopup.style.display = "none";
+      matchForm.reset();
+    });
+
+    // Fetch existing match data
+    fetchMatchBtn.addEventListener("click", async () => {
+      const playerTable = playerSelect.value;
+      const matchNumber = matchNumberInput.value;
+
+      if (!playerTable) return alert("Select a player!");
+      if (!matchNumber) return alert("Enter a match number!");
+
+      try {
+        const res = await fetch(`/admin/get-match/${matchNumber}?playerTable=${playerTable}`);
+        const data = await res.json();
+
+        if (!data.success) return alert(data.error || "Match not found");
+
+        // Fill the form with fetched data
+        Object.keys(data.match).forEach(key => {
+          const input = matchForm.querySelector(`[name=${key}]`);
+          if (input) input.value = data.match[key];
+        });
+
+      } catch (err) {
+        console.error(err);
+        alert("Failed to fetch match data");
+      }
+    });
+
+
+    // Modify match
+    matchForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const playerTable = playerSelect.value;
+      const matchNumber = matchNumberInput.value;
+
+      if (!playerTable) return alert("Select a player!");
+      if (!matchNumber) return alert("Enter a match number!");
+
+      const formData = Object.fromEntries(new FormData(matchForm).entries());
+
+      try {
+        const res = await fetch('/admin/match-action', {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "modify",
+            matchNumber,
+            playerTable,
+            data: formData
+          })
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Match updated successfully!");
+          matchForm.reset();
+          matchPopup.style.display = "none";
+        } else {
+          alert(result.error || "Failed to update match");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error updating match");
+      }
+    });
+
+    // Delete match
+    deleteMatchBtn.addEventListener("click", async () => {
+      const playerTable = document.getElementById("playerSelect").value;
+      const matchNumber = document.getElementById("matchNumber").value;
+
+      if (!playerTable) return alert("Select a player!");
+      if (!matchNumber) return alert("Enter a match number!");
+
+      if (!confirm("Are you sure you want to delete this match?")) return;
+
+      try {
+        const res = await fetch('/admin/match-action', {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "delete",
+            matchNumber,
+            playerTable
+          })
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Match deleted successfully!");
+          matchForm.reset();
+          matchPopup.style.display = "none";
+        } else {
+          alert(result.error || "Failed to delete match");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error deleting match");
+      }
+    });
+
+  });
+
+
+  lucide.createIcons();
 
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const competitionSelect = document.getElementById('competition');
-  const stageSelect = document.getElementById('stage');
-  const seasonSelect = document.getElementById('season');
-  const yearSelect = document.getElementById('year');
-  const minGoalsInput = document.getElementById('minGoals');
-  const minAssistsInput = document.getElementById('minAssists');
-  const chancesCreatedInput = document.getElementById('chancesCreated');
-  const dribblesInput = document.getElementById('dribbles');
-  const minutesPlayedInput = document.getElementById('minutesPlayed');
-  const resultSelect = document.getElementById('rest');
-  const goalTypeCheckboxes = document.querySelectorAll('.goal-type');
-  const forTeamSelect = document.getElementById('for');       // NEW
-  const againstTeamInput = document.getElementById('against'); // NEW
-  const loadMoreBtn = document.getElementById('load-more');
-  const container = document.getElementById('matches-container');
+  document.addEventListener('DOMContentLoaded', () => {
+    const competitionSelect = document.getElementById('competition');
+    const stageSelect = document.getElementById('stage');
+    const seasonSelect = document.getElementById('season');
+    const yearSelect = document.getElementById('year');
+    const minGoalsInput = document.getElementById('minGoals');
+    const minAssistsInput = document.getElementById('minAssists');
+    const chancesCreatedInput = document.getElementById('chancesCreated');
+    const dribblesInput = document.getElementById('dribbles');
+    const minutesPlayedInput = document.getElementById('minutesPlayed');
+    const resultSelect = document.getElementById('rest');
+    const goalTypeCheckboxes = document.querySelectorAll('.goal-type');
+    const forTeamSelect = document.getElementById('for');       // NEW
+    const againstTeamInput = document.getElementById('against'); // NEW
+    const loadMoreBtn = document.getElementById('load-more');
+    const container = document.getElementById('matches-container');
 
-  let currentOffset = 0;
-  let currentLimit = 100; // or any number you want
+    let currentOffset = 0;
+    let currentLimit = 100; // or any number you want
 
 
-  // Current filter states
-  let currentCompetition = '';
-  let currentMinGoals = 0;
-  let currentMinAssists = 0;
-  let currentCC = 0;
-  let currentDribbles = 0;
-  let currentMnt = 0;
-  let currentStage = '';
-  let currentSeason = '';
-  let currentYear = '';
-  let currentResult = '';
-  let currentForTeam = '';    // NEW
-  let currentAgainstTeam = ''; // NEW
-  let currentGoalTypes = [];
+    // Current filter states
+    let currentCompetition = '';
+    let currentMinGoals = 0;
+    let currentMinAssists = 0;
+    let currentCC = 0;
+    let currentDribbles = 0;
+    let currentMnt = 0;
+    let currentStage = '';
+    let currentSeason = '';
+    let currentYear = '';
+    let currentResult = '';
+    let currentForTeam = '';    // NEW
+    let currentAgainstTeam = ''; // NEW
+    let currentGoalTypes = [];
 
-  function applyFilters() {
-    currentCompetition = competitionSelect.value;
-    currentMinGoals = parseInt(minGoalsInput.value) || 0;
-    currentMinAssists = parseInt(minAssistsInput.value) || 0;
-    currentCC = parseInt(chancesCreatedInput.value) || 0;
-    currentDribbles = parseInt(dribblesInput.value) || 0;
-    currentMnt = parseInt(minutesPlayedInput.value) || 0;
-    currentStage = stageSelect.value;
-    currentSeason = seasonSelect.value;
-    currentYear = yearSelect.value;
-    currentResult = resultSelect.value;
-    currentForTeam = forTeamSelect.value;                   // NEW
-    currentAgainstTeam = againstTeamInput.value.trim();     // NEW
-    currentGoalTypes = Array.from(goalTypeCheckboxes)
-      .filter(cb => cb.checked)
-      .map(cb => cb.value);
+    function applyFilters() {
+      currentCompetition = competitionSelect.value;
+      currentMinGoals = parseInt(minGoalsInput.value) || 0;
+      currentMinAssists = parseInt(minAssistsInput.value) || 0;
+      currentCC = parseInt(chancesCreatedInput.value) || 0;
+      currentDribbles = parseInt(dribblesInput.value) || 0;
+      currentMnt = parseInt(minutesPlayedInput.value) || 0;
+      currentStage = stageSelect.value;
+      currentSeason = seasonSelect.value;
+      currentYear = yearSelect.value;
+      currentResult = resultSelect.value;
+      currentForTeam = forTeamSelect.value;                   // NEW
+      currentAgainstTeam = againstTeamInput.value.trim();     // NEW
+      currentGoalTypes = Array.from(goalTypeCheckboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
 
-    currentOffset = 0;
-    fetchMatches(
-      currentOffset,
-      currentLimit,
-      currentCompetition,
-      currentMinGoals,
-      currentMinAssists,
-      currentCC,
-      currentDribbles,
-      currentMnt,
-      currentStage,
-      currentSeason,
-      currentYear,
-      currentResult,
-      currentForTeam,       // NEW
-      currentAgainstTeam,   // NEW
-      currentGoalTypes,
-      true
-    );
-  }
+      currentOffset = 0;
+      fetchMatches(
+        currentOffset,
+        currentLimit,
+        currentCompetition,
+        currentMinGoals,
+        currentMinAssists,
+        currentCC,
+        currentDribbles,
+        currentMnt,
+        currentStage,
+        currentSeason,
+        currentYear,
+        currentResult,
+        currentForTeam,       // NEW
+        currentAgainstTeam,   // NEW
+        currentGoalTypes,
+        true
+      );
+    }
 
-  // Event listeners
-  competitionSelect.addEventListener('change', applyFilters);
-  minGoalsInput.addEventListener('input', applyFilters);
-  minAssistsInput.addEventListener('input', applyFilters);
-  chancesCreatedInput.addEventListener('input', applyFilters);
-  dribblesInput.addEventListener('input', applyFilters);
-  minutesPlayedInput.addEventListener('input', applyFilters);
-  stageSelect.addEventListener('change', applyFilters);
-  seasonSelect.addEventListener('change', applyFilters);
-  yearSelect.addEventListener('change', applyFilters);
-  resultSelect.addEventListener('change', applyFilters);
-  forTeamSelect.addEventListener('change', applyFilters);    // NEW
-  againstTeamInput.addEventListener('input', applyFilters);  // NEW
-  goalTypeCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+    // Event listeners
+    competitionSelect.addEventListener('change', applyFilters);
+    minGoalsInput.addEventListener('input', applyFilters);
+    minAssistsInput.addEventListener('input', applyFilters);
+    chancesCreatedInput.addEventListener('input', applyFilters);
+    dribblesInput.addEventListener('input', applyFilters);
+    minutesPlayedInput.addEventListener('input', applyFilters);
+    stageSelect.addEventListener('change', applyFilters);
+    seasonSelect.addEventListener('change', applyFilters);
+    yearSelect.addEventListener('change', applyFilters);
+    resultSelect.addEventListener('change', applyFilters);
+    forTeamSelect.addEventListener('change', applyFilters);    // NEW
+    againstTeamInput.addEventListener('input', applyFilters);  // NEW
+    goalTypeCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
 
-  loadMoreBtn?.addEventListener('click', () => {
-    fetchMatches(
-      currentOffset,
-      currentLimit,
-      currentCompetition,
-      currentMinGoals,
-      currentMinAssists,
-      currentCC,
-      currentDribbles,
-      currentMnt,
-      currentStage,
-      currentSeason,
-      currentYear,
-      currentResult,
-      currentForTeam,       // NEW
-      currentAgainstTeam,   // NEW
-      currentGoalTypes,
-      false
-    );
+    clearFiltersBtn.addEventListener('click', () => {
+      // Reset selects to "All"
+      document.querySelectorAll('select').forEach(select => {
+        select.value = 'All';
+      });
+
+      // Clear text and number inputs
+      document.querySelectorAll('input[type="number"], input[type="text"]').forEach(input => {
+        input.value = '';
+      });
+
+      // Uncheck all checkboxes
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+
+      // Reapply filters
+      applyFilters();
+    });
+
+    const sortBtn = document.getElementById('sortBtn');
+    const sortPopup = document.getElementById('sortPopup');
+    const sortRadios = document.querySelectorAll('input[name="sort"]');
+
+    let currentSort = ''; // store sort selection
+
+    // Toggle popup on Sort button click
+    sortBtn.addEventListener('click', () => {
+      sortPopup.classList.toggle('hidden');
+    });
+
+    // Handle sort option change
+    sortRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        currentSort = radio.value;
+        sortPopup.classList.add('hidden'); // hide popup after selection
+        applyFilters(); // reload data with new sort
+      });
+    });
+
+
+    loadMoreBtn?.addEventListener('click', () => {
+      fetchMatches(
+        currentOffset,
+        currentLimit,
+        currentCompetition,
+        currentMinGoals,
+        currentMinAssists,
+        currentCC,
+        currentDribbles,
+        currentMnt,
+        currentStage,
+        currentSeason,
+        currentYear,
+        currentResult,
+        currentForTeam,       // NEW
+        currentAgainstTeam,   // NEW
+        currentGoalTypes,
+        false
+      );
+    });
+
+    function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset) {
+      let url = `/mhv?offset=${offset}&limit=${limit}`;
+      if (currentSort) url += `&sort=${encodeURIComponent(currentSort)}`;
+      if (competition && competition !== 'All') url += `&competition=${encodeURIComponent(competition)}`;
+      if (minGoals > 0) url += `&minGoals=${minGoals}`;
+      if (minAssists > 0) url += `&minAssists=${minAssists}`;
+      if (CC > 0) url += `&CC=${CC}`;
+      if (dribbles > 0) url += `&dribbles=${dribbles}`;
+      if (mnt > 0) url += `&mnt=${mnt}`;
+      if (stage && stage !== 'All') url += `&stage=${encodeURIComponent(stage)}`;
+      if (season && season !== 'All') url += `&season=${encodeURIComponent(season)}`;
+      if (year && year !== 'All') url += `&year=${encodeURIComponent(year)}`;
+      if (result && result !== 'All') url += `&result=${encodeURIComponent(result)}`;
+      if (forTeam && forTeam !== 'All') url += `&forTeam=${encodeURIComponent(forTeam)}`;
+      if (againstTeam) url += `&againstTeam=${encodeURIComponent(againstTeam)}`;
+      if (goalTypes.length > 0) url += `&goalTypes=${encodeURIComponent(goalTypes.join(','))}`;
+
+      fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const newMatches = doc.querySelectorAll('#matches-container .match-card');
+
+          if (reset) container.innerHTML = '';
+
+          if (newMatches.length === 0) {
+            container.innerHTML = `<div id="noMatchesMessage">No matches found.</div>`;
+          } else {
+            newMatches.forEach(card => container.appendChild(card));
+          }
+
+          currentOffset += limit;
+
+          // ✅ Update match count dynamically
+          const matchCountEl = document.querySelector('.match-count');
+          const newMatchCountEl = doc.querySelector('.match-count');
+          if (matchCountEl && newMatchCountEl) {
+            matchCountEl.textContent = newMatchCountEl.textContent;
+          }
+
+          const newLoadMoreBtn = doc.getElementById('load-more');
+          if (!newLoadMoreBtn) {
+            loadMoreBtn.style.display = 'none';
+          } else {
+            loadMoreBtn.style.display = 'block';
+            loadMoreBtn.dataset.offset = currentOffset;
+          }
+          // SHOW POPUP HERE
+          showPopup(`${newMatches.length} matches loaded!`);
+
+        })
+        .catch(err => console.error(err));
+    }
+
   });
 
-  function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset) {
-    let url = `/mhv?offset=${offset}&limit=${limit}`;
-    if (competition && competition !== 'All') url += `&competition=${encodeURIComponent(competition)}`;
-    if (minGoals > 0) url += `&minGoals=${minGoals}`;
-    if (minAssists > 0) url += `&minAssists=${minAssists}`;
-    if (CC > 0) url += `&CC=${CC}`;
-    if (dribbles > 0) url += `&dribbles=${dribbles}`;
-    if (mnt > 0) url += `&mnt=${mnt}`;
-    if (stage && stage !== 'All') url += `&stage=${encodeURIComponent(stage)}`;
-    if (season && season !== 'All') url += `&season=${encodeURIComponent(season)}`;
-    if (year && year !== 'All') url += `&year=${encodeURIComponent(year)}`;
-    if (result && result !== 'All') url += `&result=${encodeURIComponent(result)}`;
-    if (forTeam && forTeam !== 'All') url += `&forTeam=${encodeURIComponent(forTeam)}`; // NEW
-    if (againstTeam) url += `&againstTeam=${encodeURIComponent(againstTeam)}`;         // NEW
-    if (goalTypes.length > 0) url += `&goalTypes=${encodeURIComponent(goalTypes.join(','))}`;
+  // Create the popup element once
+  let popupMessage = document.createElement('div');
+  popupMessage.id = 'popupMessage';
+  document.body.appendChild(popupMessage);
 
-    fetch(url)
-      .then(res => res.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const newMatches = doc.querySelectorAll('#matches-container .match-card');
+  // Show popup function
+  function showPopup(msg) {
+    popupMessage.textContent = msg;
+    popupMessage.classList.add('show');
 
-        if (reset) container.innerHTML = '';
-
-        newMatches.forEach(card => container.appendChild(card));
-
-        currentOffset += limit;
-
-        const newLoadMoreBtn = doc.getElementById('load-more');
-        if (!newLoadMoreBtn) {
-          loadMoreBtn.style.display = 'none';
-        } else {
-          loadMoreBtn.style.display = 'block';
-          loadMoreBtn.dataset.offset = currentOffset;
-        }
-      })
-      .catch(err => console.error(err));
+    setTimeout(() => {
+      popupMessage.classList.remove('show');
+    }, 3000);
   }
-});
+
+
 </script>

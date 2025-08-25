@@ -87,6 +87,144 @@ router.post('/sts-update', upload.none(), function (req, res) {
   });
 });
 
+router.post('/add-match', async (req, res) => {
+  try {
+    console.log('Form Data Received:', req.body); // Debug
+
+    const { playerTable, ...matchData } = req.body; // playerTable: table name for the selected player
+
+    // Wrap callback in a Promise for await
+    await new Promise((resolve, reject) => {
+      displayHelper.addMatch(playerTable, matchData, (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      });
+    });
+
+    res.json({ success: true, message: 'Match added successfully!' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: 'Failed to add match' });
+  }
+});
+
+// Single router to handle modify or delete
+router.post('/match-action', (req, res) => {
+  const { matchNumber, action, data, playerTable } = req.body;
+
+  if (!matchNumber || !action) {
+    return res.status(400).json({ success: false, error: 'Missing required fields' });
+  }
+
+  if (action === 'modify') {
+    // Call helper function to modify match using callback
+    displayHelper.modifyMatch(playerTable, matchNumber, data, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, error: 'Failed to modify match' });
+      }
+      res.json({ success: true, message: 'Match updated successfully!' });
+    });
+
+  } else if (action === 'delete') {
+    // Call helper function to delete match using callback
+    displayHelper.deleteMatch(playerTable, matchNumber, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, error: 'Failed to delete match' });
+      }
+      res.json({ success: true, message: 'Match deleted successfully!' });
+    });
+
+  } else {
+    return res.status(400).json({ success: false, error: 'Invalid action' });
+  }
+});
+
+
+router.get('/get-match/:matchNumber', (req, res) => {
+  const { matchNumber } = req.params;
+  const { playerTable } = req.query;
+
+  if (!matchNumber || !playerTable) {
+    return res.status(400).json({ success: false, error: 'Missing required fields' });
+  }
+
+  displayHelper.getStats(playerTable, (err, allMatches) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ success: false, error: 'Server error' });
+    }
+
+    const match = allMatches.find(row => row.No == matchNumber);
+
+    if (!match) {
+      return res.status(404).json({ success: false, error: 'Match not found' });
+    }
+
+    // ✅ Convert date to YYYY-MM-DD for input[type="date"]
+    if (match.date) {
+      if (match.date instanceof Date) {
+        match.date = match.date.toISOString().split('T')[0];
+      } else if (typeof match.date === 'string') {
+        const [day, month, year] = match.date.split("/");
+        match.date = `${year}-${month}-${day}`;
+      }
+    }
+
+    res.json({ success: true, match });
+  });
+});
+
+router.get('/vote', function (req, res, next) {
+  console.log(`[${new Date().toISOString()}] /vote page requested from IP: ${req.ip}`);
+
+  displayHelper.getStats('votes', (err, votes) => {
+    if (err) {
+      console.error(`[${new Date().toISOString()}] Error getting stats:`, err);
+      return res.status(500).send('Error loading stats');
+    }
+
+    const voteCounts = { Mbappe: 0, Haaland: 0, Vinicius: 0 };
+    votes.forEach(row => {
+      const name = row.player_name;
+      if (voteCounts[name] !== undefined) voteCounts[name]++;
+    });
+
+    const totalVotes = voteCounts.Mbappe + voteCounts.Haaland + voteCounts.Vinicius;
+
+    console.log(`[${new Date().toISOString()}] Vote data fetched:`, {
+      Mbappe: voteCounts.Mbappe,
+      Haaland: voteCounts.Haaland,
+      Vinicius: voteCounts.Vinicius,
+      Total: totalVotes
+    });
+
+    const voteData = {
+      Mbappe: {
+        count: voteCounts.Mbappe,
+        percentage: totalVotes ? ((voteCounts.Mbappe / totalVotes) * 100).toFixed(1) : 0
+      },
+      Haaland: {
+        count: voteCounts.Haaland,
+        percentage: totalVotes ? ((voteCounts.Haaland / totalVotes) * 100).toFixed(1) : 0
+      },
+      Vinicius: {
+        count: voteCounts.Vinicius,
+        percentage: totalVotes ? ((voteCounts.Vinicius / totalVotes) * 100).toFixed(1) : 0
+      }
+    };
+
+    res.render('user/vote', {
+      title: 'Vote for Your Favorite Player | MHVStats',
+      description: 'Who is your favorite — Mbappe, Haaland, or Vinicius? Cast your vote and see who the fans support most.',
+      admin: true,
+      voteData,
+      totalVotes
+    });
+  });
+});
+
 
 
 router.get('/alltime', function (req, res, next) {

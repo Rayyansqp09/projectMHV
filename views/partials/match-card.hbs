@@ -3,10 +3,13 @@
     <div class="card-header">
       <span class="match-date" style="display:inline-flex;align-items:center;gap:6px;">
         <i class="icon-adjust icon-small no"></i> {{No}}
-        <i data-lucide="calendar" class="icon-adjust icon-small"></i> {{dateFormatted}}
+        <span class="date-text"><i data-lucide="calendar" class="icon-adjust icon-small"></i> {{dateFormatted}}</span>
       </span>
-      <span class="team-name for">{{forTeam}}</span>
-      <span class="team-name against">vs {{againstTeam}}</span>
+      
+      <div class="match-teams">
+        <span class="team-name for">{{forTeam}}</span>
+        <span class="team-name against">vs {{againstTeam}}</span>
+      </div>
       <span class="competition">🏆 {{competition}}</span>
       <span class="stage">{{stage}}</span>
       <span class="goals"><img src="/images/goal.png" alt="Goal" class="icon-img" /> {{goals}}</span>
@@ -20,11 +23,20 @@
     <div class="details-grid">
       <div class="performance">
         <strong>Performance</strong>
-        <div><span class="label"><img src="/images/goal.png" alt="Goal" class="icon-img" /> Total Goals:</span><span class="value">{{goals}}</span></div>
-        <div><span class="label"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> Assists:</span><span class="value">{{assists}}</span></div>
-        <div><span class="label"><i data-lucide="trending-up" class="icon-sm text-blue"></i> Chances Created:</span><span class="value">{{CC}}</span></div>
-        <div><span class="label"><i data-lucide="zap" class="icon-sm dribble-icon align-icon"></i> Dribbles:</span><span class="value">{{dribbles}}</span></div>
-        <div><span class="label"><i data-lucide="clock" class="icon-sm text-blue-400 align-icon"></i> Minutes Played:</span><span class="value">{{mnt}}'</span></div>
+        <div><span class="label"><img src="/images/goal.png" alt="Goal" class="icon-img" /> Total Goals:</span><span
+            class="value">{{goals}}</span></div>
+        <div><span class="label"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> Assists:</span><span
+            class="value text-purple">{{assists}}</span></div>
+        <div><span class="label"><i data-lucide="target" class="icon-sm shot-icon"></i> Shot On Target:</span><span
+            class="value shot-icon">{{Shot}}</span></div>
+        <div><span class="label"><i data-lucide="trending-up" class="icon-sm text-blue"></i> Chances
+            Created:</span><span class="value text-blue">{{CC}}</span></div>
+        <div><span class="label"><i data-lucide="trending-up" class="icon-sm bcc-icon"></i> Big Chances
+            Created:</span><span class="value bcc-icon">{{BCC}}</span></div>
+        <div><span class="label"><i data-lucide="zap" class="icon-sm dribble-icon align-icon"></i> Dribbles:</span><span
+            class="value dribble-icon">{{dribbles}}</span></div>
+        <div><span class="label"><i data-lucide="clock" class="icon-sm text-blue-400 align-icon"></i> Minutes
+            Played:</span><span class="value">{{mnt}}'</span></div>
       </div>
       <div class="goal-types">
         <strong>Goal Types</strong>

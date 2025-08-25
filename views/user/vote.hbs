@@ -6,7 +6,8 @@
     <div class="vote-card blue">
       <h3 class="player-name blue-border">Mbappe</h3>
       <p>
-        <span style="visibility: hidden;" class="count-Mbappe">{{voteData.Mbappe.count}}</span> votes
+        <span style="visibility: {{#if admin}}visible{{else}}hidden{{/if}};"
+          class="count-Mbappe">{{voteData.Mbappe.count}}</span> votes
         (<span class="percentage-Mbappe">{{voteData.Mbappe.percentage}}</span>%)
       </p>
       <button class="vote-btn blue-btn" data-player="Mbappe">Vote Mbappe</button>
@@ -16,7 +17,8 @@
     <div class="vote-card red">
       <h3 class="player-name red-border">Haaland</h3>
       <p>
-        <span style="visibility: hidden;" class="count-Haaland">{{voteData.Haaland.count}}</span> votes
+        <span style="visibility: {{#if admin}}visible{{else}}hidden{{/if}};"
+          class="count-Haaland">{{voteData.Haaland.count}}</span> votes
         (<span class="percentage-Haaland">{{voteData.Haaland.percentage}}</span>%)
       </p>
       <button class="vote-btn red-btn" data-player="Haaland">Vote Haaland</button>
@@ -26,7 +28,8 @@
     <div class="vote-card yellow">
       <h3 class="player-name yellow-border">Vinicius</h3>
       <p>
-        <span style="visibility: hidden;" class="count-Vinicius">{{voteData.Vinicius.count}}</span> votes
+        <span style="visibility: {{#if admin}}visible{{else}}hidden{{/if}};"
+          class="count-Vinicius">{{voteData.Vinicius.count}}</span> votes
         (<span class="percentage-Vinicius">{{voteData.Vinicius.percentage}}</span>%)
       </p>
       <button class="vote-btn yellow-btn" data-player="Vinicius">Vote Vinicius</button>
@@ -36,7 +39,7 @@
   </div>
 
   {{#if totalVotes}}
-  <p class="total-votes" style="visibility: hidden;">Total Votes: {{totalVotes}}</p>
+  <br><p class="total-votes" style="visibility: {{#if admin}}visible{{else}}hidden{{/if}};">Total Votes: {{totalVotes}}</p>
   {{/if}}
 </div>
 
@@ -146,38 +149,38 @@
     }
   });
 
-   window.addEventListener('DOMContentLoaded', () => {
-        const hash = window.location.hash;
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
 
-        if (hash === '#vote') {
-            const target = document.querySelector(hash);
-            if (!target) return;
+    if (hash === '#vote') {
+      const target = document.querySelector(hash);
+      if (!target) return;
 
-            const offset = 80; // adjust if you have a fixed header
-            const duration = 1000;
+      const offset = 80; // adjust if you have a fixed header
+      const duration = 1000;
 
-            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-            const startPosition = window.scrollY;
-            const distance = targetPosition - startPosition;
-            let startTime = null;
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+      const startPosition = window.scrollY;
+      const distance = targetPosition - startPosition;
+      let startTime = null;
 
-            function animation(currentTime) {
-                if (!startTime) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
+      function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
 
-            function easeInOutQuad(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
+      function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
 
-            requestAnimationFrame(animation);
-        }
-    });
+      requestAnimationFrame(animation);
+    }
+  });
 
 </script>

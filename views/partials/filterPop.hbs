@@ -1,0 +1,93 @@
+<!-- Modify/Delete Match Popup -->
+<div id="matchPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-box scrollable">
+        <h2>Modify / Delete Match</h2>
+        <form id="matchForm">
+
+            <label for="playerSelect">Player:</label>
+            <select id="playerSelect" name="playerSelect" required>
+                <option value="">Select player</option>
+                <option value="mhmbappe">Mbappé</option>
+                <option value="mhhaaland">Haaland</option>
+                <option value="mhvinicius">Vinícius</option>
+            </select>
+
+            <!-- Match Number -->
+            <label for="matchNumber">Match Number:</label>
+            <input type="number" id="matchNumber" name="matchNumber" required placeholder="Enter match number">
+
+            <div class="popup-actions">
+                <button type="button" id="fetchMatch" class="btn btn-fetch">Fetch</button>
+            </div>
+
+            <!-- Match Details (auto-fill when number exists) -->
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="season">Season:</label>
+            <input type="text" id="season" name="season" required>
+
+            <label for="competition">Competition:</label>
+            <input type="text" id="competition" name="competition" required>
+
+            <label for="stage">Stage:</label>
+            <input type="text" id="stage" name="stage" required>
+
+            <label for="forTeam">For Team:</label>
+            <input type="text" id="forTeam" name="forTeam" required>
+
+            <label for="againstTeam">Against Team:</label>
+            <input type="text" id="againstTeam" name="againstTeam" required>
+
+            <label for="goals">Goals:</label>
+            <input type="number" id="goals" name="goals">
+
+            <label for="assists">Assists:</label>
+            <input type="number" id="assists" name="assists">
+
+            <label for="CC">CC:</label>
+            <input type="number" id="CC" name="CC">
+
+            <label for="BCC">BCC:</label>
+            <input type="number" id="BCC" name="BCC">
+
+            <label for="Shot">Shot:</label>
+            <input type="number" id="Shot" name="Shot">
+
+            <label for="dribbles">Dribbles:</label>
+            <input type="number" id="dribbles" name="dribbles">
+
+            <label for="mnt">Minutes Played:</label>
+            <input type="number" id="mnt" name="mnt" required>
+
+            <label for="Motm">MOTM (1/0):</label>
+            <input type="number" id="Motm" name="Motm" min="0" max="1">
+
+            <label for="result">Result:</label>
+            <input type="text" id="result" name="result" required>
+
+            <label for="scorFor">Score For:</label>
+            <input type="number" id="scorFor" name="scorFor">
+
+            <label for="scorAgainst">Score Against:</label>
+            <input type="number" id="scorAgainst" name="scorAgainst">
+
+            <label for="goalTypes">Goal Types (comma-separated):</label>
+            <input type="text" id="goalTypes" name="goalTypes">
+
+            <label for="astBy">Assisted By:</label>
+            <input type="text" id="astBy" name="astBy">
+
+            <label for="astFor">Assist For:</label>
+            <input type="text" id="astFor" name="astFor">
+
+            <!-- Buttons -->
+            <div class="popup-actions">
+                <button type="submit" class="btn btn-submit">Modify</button>
+                <button type="button" id="deleteMatch" class="btn btn-delete">Delete</button>
+                <button type="button" id="closeMatchPopup" class="btn btn-cancel">Cancel</button>
+
+            </div>
+        </form>
+    </div>
+</div>

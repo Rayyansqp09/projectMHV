@@ -1,14 +1,29 @@
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
-<meta name="keywords" content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe stats, Haaland stats, Vinicius stats 2024-25, football comparison,Mbappe 2024-25,Haaland 2024-25">
+<meta name="keywords"
+    content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe stats, Haaland stats, Vinicius stats 2024-25, football comparison,Mbappe 2024-25,Haaland 2024-25">
 
 
+<style>
+  #seasonSelect {
+    appearance: none;        /* remove default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background: white url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'><path fill='black' d='M7 10l5 5 5-5z'/></svg>") no-repeat right 10px center;
+    background-size: 16px;   /* size of the arrow */
+    padding-right: 30px;     /* make space for the arrow */
+    font-size: 16px;
+    
+  }
+</style>
 
 <div class="football-dropdown-container">
     <div class="football-dropdown">
         <select id="seasonSelect">
-            <option value="">-- Choose Season --</option>
-            <option value="season2024">2024-25 (Ongoing Season)</option>
+            <option value="season2025">-- Choose Season --</option>
+            <option value="season2025">2025-26 (Ongoing Season)</option>
+            <option value="season2024">2024-25</option>
             <option value="season2023">2023-24</option>
             <option value="season2022">2022-23</option>
             <option value="season2021">2021-22</option>
@@ -20,6 +35,9 @@
             <option value="season2015">2015-16</option>
         </select>
 
+        <div class="season-content" id="season2025">
+            {{> season/2025-26}}
+        </div>
         <div class="season-content" id="season2024">
             {{> season/2024-25}}
         </div>
@@ -54,19 +72,20 @@
 </div>
 
 <div class="footer2-card" onclick="location.href='/feedback#report'">
-  <span>Report an Inaccurate issue</span>
-  <span class="footer2-arrow">&#8594;</span>
+    <span>Report an Inaccurate issue</span>
+    <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="footer2-card" onclick="location.href='/suggestion'">
-  <span>I have a suggestion</span>
-  <span class="footer2-arrow">&#8594;</span>
+    <span>I have a suggestion</span>
+    <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <style>
     .season-content {
         display: none;
     }
+
     .season-content.active {
         display: block;
     }
@@ -86,7 +105,7 @@
         }
 
         // Initially show current season (2024-25)
-        const defaultSeason = "season2024";
+        const defaultSeason = "season2025";
         select.value = defaultSeason;
         showSeasonContent(defaultSeason);
 

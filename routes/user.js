@@ -28,22 +28,22 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-
+const isDev = false; // true while editing, false to enable caching
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  const cachedPage = pageCache.get('/');
-  if (cachedPage) return res.send(cachedPage);
+  if (!isDev) {
+    const cachedPage = pageCache.get('/');
+    if (cachedPage) return res.send(cachedPage);
+  }
 
-  const seasons = ['2024_25', 'all_time'];
+  const seasons = ['2025_26', 'all_time', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
 
   displayHelper.getStats(seasons, (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-
-    // console.log(stats)
 
     // All-time stats
     const allTimeStats = stats['all_time'] || [];
@@ -52,7 +52,7 @@ router.get('/', function (req, res, next) {
     const vini = allTimeStats.find(p => p.Name === 'Vinicius') || {};
 
     // Latest season stats (2024_25)
-    const season = '2024_25';
+    const season = '2025_26';
     const cleanKey = season.replace('_', '');
     const seasonStats = stats[season] || [];
 
@@ -60,7 +60,19 @@ router.get('/', function (req, res, next) {
     const haalandSeason = seasonStats.find(p => p.Name === 'Haaland') || {};
     const viniciusSeason = seasonStats.find(p => p.Name === 'Vinicius') || {};
 
-    // Construct final data
+    // 🔥 Get last 5 matches for each player
+    function getLastFiveMatches(playerKey) {
+      const matches = stats[playerKey] || [];
+      return matches
+        .sort((a, b) => new Date(b.date) - new Date(a.date)) // latest first
+        .slice(0, 5);
+    }
+
+    const mbappeMatches = getLastFiveMatches('mhmbappe');
+    const haalandMatches = getLastFiveMatches('mhhaaland');
+    const viniciusMatches = getLastFiveMatches('mhvinicius');
+
+    // Final data
     const data = {
       admin: false,
       canonical: '<link rel="canonical" href="https://mhvstats.xyz/" />',
@@ -71,7 +83,12 @@ router.get('/', function (req, res, next) {
       [`mbappe_${cleanKey}`]: mbappeSeason,
       [`haaland_${cleanKey}`]: haalandSeason,
       [`vinicius_${cleanKey}`]: viniciusSeason,
-      [`season_${cleanKey}`]: seasonStats
+      [`season_${cleanKey}`]: seasonStats,
+
+      // 👇 last 5 matches for home page
+      mbappeMatches,
+      haalandMatches,
+      viniciusMatches
     };
 
     res.render('index', data, (err, html) => {
@@ -82,9 +99,12 @@ router.get('/', function (req, res, next) {
   });
 });
 
+
 router.get('/alltime', function (req, res, next) {
-  const cachedPage = pageCache.get('/alltime');
-  if (cachedPage) return res.send(cachedPage);
+  if (!isDev) {
+    const cachedPage = pageCache.get('/alltime');
+    if (cachedPage) return res.send(cachedPage);
+  }
 
   displayHelper.getStats('all_time', (err, stats) => {
     if (err) {
@@ -106,8 +126,10 @@ router.get('/alltime', function (req, res, next) {
   });
 });
 router.get('/club-stats', function (req, res, next) {
-  const cachedPage = pageCache.get('/club-stats');
-  if (cachedPage) return res.send(cachedPage);
+  if (!isDev) {
+    const cachedPage = pageCache.get('/club-stats');
+    if (cachedPage) return res.send(cachedPage);
+  }
 
   displayHelper.getStats(['all_time', 'club'], (err, stats) => {
     if (err) {
@@ -154,8 +176,10 @@ router.get('/club-stats', function (req, res, next) {
 });
 
 router.get('/int-stats', function (req, res, next) {
-  const cachedPage = pageCache.get('/int-stats');
-  if (cachedPage) return res.send(cachedPage);
+  if (!isDev) {
+    const cachedPage = pageCache.get('/int-stats');
+    if (cachedPage) return res.send(cachedPage);
+  }
 
   displayHelper.getStats(['all_time', 'intr'], (err, stats) => {
     if (err) {
@@ -237,171 +261,195 @@ router.get('/feedback', (req, res) => {
   });
 });
 
+
+// 👇 Place this BEFORE your /Match-History/:player route
 router.get('/mhv', (req, res) => {
+  const player = (req.query.player || 'mbappe').toLowerCase();
+
+  // keep query params (like offset, limit, stage, etc.)
+  const query = { ...req.query };
+  delete query.player; // remove old 'player' param since it's in the path now
+
+  const queryString = new URLSearchParams(query).toString();
+  const redirectUrl = `/Match-History/${player}${queryString ? '?' + queryString : ''}`;
+
+  res.redirect(301, redirectUrl); // permanent redirect for SEO
+});
+
+
+router.get('/Match-History/:player', (req, res) => {
+  const player = req.params.player.toLowerCase(); // <-- from path, not query
   const limit = parseInt(req.query.limit) || 10;
   const offset = parseInt(req.query.offset) || 0;
+
   const competitionFilter = req.query.competition || '';
   const stageFilter = req.query.stage || '';
   const resultFilter = req.query.result || '';
   const seasonFilter = req.query.season || 'All';
   const yearFilter = req.query.year || 'All';
-  const minCC = parseInt(req.query.CC) || 0;           // Chances Created
+  const minCC = parseInt(req.query.CC) || 0;
   const minDribbles = parseInt(req.query.dribbles) || 0;
-  const minMnt = parseInt(req.query.mnt) || 0;         // Minutes Played
+  const minMnt = parseInt(req.query.mnt) || 0;
   const forTeamFilter = req.query.forTeam || 'All';
   const againstTeamFilter = req.query.againstTeam || '';
   const sortOption = req.query.sort || '';
-
-
-
-
   const minGoals = parseInt(req.query.minGoals) || 0;
   const minAssists = parseInt(req.query.minAssists) || 0;
   const goalTypes = req.query.goalTypes ? req.query.goalTypes.split(',') : [];
+  // New filters
+  const matchNoFilter = req.query.matchNo || '';
+  const matchDateFilter = req.query.matchDate; // expected format 'YYYY-MM-DD'
 
-  const player = req.query.player || 'vinicius'; // default
   const tableMap = {
     mbappe: 'mhmbappe',
     haaland: 'mhhaaland',
     vinicius: 'mhvinicius'
   };
- 
-  const tableName = tableMap[player.toLowerCase()];
 
-//  all set but filter only apply vini table error
+  const tableName = tableMap[player];
+
+  // 👇 Add short + full names
+  const playerNames = {
+    mbappe: { name: 'Mbappé', full: 'Kylian Mbappé' },
+    haaland: { name: 'Haaland', full: 'Erling Haaland' },
+    vinicius: { name: 'Vinícius', full: 'Vinícius Júnior' }
+  };
+
+  const playerInfo = playerNames[player.toLowerCase()] || { name: 'Player', full: 'Player Stats' };
+
+
   displayHelper.getStats(tableName, (err, matches) => {
     if (err) return res.status(500).send('Error loading matches');
 
-    matches.sort((a, b) => new Date(b.date) - new Date(a.date));
     matches.forEach(m => m.dateFormatted = new Date(m.date).toLocaleDateString('en-GB'));
 
     let filteredMatches = matches;
+
+    // Existing filters
     if (competitionFilter && competitionFilter !== 'All') {
-      // Split the selected option value by comma
-      const allowedCompetitions = competitionFilter.split(',').map(s => s.trim());
-      filteredMatches = filteredMatches.filter(m => allowedCompetitions.includes(m.competition));
+      const allowedCompetitions = competitionFilter.split(',').map(s => s.trim().toLowerCase());
+      filteredMatches = filteredMatches.filter(m =>
+        allowedCompetitions.includes((m.competition || '').toLowerCase().trim())
+      );
     }
 
-
     if (stageFilter && stageFilter !== 'All') {
-      // Split the selected value by commas and trim
       const selectedStages = stageFilter.split(',').map(s => s.toLowerCase().trim());
-
       const knockoutStages = [
-        'round of 16',
-        'quarter final',
-        'semi final',
-        'playoffs',
-        'final',
-        '3rd place',
-        'second stage',
-        'Knockout Play-offs',
-        'preliminary round'
+        'round of 16', 'round of 32', 'round of 64', 'round of 128',
+        'quarter final', 'semi final', 'playoffs', 'play-offs', 'final',
+        '3rd place', 'third-place', 'second stage', 'knockout play-offs',
+        'preliminary round', 'third round', 'second round', 'play-off round',
+        'first round'
       ];
 
       filteredMatches = filteredMatches.filter(m => {
         const mStage = (m.stage || '').toLowerCase().trim();
-
-        // Check each selected stage
         return selectedStages.some(stageLower => {
+          stageLower = stageLower.toLowerCase().trim();
           if (stageLower === 'knockout') {
-            return knockoutStages.includes(mStage);
-          } else if (stageLower === 'league stage') {
-            const isMatchweek = /^matchweek\s*\d+$/i.test(m.stage || '');
-            return isMatchweek || (!knockoutStages.includes(mStage) && mStage !== 'group stage');
-          } else {
-            return mStage === stageLower;
+            return knockoutStages.some(stage => stage.toLowerCase().trim() === mStage);
           }
+          if (stageLower === 'league stage') {
+            return /^matchweek\s*\d+$/i.test(mStage) ||
+              /^matchday\s*\d+$/i.test(mStage) ||
+              mStage === 'league phase';
+          }
+          return mStage === stageLower;
+
+
         });
       });
     }
 
     if (seasonFilter && seasonFilter !== 'All') {
-      filteredMatches = filteredMatches.filter(m =>
-        (m.season || '').toLowerCase().trim() === seasonFilter.toLowerCase().trim()
-      );
+      filteredMatches = filteredMatches.filter(m => (m.season || '').toLowerCase().trim() === seasonFilter.toLowerCase().trim());
     }
 
-    if (minGoals > 0) {
-      filteredMatches = filteredMatches.filter(m => m.goals >= minGoals);
-    }
-
-    if (minAssists > 0) {
-      filteredMatches = filteredMatches.filter(m => m.assists >= minAssists);
-    }
-
-    if (resultFilter && resultFilter !== 'All') {
-      filteredMatches = filteredMatches.filter(m =>
-        (m.result || '').toLowerCase().trim() === resultFilter.toLowerCase().trim()
-      );
-    }
-
-    if (yearFilter && yearFilter !== 'All') {
+    if (minGoals > 0) filteredMatches = filteredMatches.filter(m => m.goals >= minGoals);
+    if (minAssists > 0) filteredMatches = filteredMatches.filter(m => m.assists >= minAssists);
+    if (resultFilter && resultFilter !== 'All') filteredMatches = filteredMatches.filter(m => (m.result || '').toLowerCase().trim() === resultFilter.toLowerCase().trim());
+    if (yearFilter && yearFilter !== 'All') filteredMatches = filteredMatches.filter(m => new Date(m.date).getFullYear().toString() === yearFilter);
+    if (minCC > 0) filteredMatches = filteredMatches.filter(m => m.CC >= minCC);
+    if (minDribbles > 0) filteredMatches = filteredMatches.filter(m => m.dribbles >= minDribbles);
+    if (minMnt > 0) filteredMatches = filteredMatches.filter(m => m.mnt >= minMnt);
+    if (forTeamFilter && forTeamFilter !== 'All') {
+      const allowedTeams = forTeamFilter.split(',').map(s => s.trim().toLowerCase());
       filteredMatches = filteredMatches.filter(m => {
-        const matchYear = new Date(m.date).getFullYear().toString();
-        return matchYear === yearFilter;
+        const team = (m.forTeam || '').toLowerCase().trim();
+        return allowedTeams.includes(team);
       });
     }
-
-    if (minCC > 0) {
-      filteredMatches = filteredMatches.filter(m => m.CC >= minCC);
-    }
-
-    if (minDribbles > 0) {
-      filteredMatches = filteredMatches.filter(m => m.dribbles >= minDribbles);
-    }
-
-    if (minMnt > 0) {
-      filteredMatches = filteredMatches.filter(m => m.mnt >= minMnt);
-    }
-
-    if (forTeamFilter && forTeamFilter !== 'All') {
-      filteredMatches = filteredMatches.filter(m =>
-        (m.forTeam || '').toLowerCase().trim() === forTeamFilter.toLowerCase().trim()
-      );
-    }
-
-    if (againstTeamFilter && againstTeamFilter.trim() !== '') {
-      filteredMatches = filteredMatches.filter(m =>
-        (m.againstTeam || '').toLowerCase().trim().includes(againstTeamFilter.toLowerCase().trim())
-      );
-    }
-
+    if (againstTeamFilter && againstTeamFilter.trim() !== '') filteredMatches = filteredMatches.filter(m => (m.againstTeam || '').toLowerCase().trim().includes(againstTeamFilter.toLowerCase().trim()));
     if (goalTypes.length > 0) {
       filteredMatches = filteredMatches.filter(m => {
-        const matchGoalTypes = Array.isArray(m.goalTypes)
-          ? m.goalTypes
-          : (m.goalTypes || '').split(',').map(t => t.trim());
-
-        // Convert everything to lowercase for comparison
-        const lowerMatchGoals = matchGoalTypes.map(t => t.toLowerCase());
-        const lowerSelectedGoals = goalTypes.map(t => t.toLowerCase());
-
-        // Must contain ALL selected goal types
-        return lowerSelectedGoals.every(type => lowerMatchGoals.includes(type));
+        const matchGoalTypes = Array.isArray(m.goalTypes) ? m.goalTypes : (m.goalTypes || '').split(',').map(t => t.trim());
+        return goalTypes.map(t => t.toLowerCase()).every(type => matchGoalTypes.map(t => t.toLowerCase()).includes(type));
       });
     }
 
-    if (sortOption === 'dateAsc') {
-      filteredMatches.sort((a, b) => new Date(a.date) - new Date(b.date));
-    } else if (sortOption === 'dateDesc') {
-      filteredMatches.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Match No filter
+    if (matchNoFilter) filteredMatches = filteredMatches.filter(m => m.No == matchNoFilter);
+
+    if (req.query.matchDate) {
+      const inputDate = req.query.matchDate; // "2025-08-24"
+      filteredMatches = filteredMatches.filter(m => {
+        const matchDate = new Date(m.date);
+        const yyyy = matchDate.getFullYear();
+        const mm = String(matchDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(matchDate.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}` === inputDate;
+      });
     }
+
+
+    // Sorting
+    if (sortOption === 'dateAsc') filteredMatches.sort((a, b) => new Date(a.date) - new Date(b.date));
+    else filteredMatches.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const totalGoals = filteredMatches.reduce((sum, m) => sum + (Number(m.goals) || 0), 0);
+    const totalAssists = filteredMatches.reduce((sum, m) => sum + (Number(m.assists) || 0), 0);
 
     const totalFilteredMatches = filteredMatches.length;
     const paginatedMatches = filteredMatches.slice(offset, offset + limit);
+
+    // Unique dynamic filters
+    function normalizeText(str) { return (str || '').toLowerCase().trim(); }
+    const uniqueForTeams = Array.from(new Map(filteredMatches.map(m => [normalizeText(m.forTeam), m.forTeam])).values());
+    const uniqueCompetitions = Array.from(new Map(filteredMatches.map(m => [normalizeText(m.competition), m.competition])).values());
+
+    const ogImages = {
+      mbappe: "https://mhvstats.xyz/images/mbappe2.webp",
+      haaland: "https://mhvstats.xyz/images/haaland2.webp",
+      vinicius: "https://mhvstats.xyz/images/vinicius2.webp"
+    };
+
+    // console.log("Player:", player, "Table:", tableName, "Query Params:", req.query);
+
 
     res.render('user/mh-v', {
       matches: paginatedMatches,
       offset: offset + limit,
       limit,
       hasMore: offset + limit < totalFilteredMatches,
-      totalMatches: totalFilteredMatches,        // total after filters
-      showingMatches: offset + paginatedMatches.length, // matches shown so far
+      totalMatches: totalFilteredMatches,
+      showingMatches: offset + paginatedMatches.length,
+      dynamicFilters: { forTeam: uniqueForTeams, competition: uniqueCompetitions },
+      totalGoals,
+      totalAssists,
+      playerName: playerInfo.name,       // 👈 Short name
+      playerFullName: playerInfo.full,  // 👈 Full name
+
+      // 👇 Pass SEO variables
+      title: `All Matches ${playerInfo.name} | Match History & Stats | MHV`,
+      description: `${playerInfo.full} complete match history with advanced filters on MHV.`,
+      ogImage: ogImages[player.toLowerCase()] || "https://mhvstats.xyz/images/seo-preview.png", // 👈
+      canonical: `<link rel="canonical" href="https://mhvstats.xyz/Match-History/${player}">`,
       layout: 'layout'
     });
   });
 });
+
 
 
 // Route for Feedback form (Report an Issue)
@@ -696,7 +744,8 @@ router.get('/:time', function (req, res, next) {
     '2021_22',
     '2022_23',
     '2023_24',
-    '2024_25'
+    '2024_25',
+    '2025_26'
   ];
 
   displayHelper.getStats(seasons, (err, stats) => {

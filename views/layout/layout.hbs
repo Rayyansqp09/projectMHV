@@ -63,15 +63,14 @@
   <link rel="stylesheet" href="/stylesheets/index.css" />
   <link rel="stylesheet" href="/stylesheets/respo.css" />
   <link rel="stylesheet" href="/stylesheets/admin.css" />
+  <link rel="stylesheet" href="/stylesheets/filterRespo.css" />
+  <link rel="stylesheet" href="/stylesheets/filter.css" />
 
   <title>{{#if title}}{{title}}{{else}}Mbappe vs Haaland vs Vinicius | All Time Stats Comparison{{/if}}</title>
   <meta name="description"
     content="{{#if description}}{{description}}{{else}}Compare the latest football stats of Kylian Mbappé, Erling Haaland, and Vinícius Júnior — goals, assists, matches, and more. Updated after every game.{{/if}}">
-  <meta name="keywords"
-    content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe 2024-25 stats, Haaland 2024-25, Vinicius 2024-25, football stats comparison, Mbappe vs Vinicius, player comparison, Haaland Goals">
-  <meta name="description" content="Compare Mbappé transfer rumors, Haaland goals,Viníciu stats.">
-  <meta name="keywords"
-    content="Mbappé 2024-25, Haaland goals record, Vinícius Jr stats, Vinícius Jr goals, Mbappé vs Haaland, Haaland treble">
+  <meta name="keywords" content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe 2024-25 stats, Haaland 2024-25, Vinicius 2024-25, football stats comparison, Mbappe vs Vinicius, player comparison, Haaland Goals">
+  <meta name="keywords" content="Mbappé 2024-25, Haaland goals record, Vinícius Jr stats, Vinícius Jr goals, Mbappé vs Haaland, Haaland treble">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="{{title}}">
   <meta property="og:description" content="{{description}}">
@@ -101,7 +100,7 @@
   <div class="bottom-bar">
     <div class="label-left"><a href="/">Home</a></div>
     <div class="label-right">
-      <span>Last Updated: 2025,July 12 +5:30 GMT</span>
+      <span>Last Updated: 2025,Septemper 3 +5:30 GMT</span>
       <div class="menu-wrapper">
         <button class="menu-btn" onclick="toggleMenu()">
           <span class="menu-label">MENU</span>
@@ -124,6 +123,7 @@
         <!-- Drop-up Menu -->
         <div class="dropup-wrapper" id="dropup-wrapper">
           <div id="dropup-menu" class="dropup-menu">
+
             <div class="submenu-container">
               <a href="#" class="has-submenu" onclick="toggleSubmenu(event, this)">All Time Stats<span
                   class="arrow">▼</span></a>
@@ -131,6 +131,16 @@
                 <a href="/alltime#alltime">All Time Career</a>
                 <a href="/#int">All Time International</a>
                 <a href="/#club">All Time Club</a>
+              </div>
+            </div>
+
+            <div class="submenu-container">
+              <a href="#" class="has-submenu" onclick="toggleSubmenu(event, this)">Match History<span
+                  class="arrow">▼</span></a>
+              <div class="submenu">
+                <a href="/Match-History/mbappe#match-history">All Matches-Mbappe</a>
+                <a href="/Match-History/haaland#match-history">All Matches-Haaland</a>
+                <a href="/Match-History/vinicius#match-history">All Matches-Vinicius</a>
               </div>
             </div>
 
@@ -152,8 +162,8 @@
 
                 <!-- International Competition -->
                 <div class="submenu-container">
-                  <a href="/int-stats#int-comp" class="has-submenu" onclick="toggleSubmenu(event, this)">International Competition <span
-                      class="arrow">▼</span></a>
+                  <a href="/int-stats#int-comp" class="has-submenu" onclick="toggleSubmenu(event, this)">International
+                    Competition <span class="arrow">▼</span></a>
                   <div class="submenu">
                     <a href="/int-stats/wc">World Cup</a>
                     <a href="/int-stats/copa-euro">Copa America</a>
@@ -166,8 +176,8 @@
 
                 <!-- Club Competition -->
                 <div class="submenu-container">
-                  <a href="/club-stats#clubComp" class="has-submenu" onclick="toggleSubmenu(event, this)">Club Competition <span
-                      class="arrow">▼</span></a>
+                  <a href="/club-stats#clubComp" class="has-submenu" onclick="toggleSubmenu(event, this)">Club
+                    Competition <span class="arrow">▼</span></a>
                   <div class="submenu">
                     <a href="/club-stats/ucl">UEFA Champions League</a>
                     <a href="/club-stats#tfl">Top 5 League</a>
@@ -268,6 +278,12 @@
 
   <!-- At the bottom of <body> -->
   <script src="/javascripts/script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      lucide.createIcons();
+    });
+  </script>
 
 
 </body>

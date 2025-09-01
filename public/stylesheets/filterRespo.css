@@ -1,0 +1,978 @@
+@media (max-width: 800px) {
+
+  .match-history-container {
+
+    padding: 2rem;
+    margin: 0 !important;
+    padding: 0.5rem !important;
+    width: 100% !important;
+  }
+
+  .match-history-title {
+    font-size: 1.6rem !important;
+    font-weight: 700;
+  }
+
+  .tab-container-mh {
+  display: flex;
+  justify-content: center;
+  gap: 4% !important;
+
+  padding: 12px auto;   /* matched */
+  border-radius: 16px;  /* added from second style */
+
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 4%;
+  margin: 30; /* keep as in second style */
+}
+
+.tab-mh {
+  padding: 8px 13px;   /* matched */
+  cursor: pointer;
+  font-size: 13px !important;     /* matched */
+  font-weight: 500;
+
+  color: #444;
+  background-color: #f9f9f9;
+
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+
+  /* keep your original shadow and gradient */
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+
+  background-image: linear-gradient(145deg, #ffffff, #f0f0f0);
+}
+
+
+
+
+  .filters-box {
+    padding: 1rem;
+    border-radius: 16px;
+    margin: 0 !important;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem !important;
+  }
+
+  .field-label {
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: #333;
+    margin-bottom: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    min-width: auto !important;
+    /* keep same width as input/select */
+  }
+
+
+  .filters-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.3rem !important;
+  }
+
+
+
+
+
+  .filters-box input[type="number"],
+  .filters-box input[type="text"],
+  .filters-box select,
+  .filters-box .dropdown-toggle {
+    border: none !important;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    width: 165px !important;
+    height: 2.1rem !important;
+    font-size: 0.95rem !important;
+    box-sizing: border-box;
+  }
+
+  /* Optional: Adjust checkbox labels inside dropdowns */
+  .filters-box .dropdown-options label {
+    font-size: 0.95rem;
+    padding: 0.25rem 0;
+  }
+
+  .advanced-filters:not(.hidden),
+  .filters-top {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  .advanced-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+
+  }
+
+  .advanced-filters.hidden {
+    display: none;
+  }
+
+
+  .advanced-filters input {
+
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 12px;
+  }
+
+  .dropdown-checkbox {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-toggle {
+
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-left: 0 !important;
+
+  }
+
+  .dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 200px;
+    color: #000;
+  }
+
+  .dropdown-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dropdown-options.hidden {
+    display: none;
+  }
+
+
+  .filter-bottom-row {
+    flex-direction: column;
+    /* stack into rows */
+    align-items: flex-start;
+    /* keep "Showing matches" left */
+    gap: 0.75rem;
+  }
+
+  .button-group {
+
+    flex-wrap: wrap;
+    /* allow wrapping if needed */
+    justify-content: center;
+    /* center align buttons */
+    gap: 0.5rem;
+    width: 100%;
+    /* take full width on mobile */
+  }
+
+  .match-count {
+    font-size: 0.95rem;
+    color: #414141 !important;
+  }
+
+  .clear-button {
+    padding: 0.2rem 0.5rem !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+    font-weight: 300 !important;
+    font-size: 14px !important;
+  }
+
+  .sort-popup {
+    position: absolute;
+    top: 100%;
+    /* directly below button */
+    left: -30px !important;
+    /* align left edges */
+    background: white;
+    border: 1px solid #ccc;
+    color: #000;
+    padding: 10px;
+    z-index: 100;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: 200px !important;
+  }
+
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+
+  .popup.hidden {
+    display: none;
+  }
+
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 250px;
+  }
+
+  .popup-btn {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #f3f3f3;
+    cursor: pointer;
+  }
+
+  .popup-btn:hover {
+    background: #e3e3e3;
+  }
+
+  .popup-close {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+
+  /* Match Card */
+
+  #matches-container {
+    margin-right: -0.4rem;
+    margin-left: -0.4rem;
+    margin-top: -1.5rem;
+  }
+
+  .match-card {
+    margin-bottom: 0.5rem !important;
+    border-radius: 0.7rem !important;
+  }
+
+  .card-header {
+    display: block;
+    /* allow children to flow naturally */
+    padding: 1.2rem 1.2rem 10px 1.2rem;
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+
+  .fst-row {
+    position: relative;
+    /* needed for ::after positioning */
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1px;
+    /* space between "No" and date */
+    width: 100%;
+    padding-left: 1.2rem;
+    margin-top: -1.3rem;
+    box-sizing: border-box;
+    /* ensures padding is included in width */
+  }
+
+  .fst-row::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -30%;
+    width: 140%;
+    /* full width of the div */
+    height: 1px;
+    /* line thickness */
+    background-color: rgba(255, 255, 255, 0.08);
+    /* border color */
+  }
+
+  .match-date {
+    font-size: 13px;
+    color: #d1d5dc;
+  }
+
+  .date-text {
+    /* margin-left: -6.5rem; */
+  }
+
+  .icon-date {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-right: 0px;
+    margin-bottom: 0.2rem;
+    stroke-width: 1;
+  }
+
+  .scnd-row {
+    position: relative;
+    display: flex;
+    /* flexbox instead of grid */
+    align-items: start;
+    /* vertical alignment */
+    justify-content: space-between;
+    /* spread left vs right */
+    gap: 0px;
+    /* fixed gap between sections */
+    padding-top: 0.8rem;
+    margin-left: -0.7rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .scnd-row::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -10%;
+    width: 120%;
+    /* full width of the div */
+    height: 1px;
+    /* line thickness */
+    background-color: rgba(255, 255, 255, 0.08);
+    /* border color */
+  }
+
+  .match-teams {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* stack forTeam and againstTeam */
+    align-items: flex-start;
+    /* force text to the left inside */
+    text-align: left;
+    /* ensure left alignment */
+    width: 120px;
+    margin-top: -1rem;
+    padding-top: 1rem;
+    line-height: 1.2;
+    /* padding-right: 6px; */
+  }
+
+
+
+
+  .team-name.for {
+    font-weight: bold;
+    color: #3498db;
+  }
+
+  .team-name.against {
+    font-weight: 400;
+    font-size: 14px;
+    color: #D1D5DC;
+    margin-left: 0;
+    /* remove the fixed negative margin */
+  }
+
+
+  .against-name-only {
+    font-weight: bold;
+    color: #fa1515;
+    /* yellow example */
+    font-size: 0.95rem;
+  }
+
+  .comp {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* force text to the left inside */
+    text-align: left;
+    /* ensure left alignment */
+    justify-content: flex-start;
+    /* stack from the top */
+    line-height: 1.2;
+    /* tighter spacing between lines */
+    gap: 0px;
+    /* small gap between competition and stage */
+    margin-left: 0rem;
+    padding-left: 15px;
+    padding-right: 7px;
+    margin-top: -1rem;
+    padding-top: 1rem;
+
+    justify-self: start;
+    position: relative;
+    left: -10px;
+    /* pulls comp left but keeps layout intact */
+  }
+
+
+
+  .competition .cup {
+    display: none;
+  }
+
+  .competition {
+    font-weight: bold;
+    color: #FDC700;
+  }
+
+  .stage {
+    font-weight: 400;
+    font-size: 12px;
+    color: #a0a2a5 !important;
+  }
+
+
+  .goals,
+  .assists {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+  }
+
+  .goals.zero,
+  .assists.zero {
+    color: #e7e5eb;
+  }
+
+  .goals.nonzero,
+  .assists.nonzero {
+    color: #3498db;
+    font-weight: bold;
+  }
+
+
+  .goals {
+    margin-right: 12px;
+    /* space between goals and assists */
+  }
+
+  .icon-img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+
+  .result-badge-card {
+    display: none;
+    padding: 0.2rem 0.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    width: 50px;
+    
+  }
+
+  .result-badge {
+    padding: 0.2rem 0.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    width: 50px;
+
+  }
+
+  .result-badge.Win {
+    background-color: #28a745;
+  }
+
+  .result-badge.Loss {
+    background-color: #dc3545;
+  }
+
+  .result-badge.Draw {
+    background-color: #ffc107;
+    color: #000;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: -1.4rem;
+    margin-bottom: -1.2rem;
+    padding: 1rem 0;
+  }
+
+  .details-toggle {
+    background: none;
+    border: none;
+    color: #bbb;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+
+  .details-grid strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* 👈 Thin underline */
+    font-weight: 600;
+  }
+
+
+  .details-toggle .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .details-toggle .arrow {
+    transition: transform 0.3s ease;
+  }
+
+
+  .match-card.expanded .details-toggle .arrow {
+    transform: rotate(180deg);
+  }
+
+  .card-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: #101426;
+    padding-left: 1rem;
+    padding-top: 10px;
+  }
+
+  .match-card.expanded .card-details {
+    max-height: 500px;
+    padding-left: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* 👈 Add this line */
+  }
+
+  .details-grid {
+    display: flex;
+    /* use flex */
+    flex-direction: column;
+    /* stack vertically */
+    gap: 12px;
+    /* space between sections */
+  }
+
+  .performance,
+  .goal-types,
+  .final-score {
+    width: 100%;
+    /* make each section take full width */
+  }
+
+  /* .goal-type{
+  background-color: #bbb;
+  border: solid 1px;
+} */
+
+  .performance {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 2 equal columns */
+    column-gap: 20px;
+    /* horizontal spacing */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: -1rem !important;
+
+  }
+
+  .performance span {
+    font-size: 0.8rem;
+    /* adjust as needed */
+    margin-left: 0px;
+    line-height: -2 !important;
+    /* tighten vertical spacing */
+  }
+
+
+  .performance strong {
+    grid-column: 1 / -1;
+    /* heading spans both columns */
+  }
+
+  .performance div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+  .dribble-icon {
+    color: #fb923c;
+    /* Tailwind's text-orange-400 */
+  }
+
+  .text-purple {
+    color: #c084fc;
+    /* Tailwind's text-purple-400 */
+  }
+
+  .text-blue {
+    color: #60a5fa;
+    /* Tailwind's text-blue-400 */
+  }
+
+  .shot-icon {
+    color: #ee2e2e;
+  }
+
+  .bcc-icon {
+    color: #0dff00;
+  }
+
+  .performance .label {
+    white-space: nowrap;
+  }
+
+  .performance .value {
+    font-weight: 600;
+  }
+
+  .icon-sm {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 4px;
+    stroke-width: 1.5;
+  }
+
+  .align-icon {
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    /* Adjust to align with text */
+  }
+
+  .icon-small {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+    /* stroke-width: 1.5; */
+  }
+
+  .goal-types {
+    margin-top: 0rem;
+  }
+
+  .score-box {
+    background: #1a1e33;
+    padding: 1rem;
+    border-radius: 12px;
+    margin: 1rem;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    /* REQUIRED */
+    flex-direction: column;
+    /* stack items vertically */
+    align-items: center;
+    /* center horizontally */
+    justify-content: center;
+    /* center vertically (optional here) */
+
+  }
+
+  .for-team-res,
+  .for-team-score {
+    color: #3498db;
+  }
+
+  .against-team-res {
+    color: red;
+  }
+
+
+  .score-box .score {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+  }
+
+  .score-box .teams {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 0.4rem;
+  }
+
+  .details-grid>div:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    padding-right: 1rem;
+  }
+
+
+  .performance div,
+  .goal-types div,
+  .final-score {
+    margin-bottom: 0.5rem;
+  }
+
+
+  .score {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .teams {
+    font-size: 0.85rem;
+    margin: 0.25rem 0;
+  }
+
+  .final-score .team-name.for {
+    color: #3498db;
+    font-weight: 600;
+  }
+
+  .final-score .team-name.against {
+    font-weight: 600;
+  }
+
+}
+
+@media (min-width: 540px) and (max-width: 900px) {
+  .filters-top {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    /* 3 columns of equal width */
+    gap: 1rem;
+    /* space between both rows and columns */
+  }
+
+
+}
+
+@media (min-width: 801px) and (max-width: 1000px) {
+  #matches-container {
+    margin-right: -1rem !important;
+    margin-left: -1rem !important;
+    margin-top: -1.5rem;
+  }
+
+
+  .match-teams {
+    display: flex;
+    /* horizontal layout of team names */
+    gap: 0.5rem;
+    /* space between forTeam and vsTeam */
+    align-items: center;
+    /* vertical alignment */
+
+    /* remove -8rem which breaks layout */
+    position: relative !important;
+    left: 185px !important;
+
+  }
+
+  .team-name.against {
+    font-weight: 400;
+    font-size: 14px;
+    color: #D1D5DC;
+    margin-left: 0;
+    /* remove the fixed negative margin */
+  }
+
+  .comp {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* force text to the left inside */
+    text-align: left;
+    /* ensure left alignment */
+    justify-content: flex-start;
+    /* stack from the top */
+    line-height: 1.2;
+    /* tighter spacing between lines */
+    gap: 0px;
+    /* small gap between competition and stage */
+    margin-left: 0rem;
+    padding-left: 0px;
+    padding-right: 7px;
+    margin-top: -1rem;
+    padding-top: 1rem;
+
+    justify-self: start;
+    position: relative;
+    left: -1.6rem !important;
+    /* pulls comp left but keeps layout intact */
+  }
+
+  .stage {
+    position: relative;
+    font-weight: 400;
+    font-size: 14px;
+    color: #a0a2a5 !important;
+    left: 21px;
+  }
+
+  .goals,
+  .assists {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+
+  }
+
+  .goals {
+    margin-right: -150px;
+    /* space between goals and assists */
+  }
+
+  .assists {
+    margin-right: -50px;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1067px) {
+
+
+.card-header {
+  display: flex;                   /* switch grid → flex */
+  justify-content: space-between;  /* children spread apart */
+  align-items: center;
+  flex-wrap: wrap;                 /* wrap when not enough space */
+  padding: 1.2rem;
+  font-size: 0.95rem;
+  margin-top: 8px;
+  padding-bottom: 10px;
+}
+
+
+  .match-teams {
+    display: flex;
+    /* horizontal layout of team names */
+    gap: 0.5rem;
+    /* space between forTeam and vsTeam */
+    align-items: center;
+    /* vertical alignment */
+
+    /* remove -8rem which breaks layout */
+    position: relative !important;
+    left: -180px ;
+
+  }
+
+  .comp {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    /* pushes first span left, second span right */
+    top: 0;
+    left: -380px !important;
+    /* adjust as you like */
+    gap: 5px !important;
+    width: 18rem;
+  }
+
+  .comp span {
+    display: inline-block;
+    /* ensure spans behave as boxes */
+  }
+
+  .comp .stage {
+    text-align: left !important;
+    /* optional, ensures right-aligned text */
+    margin-right: 1rem;
+  }
+
+  .goals,
+  .assists {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+
+  }
+
+  .goals {
+    margin-right: -150px;
+    /* space between goals and assists */
+  }
+
+  .assists {
+    margin-right: -50px;
+  }
+
+
+}
+
+@media (min-width: 1067px) and (max-width: 1210px) {
+   
+    .match-teams {
+    display: flex;
+    /* horizontal layout of team names */
+    gap: 0.5rem;
+    /* space between forTeam and vsTeam */
+    align-items: center;
+    /* vertical alignment */
+
+    /* remove -8rem which breaks layout */
+    position: relative !important;
+    left: 80px !important;
+
+  }
+
+  .comp {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    /* pushes first span left, second span right */
+    top: 0;
+    left: -80px !important;
+    /* adjust as you like */
+    gap: 5px !important;
+    width: 18rem;
+  }
+
+  .comp span {
+    display: inline-block;
+    /* ensure spans behave as boxes */
+  }
+
+  .comp .stage {
+    text-align: left !important;
+    /* optional, ensures right-aligned text */
+    margin-right: 1rem;
+  }
+
+  .goals {
+    margin-right: -100px;
+    /* space between goals and assists */
+  }
+
+    .assists {
+    margin-right: -40px;
+  }
+}

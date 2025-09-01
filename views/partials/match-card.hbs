@@ -1,19 +1,25 @@
 <div class="match-card">
   <div class="card-content">
     <div class="card-header">
-      <span class="match-date" style="display:inline-flex;align-items:center;gap:6px;">
-        <i class="icon-adjust icon-small no"></i> {{No}}
-        <span class="date-text"><i data-lucide="calendar" class="icon-adjust icon-small"></i> {{dateFormatted}}</span>
-      </span>
-      
-      <div class="match-teams">
-        <span class="team-name for">{{forTeam}}</span>
-        <span class="team-name against">vs {{againstTeam}}</span>
+
+      <div class="fst-row">
+        <span class="match-date">
+          <i class="icon-adjust icon-small no"></i> {{No}} </span>
+        <span class="date-text"><i data-lucide="calendar" class="icon-date"></i> {{dateFormatted}}</span>
       </div>
-      <span class="competition">🏆 {{competition}}</span>
-      <span class="stage">{{stage}}</span>
-      <span class="goals"><img src="/images/goal.png" alt="Goal" class="icon-img" /> {{goals}}</span>
-      <span class="assists"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> {{assists}}</span>
+      <div class="scnd-row">
+        <div class="match-teams">
+          <span class="team-name for">{{forTeam}}</span>
+          <span class="team-name against">vs {{againstTeam}}</span>
+        </div>
+        <div class="comp">
+          <span class="competition"><span class="cup">🏆</span>{{competition}}</span>
+          <span class="stage">{{stage}}</span>
+        </div>
+        <span class="goals"><img src="/images/goal.png" alt="Goal" class="icon-img" /> {{goals}}</span>
+        <span class="assists"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> {{assists}}</span>
+        <div class="result-badge result-badge-card {{result}} result">{{result}}</div>
+      </div>
     </div>
     <div class="card-footer">
       <button class="details-toggle" onclick="toggleCardDetails(this)">Details <span class="arrow">▾</span></button>
@@ -23,7 +29,7 @@
     <div class="details-grid">
       <div class="performance">
         <strong>Performance</strong>
-        <div><span class="label"><img src="/images/goal.png" alt="Goal" class="icon-img" /> Total Goals:</span><span
+        <div><span class="label"><img src="/images/goal.png" alt="Goal" class="icon-img" /> Goals:</span><span
             class="value">{{goals}}</span></div>
         <div><span class="label"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> Assists:</span><span
             class="value text-purple">{{assists}}</span></div>
@@ -46,10 +52,37 @@
         <strong>Final Score</strong>
         <div class="score-box">
           <div class="score">{{scorFor}}-{{scorAgainst}}</div>
-          <div class="teams">{{forTeam}} vs {{againstTeam}}</div>
+          <div class="teams"><span class="for-team-score">{{forTeam}}  </span>vs {{againstTeam}}</div>
           <div class="result-badge {{result}}">{{result}}</div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.querySelectorAll('.goals, .assists').forEach(el => {
+  const value = parseInt(el.textContent.trim(), 10);
+  if (!isNaN(value)) {
+    el.classList.add(value === 0 ? 'zero' : 'nonzero');
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".score-box").forEach(box => {
+    const badge = box.querySelector(".result-badge");
+    if (!badge) return;
+
+    const result = badge.textContent.trim().toLowerCase();
+
+    if (result === "win") {
+      box.style.backgroundColor = "rgba(34,197,94,0.12)";   // light green
+    } else if (result === "draw") {
+      box.style.backgroundColor = "rgba(245,158,11,0.12)";  // light orange
+    } else if (result === "loss") {
+      box.style.backgroundColor = "rgba(239,68,68,0.12)";   // light red
+    }
+  });
+});
+
+</script>

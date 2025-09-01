@@ -91,13 +91,27 @@ a:hover {
   /* Move 20px to the left */
   background-color: #2A303B;
   border: 1px solid #ccc;
-  min-width: 500px;
+  min-width: 700px;
   padding: 20px;
   z-index: 1000;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   color: #fff;
   font-family: 'Segoe UI', sans-serif;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+}
+
+.nav-item.dropdown:hover .follow-dropdown {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  padding: 10px 20px;
 }
 
 .dropdown-section {
@@ -121,7 +135,7 @@ a:hover {
   /* Two columns */
   gap: 10px 30px;
   /* Vertical and horizontal spacing */
-  justify-items: center;
+  justify-items: left;
 
 }
 
@@ -161,9 +175,7 @@ a:hover {
   background-color: #f0f0f0;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
+
 
 .follow-dropdown {
 
@@ -180,12 +192,7 @@ a:hover {
 
 }
 
-.nav-item.dropdown:hover .follow-dropdown {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  padding: 10px 20px;
-}
+
 
 
 .follow-dropdown a {
@@ -469,12 +476,10 @@ a:hover {
   margin-bottom: 30px;
   flex-wrap: wrap;
   margin-top: 4%;
-
-
 }
 
-.tab {
-  padding: 10px 18px;
+.tab-btn {
+  padding: 6px 18px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
@@ -504,12 +509,12 @@ a:hover {
   background-image: linear-gradient(145deg, #2e343e, #252b33);
 }
 
-.tab:hover {
+.tab-btn:hover {
   background-color: #f0f4ff;
   color: #007bff;
 }
 
-.tab.active {
+.tab-btn.active {
   color: #007bff;
   font-weight: 600;
   border-bottom: 3px solid #007bff;
@@ -517,12 +522,10 @@ a:hover {
 }
 
 /* Content Sections */
-.content {
+.stats-content {
   display: none;
-  animation: fadeIn 0.3s ease-in-out;
 }
-
-.content.active {
+.stats-content.active {
   display: block;
 }
 
@@ -548,6 +551,46 @@ p {
   line-height: 1.6;
   color: #555;
 }
+
+.player-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.scroll-container {
+  max-height: 400px;        /* customize: adjust to fit ~3 match cards */
+  overflow-y: auto;         /* vertical scroll */
+  margin-bottom: 2rem;      /* spacing between sections */
+  padding-right: 8px;       /* space so scrollbar doesn’t overlap cards */
+  border-radius: 10px;      /* optional rounded edges */
+}
+
+/* Cards layout */
+.matches-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;                /* space between match cards */
+}
+
+/* Custom scrollbar styling */
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 
 /* Responsive */
 @media (max-width: 600px) {
@@ -694,6 +737,7 @@ tr:nth-child(even) td {
   font-family: sans-serif;
   font-weight: 200;
   margin-top: 10px !important;
+
 }
 
 
@@ -945,7 +989,7 @@ td span:nth-child(2) {
   position: absolute;
   bottom: 59px;
 
-  
+
   /* Set max visible height */
   overflow-y: auto;
   /* 🧠 Optional smoother scroll experience */
@@ -1205,8 +1249,8 @@ footer p {
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
-  background: #1f1f1f;
-  color: #fff;
+  background: #ffffff;
+  color: #000000;
   font-size: 1rem;
   appearance: none;
   cursor: pointer;
@@ -1215,7 +1259,7 @@ footer p {
 }
 
 .football-dropdown select:hover {
-  background: #333;
+  background: #ffffff;
 }
 
 .football-dropdown .season-content {

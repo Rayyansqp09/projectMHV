@@ -24,6 +24,7 @@
   <h2 class="lookingbox-title">ARE YOU LOOKING FOR</h2>
   <div class="text-group">
     <div class="text-item"><a href="/club-stats/ucl">UCL STATS</a></div>
+    <div class="text-item"><a href="/Match-History/mbappe#match-history">MATCH HISTORY</a></div>
     <div class="text-item"><a href="/int-stats/wc">WORLD CUP STATS</a></div>
     <div class="text-item"><a href="/club-stats#clubcomp">LEAGUE STATS</a></div>
 
@@ -36,37 +37,32 @@
     <div class="text-item"><a href="">HATTRICK POKER FK GOALS etc</a></div>
 
     <div class="text-item"><a href="/feedback#report">REPORT AN ISSUE</a></div>
-    <div class="text-item"><a href="/pay">DONATE</a></div>
     <div class="text-item"><a href="/vote#vote">VOTE NOW</a></div>
   </div>
 </div>
 </section>
 
 <div class="tab-container">
-  <div class="tab active" data-target="allTime">All Time Stats</div>
-  <div class="tab" data-target="thisSeason">This Season Stats</div>
-  <div class="tab" data-target="other">Other</div>
+  <button class="tab-btn tab" value="allTime">All Time Stats</button>
+  <button class="tab-btn tab" value="thisSeason">This Season Stats</button>
+  <button class="tab-btn tab" value="lastFive">Last Five Games</button>
 </div>
 
-<button onclick="window.location.href='/mhv?player=mbappe'">Mbappé</button>
-<button onclick="window.location.href='/mhv?player=haaland'">Haaland</button>
-<button onclick="window.location.href='/mhv?player=vinicius'">Vinícius</button>
-
-
 <!-- Content Sections -->
-<div id="allTime" class="content active">
+<div id="allTime" class="stats-content">
   {{> pages/home }}
 </div>
 
-<div id="thisSeason" class="content">
-  {{> season/2024-25 }}
+<div id="thisSeason" class="stats-content">
+  {{> season/2025-26 }}
 </div>
 
-<div id="other" class="content">
-  {{> pages/other }}
+<div id="lastFive" class="stats-content">
+  {{> pages/Last-five }}
 </div>
 
-{{>sts-update}}
+{{> sts-update}}
+
 
 <div class="footer2-card" onclick="location.href='/feedback#report'">
   <span>Report an issue</span>
@@ -79,25 +75,29 @@
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".stats-content");
 
-  const tabs = document.querySelectorAll('.tab');
-  const contents = document.querySelectorAll('.content');
+  function showContent(id) {
+    contents.forEach(c => c.classList.remove("active"));
+    buttons.forEach(b => b.classList.remove("active"));
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Toggle tab active state
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
+    document.getElementById(id).classList.add("active");
+    document.querySelector(`.tab-btn[value="${id}"]`).classList.add("active");
+  }
 
-      // Show the correct content
-      contents.forEach(content => content.classList.remove('active'));
-      const target = tab.dataset.target;
-      const activeContent = document.getElementById(target);
-      if (activeContent) {
-        activeContent.classList.add('active');
-      }
+  // Default = All Time Stats
+  const defaultSection = "allTime";
+  showContent(defaultSection);
+
+  // Button clicks
+  buttons.forEach(btn => {
+    btn.addEventListener("click", function () {
+      showContent(this.value);
     });
   });
+});
 
   document.querySelectorAll('.Dt-btn2').forEach(button => {
     button.addEventListener('click', function () {

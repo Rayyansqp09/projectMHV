@@ -19,7 +19,8 @@ const tableNames = [
   '2021_22',
   '2022_23',
   '2023_24',
-  '2024_25'
+  '2024_25',
+  '2025_26'
 ];
 
 module.exports = tableNames;

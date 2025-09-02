@@ -39,10 +39,12 @@
         <label class="field-label">Competition</label>
         <select name="competition" id="competition">
           <option>All</option>
-          <option value="World Cup,Copa America,UEFA Euro">International Major Competitions</option>
+          <option value="World Cup,Copa América,UEFA Euro">International Major Competitions</option>
           <option
-            value="World Cup,Copa America,UEFA Euro,World Cup Qualifiers,UEFA Nations League (A),UEFA Nations League (B)">
+            value="World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B)">
             International Competitive Games</option>
+          <option value="La liga,Ligue 1,Bundesliga,Eliteserien,Seria A,National 2 Group D,National 2 Group C,1. divisjon,Premier League,Segunda División B">Domestic League</option>
+          <option value="La liga,Ligue 1,Bundesliga,Eliteserien,Seria A,Premier League">Domestic League (Top Division Only)</option>
           {{#each dynamicFilters.competition}}
           <option value="{{this}}">{{this}}</option>
           {{/each}}
@@ -103,7 +105,7 @@
           <option>All</option>
           <option
             value="AS Monaco B,Monaco,Paris SG,Bryne FK,Molde,RB Salzburg,Dortmund,Manchester City,Flamengo,Real Madrid,Real Madrid Castilla">
-               All Clubs
+            All Clubs
           </option>
 
           {{#each dynamicFilters.forTeam}}

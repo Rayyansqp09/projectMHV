@@ -112,9 +112,9 @@ db.connect((err) => {
   } else {
     console.log(`[${new Date().toISOString()}] ✅ Database connected successfully`);
 
-    app.listen(3001, () => {
-      console.log(`[${new Date().toISOString()}] 🚀 Server started on http://localhost:3001`);
-    });
+app.listen(3000, () => {
+  console.log(`[${new Date().toISOString()}] 🚀 Server started on http://localhost:3000`);
+});
   }
 });
 

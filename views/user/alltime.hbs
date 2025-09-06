@@ -1,40 +1,40 @@
 <div class="table-container" id="alltime">
     <h1 name="" class="stat-title">ALL TIME STATS</h1>
-    <table>
+    <table class="Stats-table">
         <thead>
             <tr>
-                <th class="mbappe-text">MBAPPE</th>
-                <th class="haaland-text">HAALAND</th>
-                <th class="vini-text">VINICIUS</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="mbappe-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="haaland-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="vini-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="haaland-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="vini-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="haaland-text">{{haaland.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="vini-text">{{vini.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{mbappe.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{haaland.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{vini.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.Assists}}<br><span class="stat-name">ASSISTS</span></td>
-                <td class="haaland-text">{{haaland.Assists}}<br><span class="stat-name">ASSISTS</span></td>
-                <td class="vini-text">{{vini.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{mbappe.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vini.Assists}}<br><span class="stat-name">ASSISTS</span></td>
             </tr>
 
         </tbody>
     </table>
 
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time" >UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
     {{/if}}
 </div>
 </div>
@@ -44,35 +44,36 @@
     <h1 name="club" class="stat-title">GOALSCORING STATS</h1>
     <h2 name="club" class="stat-title2">(Braces, Hattricks & Poker)</h2>
 
-    <table>
+    <table class="Stats-table">
         <thead>
             <tr>
-                <th class="mbappe-text">MBAPPE</th>
-                <th class="haaland-text">HAALAND</th>
-                <th class="vini-text">VINICIUS</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="mbappe-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
-                <td class="haaland-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
-                <td class="vini-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.braces}}<br><span class="stat-name">BRACE</span></td>
-                <td class="haaland-text">{{haaland.braces}}<br><span class="stat-name">BRACE</span></td>
-                <td class="vini-text">{{vini.braces}}<br><span class="stat-name">BRACE</span></td>
+                <td class="stat-text">{{mbappe.braces}}<br><span class="stat-name">BRACE</span></td>
+                <td class="stat-text">{{haaland.braces}}<br><span class="stat-name">BRACE</span></td>
+                <td class="stat-text">{{vini.braces}}<br><span class="stat-name">BRACE</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
-                <td class="haaland-text">{{haaland.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
-                <td class="vini-text">{{vini.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{mbappe.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{haaland.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{vini.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.poker}}<br><span class="stat-name">POKER</span></td>
-                <td class="haaland-text">{{haaland.poker}}<br><span class="stat-name">POKER</span></td>
-                <td class="vini-text">{{vini.poker}}<br><span class="stat-name">POKER</span></td>
+                <td class="stat-text">{{mbappe.poker}}<br><span class="stat-name">POKER</span></td>
+                <td class="stat-text">{{haaland.poker}}<br><span class="stat-name">POKER</span></td>
+                <td class="stat-text">{{vini.poker}}<br><span class="stat-name">POKER</span></td>
             </tr>
+
         </tbody>
     </table>
     {{#if admin}}
@@ -83,30 +84,31 @@
 <div class="table-container" id="gtype">
     <h1 name="club" class="stat-title">GOALS BY TYPE</h1>
 
-    <table>
+    <table class="Stats-table">
         <thead>
             <tr>
-                <th class="mbappe-text">MBAPPE</th>
-                <th class="haaland-text">HAALAND</th>
-                <th class="vini-text">VINICIUS</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="mbappe-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="haaland-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="vini-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
-                <td class="haaland-text">{{haaland.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
-                <td class="vini-text">{{vini.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
+                <td class="stat-text">{{mbappe.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
+                <td class="stat-text">{{haaland.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
+                <td class="stat-text">{{vini.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
-                <td class="haaland-text">{{haaland.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
-                <td class="vini-text">{{vini.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{mbappe.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{haaland.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{vini.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
             </tr>
+
         </tbody>
     </table>
     {{#if admin}}
@@ -116,29 +118,29 @@
 
 <div class="table-container" id="final">
     <h1 name="int" class="stat-title">ALL TIME STATS IN FINALS</h1>
-    <table>
+    <table class="Stats-table">
         <thead>
             <tr>
-                <th class="mbappe-text">MBAPPE</th>
-                <th class="haaland-text">HAALAND</th>
-                <th class="vini-text">VINICIUS</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="mbappe-text">{{mbappe.finalGames}}<br><span class="stat-name">GAMES</span></td>
-                <td class="haaland-text">{{haaland.finalGames}}<br><span class="stat-name">GAMES</span></td>
-                <td class="vini-text">{{vini.finalGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{mbappe.finalGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.finalGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.finalGames}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.finalGoals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="haaland-text">{{haaland.finalGoals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="vini-text">{{vini.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{mbappe.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vini.finalGoals}}<br><span class="stat-name">GOALS</span></td>
             </tr>
             <tr>
-                <td class="mbappe-text">{{mbappe.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
-                <td class="haaland-text">{{haaland.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
-                <td class="vini-text">{{vini.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{mbappe.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vini.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
             </tr>
         </tbody>
     </table>
@@ -185,7 +187,7 @@
         }
     });
 
-   document.querySelectorAll('.Dt-btn2').forEach(button => {
+    document.querySelectorAll('.Dt-btn2').forEach(button => {
         button.addEventListener('click', function () {
             const container = this.closest('.table-container'); // Locate the current section
             if (!container) return;

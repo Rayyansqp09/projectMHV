@@ -1,53 +1,51 @@
-<section class="match-history-container" style="background-color: rgba(0,0,0,0) !important;">
-  <br>
-  <h1 name="" class="stat-title">Last 5 Matches - Mbappé</h1><br>
+<div id="lastFive">
+
   <!-- Mbappé Section -->
-  <div class="scroll-container">
-    <div id="mbappe-matches-container" class="matches-section">
-      {{#each mbappeMatches}}
-      {{> match-card this}}
-      {{/each}}
+  <section class="match-history-container" style="background-color: rgba(0,0,0,0) !important;">
+    <h1 class="stat-title">Last 5 Matches - Mbappé</h1><br>
+    <div class="scroll-container">
+      <div id="mbappe-matches-container" class="matches-section">
+        {{#each mbappeMatches}}
+        {{> match-card this}}
+        {{/each}}
+      </div>
     </div>
-  </div>
-  <button class="Dt-btnu" style="margin-top: -1.5rem !important;" ><a class="dynamic-link" href="/Match-History/mbappe#match-history">Mbappe All Games</a></button>
-</div>
+    <button class="Dt-btnu" style="margin-top: -1.5rem !important;">
+      <a class="dynamic-link" href="/Match-History/mbappe#match-history">Mbappé All Games</a>
+    </button>
+  </section>
 
-</div>
-
-
-</section>
-
-
-<section class="match-history-container" style="background-color: rgba(0,0,0,0) !important;">
-  <br>
-  <h1 name="" class="stat-title">Last 5 Matches - Haaland</h1><br>
   <!-- Haaland Section -->
-
-  <div class="scroll-container">
-    <div id="haaland-matches-container" class="matches-section">
-      {{#each haalandMatches}}
-      {{> match-card this}}
-      {{/each}}
+  <section class="match-history-container" style="background-color: rgba(0,0,0,0) !important;">
+    <h1 class="stat-title">Last 5 Matches - Haaland</h1><br>
+    <div class="scroll-container">
+      <div id="haaland-matches-container" class="matches-section">
+        {{#each haalandMatches}}
+        {{> match-card this}}
+        {{/each}}
+      </div>
     </div>
-  </div>
-    <button class="Dt-btnu" style="margin-top: -1.5rem !important;" ><a class="dynamic-link" href="/Match-History/haaland#match-history">Haaland All Games</a></button>
+    <button class="Dt-btnu" style="margin-top: -1.5rem !important;">
+      <a class="dynamic-link" href="/Match-History/haaland#match-history">Haaland All Games</a>
+    </button>
+  </section>
 
-</section>
-
-
-<section class="match-history-container" style="background-color: rgba(0,0,0,0) !important;">
   <!-- Vinícius Section -->
-  <h1 name="" class="stat-title">Last 5 Matches - Vinícius</h1><br>
-  <div class="scroll-container">
-    <div id="vinicius-matches-container" class="matches-section">
-      {{#each viniciusMatches}}
-      {{> match-card this}}
-      {{/each}}
+  <section class="match-history-container" style="background-color: rgba(0,0,0,0) !important;">
+    <h1 class="stat-title">Last 5 Matches - Vinícius</h1><br>
+    <div class="scroll-container">
+      <div id="vinicius-matches-container" class="matches-section">
+        {{#each viniciusMatches}}
+        {{> match-card this}}
+        {{/each}}
+      </div>
     </div>
-  </div>
-  <button class="Dt-btnu" style="margin-top: -1.5rem !important;" ><a class="dynamic-link" href="/Match-History/vinicius#match-history">Vinicius jr All Games</a></button>
+    <button class="Dt-btnu" style="margin-top: -1.5rem !important;">
+      <a class="dynamic-link" href="/Match-History/vinicius#match-history">Vinícius Jr All Games</a>
+    </button>
+  </section>
 
-</section>
+</div>
 
 <script>
   function toggleCardDetails(button) {

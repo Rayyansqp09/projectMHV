@@ -32,7 +32,7 @@
     <div class="text-item"><a href="/alltime#final">STATS IN FINALS</a></div>
     <div class="text-item"><a href="/club-stats#clubWc">CLUB WORLD CUP</a></div>
 
-    <div class="text-item"><a href="/season">THIS SEASON STATS(2024-25)</a></div>
+    <div class="text-item"><a href="/season">CURRENT SEASON STATS(2025-26)</a></div>
     <div class="text-item"><a href="/int-stats/copa-euro">COPA/EURO</a></div>
     <div class="text-item"><a href="">HATTRICK POKER FK GOALS etc</a></div>
 
@@ -43,12 +43,11 @@
 </section>
 
 <div class="tab-container">
-  <button class="tab-btn tab" value="allTime">All Time Stats</button>
-  <button class="tab-btn tab" value="thisSeason">This Season Stats</button>
-  <button class="tab-btn tab" value="lastFive">Last Five Games</button>
+  <button class="tab-btn" value="allTime">All Time Stats</button>
+  <button class="tab-btn" value="thisSeason">This Season Stats</button>
+  <button class="tab-btn" value="lastFive">Last Five Games</button>
 </div>
 
-<!-- Content Sections -->
 <div id="allTime" class="stats-content">
   {{> pages/home }}
 </div>
@@ -58,20 +57,36 @@
 </div>
 
 <div id="lastFive" class="stats-content">
-  {{> pages/Last-five }}
+  {{> pages/last-five }}
+
 </div>
+
+
+
+
+<style>
+  /* Content Sections */
+.stats-content {
+  display: none;
+  
+}
+
+.stats-content.active {
+  display: block;
+}
+</style>
 
 {{> sts-update}}
 
 
-<div class="footer2-card" onclick="location.href='/feedback#report'">
+<div class="footer3-card" onclick="location.href='/feedback#report'">
   <span>Report an issue</span>
-  <span class="footer2-arrow">&#8594;</span>
+  <span class="footer3-arrow">&#8594;</span>
 </div>
 
-<div class="footer2-card" onclick="location.href='/feedback#suggestion'">
+<div class="footer3-card" onclick="location.href='/feedback#suggestion'">
   <span>I have a suggestion</span>
-  <span class="footer2-arrow">&#8594;</span>
+  <span class="footer3-arrow">&#8594;</span>
 </div>
 
 <script>
@@ -80,16 +95,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const contents = document.querySelectorAll(".stats-content");
 
   function showContent(id) {
+    // hide all
     contents.forEach(c => c.classList.remove("active"));
     buttons.forEach(b => b.classList.remove("active"));
 
-    document.getElementById(id).classList.add("active");
-    document.querySelector(`.tab-btn[value="${id}"]`).classList.add("active");
+    // show selected
+    const section = document.getElementById(id);
+    const button = document.querySelector(`.tab-btn[value="${id}"]`);
+
+    if (section && button) {
+      section.classList.add("active");
+      button.classList.add("active");
+    } else {
+      console.error("Could not find section or button for id:", id);
+    }
   }
 
   // Default = All Time Stats
-  const defaultSection = "allTime";
-  showContent(defaultSection);
+  showContent("allTime");
 
   // Button clicks
   buttons.forEach(btn => {

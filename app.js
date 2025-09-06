@@ -91,11 +91,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', adminRouter);
 app.use('/', userRouter);
 
-// ✅ 404 handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+// // ✅ 404 handler
+// app.use(function (req, res, next) {
+//   next(createError(404));
+// });
 
+
+// 404 handler (for routes not found)
+app.use((req, res, next) => {
+  res.status(404);
+  res.render('error', {
+    title: '404 - Page Not Found | MHVStats',
+    message: 'Oops! The page you are looking for does not exist.',
+  });
+});
 
 // ✅ Error handler
 app.use(function (err, req, res, next) {

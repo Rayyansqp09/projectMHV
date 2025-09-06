@@ -2,8 +2,9 @@
   background: #fff;
   padding: 2rem;
   font-family: 'Segoe UI', sans-serif;
-  max-width: 1300px;
+  /* max-width: 1300px; */
   margin: auto;
+  width: 100%;
 }
 
 .match-history-title {
@@ -284,7 +285,7 @@
 
 /* Default: hide mobile */
 .mobile-only {
-  display: none;
+  display: none !important;
 }
 
 /* On small screens, swap */

@@ -28,7 +28,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const isDev = false; // true while editing, false to enable caching
+const isDev = true; // true while editing, false to enable caching
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -731,7 +731,9 @@ router.get('/:time', function (req, res, next) {
 
   const allowedTimes = ['season', 'year', 'age'];
   if (!allowedTimes.includes(time)) {
-    return res.status(404).send('Page not found');
+    const err = new Error('Oops! The page you are looking for does not exist.');
+    err.status = 404;
+    return next(err); // ✅ will hit your error handler and render error.hbs
   }
 
   const seasons = [

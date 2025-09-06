@@ -144,3 +144,36 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+  const rows = document.querySelectorAll("tbody tr");
+
+  rows.forEach(row => {
+    const cells = row.querySelectorAll("td.stat-text");
+    const values = Array.from(cells).map(cell => parseInt(cell.textContent));
+
+    const maxValue = Math.max(...values);
+    const countMax = values.filter(v => v === maxValue).length;
+
+    if (countMax === 1) {
+      // Unique max → full gold
+      cells.forEach(cell => {
+        if (parseInt(cell.textContent) === maxValue) {
+          cell.style.color = "#FFD700"; // gold
+        }
+      });
+    } else if (countMax === 2) {
+      // Two equal max → blue
+      cells.forEach(cell => {
+        if (parseInt(cell.textContent) === maxValue) {
+          cell.style.color = "#FFA500"; // blue
+        }
+      });
+    }
+    // countMax === 3 → all equal → no highlight
+  });
+
+
+
+
+
+

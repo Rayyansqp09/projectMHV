@@ -1,3 +1,12 @@
-<h1>{{message}}</h1>
-<h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<div class="mvhv-error-wrapper">
+  <div class="mvhv-error-box">
+    <h1 class="mvhv-error-title">⚠️ {{message}}</h1>
+    <h2 class="mvhv-error-status">Error {{error.status}}</h2>
+
+    {{#if error.stack}}
+      <pre class="mvhv-error-stack">{{error.stack}}</pre>
+    {{/if}}
+
+    <a href="/" class="mvhv-error-btn">⬅ Back to Home</a>
+  </div>
+</div>

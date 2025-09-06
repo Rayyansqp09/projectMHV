@@ -91,14 +91,18 @@ router.get('/', function (req, res, next) {
       viniciusMatches
     };
 
-  res.render('index', data, (err, html) => {
+res.render('index', data, (err, html) => {
   if (err) {
     console.error("❌ Error rendering index:", err);
     return res.status(500).render('error', { 
-      message: "Something went wrong while loading the page." 
+      message: "Something went wrong while loading the page.",
+      error: {
+        status: err.status || 500,
+        stack: err.stack || err.toString()
+      }
     });
   }
-  
+
   pageCache.set('/', html);   // 🔥 Cache it!
   res.send(html);
     });

@@ -28,7 +28,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const isDev = true; // true while editing, false to enable caching
+const isDev = false; // true while editing, false to enable caching
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -91,10 +91,16 @@ router.get('/', function (req, res, next) {
       viniciusMatches
     };
 
-    res.render('index', data, (err, html) => {
-      if (err) return res.status(500).send('Error rendering page');
-      pageCache.set('/', html);   // 🔥 Cache it!
-      res.send(html);
+  res.render('index', data, (err, html) => {
+  if (err) {
+    console.error("❌ Error rendering index:", err);
+    return res.status(500).render('error', { 
+      message: "Something went wrong while loading the page." 
+    });
+  }
+  
+  pageCache.set('/', html);   // 🔥 Cache it!
+  res.send(html);
     });
   });
 });

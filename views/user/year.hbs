@@ -1,19 +1,21 @@
-<div id="alertPopup" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.7); display:flex; align-items:center; justify-content:center; z-index:1000; padding: 1rem;">
-  <div style="background-color:#1a1e27; padding:2rem 1.5rem; border-radius:12px; max-width:500px; width:100%; text-align:center; box-shadow:0 0 20px #00ffe055;">
-    <h2 style="color:#ffc800; margin-bottom:1rem;">⚠️ Notice</h2>
-    <p style="color:#ffc800; line-height:1.6;">
-     The statistics for this section are currently being collected and verified.<br>
-      We apologize for the inconvenience.<br><br>
-      Our team is working to complete this as soon as possible.<br>
-      Please check back in a few days.<br><br>
-      Thank you for your patience and understanding.
-    </p>
-    <button onclick="window.location.href='/'"
-      style="margin-top:2rem; padding:0.6rem 1.5rem; background-color:#ffc800; color:#1a1e27; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
-      Go to Home Page
-    </button>
-  </div>
-</div>
+{{!-- <div id="alertPopup"
+    style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.7); display:flex; align-items:center; justify-content:center; z-index:1000; padding: 1rem;">
+    <div
+        style="background-color:#1a1e27; padding:2rem 1.5rem; border-radius:12px; max-width:500px; width:100%; text-align:center; box-shadow:0 0 20px #00ffe055;">
+        <h2 style="color:#ffc800; margin-bottom:1rem;">⚠️ Notice</h2>
+        <p style="color:#ffc800; line-height:1.6;">
+            The statistics for this section are currently being collected and verified.<br>
+            We apologize for the inconvenience.<br><br>
+            Our team is working to complete this as soon as possible.<br>
+            Please check back in a few days.<br><br>
+            Thank you for your patience and understanding.
+        </p>
+        <button onclick="window.location.href='/'"
+            style="margin-top:2rem; padding:0.6rem 1.5rem; background-color:#ffc800; color:#1a1e27; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
+            Go to Home Page
+        </button>
+    </div>
+</div> --}}
 
 
 
@@ -21,70 +23,63 @@
 <div class="football-dropdown-container">
     <div class="football-dropdown">
         <select id="seasonSelect">
-            <option value="season2024">-- Choose Year --</option>
+            <option value="2025">-- Choose Year --</option>
             <option value="2025">2025</option>
             <option value="2024">2024</option>
             <option value="2023">2023</option>
-            <option value="age25">At 25</option>
-            <option value="age24">At 24</option>
-            <option value="age23">At 23</option>
-            <option value="age22">At 22</option>
-            <option value="age21">At 21</option>
-            <option value="age20">At 20</option>
-            <option value="age19">At 19</option>
-            <option value="age18">At 18</option>
-            <option value="age17">At 17</option>
-            <option value="age16">At 16</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+
 
         </select>
-
-
-        <div class="season-content" id="age28">
-            {{> age/age28 }}
+        <div class="season-content" id="2025">
+            {{> year/year2025 }}
         </div>
 
-        <div class="season-content" id="age27">
-            {{> age/age27 }}
+        <div class="season-content" id="2024">
+            {{> year/year2024 }}
         </div>
 
-        <div class="season-content" id="age26">
-            {{> age/age26 }}
+        <div class="season-content" id="2023">
+            {{> year/year2023 }}
         </div>
 
-        <div class="season-content" id="age25">
-            {{> age/age25 }}
+        <div class="season-content" id="2022">
+            {{> year/year2022 }}
         </div>
 
-        <div class="season-content" id="age24">
-            {{> age/age24 }}
+        <div class="season-content" id="2021">
+            {{> year/year2021 }}
         </div>
 
-        <div class="season-content" id="age23">
-            {{> age/age23 }}
+        <div class="season-content" id="2020">
+            {{> year/year2020 }}
         </div>
 
-        <div class="season-content" id="age22">
-            {{> age/age22 }}
+        <div class="season-content" id="2019">
+            {{> year/year2019 }}
         </div>
 
-        <div class="season-content" id="age21">
-            {{> age/age21 }}
+        <div class="season-content" id="2018">
+            {{> year/year2018 }}
         </div>
 
-        <div class="season-content" id="age20">
-            {{> age/age20 }}
+        <div class="season-content" id="2017">
+            {{> year/year2017 }}
         </div>
 
-        <div class="season-content" id="age19">
-            {{> age/age19 }}
+        <div class="season-content" id="2016">
+            {{> year/year2016 }}
         </div>
 
-        <div class="season-content" id="age18">
-            {{> age/age18 }}
-        </div>
-
-        <div class="season-content" id="age17">
-            {{> age/age17 }}
+        <div class="season-content" id="2015">
+            {{> year/year2015 }}
         </div>
 
 

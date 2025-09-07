@@ -176,6 +176,7 @@
           <option value="2018">2018</option>
           <option value="2017">2017</option>
           <option value="2016">2016</option>
+           <option value="2015">2015</option>
           <!-- Add more years as needed -->
         </select>
       </div>
@@ -201,7 +202,7 @@
       </div>
 
       <div class="form-field">
-        <label class="field-label">Spesific Number of Match</label>
+        <label class="field-label"><span class="desktop-only">Specific</span> Number of Match</label>
         <input type="number" name="matchNo" id="matchNo" placeholder="Enter Match No">
       </div>
 
@@ -417,7 +418,7 @@
 
   <div class="totals">
     <span>
-      Filtered Matches: Total Goals: <span id="totalGoals">{{totalGoals}}</span> Total Assists: <span
+      Filtered Matches <span class="mobile-only" style="display: inline;">Stats</span>:<span style="display: inline;" class="desktop-only"> Total</span> Goals: <span id="totalGoals">{{totalGoals}} </span><span class="desktop-only" style="display: inline;"> Total</span> Assists: <span
         id="totalAssists">{{totalAssists}}</span>
     </span>
   </div><br>

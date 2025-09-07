@@ -743,56 +743,69 @@ router.get('/:time', function (req, res, next) {
   if (!allowedTimes.includes(time)) {
     const err = new Error('Oops! The page you are looking for does not exist.');
     err.status = 404;
-    return next(err); // ✅ will hit your error handler and render error.hbs
+    return next(err);
   }
 
   const seasons = [
-    '2015_16',
-    '2016_17',
-    '2017_18',
-    '2018_19',
-    '2019_20',
-    '2020_21',
-    '2021_22',
-    '2022_23',
-    '2023_24',
-    '2024_25',
-    '2025_26'
+    '2015_16','2016_17','2017_18','2018_19','2019_20',
+    '2020_21','2021_22','2022_23','2023_24','2024_25','2025_26'
   ];
 
-  displayHelper.getStats(seasons, (err, stats) => {
+  const years = [
+    'year2015','year2016','year2017','year2018','year2019',
+    'year2020','year2021','year2022','year2023','year2024','year2025'
+  ];
+
+  let tables = [];
+  if (time === 'season') {
+    tables = seasons;
+  } else if (time === 'year') {
+    tables = years;
+  } else if (time === 'age') {
+    tables = ages; // make sure you have an ages array defined
+  }
+
+  displayHelper.getStats(tables, (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-    // console.log(stats)
+
     const data = {};
 
-    for (const season of seasons) {
-      const cleanKey = season.replace('_', ''); // e.g., 2024_25 → 202425
-      const table = stats[season];
+    for (const tableName of tables) {
+      // Generate clean key for template
+      let cleanKey = '';
+      if (time === 'season') {
+        cleanKey = tableName.replace('_', ''); // e.g., 2024_25 → 202425
+      } else if (time === 'year') {
+        cleanKey = tableName.replace('year', ''); // e.g., year2015 → 2015
+      } else if (time === 'age') {
+        cleanKey = tableName.replace('age', ''); // e.g., age21 → 21
+      }
 
+      const table = stats[tableName] || [];
 
-      // Fallback to empty object if not found
       const mbappe = table.find(p => p.Name === 'Mbappe') || {};
       const haaland = table.find(p => p.Name === 'Haaland') || {};
       const vinicius = table.find(p => p.Name === 'Vinicius') || {};
 
+      // Use same key format as your season HBS template
       data[`mbappe_${cleanKey}`] = mbappe;
       data[`haaland_${cleanKey}`] = haaland;
       data[`vinicius_${cleanKey}`] = vinicius;
 
-      data[`season_${cleanKey}`] = table; // optional full table
+      // optional: store full table if needed
+      data[`${time}_${cleanKey}`] = table;
     }
 
     let pageTitle = '';
     let metaDescription = '';
-
     if (time === 'season') {
       pageTitle = 'Mbappe vs Haaland vs Vinicius | Stats by season';
       metaDescription = 'Compare football stats of Mbappe, Haaland, and Vinicius by each season from 2015-16 to 2024-25.';
     } else if (time === 'year') {
-      pageTitle = 'Mbappe vs Haaland vs Vinicius | Stats by calender year';
+      pageTitle = 'Mbappe vs Haaland vs Vinicius | Stats by calendar year';
       metaDescription = 'Yearly performance breakdown of Mbappe, Haaland, and Vinicius — goals, assists, and matches.';
     } else if (time === 'age') {
       pageTitle = 'Mbappe vs Haaland vs Vinicius | Stats by Age';
@@ -807,7 +820,6 @@ router.get('/:time', function (req, res, next) {
     });
   });
 });
-
 
 
 

@@ -1,0 +1,261 @@
+<h2 name="" class="stat-titleabove">2016 CALENDAR YEAR STATS</h2>
+
+<div class="table-container">
+    <h2 name="" class="stat-title">ALL COMPETITION</h2>
+    <h2 name="club" class="stat-title2">(Including National Team Games)</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland_2016.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vinicius_2016.Games}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland_2016.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vinicius_2016.Goals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland_2016.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vinicius_2016.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+<div class="table-container">
+    <h2 name="club" class="stat-title">CLUB COMPETETION</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland_2016.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vinicius_2016.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland_2016.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vinicius_2016.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.clubAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland_2016.clubAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vinicius_2016.clubAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="CLUB STATS">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">INTERNATIONAL COMPETITION</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.intGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland_2016.intGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vinicius_2016.intGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.intGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland_2016.intGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vinicius_2016.intGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.intAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland_2016.intAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vinicius_2016.intAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">LEAGUE</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.lGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland_2016.lGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vinicius_2016.lGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.lGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland_2016.lGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vinicius_2016.lGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.lAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland_2016.lAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vinicius_2016.lAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">CLUB CONTINENTAL COMPETITIONS</h2>
+    <h2 name="club" class="stat-title2">(UEFA Champions League\Copa Libertadores\Copa Sudamericana)</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland_2016.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vinicius_2016.uclGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland_2016.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vinicius_2016.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland_2016.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vinicius_2016.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">FINAL STATS</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.finalGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland_2016.finalGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vinicius_2016.finalGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland_2016.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vinicius_2016.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_2016.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland_2016.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vinicius_2016.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{{>sts-update}}
+
+<script>
+
+    document.querySelectorAll('.Dt-btn2').forEach(button => {
+        button.addEventListener('click', function () {
+            const container = this.closest('.table-container'); // Locate the current section
+            if (!container) return;
+
+            const table = container.querySelector('table'); // Find the table inside this section
+            const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
+
+            hiddenRows.forEach(row => {
+                row.style.display = 'table-row'; // Show row
+                row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+            });
+
+            this.style.display = 'none'; // Hide "More" button
+        });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("a.dynamic-link");
+        const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
+
+        links.forEach(link => {
+            const originalHref = link.getAttribute("href");
+
+            // If it's already absolute or an external link, skip
+            if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+
+            // Update href to include current path
+            link.setAttribute("href", `${basePath}/${originalHref}`);
+        });
+    });
+
+
+    function toggleModal(button) {
+        // Find the closest table-container and get the h2 inside it
+        const headingElement = button.closest(".table-container").querySelector("h2");
+
+        // ✅ Display the heading text inside the modal
+        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+
+        // ✅ Send the 'name' attribute value to the backend via hidden input
+        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+        const tableName = button.getAttribute("table");
+        document.getElementById("tableNameDisplay").textContent = "Table Name";
+        document.getElementById("tableNameInput").value = tableName;
+
+
+
+        const modal = document.getElementById("modalOverlay");
+        modal.style.display = "flex"; // ensure it uses flex to center
+        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('statsForm');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+
+                // You can add fetch or form submission logic here
+                toggleModal(); // Close the modal
+            });
+        }
+    });
+</script>

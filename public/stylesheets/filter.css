@@ -17,7 +17,7 @@
   color: #555;
   margin-bottom: 1.5rem;
 }
- 
+
 .tab-container-mh {
   /* display: flex; */
   justify-content: center;
@@ -49,9 +49,12 @@
 
   /* Softer shadows for white background */
   box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.1),   /* outer light shadow */
-    inset 0 1px 2px rgba(255, 255, 255, 0.6), /* inner highlight */
-    inset 0 -1px 2px rgba(0, 0, 0, 0.05);     /* subtle depth */
+    0 4px 10px rgba(0, 0, 0, 0.1),
+    /* outer light shadow */
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    /* inner highlight */
+    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+  /* subtle depth */
 
   /* Light gradient for depth */
   background-image: linear-gradient(145deg, #ffffff, #f0f0f0);
@@ -692,7 +695,8 @@ textarea {
 
 .header-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.8fr 2fr 1.6fr 1.7fr 1.7fr 1fr; /* fractions instead of fixed px */
+  grid-template-columns: 1fr 1fr 0.8fr 2fr 1.6fr 1.7fr 1.7fr 1fr;
+  /* fractions instead of fixed px */
   background: #f0f0f0;
   padding: 0.75rem 1rem;
   border-radius: 10px;
@@ -700,19 +704,26 @@ textarea {
   font-size: 0.95rem;
   margin-bottom: 1rem;
   color: #444;
-  gap: 0.5rem; /* optional spacing between columns */
+  gap: 0.5rem;
+  /* optional spacing between columns */
 }
 
-.header-row span:nth-child(5) {  /* Tournament */
-  margin-left: -40px;  /* adjust value as needed */
+.header-row span:nth-child(5) {
+  /* Tournament */
+  margin-left: -40px;
+  /* adjust value as needed */
 }
 
-.header-row span:nth-child(7) {  /* Assists */
-  margin-left: -60px;  /* adjust value as needed */
+.header-row span:nth-child(7) {
+  /* Assists */
+  margin-left: -60px;
+  /* adjust value as needed */
 }
 
-.header-row span:nth-child(8) {  /* Assists */
-  margin-left: -90px;  /* adjust value as needed */
+.header-row span:nth-child(8) {
+  /* Assists */
+  margin-left: -90px;
+  /* adjust value as needed */
 }
 
 
@@ -1080,6 +1091,22 @@ textarea {
     /* Keep titles styled */
     padding: 0;
     border: none !important;
+  }
+
+  .goal-type-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* allow items to go to the next line if needed */
+    gap: 0.3rem;
+    /* spacing between boxes */
+    margin-top: 0.25rem;
+  }
+
+  .goal-type-item {
+    border: 1px solid #ccc;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
   }
 
   /* .goal-type{

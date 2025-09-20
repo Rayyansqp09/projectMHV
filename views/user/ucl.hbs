@@ -1,6 +1,7 @@
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
-<meta name="keywords" content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe stats, Haaland stats, Vinicius stats, football comparison, Champions League stats, World Cup stats">
+<meta name="keywords"
+    content="Mbappe vs Haaland, Haaland vs Vinicius, Mbappe stats, Haaland stats, Vinicius stats, football comparison, Champions League stats, World Cup stats">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
@@ -18,53 +19,53 @@
                 <th class="stat-text">VINICIUS</th>
             </tr>
         </thead>
-      <div class="table-scroll">
-        <tbody>
-            <tr>
-                <td class="stat-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="stat-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="stat-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
-            </tr>
-            <tr>
-                <td class="stat-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="stat-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="stat-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
-            </tr>
-            <tr>
-                <td class="stat-text">{{mbappe.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="stat-text">{{haaland.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="stat-text">{{vini.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-            </tr>
-            <tr>
-                <td class="stat-text">{{mbappe.Assists}}<br><span class="stat-name">ASSIST</span></td>
-                <td class="stat-text">{{haaland.Assists}}<br><span class="stat-name">ASSIST</span></td>
-                <td class="stat-text">{{vini.Assists}}<br><span class="stat-name">ASSIST</span></td>
-            </tr>
-            <tr>
-                <td class="stat-text">{{mbappe.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-                <td class="stat-text">{{haaland.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-                <td class="stat-text">{{vini.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-            </tr>
-            <tr>
-                <td class="stat-text">{{mbappe.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-                <td class="stat-text">{{haaland.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-                <td class="stat-text">{{vini.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-            </tr>
-         </div>
+        <div class="table-scroll">
+            <tbody>
+                <tr>
+                    <td class="stat-text">{{mbappe_club.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                    <td class="stat-text">{{haaland_club.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                    <td class="stat-text">{{vini_club.uclGames}}<br><span class="stat-name">GAMES</span></td>
+                </tr>
+                <tr>
+                    <td class="stat-text">{{mbappe_club.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                    <td class="stat-text">{{haaland_club.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                    <td class="stat-text">{{vini_club.uclGoals}}<br><span class="stat-name">GOALS</span></td>
+                </tr>
+                <tr>
+                    <td class="stat-text">{{mbappe_club.uclGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                    <td class="stat-text">{{haaland_club.uclGoalRatio}}<br><span class="stat-name">GOAL RATIO</span>
+                    </td>
+                    <td class="stat-text">{{vini_club.uclGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                </tr>
+                <tr>
+                    <td class="stat-text">{{mbappe_club.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                    <td class="stat-text">{{haaland_club.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                    <td class="stat-text">{{vini_club.uclAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                </tr>
+
+                <!-- Hidden Rows -->
+                <tr>
+                    <td class="stat-text">{{mbappe_club.uclCC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+                    <td class="stat-text">{{haaland_club.uclCC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+                    <td class="stat-text">{{vini_club.uclCC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+                </tr>
+                <tr>
+                    <td class="stat-text">{{mbappe_club.uclShot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+                    <td class="stat-text">{{haaland_club.uclShot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+                    <td class="stat-text">{{vini_club.uclShot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+                </tr>
+        </div>
         </tbody>
     </table>
-     <!-- Scroll down indicator -->
-  <div class="scroll-down-indicator">
-    <span>&#x25BC;</span>
 
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="ucl" >UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="ucl">UPDATE</button>
     {{/if}}
 </div>
 
 <div class="table-container">
     <h1 name="int" class="stat-title">UCL KNOCKOUT</h1>
-     <h2 name="club" class="stat-title2">(Including Play-off Games In New Format )</h2>
+    <h2 name="club" class="stat-title2">(Including Play-off Games In New Format )</h2>
     <table class="Stats-table">
         <thead>
             <tr>
@@ -92,7 +93,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ko" table="ucl" >UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ko" table="ucl">UPDATE</button>
     {{/if}}
 </div>
 
@@ -125,7 +126,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="gs" table="ucl" >UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="gs" table="ucl">UPDATE</button>
     {{/if}}
 </div>
 
@@ -159,9 +160,9 @@
             </tr>
         </tbody>
     </table>
-  
+
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="semi" table="ucl" >UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="semi" table="ucl">UPDATE</button>
     {{/if}}
 </div>
 
@@ -195,7 +196,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="sf" table="ucl" >UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="sf" table="ucl">UPDATE</button>
     {{/if}}
 </div>
 
@@ -228,7 +229,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="ucl" >UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="ucl">UPDATE</button>
     {{/if}}
 </div>
 
@@ -267,7 +268,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="ucl" >UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="ucl">UPDATE</button>
     {{/if}}
 </div>
 
@@ -290,5 +291,5 @@
     });
 
 
-    
+
 </script>

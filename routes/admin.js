@@ -11,16 +11,18 @@ require('dotenv').config();
 /* GET users listing. */
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    console.log('Admin route /admin accessed');
-  const seasons = ['2024_25', 'all_time'];
+  if (!isDev) {
+    const cachedPage = pageCache.get('/');
+    if (cachedPage) return res.send(cachedPage);
+  }
+
+  const seasons = ['2025_26', 'all_time', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
 
   displayHelper.getStats(seasons, (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-
-    console.log(stats)
 
     // All-time stats
     const allTimeStats = stats['all_time'] || [];
@@ -29,7 +31,7 @@ router.get('/', function (req, res, next) {
     const vini = allTimeStats.find(p => p.Name === 'Vinicius') || {};
 
     // Latest season stats (2024_25)
-    const season = '2024_25';
+    const season = '2025_26';
     const cleanKey = season.replace('_', '');
     const seasonStats = stats[season] || [];
 
@@ -37,21 +39,55 @@ router.get('/', function (req, res, next) {
     const haalandSeason = seasonStats.find(p => p.Name === 'Haaland') || {};
     const viniciusSeason = seasonStats.find(p => p.Name === 'Vinicius') || {};
 
-    // Construct final data
+    // 🔥 Get last 5 matches for each player
+    function getLastFiveMatches(playerKey) {
+      const matches = stats[playerKey] || [];
+      return matches
+        .sort((a, b) => new Date(b.date) - new Date(a.date)) // latest first
+        .slice(0, 5);
+    }
+
+    const mbappeMatches = getLastFiveMatches('mhmbappe');
+    const haalandMatches = getLastFiveMatches('mhhaaland');
+    const viniciusMatches = getLastFiveMatches('mhvinicius');
+
+    // Final data
     const data = {
       admin: true,
+      canonical: '<link rel="canonical" href="https://mhvstats.xyz/" />',
+
       mbappe,
       haaland,
       vini,
       [`mbappe_${cleanKey}`]: mbappeSeason,
       [`haaland_${cleanKey}`]: haalandSeason,
       [`vinicius_${cleanKey}`]: viniciusSeason,
-      [`season_${cleanKey}`]: seasonStats
+      [`season_${cleanKey}`]: seasonStats,
+
+      // 👇 last 5 matches for home page
+      mbappeMatches,
+      haalandMatches,
+      viniciusMatches
     };
 
-    res.render('index', data);
+res.render('index', data, (err, html) => {
+  if (err) {
+    console.error("❌ Error rendering index:", err);
+    return res.status(500).render('error', { 
+      message: "Something went wrong while loading the page.",
+      error: {
+        status: err.status || 500,
+        stack: err.stack || err.toString()
+      }
+    });
+  }
+
+  pageCache.set('/', html);   // 🔥 Cache it!
+  res.send(html);
+    });
   });
 });
+
 
 // router.get('/sts-update', function(req, res) {
 //   res.send('GET /sts-update route');

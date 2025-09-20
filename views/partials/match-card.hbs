@@ -46,13 +46,22 @@
       </div>
       <div class="goal-types">
         <strong>Goal Types</strong>
-        <div><span class="goal-type">{{#if goalTypes}}{{goalTypes}}{{else}}None{{/if}}</span></div>
+        <div class="goal-type-list">
+          {{#if goalTypes}}
+          {{#each (split goalTypes ",")}}
+          <span class="goal-type-item">{{this}}</span>
+          {{/each}}
+          {{else}}
+          <span class="goal-type-item">None</span>
+          {{/if}}
+        </div>
       </div>
+
       <div class="final-score">
         <strong>Final Score</strong>
         <div class="score-box">
           <div class="score">{{scorFor}}-{{scorAgainst}}</div>
-          <div class="teams"><span class="for-team-score">{{forTeam}}  </span>vs {{againstTeam}}</div>
+          <div class="teams"><span class="for-team-score">{{forTeam}} </span>vs {{againstTeam}}</div>
           <div class="result-badge {{result}}">{{result}}</div>
         </div>
       </div>
@@ -61,28 +70,35 @@
 </div>
 
 <script>
-  document.querySelectorAll('.goals, .assists').forEach(el => {
-  const value = parseInt(el.textContent.trim(), 10);
-  if (!isNaN(value)) {
-    el.classList.add(value === 0 ? 'zero' : 'nonzero');
-  }
+
+  hbs.registerHelper('split', function(str, separator) {
+  if (!str) return [];
+  return str.split(separator).map(s => s.trim());
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".score-box").forEach(box => {
-    const badge = box.querySelector(".result-badge");
-    if (!badge) return;
 
-    const result = badge.textContent.trim().toLowerCase();
-
-    if (result === "win") {
-      box.style.backgroundColor = "rgba(34,197,94,0.12)";   // light green
-    } else if (result === "draw") {
-      box.style.backgroundColor = "rgba(245,158,11,0.12)";  // light orange
-    } else if (result === "loss") {
-      box.style.backgroundColor = "rgba(239,68,68,0.12)";   // light red
+  document.querySelectorAll('.goals, .assists').forEach(el => {
+    const value = parseInt(el.textContent.trim(), 10);
+    if (!isNaN(value)) {
+      el.classList.add(value === 0 ? 'zero' : 'nonzero');
     }
   });
-});
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".score-box").forEach(box => {
+      const badge = box.querySelector(".result-badge");
+      if (!badge) return;
+
+      const result = badge.textContent.trim().toLowerCase();
+
+      if (result === "win") {
+        box.style.backgroundColor = "rgba(34,197,94,0.12)";   // light green
+      } else if (result === "draw") {
+        box.style.backgroundColor = "rgba(245,158,11,0.12)";  // light orange
+      } else if (result === "loss") {
+        box.style.backgroundColor = "rgba(239,68,68,0.12)";   // light red
+      }
+    });
+  });
 
 </script>

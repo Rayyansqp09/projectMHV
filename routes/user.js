@@ -435,7 +435,7 @@ router.get('/Match-History/:player', (req, res) => {
     };
 
     // console.log("Player:", player, "Table:", tableName, "Query Params:", req.query);
-
+    //  console.log(matches)
 
     res.render('user/mh-v', {
       matches: paginatedMatches,
@@ -656,15 +656,20 @@ router.get('/club-stats/:comp', function (req, res, next) {
     return res.status(404).send('Competition not found');
   }
 
-  displayHelper.getStats('ucl', (err, stats) => {
+  displayHelper.getStats(['ucl','club'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
 
-    const mbappe = stats.find(p => p.Name === 'Mbappe');
-    const haaland = stats.find(p => p.Name === 'Haaland');
-    const vini = stats.find(p => p.Name === 'Vinicius');
+  
+    const mbappe_club = stats.club.find(p => p.Name === 'Mbappe');
+    const haaland_club = stats.club.find(p => p.Name === 'Haaland');
+    const vini_club = stats.club.find(p => p.Name === 'Vinicius');
+
+    const mbappe = stats.ucl.find(p => p.Name === 'Mbappe');
+    const haaland = stats.ucl.find(p => p.Name === 'Haaland');
+    const vini = stats.ucl.find(p => p.Name === 'Vinicius');
 
     // console.log(mbappe, haaland, vini)
 
@@ -676,7 +681,10 @@ router.get('/club-stats/:comp', function (req, res, next) {
       admin: false,
       mbappe,
       haaland,
-      vini
+      vini,
+      mbappe_club,
+      haaland_club,
+      vini_club
     });
   });
 });

@@ -762,7 +762,7 @@
   }
 
   .performance span {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     /* adjust as needed */
     margin-left: 0px;
     line-height: -2 !important;
@@ -836,7 +836,25 @@
   }
 
   .goal-types {
-    margin-top: 0rem;
+    margin-top: 1rem;
+    font-size: 0.9rem !important;
+  }
+
+      .goal-type-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* allow items to go to the next line if needed */
+    gap: 0.3rem;
+    /* spacing between boxes */
+    margin-top: 0.25rem;
+  }
+
+  .goal-type-item {
+    border: 0.5px solid #ccc;
+    border-radius: 4px !important; /* small border radius */
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
   }
 
   .score-box {

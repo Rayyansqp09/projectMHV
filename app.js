@@ -69,6 +69,11 @@ app.engine('hbs', hbs.engine({
     },
     eq: function (a, b) {
       return a === b;
+    },
+    // ✅ Add split helper here
+    split: function(str, separator) {
+      if (!str) return [];
+      return str.split(separator).map(s => s.trim());
     }
   }
 }));

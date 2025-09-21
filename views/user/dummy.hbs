@@ -1,0 +1,242 @@
+<div id="alertPopup"
+    style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.7); display:flex; align-items:center; justify-content:center; z-index:1000; padding: 1rem;">
+    <div
+        style="background-color:#1a1e27; padding:2rem 1.5rem; border-radius:12px; max-width:500px; width:100%; text-align:center; box-shadow:0 0 20px #00ffe055;">
+        <h2 style="color:#ffc800; margin-bottom:1rem;">⚠️ Notice</h2>
+        <p style="color:#ffc800; line-height:1.6;">
+            The statistics for this section are currently being collected and verified.
+            We apologize for the inconvenience.
+            Our team is working to complete this as soon as possible.
+            Please check back in a few days.<br><br>
+            Thank you for your patience and understanding.
+        </p>
+        <button onclick="window.location.href='/'"
+            style="margin-top:2rem; padding:0.6rem 1.5rem; background-color:#ffc800; color:#1a1e27; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
+            Go to Home Page
+        </button>
+    </div>
+</div>
+
+
+<div class="table-container" id="alltime">
+    <h1 name="" class="stat-title">ALL TIME STATS</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{haaland.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{vini.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vini.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+</div>
+
+
+<div class="table-container" id="goal">
+    <h1 name="club" class="stat-title">GOALSCORING STATS</h1>
+    <h2 name="club" class="stat-title2">(Braces, Hattricks & Poker)</h2>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.braces}}<br><span class="stat-name">BRACE</span></td>
+                <td class="stat-text">{{haaland.braces}}<br><span class="stat-name">BRACE</span></td>
+                <td class="stat-text">{{vini.braces}}<br><span class="stat-name">BRACE</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{haaland.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{vini.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.poker}}<br><span class="stat-name">POKER</span></td>
+                <td class="stat-text">{{haaland.poker}}<br><span class="stat-name">POKER</span></td>
+                <td class="stat-text">{{vini.poker}}<br><span class="stat-name">POKER</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="gtype">
+    <h1 name="club" class="stat-title">GOALS BY TYPE</h1>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
+                <td class="stat-text">{{haaland.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
+                <td class="stat-text">{{vini.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{haaland.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{vini.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="final">
+    <h1 name="int" class="stat-title">ALL TIME STATS IN FINALS</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.finalGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.finalGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.finalGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vini.finalGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vini.finalAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+{{>sts-update}}
+
+<script>
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash;
+
+        if (hash === '#goal', '#final') {
+            const target = document.querySelector(hash);
+            if (!target) return;
+
+            const offset = 80; // adjust if you have a fixed header
+            const duration = 1000;
+
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+    });
+
+    document.querySelectorAll('.Dt-btn2').forEach(button => {
+        button.addEventListener('click', function () {
+            const container = this.closest('.table-container'); // Locate the current section
+            if (!container) return;
+
+            const table = container.querySelector('table'); // Find the table inside this section
+            const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
+
+            hiddenRows.forEach(row => {
+                row.style.display = 'table-row'; // Show row
+                row.style.animation = 'slideDown 0.4s ease'; // Optional animation
+            });
+
+            this.style.display = 'none'; // Hide "More" button
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("a.dynamic-link");
+        const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
+
+        links.forEach(link => {
+            const originalHref = link.getAttribute("href");
+
+            // If it's already absolute or an external link, skip
+            if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+
+            // Update href to include current path
+            link.setAttribute("href", `${basePath}/${originalHref}`);
+        });
+    });
+
+</script>

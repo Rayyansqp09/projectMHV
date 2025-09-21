@@ -30,6 +30,12 @@ const transporter = nodemailer.createTransport({
 
 const isDev = false; // true while editing, false to enable caching
 
+
+router.get('/dummy', (req, res) => {
+  res.render('user/dummy'); // looks for dummy.hbs inside views/
+});
+
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (!isDev) {

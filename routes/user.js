@@ -28,7 +28,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const isDev = false; // true while editing, false to enable caching
+const isDev = true; // true while editing, false to enable caching
 
 
 router.get('/dummy', (req, res) => {

@@ -39,9 +39,127 @@
 </div>
 </div>
 
+<div class="table-container table-container-st" id="club">
+    <h1 name="club" class="stat-title">ALL TIME CLUB STATS</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.clubGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vini.clubGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.clubAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland.clubAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vini.clubAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="Dt-btnu"><a class="dynamic-link" href="club-stats">Detailed Stats</a></button>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="club" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="footer3-card" onclick="location.href='/club-stats/ucl'">
+    <span>UEFA Champions League</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container table-container-st" id="int">
+    <h2 name="int" class="stat-title">ALL TIME INTERNATIONAL STATS</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.intGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.intGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.intGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.intGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland.intGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vini.intGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.intAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland.intAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vini.intAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="Dt-btnu"><a class="dynamic-link" href="int-stats">Detailed Stats</a></button>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="int" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="footer3-card" onclick="location.href='/int-stats/wc'">
+    <span>World Cup</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container">
+    <h1 name="int" class="stat-title">ALL TIME KNOCKOUT</h1>
+    <h2 name="club" class="stat-title2">(Including All Knockout Games, Club and Int)</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.koGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland.koGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini.koGames}}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.koGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland.koGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vini.koGoals}}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.koGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{haaland.koGoalRatio}}<br><span class="stat-name">GOALS RATIO</span></td>
+                <td class="stat-text">{{vini.koGoalRatio}}<br><span class="stat-name">GOALS RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.koAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland.koAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vini.koAssists}}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ko" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<h2 name="" class="stat-titleabove">GOALSCORING STATS</h2>
 
 <div class="table-container" id="goal">
-    <h1 name="club" class="stat-title">GOALSCORING STATS</h1>
+    <h1 name="club" class="stat-title">Braces, Hattricks & Poker</h1>
     <h2 name="club" class="stat-title2">(Braces, Hattricks & Poker)</h2>
 
     <table class="Stats-table">
@@ -77,7 +195,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="">UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
     {{/if}}
 </div>
 
@@ -99,15 +217,22 @@
                 <td class="stat-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
-                <td class="stat-text">{{haaland.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
-                <td class="stat-text">{{vini.fkGoals}}<br><span class="stat-name">FREEKICK GOALS</span></td>
+                <td class="stat-text">{{mbappe.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
+                <td class="stat-text">{{haaland.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
+                <td class="stat-text">{{vini.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
-                <td class="stat-text">{{haaland.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
-                <td class="stat-text">{{vini.penaltyGoals}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{mbappe.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
+                <td class="stat-text">{{haaland.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
+                <td class="stat-text">{{vini.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
             </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
+                <td class="stat-text">{{haaland.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
+                <td class="stat-text">{{vini.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
+            </tr>
+
+
 
         </tbody>
     </table>
@@ -149,6 +274,37 @@
     <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="all_time">UPDATE</button>
     {{/if}}
 </div>
+
+<div class="table-container" id="trophies">
+    <h2 name="all_time" class="stat-title">TROPHIES</h2>
+   <h2 name="club" class="stat-title2">(Senior career and official trophies only)</h2>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{haaland.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{vini.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe.troph}}<br><span class="stat-name">TROPHIES</span></td>
+                <td class="stat-text">{{haaland.troph}}<br><span class="stat-name">TROPHIES</span></td>
+                <td class="stat-text">{{vini.troph}}<br><span class="stat-name">TROPHIES</span></td>
+            </tr>
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
 {{>sts-update}}
 
 <script>
@@ -156,7 +312,7 @@
     window.addEventListener('DOMContentLoaded', () => {
         const hash = window.location.hash;
 
-        if (hash === '#goal', '#final') {
+        if (hash === '#goal', '#final', 'trophies') {
             const target = document.querySelector(hash);
             if (!target) return;
 

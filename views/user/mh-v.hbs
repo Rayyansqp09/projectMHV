@@ -43,8 +43,11 @@
           <option
             value="World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B)">
             International Competitive Games</option>
-          <option value="La liga,Ligue 1,Bundesliga,Eliteserien,Seria A,National 2 Group D,National 2 Group C,1. divisjon,Premier League,Segunda División B">Domestic League</option>
-          <option value="La liga,Ligue 1,Bundesliga,Eliteserien,Seria A,Premier League">Domestic League (Top Division Only)</option>
+          <option
+            value="La liga,Ligue 1,Bundesliga,Eliteserien,Seria A,National 2 Group D,National 2 Group C,1. divisjon,Premier League,Segunda División B">
+            Domestic League</option>
+          <option value="La liga,Ligue 1,Bundesliga,Eliteserien,Seria A,Premier League">Domestic League (Top Division
+            Only)</option>
           {{#each dynamicFilters.competition}}
           <option value="{{this}}">{{this}}</option>
           {{/each}}
@@ -72,6 +75,7 @@
         <label class="field-label">Season</label>
         <select name="season" id="season">
           <option>All</option>
+          <option value="2025-26">2025-26</option>
           <option value="2024-25">2024-25</option>
           <option value="2023-24">2023-24</option>
           <option value="2022-23">2022-23</option>
@@ -176,7 +180,7 @@
           <option value="2018">2018</option>
           <option value="2017">2017</option>
           <option value="2016">2016</option>
-           <option value="2015">2015</option>
+          <option value="2015">2015</option>
           <!-- Add more years as needed -->
         </select>
       </div>
@@ -418,14 +422,15 @@
 
   <div class="totals">
     <span>
-      Filtered Matches <span class="mobile-only" style="display: inline;">Stats</span>:<span style="display: inline;" class="desktop-only"> Total</span> Goals: <span id="totalGoals">{{totalGoals}} </span><span class="desktop-only" style="display: inline;"> Total</span> Assists: <span
-        id="totalAssists">{{totalAssists}}</span>
+      Filtered Matches <span class="mobile-only" style="display: inline;">Stats</span>:<span style="display: inline;"
+        class="desktop-only"> Total</span> Goals: <span id="totalGoals">{{totalGoals}} </span><span class="desktop-only"
+        style="display: inline;"> Total</span> Assists: <span id="totalAssists">{{totalAssists}}</span>
     </span>
   </div><br>
 
 
   {{!-- <!-- Loader -->
-  <div id="matchesContainer" >
+  <div id="matchesContainer">
     <div id="loader">Loading matches...</div>
   </div> --}}
 

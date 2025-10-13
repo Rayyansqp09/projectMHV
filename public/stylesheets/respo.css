@@ -45,6 +45,7 @@
   .footer-top {
     grid-template-columns: 1fr;
     text-align: left !important;
+    margin-top: -55px;
   }
 
   .footer-about h2 {
@@ -61,7 +62,7 @@
 
   .footer-links h3,
   .footer-contact h3 {
-    font-size: 16px;
+    font-size: 16px !important;
     font-weight: 600;
     margin-bottom: 10px;
   }
@@ -201,13 +202,24 @@
 
 /* Mobile short (max-width: 480px) */
 @media (max-width: 400px) {
+
+    .custom-navbar {
+    padding: 0px 10px;
+    font-family: sans-serif;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    white-space: nowrap;
+    overflow: visible;
+  }
+
   /* Nav items */
   .nav-item {
     position: relative;
-    padding: 10px 10px;
+    padding: 9px 10px;
     cursor: pointer;
     font-size: 10px;
-    font-weight: 300;
     flex: 0 0 auto;
     white-space: nowrap;
   }
@@ -755,7 +767,7 @@
   }
 
   .footer3-card span {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
   }
 
@@ -952,7 +964,7 @@
 
 
   .custom-navbar {
-    padding: 3 10px;
+    padding: 3px 10px;
     font-family: sans-serif;
     position: fixed;
     top: 0;
@@ -1002,7 +1014,7 @@
   /* Nav items */
   .nav-item {
 
-    padding: 10px 10px;
+    padding: 9px 10px;
 
     font-size: 13px;
     font-weight: 200;

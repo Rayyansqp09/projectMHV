@@ -1,6 +1,6 @@
 html,
 body {
-  background: #0D0D0D;
+  background: #000000;
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -40,19 +40,18 @@ a:hover {
 
 /* Navbar */
 .custom-navbar {
-  background-color: #1A1A1A;
-  color: rgb(211, 206, 206);
+   background-color: #1A1A1A;
+  color: #ffffff;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  padding: 0 10px;
+  padding: 10px 10px;
   font-family: 'Montserrat', sans-serif;
   border-bottom: 1px solid transparent !important;
 
   /* Subtle gradient for more depth illusion */
   /* background-image: linear-gradient(145deg, #2e343e, #252b33); */
-
 
   /* 👇 Sticky navbar styles */
   position: fixed;
@@ -76,7 +75,7 @@ a:hover {
   position: relative;
   padding: 5px 20px;
   cursor: pointer;
-  font-weight: 100;
+  font-weight: 500;
 }
 
 /* 📂 Dropdown Menu */
@@ -161,8 +160,8 @@ a:hover {
 .nav-item.dropdown {
   position: relative;
   cursor: pointer;
-  color: #fff;
-  font-weight: 500;
+  /* color: #fff; */
+  /* font-weight: 500; */
 }
 
 /* Dropdown menu hidden by default */
@@ -221,7 +220,7 @@ a:hover {
   height: 359px;
   box-sizing: border-box;
   padding: 0 7rem !important;
-  margin: 37px auto 0 auto;
+  margin: 58px auto 0 auto;
   /* Top margin stays 39px, bottom margin set to 0 */
   /* rest unchanged */
   max-width: 70%;
@@ -606,6 +605,7 @@ p {
   text-align: center;
   margin-bottom: 0px;
   text-transform: uppercase;
+  margin-top: 3px;
 }
 
 
@@ -939,6 +939,7 @@ p {
   width: 400px;
   z-index: 100;
   margin-bottom: 3px;
+  /* margin-top: 60px; */
 
 
   opacity: 0;
@@ -946,7 +947,7 @@ p {
   transition: opacity 0.3s ease, transform 0.3s ease;
 
   /* ✅ SCROLL SETTINGS */
-  max-height: calc(100vh - 100px);
+  max-height: calc(95vh - 100px);
   /* 👈 sets 80px gap from top of screen */
   overflow-y: auto;
   /* enable vertical scroll if needed */
@@ -1001,7 +1002,7 @@ p {
 .submenu {
   display: none;
   flex-direction: column;
-  background-color: #2A303B;
+  background-color: #2a2a2ad0;
   border-left: 2px solid #ddd;
   margin-left: 10px;
   padding-left: 10px;
@@ -1588,6 +1589,7 @@ p {
   align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-transform: uppercase;
 
   color: #fff;
   font-family: 'Montserrat', sans-serif;

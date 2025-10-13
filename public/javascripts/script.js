@@ -174,6 +174,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+   window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash;
+
+        if (hash === '#goal', '#final', 'trophies','haaland','mbappe','vinicius','articles') {
+            const target = document.querySelector(hash);
+            if (!target) return;
+
+            const offset = 80; // adjust if you have a fixed header
+            const duration = 1000;
+
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+    });
+
+
+
 
 
 

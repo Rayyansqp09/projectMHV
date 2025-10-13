@@ -48,6 +48,13 @@
   <button class="tab-btn" value="lastFive">Last Five Games</button>
 </div>
 
+<div class="social-icons" style="margin-top: -5px; margin-bottom: -20px;">
+    <a href="https://x.com/MHVstats" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://whatsapp.com/channel/0029VbAHqH1D8SE43me7bF0r" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+
+
+
 <div id="allTime" class="stats-content">
   {{> pages/home }}
 </div>
@@ -66,14 +73,14 @@
 
 <style>
   /* Content Sections */
-.stats-content {
-  display: none;
-  
-}
+  .stats-content {
+    display: none;
 
-.stats-content.active {
-  display: block;
-}
+  }
+
+  .stats-content.active {
+    display: block;
+  }
 </style>
 
 {{> sts-update}}
@@ -90,37 +97,37 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const buttons = document.querySelectorAll(".tab-btn");
-  const contents = document.querySelectorAll(".stats-content");
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".stats-content");
 
-  function showContent(id) {
-    // hide all
-    contents.forEach(c => c.classList.remove("active"));
-    buttons.forEach(b => b.classList.remove("active"));
+    function showContent(id) {
+      // hide all
+      contents.forEach(c => c.classList.remove("active"));
+      buttons.forEach(b => b.classList.remove("active"));
 
-    // show selected
-    const section = document.getElementById(id);
-    const button = document.querySelector(`.tab-btn[value="${id}"]`);
+      // show selected
+      const section = document.getElementById(id);
+      const button = document.querySelector(`.tab-btn[value="${id}"]`);
 
-    if (section && button) {
-      section.classList.add("active");
-      button.classList.add("active");
-    } else {
-      console.error("Could not find section or button for id:", id);
+      if (section && button) {
+        section.classList.add("active");
+        button.classList.add("active");
+      } else {
+        console.error("Could not find section or button for id:", id);
+      }
     }
-  }
 
-  // Default = All Time Stats
-  showContent("allTime");
+    // Default = All Time Stats
+    showContent("allTime");
 
-  // Button clicks
-  buttons.forEach(btn => {
-    btn.addEventListener("click", function () {
-      showContent(this.value);
+    // Button clicks
+    buttons.forEach(btn => {
+      btn.addEventListener("click", function () {
+        showContent(this.value);
+      });
     });
   });
-});
 
   document.querySelectorAll('.Dt-btn2').forEach(button => {
     button.addEventListener('click', function () {
@@ -139,39 +146,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-   window.addEventListener('DOMContentLoaded', () => {
-        const hash = window.location.hash;
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
 
-        if (hash === '#club', '#int') {
-            const target = document.querySelector(hash);
-            if (!target) return;
+    if (hash === '#club', '#int') {
+      const target = document.querySelector(hash);
+      if (!target) return;
 
-            const offset = 80; // adjust if you have a fixed header
-            const duration = 1000;
+      const offset = 80; // adjust if you have a fixed header
+      const duration = 1000;
 
-            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-            const startPosition = window.scrollY;
-            const distance = targetPosition - startPosition;
-            let startTime = null;
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+      const startPosition = window.scrollY;
+      const distance = targetPosition - startPosition;
+      let startTime = null;
 
-            function animation(currentTime) {
-                if (!startTime) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
+      function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
 
-            function easeInOutQuad(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
+      function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
 
-            requestAnimationFrame(animation);
-        }
-    });
+      requestAnimationFrame(animation);
+    }
+  });
 
   document.addEventListener("DOMContentLoaded", function () {
     const links = document.querySelectorAll("a.dynamic-link");

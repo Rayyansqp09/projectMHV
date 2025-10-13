@@ -36,7 +36,16 @@
           </div>
         </div>
 
-        <div class="dropdown-section desktop-only .mobile-only">
+        <div class="dropdown-section">
+          <h4 class="dropdown-heading">Profile</h4>
+          <div class="link-grid">
+            <a href="/haaland">Erling Haaland</a>
+            <a href="/mbappe">Kylian Mbappé</a>
+            <a href="/vinicius">Vinícius Júnior</a>
+          </div>
+        </div>
+
+        {{!-- <div class="dropdown-section desktop-only .mobile-only">
           <h4 class="dropdown-heading">Other</h4>
           <div class="link-grid">
             <a href="/dummy">Favorite Opponents</a>
@@ -44,7 +53,7 @@
             <a href="/dummy">Most Assists Given To</a>
             <a href="/dummy">Knockout Stats</a>
           </div>
-        </div>
+        </div> --}}
 
       </div>
     </div>
@@ -73,7 +82,7 @@
 
 
 
-
+{{#unless (eq head "off")}}
 <section>
   <div class="container">
     <div class="box box1">
@@ -106,7 +115,7 @@
   <div class="line"></div>
 
 </section>
-
+{{/unless}}
 
 
 

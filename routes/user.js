@@ -3,6 +3,7 @@ var router = express.Router();
 const db = require('../config/connection'); // adjust to your DB connection
 const tableList = require('../config/table'); // your table list
 const displayHelper = require('../helpers/disply');
+const articles = require('../helpers/articles.json');
 const { v4: uuidv4 } = require('uuid');
 const votedIPs = new Set(); // Temporary memory; use DB/IP logs in production
 const isTesting = true; // Change to false when deploying live
@@ -28,7 +29,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const isDev = false; // true while editing, false to enable caching
+const isDev = true; // true while editing, false to enable caching
 
 
 router.get('/dummy', (req, res) => {
@@ -97,20 +98,20 @@ router.get('/', function (req, res, next) {
       viniciusMatches
     };
 
-res.render('index', data, (err, html) => {
-  if (err) {
-    console.error("❌ Error rendering index:", err);
-    return res.status(500).render('error', { 
-      message: "Something went wrong while loading the page.",
-      error: {
-        status: err.status || 500,
-        stack: err.stack || err.toString()
+    res.render('index', data, (err, html) => {
+      if (err) {
+        console.error("❌ Error rendering index:", err);
+        return res.status(500).render('error', {
+          message: "Something went wrong while loading the page.",
+          error: {
+            status: err.status || 500,
+            stack: err.stack || err.toString()
+          }
+        });
       }
-    });
-  }
 
-  pageCache.set('/', html);   // 🔥 Cache it!
-  res.send(html);
+      pageCache.set('/', html);   // 🔥 Cache it!
+      res.send(html);
     });
   });
 });
@@ -466,7 +467,38 @@ router.get('/Match-History/:player', (req, res) => {
   });
 });
 
+router.get('/Haaland', (req, res) => {
+  res.render('user/Haaland'); // looks for dummy.hbs inside views/
+});
 
+router.get('/Mbappe', (req, res) => {
+  res.render('user/Mbappe'); // looks for dummy.hbs inside views/
+});
+
+router.get('/Vinicius', (req, res) => {
+  res.render('user/Vinicius'); // looks for dummy.hbs inside views/
+});
+
+// Dynamic route for all player articles
+router.get('/:player/:article', (req, res) => {
+  const { player, article } = req.params;
+
+  const data = articles[player]?.[article];
+
+  if (!data) {
+    return res.status(404).render('user/article', { head: "off", title: "Article Not Found", content: ["<p>Sorry, this article does not exist.</p>"] });
+  }
+
+  // Render your article.hbs template
+  res.render('user/article', {
+    head: "off",       // keep your existing head option
+    title: data.title,
+    content: data.content,
+    description: data.description,  // NEW
+    date: data.date,
+    related: data.related
+  });
+});
 
 // Route for Feedback form (Report an Issue)
 router.post('/send-feedback', async (req, res) => {
@@ -662,13 +694,13 @@ router.get('/club-stats/:comp', function (req, res, next) {
     return res.status(404).send('Competition not found');
   }
 
-  displayHelper.getStats(['ucl','club'], (err, stats) => {
+  displayHelper.getStats(['ucl', 'club'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
 
-  
+
     const mbappe_club = stats.club.find(p => p.Name === 'Mbappe');
     const haaland_club = stats.club.find(p => p.Name === 'Haaland');
     const vini_club = stats.club.find(p => p.Name === 'Vinicius');
@@ -761,13 +793,13 @@ router.get('/:time', function (req, res, next) {
   }
 
   const seasons = [
-    '2015_16','2016_17','2017_18','2018_19','2019_20',
-    '2020_21','2021_22','2022_23','2023_24','2024_25','2025_26'
+    '2015_16', '2016_17', '2017_18', '2018_19', '2019_20',
+    '2020_21', '2021_22', '2022_23', '2023_24', '2024_25', '2025_26'
   ];
 
   const years = [
-    'year2015','year2016','year2017','year2018','year2019',
-    'year2020','year2021','year2022','year2023','year2024','year2025'
+    'year2015', 'year2016', 'year2017', 'year2018', 'year2019',
+    'year2020', 'year2021', 'year2022', 'year2023', 'year2024', 'year2025'
   ];
 
   let tables = [];

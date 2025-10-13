@@ -1,0 +1,1312 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Hamburger Menu (Mobile) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background-color: #FFD700;
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10%;
+    background: linear-gradient(to bottom, #0D0D0D, #1A1A1A);
+}
+
+.hero-text h1 {
+    font-size: 65px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.hero-text .tagline {
+    font-size: 18px;
+    color: #CCCCCC;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    color: #0D0D0D !important;
+    /* text color */
+    background-color: #FFD700;
+    /* base gold */
+    border-radius: 8px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    /* subtle zoom */
+    background-color: #FFC700;
+    /* slightly brighter gold */
+    cursor: pointer;
+}
+
+.hero-image {
+    /* width: 100px; */
+}
+
+
+.hero-image img {
+    width: 400px;
+    border-radius: 10px;
+    /* box-shadow: 0 10px 30px rgba(0,0,0,0.2); */
+    /* background-color: #FFC700; */
+}
+
+/* Player Info Cards */
+/* Player Info Section - Grid Layout */
+.player-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 cards per row */
+    gap: 30px;
+    padding: 60px 12%;
+    justify-items: center;
+    background-color: #000000;
+}
+
+/* Individual Info Cards */
+.info-card {
+    background-color: #242424;
+    padding: 24px;
+    width: 370px;
+    /* fixed width */
+    border-radius: 16px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+
+}
+
+.info-card h3 {
+    font-size: 13px;
+    color: #FFD700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.info-card p {
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+
+
+/* ==================== Biography Sections ==================== */
+.biography {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.bio-section {
+    width: 100%;
+    /* full viewport width */
+    padding: 40px 12%;
+    /* keep side padding for beautiful layout */
+    box-sizing: border-box;
+    /* ensure padding doesn't overflow */
+    text-align: left;
+
+    padding-left: 23rem;
+    padding-right: 23rem;
+
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+
+    position: relative;
+    border-radius: 0;
+    /* optional: remove rounding if you want flush edges */
+    box-shadow: none;
+    /* optional: shadow can be added on inner div instead */
+}
+
+
+/* Alternating backgrounds */
+.bio-section:nth-of-type(odd) {
+    background-color: #0D0D0D;
+}
+
+.bio-section:nth-of-type(even) {
+    background-color: #1A1A1A;
+}
+
+/* Section Titles */
+.bio-section h2 {
+    font-size: 35px;
+    /* 28–32px */
+    color: #ffffff;
+    font-weight: 400;
+    /* thicker for better glow effect */
+    margin-bottom: 12px;
+    position: relative;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.101),
+        /* soft white glow */
+        0 0 10px rgba(255, 255, 255, 0.067);
+    /* subtle depth */
+    margin-top: 0;
+}
+
+
+.bio-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: #FFD700;
+    margin-top: 6px;
+}
+
+/* Paragraph Text */
+.bio-section p {
+    font-size: 18px;
+    /* clean sans-serif, can use 16–18px */
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.918);
+    margin-top: 20px;
+    text-align: left;
+    font-weight: 400;
+}
+
+/* Hover glow on section title */
+.bio-section:hover h2 {
+    /* color: #e8e8e8; */
+}
+
+/* Fade-in when visible */
+.bio-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==================== Scroll Animation JS Support ==================== */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.highlight-quote {
+    position: relative;
+    width: 100%;
+    padding: 50px 12%;
+    background-color: #2A2A2A;
+    overflow: hidden;
+    text-align: center;
+}
+
+.highlight-quote .quote-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.highlight-quote .quote-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(15px) brightness(0.3);
+    /* blurred and darkened for depth */
+    pointer-events: none;
+    /* so it doesn’t block interactions */
+}
+
+.quote-icon {
+    width: 72px;
+    height: 72px;
+    color: #FFD700;
+    margin-bottom: 40px;
+}
+
+
+.highlight-quote .quote-content {
+    position: relative;
+    z-index: 2;
+    /* above the blurred background */
+    max-width: 900px;
+    margin: 0 auto;
+    color: #FFFFFF;
+    font-family: 'Georgia', serif;
+    /* elegant serif */
+}
+
+.highlight-quote .quote-content p {
+    font-size: 28px;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 0px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.highlight-quote .quote-mark {
+    color: #FFD700;
+    font-size: 48px;
+    vertical-align: top;
+    margin: 0 4px;
+}
+
+.highlight-quote .player-name-quote {
+    display: block;
+    font-size: 16px !important;
+    color: #ffffffac !important;
+    font-weight: 500;
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+
+.notable-moments {
+    width: 100%;
+    padding: 60px 7.5%;
+    background-color: #0D0D0D;
+}
+
+.notable-moments h2 {
+    font-size: 35px;
+    /* 28–32px */
+    color: #ffffff;
+    font-weight: 400;
+    /* thicker for better glow effect */
+    position: relative;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.101),
+        /* soft white glow */
+        0 0 10px rgba(255, 255, 255, 0.067);
+    /* subtle depth */
+    margin-bottom: 20px;
+    margin-left: 9px;
+}
+
+.notable-moments h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: #FFD700;
+    margin-top: 6px;
+}
+
+/* Horizontal scroll container */
+.moments-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 24px;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+
+}
+
+/* Hide default scrollbar */
+.moments-container::-webkit-scrollbar {
+    display: none;
+}
+
+.moments-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Individual cards */
+.moment-card {
+    position: relative;
+    flex: 0 0 300px;
+    /* increased width from 250px → 300px */
+    background-color: #000000;
+    border: 0.3px solid #ffd90031;
+    /* ultra-thin gold border */
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+    margin-left: 0px;
+    height: auto;
+}
+
+/* Make the link behave as a flex item with fixed width */
+.moment-card-link {
+    flex: 0 0 400px;
+
+    /* same width as card */
+    display: block;
+    /* block so card fills it */
+    text-decoration: none;
+    /* remove underline */
+    margin-left: 10px;
+    /* same margin as before */
+    margin-top: 10px;
+}
+
+/* Year badge on top-left */
+.year-badge {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    background-color: #FFD700;
+    color: #0D0D0D;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    /* fully rounded */
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.moment-card:hover {
+    transform: scale(1.01);
+    /* slight zoom */
+    border: 0.3px solid #ffd900e5;
+    /* ultra-thin gold border */
+}
+
+.moment-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.moment-info {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.moment-info h3 {
+    font-size: 21px;
+    font-weight: 600;
+    color: #FFD700;
+    margin-bottom: 4px;
+
+    /* Make text break anywhere to fit line */
+    word-break: break-word;
+    /* modern fallback */
+    overflow-wrap: break-word;
+    /* ensures wrapping inside container */
+    word-break: break-all;
+    /* breaks long words if needed */
+
+    display: -webkit-box;
+    /* necessary for line clamp */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* limit to 2 lines */
+    overflow: hidden;
+    /* hide overflow text */
+    text-overflow: ellipsis;
+    /* show ... */
+    word-break: break-word;
+    /* break long words if needed */
+
+}
+
+.moment-info h3 span {
+    display: inline;
+    /* keep it inline */
+    word-break: break-word;
+    /* allow breaking inside span */
+    overflow-wrap: break-word;
+    /* fallback */
+}
+
+.moment-info .year {
+    font-size: 14px;
+    color: #CCCCCC;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.moment-info p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    margin-top: 16px;
+    overflow: hidden;
+    /* hide overflow */
+    display: -webkit-box;
+    /* necessary for line clamp */
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+    /* required for webkit */
+    text-overflow: ellipsis;
+    /* show "..." at the end */
+}
+
+/* Section background */
+
+/* Card styling */
+.player-card {
+    position: relative;
+    flex: 0 0 600px;
+    height: 320px;
+    border: 1px solid #FFD700;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.player-card-link {
+    text-decoration: none;
+    /* removes underline */
+    color: inherit;
+    /* keeps text color */
+    display: inline-block;
+    /* ensures it wraps the card properly */
+}
+
+.player-card-link .player-card {
+    flex: 0 0 600px;
+    /* keep original card width */
+    height: 320px;
+    /* keep original height */
+    /* rest of your styles remain the same */
+}
+
+.player-card:hover {
+    transform: scale(1.02);
+}
+
+/* Player image */
+.player-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Player name label */
+.player-name-card {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: #ffffff;
+    padding: 9px 15px;
+    font-size: 22px;
+    font-weight: 700;
+    border-radius: 6px;
+    border: none;
+}
+
+/* Hover overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFD700;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.player-card:hover .overlay {
+    opacity: 1;
+}
+
+/* Article page */
+
+
+/* Fade-in Animation */
+.nm-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.nm-fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Title Block */
+.nm-title-block {
+    background-color: #0D0D0D;
+    /* slightly lighter black for contrast */
+    padding: 80px 12% 60px 12%;
+    text-align: left;
+    margin-top: 3.6rem;
+}
+
+.nm-title-content h1 {
+    font-size: 40px;
+    font-weight: 600;
+    color: #FFD700;
+    /* gold heading */
+    margin-bottom: 15px;
+
+}
+
+.nm-title-content .nm-short-description {
+    color: #FFFFFF;
+    /* bright white */
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.nm-title-content .nm-date {
+    color: #FFFFFF;
+    /* bright white */
+    font-size: 14px;
+}
+
+/* Article Content */
+.nm-article-content {
+    padding: 0px 12% 60px 12%;
+    max-width: 100%;
+    margin: 20px auto;
+    color: #FFFFFF;
+    /* bright white text */
+    text-align: left;
+}
+
+.nm-article-content h3,
+h2 {
+    font-size: 32px;
+    font-weight: 400;
+    color: #FFD700;
+    /* gold subheadings */
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.nm-article-content img {
+    width: 90%;
+    height: auto;
+    display: block;
+    /* makes margin auto work */
+    margin: 0 auto;
+    /* centers horizontally */
+    margin-top: 30px;
+}
+
+.photo-text {
+    display: block;
+    /* puts caption on a new line */
+    font-size: 14px;
+    /* slightly smaller text */
+    color: #b3b3b3;
+    /* light gray for caption */
+    text-align: center;
+    /* center caption under image */
+    margin-top: 10px;
+    /* small space above caption */
+    margin-bottom: 40px;
+    font-style: italic;
+    /* (optional) caption style */
+}
+
+
+.nm-article-content p,
+li {
+    color: #fffffff4;
+    font-size: 21px;
+    font-weight: 300;
+}
+
+/* Inline Images in Article */
+.nm-inline-image {
+    width: 100%;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.moment-link {
+    text-decoration: none;
+    /* remove underline */
+    color: inherit;
+    /* keep card colors intact */
+    display: inline-block;
+    /* makes entire block clickable */
+}
+
+
+
+/* Responsive */
+/* Responsive */
+
+/* ==================== Responsive ==================== */
+/* ==================== Responsive ==================== */
+
+
+@media screen and (max-width: 540px) {
+    .hero {
+        display: flex;
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: flex-start;
+        /* Align to left (optional) */
+        padding: 20px 0;
+        padding-left: 25px;
+    }
+
+    .hero-image {
+        width: 100%;
+        /* Take full row width */
+        display: flex;
+        justify-content: center;
+        /* Center the image inside */
+        margin-top: 15px;
+        /* Space from text */
+        padding: 0;
+
+    }
+
+    .hero-image img {
+        width: 280px;
+        border-radius: 10px;
+        /* box-shadow: 0 10px 30px rgba(0,0,0,0.2); */
+        margin-right: auto;
+        display: block;
+        /* important! */
+        padding: 0;
+
+
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+
+    .player-info {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cards per row */
+        gap: 20px;
+        padding: 40px 3% !important;
+    }
+
+    .info-card {
+        width: 100%;
+        /* auto adjust inside grid */
+        padding: 16px 16px;
+        border-radius: 12px;
+    }
+
+    .info-card h3 {
+        font-size: 10px !important;
+        /* slightly smaller */
+        margin-bottom: 6px;
+    }
+
+    .info-card p {
+        font-size: 14px;
+        /* smaller text */
+        margin-bottom: 0;
+    }
+
+
+    .hero {
+        display: flex;
+        align-items: left;
+        justify-content: space-between;
+        padding: 20px 0;
+        padding-left: 25px;
+    }
+
+    .hero-text {
+        text-align: left;
+    }
+
+    .hero-text h1 {
+        font-size: 34px;
+        margin-bottom: 3px;
+        font-weight: 400;
+        text-align: left;
+
+    }
+
+    .hero-text .tagline {
+        font-size: 15px;
+        color: #CCCCCC;
+        margin-bottom: 10px;
+        text-align: left;
+
+    }
+
+    .hero-image img {
+        width: 280px;
+        border-radius: 10px;
+        /* box-shadow: 0 10px 30px rgba(0,0,0,0.2); */
+        margin-right: auto;
+        display: block;
+        /* important! */
+
+        margin-right: 0;
+
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 8px;
+        font-weight: 400;
+        text-decoration: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        font-size: 15px;
+    }
+
+        .bio-section p {
+        font-size: 16px !important;
+    }
+
+        .bio-section h2 {
+        font-size: 24px;
+    }
+
+        .bio-section {
+        padding: 25px 8% !important;
+    }
+
+    .highlight-quote {
+        width: 100%;
+        padding: 40px 5%;
+        text-align: center;
+    }
+
+    .highlight-quote .player-name {
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 30px;
+    }
+
+    .quote-icon {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 30px;
+    }
+
+    .highlight-quote .quote-content p {
+        font-size: 20px;
+        line-height: 1;
+        margin-bottom: 0px;
+    }
+
+    .notable-moments h2 {
+        font-size: 30px;
+        /* 28–32px */
+        font-weight: 400;
+        /* thicker for better glow effect */
+        margin-bottom: 7px;
+        margin-left: 10px;
+    }
+
+    .notable-moments {
+        width: 100%;
+        padding: 10px 3%;
+    }
+
+    /* Horizontal scroll container */
+    .moments-container {
+        gap: 10px;
+        padding-bottom: 10px;
+        scroll-behavior: smooth;
+
+    }
+
+    .moments-container {
+        -ms-overflow-style: auto !important;
+        scrollbar-width: auto !important;
+    }
+
+    .moments-container::-webkit-scrollbar {
+        display: block !important;
+        height: 8px;
+        /* <- ensures it has size */
+
+    }
+
+    .moments-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .moments-container::-webkit-scrollbar-track {
+        background: #222;
+    }
+
+    .moments-container::-webkit-scrollbar-thumb {
+        background: #FFD700;
+        border-radius: 4px;
+    }
+
+    /* Individual cards */
+    .moment-card {
+        position: relative;
+        width: 100%;
+        /* increased width from 250px → 300px */
+        margin-top: 10px;
+        margin-left: 0px;
+        padding-bottom: 0 !important;
+    }
+
+    .moment-card-link {
+        flex: 0 0 275px;
+        /* same width as card */
+        display: block;
+        /* block so card fills it */
+        text-decoration: none;
+        /* remove underline */
+        margin-left: 10px;
+        /* same margin as before */
+        margin-top: 10px;
+    }
+
+    .moment-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .moment-info h3 {
+        font-size: 17px !important;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .moment-info .year {
+        font-size: 14px !important;
+        color: #CCCCCC;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .moment-info p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.5;
+    }
+
+    .player-card {
+        flex: 0 0 300px;
+        height: 220px !important;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .player-card-link {
+        flex: 0 0 300px;
+        /* keep original card width */
+        /* keep original height */
+        /* rest of your styles remain the same */
+        display: block;
+        /* block so card fills it */
+        text-decoration: none;
+    }
+
+    .player-name-card {
+        bottom: 12px;
+        left: 10px;
+        padding: 0px 15px;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+
+    .nm-title-block {
+        padding: 50px 5% 30px 5%;
+    }
+
+    .nm-title-content h1 {
+        font-size: 24px;
+    }
+
+    .nm-title-content .nm-short-description {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+    .nm-article-content {
+        padding: 0px 5%;
+    }
+
+    .nm-article-content h2,
+    h3 {
+        font-size: 25px !important;
+    }
+
+    .nm-article-content p,
+    li {
+        color: #fffffff4;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .nm-article-content img {
+        width: 100%;
+        height: auto;
+        display: block;
+        /* makes margin auto work */
+        margin: 0 auto;
+        /* centers horizontally */
+
+    }
+
+}
+
+
+@media (min-width: 601px) and (max-width: 751px) {
+
+    .hero {
+        display: flex;
+        align-items: left;
+        justify-content: space-between;
+        padding: 20px 0;
+        padding-left: 35px;
+
+        padding-right: 0;
+        /* remove right padding */
+    }
+
+    .hero-text {
+        text-align: left;
+    }
+
+    .hero-text h1 {
+        font-size: 40px;
+        margin-bottom: 3px;
+        font-weight: 400;
+        text-align: left;
+        /* white-space: nowrap; */
+        overflow: hidden;
+        /* hide overflowing text */
+        text-overflow: ellipsis;
+        /* optional: adds "..." if too long */
+    }
+
+    .hero-text .tagline {
+        font-size: 15px;
+        color: #CCCCCC;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .hero-image img {
+        width: 300px;
+        border-radius: 10px;
+        /* box-shadow: 0 10px 30px rgba(0,0,0,0.2); */
+        margin-right: auto;
+        display: block;
+        /* important! */
+
+        margin-right: 0;
+
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 8px;
+        font-weight: 400;
+        text-decoration: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        margin-left: 0rem;
+        font-size: 15px;
+    }
+
+    .player-info {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cards per row */
+        gap: 20px;
+        padding: 40px 3% !important;
+    }
+
+    .info-card {
+        width: 100%;
+        /* auto adjust inside grid */
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .info-card h3 {
+        font-size: 10px;
+        /* slightly smaller */
+        margin-bottom: 6px;
+    }
+
+    .info-card p {
+        font-size: 14px;
+        /* smaller text */
+    }
+
+    .moments-container {
+        -ms-overflow-style: auto !important;
+        scrollbar-width: auto !important;
+    }
+
+    .moments-container::-webkit-scrollbar {
+        display: block !important;
+        height: 8px;
+        /* <- ensures it has size */
+
+    }
+
+    .moments-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .moments-container::-webkit-scrollbar-track {
+        background: #222;
+    }
+
+    .moments-container::-webkit-scrollbar-thumb {
+        background: #FFD700;
+        border-radius: 4px;
+    }
+
+    .nm-title-block {
+        padding: 60px 8% 40px 8%;
+    }
+
+    .nm-title-content h1 {
+        font-size: 28px;
+    }
+
+    .nm-article-content {
+        padding: 50px 8%;
+    }
+
+    .nm-article-content h2 {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 751px) and (max-width: 900px) {
+
+    .hero-image img {
+        width: 400px;
+        border-radius: 10px;
+        /* box-shadow: 0 10px 30px rgba(0,0,0,0.2); */
+        margin-right: auto;
+        display: block;
+        /* important! */
+
+    }
+
+    .hero-image {
+        /* margin-left: 100px !important;  */
+    }
+
+
+    .hero {
+        display: flex;
+        align-items: left;
+        justify-content: space-between;
+        padding: 20px 0;
+        padding-left: 50px;
+    }
+
+    .hero-text {
+        text-align: left;
+    }
+
+    .hero-text h1 {
+        font-size: 48px;
+        /* margin-bottom: 3px; */
+        font-weight: 400;
+        text-align: left;
+        /* margin-left: -0%; */
+    }
+
+    .hero-text .tagline {
+        font-size: 16px;
+        color: #CCCCCC;
+        /* margin-bottom: 10px; */
+        text-align: left;
+    }
+
+
+    .player-info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 cards per row */
+        gap: 15px 13px;
+        padding: 40px 40px;
+        justify-items: center;
+        background-color: #000000;
+    }
+
+    /* Individual Info Cards */
+    .info-card {
+        background-color: #242424;
+        padding: 20px;
+        width: 220px;
+        /* fixed width */
+        border-radius: 16px;
+        text-align: left;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-card h3 {
+        font-size: 13px;
+        /* slightly smaller */
+        margin-bottom: 6px;
+    }
+
+    .info-card p {
+        font-size: 16px;
+        /* smaller text */
+    }
+
+    .moments-container {
+        -ms-overflow-style: auto !important;
+        scrollbar-width: auto !important;
+    }
+
+    .moments-container::-webkit-scrollbar {
+        display: block !important;
+        height: 8px;
+        /* <- ensures it has size */
+
+    }
+
+    .moments-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .moments-container::-webkit-scrollbar-track {
+        background: #222;
+    }
+
+    .moments-container::-webkit-scrollbar-thumb {
+        background: #FFD700;
+        border-radius: 4px;
+    }
+
+}
+
+@media (min-width: 901px) and (max-width: 1300px) {
+
+    .hero-image img {
+        width: 400px;
+        border-radius: 10px;
+        /* box-shadow: 0 10px 30px rgba(0,0,0,0.2); */
+        margin-left: -20%;
+        display: block;
+        /* important! */
+
+    }
+
+    .hero {
+        display: flex;
+        align-items: left;
+        justify-content: space-between;
+        padding: 20px 0;
+        padding-left: 50px;
+    }
+
+    .hero-text {
+        text-align: left;
+    }
+
+    .hero-text h1 {
+        font-size: 55px;
+        /* margin-bottom: 3px; */
+        font-weight: 400;
+        text-align: left;
+        /* margin-left: -0%; */
+    }
+
+    .hero-text .tagline {
+        font-size: 18px;
+        color: #CCCCCC;
+        /* margin-bottom: 10px; */
+        text-align: left;
+    }
+
+    .player-info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 cards per row */
+        gap: 30px 0px;
+
+        padding: 60px 5%;
+        justify-items: center;
+        background-color: #000000;
+    }
+
+    /* Individual Info Cards */
+    .info-card {
+        background-color: #242424;
+        padding: 20px;
+        width: 28vw;
+        /* fixed width */
+        border-radius: 16px;
+        text-align: left;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .bio-section {
+        padding: 60px 8%;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+
+    .bio-section h2 {
+        font-size: 26px;
+    }
+
+    .bio-section p {
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,62 @@
+<!-- Top Title Block -->
+<div class="nm-title-block nm-fade-in">
+    <div class="nm-title-content">
+        <h1>{{title}}</h1>
+        <p class="nm-short-description">{{description}}</p>
+        <p class="nm-date">{{date}}</p>
+    </div>
+</div>
+
+<!-- Single Article Section -->
+<article class="nm-article-content nm-fade-in">
+
+
+    {{#each content}}
+    {{{this}}} {{!-- triple braces render HTML --}}
+    {{/each}}
+
+</article>
+
+<section class="notable-moments">
+    <h2>Related Pages</h2>
+    <div class="moments-container">
+
+        {{#each related}}
+        <a href="{{link}}" class="moment-card-link">
+            <div class="moment-card">
+                <img src="{{img}}" alt="{{title}}">
+                <span class="year-badge">{{date}}</span>
+                <div class="moment-info">
+                    <h3>{{title}}</h3>
+                    <p>{{description}}</p>
+                </div>
+            </div>
+        </a>
+        {{/each}}
+        
+    </div>
+
+
+</section>
+
+<script>
+    const nmFaders = document.querySelectorAll('.nm-fade-in');
+
+    const appearOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+        });
+    }, appearOptions);
+
+    nmFaders.forEach(fader => {
+        appearOnScroll.observe(fader);
+    });
+
+</script>

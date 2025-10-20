@@ -479,26 +479,7 @@ router.get('/Vinicius', (req, res) => {
   res.render('user/Vinicius'); // looks for dummy.hbs inside views/
 });
 
-// Dynamic route for all player articles
-router.get('/:player/:article', (req, res) => {
-  const { player, article } = req.params;
 
-  const data = articles[player]?.[article];
-
-  if (!data) {
-    return res.status(404).render('user/article', { head: "off", title: "Article Not Found", content: ["<p>Sorry, this article does not exist.</p>"] });
-  }
-
-  // Render your article.hbs template
-  res.render('user/article', {
-    head: "off",       // keep your existing head option
-    title: data.title,
-    content: data.content,
-    description: data.description,  // NEW
-    date: data.date,
-    related: data.related
-  });
-});
 
 // Route for Feedback form (Report an Issue)
 router.post('/send-feedback', async (req, res) => {
@@ -864,6 +845,27 @@ router.get('/:time', function (req, res, next) {
       title: pageTitle,
       description: metaDescription
     });
+  });
+});
+
+// Dynamic route for all player articles
+router.get('/:player/:article', (req, res) => {
+  const { player, article } = req.params;
+
+  const data = articles[player]?.[article];
+
+  if (!data) {
+    return res.status(404).render('user/article', { head: "off", title: "Article Not Found", content: ["<p>Sorry, this article does not exist.</p>"] });
+  }
+
+  // Render your article.hbs template
+  res.render('user/article', {
+    head: "off",       // keep your existing head option
+    title: data.title,
+    content: data.content,
+    description: data.description,  // NEW
+    date: data.date,
+    related: data.related
   });
 });
 

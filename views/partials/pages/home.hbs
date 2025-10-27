@@ -23,6 +23,11 @@
           <td class="stat-text">{{vini.Goals}}<br><span class="stat-name">GOALS</span></td>
         </tr>
         <tr>
+          <td class="stat-text">{{mbappe.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+          <td class="stat-text">{{haaland.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+          <td class="stat-text">{{vini.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+        </tr>
+        <tr>
           <td class="stat-text">{{mbappe.Assists}}<br><span class="stat-name">ASSISTS</span></td>
           <td class="stat-text">{{haaland.Assists}}<br><span class="stat-name">ASSISTS</span></td>
           <td class="stat-text">{{vini.Assists}}<br><span class="stat-name">ASSISTS</span></td>
@@ -141,93 +146,89 @@
     </thead>
     <tbody>
       <tr>
-        <td class="stat-text">{{ mbappe.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
-        <td class="stat-text">{{ haaland.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
-        <td class="stat-text">{{ vini.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
+        <td class="stat-text">{{ mbappe_ach.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
+        <td class="stat-text">{{ haaland_ach.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
+        <td class="stat-text">{{ vini_ach.bdor }}<br><span class="stat-name">BALLON D’OR</span></td>
       </tr>
       <tr>
-        <td class="stat-text">{{ mbappe.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
-        <td class="stat-text">{{ haaland.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
-        <td class="stat-text">{{ vini.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
+        <td class="stat-text">{{ mbappe_ach.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
+        <td class="stat-text">{{ haaland_ach.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
+        <td class="stat-text">{{ vini_ach.fbest }}<br><span class="stat-name">FIFA BEST</span></td>
       </tr>
       <tr>
-        <td class="stat-text">{{ mbappe.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
-        <td class="stat-text">{{ haaland.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
-        <td class="stat-text">{{ vini.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
-      </tr>
-
-      <tr>
-        <td class="stat-text">{{ mbappe.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
-        <td class="stat-text">{{ haaland.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
-        <td class="stat-text">{{ vini.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
+        <td class="stat-text">{{ mbappe_ach.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
+        <td class="stat-text">{{ haaland_ach.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
+        <td class="stat-text">{{ vini_ach.fwxi }}<br><span class="stat-name">FIFA FIFPRO WORLD XI</span></td>
       </tr>
       <tr>
-        <td class="stat-text">{{ mbappe.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
-        <td class="stat-text">{{ haaland.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
-        <td class="stat-text">{{ vini.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+        <td class="stat-text">{{ mbappe_ach.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
+        <td class="stat-text">{{ haaland_ach.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
+        <td class="stat-text">{{ vini_ach.ubest }}<br><span class="stat-name">UEFA BEST</span></td>
       </tr>
       <tr>
-        <td class="stat-text">{{ mbappe.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
-        <td class="stat-text">{{ haaland.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
-        <td class="stat-text">{{ vini.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
+        <td class="stat-text">{{ mbappe_ach.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+        <td class="stat-text">{{ haaland_ach.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
+        <td class="stat-text">{{ vini_ach.egboot }}<br><span class="stat-name">EUROPEAN GOLDEN BOOT</span></td>
       </tr>
       <tr>
-        <td class="stat-text">{{ mbappe.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
-        <td class="stat-text">{{ haaland.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
-        <td class="stat-text">{{ vini.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
-      </tr>
-
-      <tr>
-        <td class="stat-text">{{ mbappe.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
-        <td class="stat-text">{{ haaland.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
-        <td class="stat-text">{{ vini.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
+        <td class="stat-text">{{ mbappe_ach.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
+        <td class="stat-text">{{ haaland_ach.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
+        <td class="stat-text">{{ vini_ach.uclpott }}<br><span class="stat-name">UCL POTT</span></td>
       </tr>
       <tr>
-        <td class="stat-text">{{ mbappe.wcpott }}<br><span class="stat-name">WC POTT</span></td>
-        <td class="stat-text">{{ haaland.wcpott }}<br><span class="stat-name">WC POTT</span></td>
-        <td class="stat-text">{{ vini.wcpott }}<br><span class="stat-name">WC POTT</span></td>
+        <td class="stat-text">{{ mbappe_ach.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
+        <td class="stat-text">{{ haaland_ach.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
+        <td class="stat-text">{{ vini_ach.uclypott }}<br><span class="stat-name">UCL YOUNG POTT</span></td>
       </tr>
       <tr>
-        <td class="stat-text">{{ mbappe.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
-        <td class="stat-text">{{ haaland.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
-        <td class="stat-text">{{ vini.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
+        <td class="stat-text">{{ mbappe_ach.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
+        <td class="stat-text">{{ haaland_ach.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
+        <td class="stat-text">{{ vini_ach.uclts }}<br><span class="stat-name">UCL TOP SCORER</span></td>
       </tr>
       <tr>
-        <td class="stat-text">{{ mbappe.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
-        <td class="stat-text">{{ haaland.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
-        <td class="stat-text">{{ vini.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
-      </tr>
-
-      <tr>
-        <td class="stat-text" style="display: table-cell;">{{ mbappe.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ haaland.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ vini.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+        <td class="stat-text">{{ mbappe_ach.wcpott }}<br><span class="stat-name">WC POTT</span></td>
+        <td class="stat-text">{{ haaland_ach.wcpott }}<br><span class="stat-name">WC POTT</span></td>
+        <td class="stat-text">{{ vini_ach.wcpott }}<br><span class="stat-name">WC POTT</span></td>
       </tr>
       <tr>
-        <td class="stat-text" style="display: table-cell;">{{ mbappe.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ haaland.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ vini.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+        <td class="stat-text">{{ mbappe_ach.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
+        <td class="stat-text">{{ haaland_ach.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
+        <td class="stat-text">{{ vini_ach.wcypott }}<br><span class="stat-name">WC YOUNG POTT</span></td>
       </tr>
       <tr>
-        <td class="stat-text" style="display: table-cell;">{{ mbappe.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ haaland.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ vini.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
+        <td class="stat-text">{{ mbappe_ach.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
+        <td class="stat-text">{{ haaland_ach.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
+        <td class="stat-text">{{ vini_ach.cupott }}<br><span class="stat-name">COPA/EURO POTT</span></td>
       </tr>
       <tr>
-        <td class="stat-text" style="display: table-cell;">{{ mbappe.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ haaland.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ vini.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+        <td class="stat-text">{{ mbappe_ach.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+        <td class="stat-text">{{ haaland_ach.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
+        <td class="stat-text">{{ vini_ach.cuypott }}<br><span class="stat-name">COPA/EURO YOUNG POTT</span></td>
       </tr>
       <tr>
-        <td class="stat-text" style="display: table-cell;">{{ mbappe.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ haaland.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
-        <td class="stat-text" style="display: table-cell;">{{ vini.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+        <td class="stat-text">{{ mbappe_ach.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+        <td class="stat-text">{{ haaland_ach.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
+        <td class="stat-text">{{ vini_ach.cuts }}<br><span class="stat-name">COPA/EURO TOP SCORER</span></td>
       </tr>
-
+      <tr>
+        <td class="stat-text">{{ mbappe_ach.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
+        <td class="stat-text">{{ haaland_ach.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
+        <td class="stat-text">{{ vini_ach.lpott }}<br><span class="stat-name">LEAGUE POTT</span></td>
+      </tr>
+      <tr>
+        <td class="stat-text">{{ mbappe_ach.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+        <td class="stat-text">{{ haaland_ach.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+        <td class="stat-text">{{ vini_ach.lypott }}<br><span class="stat-name">LEAGUE YOUNG POTT</span></td>
+      </tr>
+      <tr>
+        <td class="stat-text">{{ mbappe_ach.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+        <td class="stat-text">{{ haaland_ach.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+        <td class="stat-text">{{ vini_ach.lts }}<br><span class="stat-name">LEAGUE GOLDEN BOOT</span></td>
+      </tr>
 
     </tbody>
   </table>
-  <button class="Dt-btn2 show-more-btn">More</button>
+
   {{#if admin}}
   <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
   {{/if}}

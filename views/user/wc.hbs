@@ -1,6 +1,7 @@
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
-<meta name="keywords" content="Mbappe vs Haaland, Copa America stats, Euro stats, World Cup goals, Vinicius Junior, football player comparison, Mbappe vs Vinicius, Haaland vs Mbappe">
+<meta name="keywords"
+    content="Mbappe vs Haaland, Copa America stats, Euro stats, World Cup goals, Vinicius Junior, football player comparison, Mbappe vs Vinicius, Haaland vs Mbappe">
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
 <meta property="og:url" content="https://mhvstats.xyz/int-stats/{{@root._locals.originalUrl}}">
@@ -19,41 +20,50 @@
         </thead>
         <tbody>
             <tr>
-                <td class="stat-text">{{mbappe_wc.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="stat-text">{{haaland_wc.Games}}<br><span class="stat-name">GAMES</span></td>
-                <td class="stat-text">{{vini_wc.Games}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{mbappe_all.wcGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{haaland_all.wcGames}}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{vini_all.wcGames}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_wc.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="stat-text">{{haaland_wc.Goals}}<br><span class="stat-name">GOALS</span></td>
-                <td class="stat-text">{{vini_wc.Goals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{mbappe_all.wcGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{haaland_all.wcGoals}}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{vini_all.wcGoals}}<br><span class="stat-name">GOALS</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_wc.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="stat-text">{{haaland_wc.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="stat-text">{{vini_wc.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{mbappe_all.wcGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{haaland_all.wcGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{vini_all.wcGoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_wc.Assists}}<br><span class="stat-name">ASSISTS</span></td>
-                <td class="stat-text">{{haaland_wc.Assists}}<br><span class="stat-name">ASSISTS</span></td>
-                <td class="stat-text">{{vini_wc.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{mbappe_all.wcAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{haaland_all.wcAssists}}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{vini_all.wcAssists}}<br><span class="stat-name">ASSISTS</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_wc.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-                <td class="stat-text">{{haaland_wc.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
-                <td class="stat-text">{{vini_wc.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+                <td class="stat-text">{{mbappe_all.wcCC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+                <td class="stat-text">{{haaland_all.wcCC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+                <td class="stat-text">{{vini_all.wcCC}}<br><span class="stat-name">CHANCE CREATED</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_wc.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-                <td class="stat-text">{{haaland_wc.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
-                <td class="stat-text">{{vini_wc.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+                <td class="stat-text">{{mbappe_all.wcShot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+                <td class="stat-text">{{haaland_all.wcShot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+                <td class="stat-text">{{vini_all.wcShot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
             </tr>
-
+            <tr>
+                <td class="stat-text">{{mbappe_all.wcBCC}}<br><span class="stat-name">BIG CHANCE CREATED</span></td>
+                <td class="stat-text">{{haaland_all.wcBCC}}<br><span class="stat-name">BIG CHANCE CREATED</span></td>
+                <td class="stat-text">{{vini_all.wcBCC}}<br><span class="stat-name">BIG CHANCE CREATED</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_all.wcdribbles}}<br><span class="stat-name">DRIBBLES</span></td>
+                <td class="stat-text">{{haaland_all.wcdribbles}}<br><span class="stat-name">DRIBBLES</span></td>
+                <td class="stat-text">{{vini_all.wcdribbles}}<br><span class="stat-name">DRIBBLES</span></td>
+            </tr>
         </tbody>
     </table>
 
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="wc" >UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="wc">UPDATE</button>
     {{/if}}
 </div>
 
@@ -87,7 +97,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ko" table="wc" >UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ko" table="wc">UPDATE</button>
     {{/if}}
 </div>
 
@@ -122,7 +132,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="gs" table="wc" >UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="gs" table="wc">UPDATE</button>
     {{/if}}
 </div>
 
@@ -157,9 +167,9 @@
 
         </tbody>
     </table>
- 
+
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="semi" table="wc" >UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="semi" table="wc">UPDATE</button>
     {{/if}}
 </div>
 
@@ -193,9 +203,9 @@
 
         </tbody>
     </table>
-   
+
     {{#if admin}}
-    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="sf" table="wc" >UPDATE</button>
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="sf" table="wc">UPDATE</button>
     {{/if}}
 </div>
 
@@ -231,7 +241,7 @@
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="wc" >UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="wc">UPDATE</button>
     {{/if}}
 </div>
 
@@ -248,30 +258,30 @@
         </thead>
         <tbody>
             <tr>
-                <td class="stat-text">{{mbappe_wc.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
-                <td class="stat-text">{{haaland_wc.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
-                <td class="stat-text">{{vini_wc.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{mbappe_wc_ach.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{haaland_wc_ach.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{vini_wc_ach.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_wc.tscorer}}<br><span class="stat-name">TOP SCORER</span></td>
-                <td class="stat-text">{{haaland_wc.tscorer}}<br><span class="stat-name">TOP SCORER</span></td>
-                <td class="stat-text">{{vini_wc.tscorer}}<br><span class="stat-name">TOP SCORER</span></td>
+                <td class="stat-text">{{mbappe_wc_ach.tscorer}}<br><span class="stat-name">TOP SCORER</span></td>
+                <td class="stat-text">{{haaland_wc_ach.tscorer}}<br><span class="stat-name">TOP SCORER</span></td>
+                <td class="stat-text">{{vini_wc_ach.tscorer}}<br><span class="stat-name">TOP SCORER</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_wc.pott}}<br><span class="stat-name">POTT</span></td>
-                <td class="stat-text">{{haaland_wc.pott}}<br><span class="stat-name">POTT</span></td>
-                <td class="stat-text">{{vini_wc.pott}}<br><span class="stat-name">POTT</span></td>
+                <td class="stat-text">{{mbappe_wc_ach.pott}}<br><span class="stat-name">POTT</span></td>
+                <td class="stat-text">{{haaland_wc_ach.pott}}<br><span class="stat-name">POTT</span></td>
+                <td class="stat-text">{{vini_wc_ach.pott}}<br><span class="stat-name">POTT</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_wc.ypott}}<br><span class="stat-name">YOUNG POTT</span></td>
-                <td class="stat-text">{{haaland_wc.ypott}}<br><span class="stat-name">YOUNG POTT</span></td>
-                <td class="stat-text">{{vini_wc.ypott}}<br><span class="stat-name">YOUNG POTT</span></td>
+                <td class="stat-text">{{mbappe_wc_ach.ypott}}<br><span class="stat-name">YOUNG POTT</span></td>
+                <td class="stat-text">{{haaland_wc_ach.ypott}}<br><span class="stat-name">YOUNG POTT</span></td>
+                <td class="stat-text">{{vini_wc_ach.ypott}}<br><span class="stat-name">YOUNG POTT</span></td>
             </tr>
 
         </tbody>
     </table>
     {{#if admin}}
-    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="wc" >UPDATE</button>
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="wc">UPDATE</button>
     {{/if}}
 </div>
 
@@ -295,5 +305,5 @@
     });
 
 
- 
+
 </script>

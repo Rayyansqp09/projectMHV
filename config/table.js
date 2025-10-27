@@ -1,12 +1,18 @@
 // table.js
 const tableNames = [
   'all_time',
+  'alltime',
   'club',
+  'club2',
   'votes',
   'wc',
+  'wc_live',
   'intr',
+  'intr2',
   'copa_euro',
+  'copa_euro_live',
   'ucl',
+  'ucl2',
   'mhvinicius',
   'mhmbappe',
   'mhhaaland',
@@ -21,8 +27,24 @@ const tableNames = [
   '2023_24',
   '2024_25',
   '2025_26',
-  'year2015',
-  'year2016', 'year2017', 'year2018', 'year2019', 'year2020', 'year2021', 'year2022', 'year2023', 'year2024', 'year2025'
+  'live_2015_16',
+  'live_2016_17',
+  'live_2017_18',
+  'live_2018_19',
+  'live_2019_20',
+  'live_2020_21',
+  'live_2021_22',
+  'live_2022_23',
+  'live_2023_24',
+  'live_2024_25',
+  'live_2025_26',
+  'live_2025_26',
+  'live2025',
+  'year2015', 'year2016', 'year2017', 'year2018', 'year2019', 'year2020', 'year2021',
+  'year2022', 'year2023', 'year2024', 'year2025',
+  'live2015', 'live2016', 'live2017', 'live2018', 'live2019',
+  'live2020', 'live2021', 'live2022', 'live2023', 'live2024', 'live2025'
+
 
 ];
 

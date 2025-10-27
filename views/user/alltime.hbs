@@ -182,9 +182,9 @@
                 <td class="stat-text">{{vini.braces}}<br><span class="stat-name">BRACE</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
-                <td class="stat-text">{{haaland.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
-                <td class="stat-text">{{vini.hattrics}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{mbappe.hattricks}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{haaland.hattricks}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{vini.hattricks}}<br><span class="stat-name">HATTRICK</span></td>
             </tr>
             <tr>
                 <td class="stat-text">{{mbappe.poker}}<br><span class="stat-name">POKER</span></td>
@@ -217,19 +217,19 @@
                 <td class="stat-text">{{vini.Games}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
-                <td class="stat-text">{{haaland.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
-                <td class="stat-text">{{vini.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
+                <td class="stat-text">{{mbappe_alltime.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
+                <td class="stat-text">{{haaland_alltime.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
+                <td class="stat-text">{{vini_alltime.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
-                <td class="stat-text">{{haaland.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
-                <td class="stat-text">{{vini.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
+                <td class="stat-text">{{mbappe_alltime.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
+                <td class="stat-text">{{haaland_alltime.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
+                <td class="stat-text">{{vini_alltime.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
-                <td class="stat-text">{{haaland.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
-                <td class="stat-text">{{vini.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
+                <td class="stat-text">{{mbappe_alltime.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
+                <td class="stat-text">{{haaland_alltime.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
+                <td class="stat-text">{{vini_alltime.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
             </tr>
 
 
@@ -277,7 +277,7 @@
 
 <div class="table-container" id="trophies">
     <h2 name="all_time" class="stat-title">TROPHIES</h2>
-   <h2 name="club" class="stat-title2">(Senior career and official trophies only)</h2>
+    <h2 name="club" class="stat-title2">(Senior career and official trophies only)</h2>
 
     <table class="Stats-table">
         <thead>
@@ -289,14 +289,14 @@
         </thead>
         <tbody>
             <tr>
-                <td class="stat-text">{{mbappe.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
-                <td class="stat-text">{{haaland.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
-                <td class="stat-text">{{vini.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{mbappe_alltime.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{haaland_alltime.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{vini_alltime.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.troph}}<br><span class="stat-name">TROPHIES</span></td>
-                <td class="stat-text">{{haaland.troph}}<br><span class="stat-name">TROPHIES</span></td>
-                <td class="stat-text">{{vini.troph}}<br><span class="stat-name">TROPHIES</span></td>
+                <td class="stat-text">{{mbappe_alltime.troph}}<br><span class="stat-name">TROPHIES</span></td>
+                <td class="stat-text">{{haaland_alltime.troph}}<br><span class="stat-name">TROPHIES</span></td>
+                <td class="stat-text">{{vini_alltime.troph}}<br><span class="stat-name">TROPHIES</span></td>
             </tr>
         </tbody>
     </table>
@@ -309,7 +309,7 @@
 
 <script>
 
-   
+
     document.querySelectorAll('.Dt-btn2').forEach(button => {
         button.addEventListener('click', function () {
             const container = this.closest('.table-container'); // Locate the current section

@@ -44,7 +44,7 @@ router.get('/', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  const seasons = ['2025_26', 'all_time', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
+  const seasons = ['2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
 
   displayHelper.getStats(seasons, (err, stats) => {
     if (err) {
@@ -53,10 +53,17 @@ router.get('/', function (req, res, next) {
     }
 
     // All-time stats
-    const allTimeStats = stats['all_time'] || [];
+    const allTimeStats = stats['alltime'] || [];
     const mbappe = allTimeStats.find(p => p.Name === 'Mbappe') || {};
     const haaland = allTimeStats.find(p => p.Name === 'Haaland') || {};
     const vini = allTimeStats.find(p => p.Name === 'Vinicius') || {};
+
+    // All-time stats
+    const allTimeStats_ach = stats['all_time'] || [];
+    const mbappe_ach = allTimeStats_ach.find(p => p.Name === 'Mbappe') || {};
+    const haaland_ach = allTimeStats_ach.find(p => p.Name === 'Haaland') || {};
+    const vini_ach = allTimeStats_ach.find(p => p.Name === 'Vinicius') || {};
+
 
     // Latest season stats (2024_25)
     const season = '2025_26';
@@ -84,6 +91,9 @@ router.get('/', function (req, res, next) {
       admin: false,
       canonical: '<link rel="canonical" href="https://mhvstats.xyz/" />',
 
+      mbappe_ach,
+      haaland_ach,
+      vini_ach,
       mbappe,
       haaland,
       vini,
@@ -123,45 +133,68 @@ router.get('/alltime', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  displayHelper.getStats('all_time', (err, stats) => {
+  displayHelper.getStats(['all_time', 'alltime'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-    const mbappe = stats.find(p => p.Name === 'Mbappe');
-    const haaland = stats.find(p => p.Name === 'Haaland');
-    const vini = stats.find(p => p.Name === 'Vinicius');
+
+    // === all_time table ===
+    const mbappe_alltime = stats.all_time.find(p => p.Name === 'Mbappe') || {};
+    const haaland_alltime = stats.all_time.find(p => p.Name === 'Haaland') || {};
+    const vini_alltime = stats.all_time.find(p => p.Name === 'Vinicius') || {};
+
+    // === alltime table ===
+    const mbappe = stats.alltime.find(p => p.Name === 'Mbappe') || {};
+    const haaland = stats.alltime.find(p => p.Name === 'Haaland') || {};
+    const vini = stats.alltime.find(p => p.Name === 'Vinicius') || {};
+
     res.render('user/alltime', {
       title: 'All-Time Goal Scoring Stats | Mbappe vs Haaland vs Vinicius',
       description: 'Compare all-time goal stats: hattricks, pokers, free-kick goals, and final match goals of Mbappe, Haaland, and Vinicius.',
-      admin: false, mbappe, haaland, vini
+      admin: false,
+
+      // alltime table
+      mbappe,
+      haaland,
+      vini,
+
+      // all_time table
+      mbappe_alltime,
+      haaland_alltime,
+      vini_alltime
     }, (err, html) => {
       if (err) return res.status(500).send('Error rendering page');
-      pageCache.set('/alltime', html);   // 🔥 Cache the rendered HTML
+      pageCache.set('/alltime', html); // Cache the rendered HTML
       res.send(html);
     });
   });
 });
+
+
 router.get('/club-stats', function (req, res, next) {
   if (!isDev) {
     const cachedPage = pageCache.get('/club-stats');
     if (cachedPage) return res.send(cachedPage);
   }
 
-  displayHelper.getStats(['all_time', 'club'], (err, stats) => {
+  displayHelper.getStats(['alltime', 'club2', 'ucl2'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
 
-    const mbappe_all = stats.all_time.find(p => p.Name === 'Mbappe');
-    const mbappe_club = stats.club.find(p => p.Name === 'Mbappe');
+    const mbappe_all = stats.alltime.find(p => p.Name === 'Mbappe');
+    const mbappe_club = stats.club2.find(p => p.Name === 'Mbappe');
+    const mbappe_ucl = stats.ucl2.find(p => p.Name === 'Mbappe');
 
-    const haaland_all = stats.all_time.find(p => p.Name === 'Haaland');
-    const haaland_club = stats.club.find(p => p.Name === 'Haaland');
+    const haaland_all = stats.alltime.find(p => p.Name === 'Haaland');
+    const haaland_club = stats.club2.find(p => p.Name === 'Haaland');
+    const haaland_ucl = stats.ucl2.find(p => p.Name === 'Haaland');
 
-    const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
-    const vini_club = stats.club.find(p => p.Name === 'Vinicius');
+    const vini_all = stats.alltime.find(p => p.Name === 'Vinicius');
+    const vini_club = stats.club2.find(p => p.Name === 'Vinicius');
+    const vini_ucl = stats.ucl2.find(p => p.Name === 'Vinicius');
 
     // console.log('Mbappe All-Time:', mbappe_all);
     // console.log('Mbappe Club:', mbappe_club);
@@ -183,7 +216,8 @@ router.get('/club-stats', function (req, res, next) {
       haaland_all,
       haaland_club,
       vini_all,
-      vini_club
+      vini_club,
+      mbappe_ucl, haaland_ucl, vini_ucl
     }, (err, html) => {
       if (err) return res.status(500).send('Error rendering page');
       pageCache.set('/club-stats', html); // Cache the rendered HTML
@@ -198,19 +232,24 @@ router.get('/int-stats', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  displayHelper.getStats(['all_time', 'intr'], (err, stats) => {
+  displayHelper.getStats(['alltime', 'intr', 'intr2'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-    const mbappe_all = stats.all_time.find(p => p.Name === 'Mbappe');
-    const mbappe_intr = stats.intr.find(p => p.Name === 'Mbappe');
+    const mbappe_all = stats.alltime.find(p => p.Name === 'Mbappe');
+    const mbappe_intr = stats.intr2.find(p => p.Name === 'Mbappe');
+    const mbappe_intr1 = stats.intr.find(p => p.Name === 'Mbappe');
 
-    const haaland_all = stats.all_time.find(p => p.Name === 'Haaland');
-    const haaland_intr = stats.intr.find(p => p.Name === 'Haaland');
+    const haaland_all = stats.alltime.find(p => p.Name === 'Haaland');
+    const haaland_intr = stats.intr2.find(p => p.Name === 'Haaland');
+    const haaland_intr1 = stats.intr.find(p => p.Name === 'Haaland');
 
-    const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
-    const vini_intr = stats.intr.find(p => p.Name === 'Vinicius');
+
+    const vini_all = stats.alltime.find(p => p.Name === 'Vinicius');
+    const vini_intr = stats.intr2.find(p => p.Name === 'Vinicius');
+    const vini_intr1 = stats.intr.find(p => p.Name === 'Vinicius');
+
 
     // console.log('Mbappe All-Time:', mbappe_all);
     // console.log('Mbappe Intr:', mbappe_intr);
@@ -231,7 +270,8 @@ router.get('/int-stats', function (req, res, next) {
       haaland_all,
       haaland_intr,
       vini_all,
-      vini_intr
+      vini_intr,
+      vini_intr1, mbappe_intr1, haaland_intr1
     }, (err, html) => {
       if (err) return res.status(500).send('Error rendering page');
       pageCache.set('/int-stats', html); // Store in cache
@@ -675,7 +715,7 @@ router.get('/club-stats/:comp', function (req, res, next) {
     return res.status(404).send('Competition not found');
   }
 
-  displayHelper.getStats(['ucl', 'club'], (err, stats) => {
+  displayHelper.getStats(['ucl2', 'ucl', 'club'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
@@ -686,9 +726,13 @@ router.get('/club-stats/:comp', function (req, res, next) {
     const haaland_club = stats.club.find(p => p.Name === 'Haaland');
     const vini_club = stats.club.find(p => p.Name === 'Vinicius');
 
-    const mbappe = stats.ucl.find(p => p.Name === 'Mbappe');
-    const haaland = stats.ucl.find(p => p.Name === 'Haaland');
-    const vini = stats.ucl.find(p => p.Name === 'Vinicius');
+    const mbappe = stats.ucl2.find(p => p.Name === 'Mbappe');
+    const haaland = stats.ucl2.find(p => p.Name === 'Haaland');
+    const vini = stats.ucl2.find(p => p.Name === 'Vinicius');
+
+    const mbappe_ach = stats.ucl.find(p => p.Name === 'Mbappe');
+    const haaland_ach = stats.ucl.find(p => p.Name === 'Haaland');
+    const vini_ach = stats.ucl.find(p => p.Name === 'Vinicius');
 
     // console.log(mbappe, haaland, vini)
 
@@ -703,7 +747,10 @@ router.get('/club-stats/:comp', function (req, res, next) {
       vini,
       mbappe_club,
       haaland_club,
-      vini_club
+      vini_club,
+      vini_ach,
+      haaland_ach,
+      mbappe_ach
     });
   });
 });
@@ -731,19 +778,32 @@ router.get('/int-stats/:comp', function (req, res, next) {
   }
 
   // Always fetch both stats
-  displayHelper.getStats(['wc', 'copa_euro'], (err, stats) => {
+  displayHelper.getStats(['intr2', 'wc', 'wc_live', 'copa_euro', 'copa_euro_live'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
 
-    const mbappe_wc = stats.wc.find(p => p.Name === 'Mbappe');
-    const haaland_wc = stats.wc.find(p => p.Name === 'Haaland');
-    const vini_wc = stats.wc.find(p => p.Name === 'Vinicius');
+    const mbappe_wc = stats.wc_live.find(p => p.Name === 'Mbappe');
+    const haaland_wc = stats.wc_live.find(p => p.Name === 'Haaland');
+    const vini_wc = stats.wc_live.find(p => p.Name === 'Vinicius');
 
-    const mbappe_cu = stats.copa_euro.find(p => p.Name === 'Mbappe');
-    const haaland_cu = stats.copa_euro.find(p => p.Name === 'Haaland');
-    const vini_cu = stats.copa_euro.find(p => p.Name === 'Vinicius');
+    const mbappe_wc_ach = stats.wc.find(p => p.Name === 'Mbappe');
+    const haaland_wc_ach = stats.wc.find(p => p.Name === 'Haaland');
+    const vini_wc_ach = stats.wc.find(p => p.Name === 'Vinicius');
+
+    const mbappe_cu = stats.copa_euro_live.find(p => p.Name === 'Mbappe');
+    const haaland_cu = stats.copa_euro_live.find(p => p.Name === 'Haaland');
+    const vini_cu = stats.copa_euro_live.find(p => p.Name === 'Vinicius');
+
+    const mbappe_cu_ach = stats.copa_euro.find(p => p.Name === 'Mbappe');
+    const haaland_cu_ach = stats.copa_euro.find(p => p.Name === 'Haaland');
+    const vini_cu_ach = stats.copa_euro.find(p => p.Name === 'Vinicius');
+
+    const mbappe_all = stats.intr2.find(p => p.Name === 'Mbappe');
+    const haaland_all = stats.intr2.find(p => p.Name === 'Haaland');
+    const vini_all = stats.intr2.find(p => p.Name === 'Vinicius');
+
 
     // console.log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
 
@@ -757,7 +817,9 @@ router.get('/int-stats/:comp', function (req, res, next) {
       vini_wc,
       mbappe_cu,
       haaland_cu,
-      vini_cu
+      vini_cu, vini_cu_ach, mbappe_cu_ach, haaland_cu_ach,
+      vini_all, mbappe_all, haaland_all,
+      vini_wc_ach, haaland_wc_ach, mbappe_wc_ach
     });
   });
 });
@@ -774,13 +836,13 @@ router.get('/:time', function (req, res, next) {
   }
 
   const seasons = [
-    '2015_16', '2016_17', '2017_18', '2018_19', '2019_20',
-    '2020_21', '2021_22', '2022_23', '2023_24', '2024_25', '2025_26'
+    'live_2015_16', 'live_2016_17', 'live_2017_18', 'live_2018_19', 'live_2019_20',
+    'live_2020_21', 'live_2021_22', 'live_2022_23', 'live_2023_24', 'live_2024_25', 'live_2025_26'
   ];
 
   const years = [
-    'year2015', 'year2016', 'year2017', 'year2018', 'year2019',
-    'year2020', 'year2021', 'year2022', 'year2023', 'year2024', 'year2025'
+    'live2015', 'live2016', 'live2017', 'live2018', 'live2019',
+    'live2020', 'live2021', 'live2022', 'live2023', 'live2024', 'live2025'
   ];
 
   let tables = [];
@@ -804,7 +866,7 @@ router.get('/:time', function (req, res, next) {
       // Generate clean key for template
       let cleanKey = '';
       if (time === 'season') {
-        cleanKey = tableName.replace('_', ''); // e.g., 2024_25 → 202425
+        cleanKey = tableName.replace(/_/g, ''); // Remove ALL underscores // e.g., 2024_25 → 202425
       } else if (time === 'year') {
         cleanKey = tableName.replace('year', ''); // e.g., year2015 → 2015
       } else if (time === 'age') {

@@ -1338,3 +1338,53 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+/* lode spinner icon */
+
+
+/* --- MHV Loading Overlay Shell --- */
+#mhv-loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(2px);
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 250ms ease, visibility 250ms;
+}
+
+#mhv-loading-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* --- Clean Circular Yellow Spinner --- */
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255, 255, 255, 0); /* light yellow ring */
+  border-top-color: #000000;                 /* main yellow */
+  border-radius: 50%;
+  animation: spin 1.1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Optional "Loading" text */
+.mhv-loading-text {
+  position: absolute;
+  bottom: 80px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffd000;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}

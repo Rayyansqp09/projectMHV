@@ -60,7 +60,7 @@
         <select name="stage" id="stage">
           <option>All</option>
           <option>League Stage</option>
-          <option>Group Stage</option>
+          <option value="Group Stage,League Phase,League phase,Group stage">Group Stage</option>
           <option>Knockout</option>
           <option>Round of 16</option>
           <option>Quarter Final</option>
@@ -491,6 +491,8 @@
 
       requestAnimationFrame(animation);
     }
+
+
   });
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -718,6 +720,8 @@
         console.error(err);
         alert("Failed to fetch match data");
       }
+
+
     });
 
 
@@ -945,6 +949,53 @@
       );
     });
 
+    // -------------------- Loading overlay helper --------------------
+    let _mhvLoadingTimer = null;
+    let _mhvLoadingShown = false;
+
+    function ensureLoadingOverlay() {
+      if (document.getElementById('mhv-loading-overlay')) return;
+      const overlay = document.createElement('div');
+      overlay.id = 'mhv-loading-overlay';
+      overlay.innerHTML = `
+  <div class="loader" aria-hidden="true"></div>
+`;
+      document.body.appendChild(overlay);
+    }
+
+    function showLoadingOverlayImmediate() {
+      ensureLoadingOverlay();
+      const overlay = document.getElementById('mhv-loading-overlay');
+      overlay.classList.add('show');
+      _mhvLoadingShown = true;
+    }
+
+    function hideLoadingOverlay() {
+      const overlay = document.getElementById('mhv-loading-overlay');
+      if (!overlay) return;
+      overlay.classList.remove('show');
+      _mhvLoadingShown = false;
+    }
+
+    function startLoadingGuard() {
+      // If there's an existing timer, clear it first
+      clearTimeout(_mhvLoadingTimer);
+      // Only show overlay when operation takes longer than 1000ms
+      _mhvLoadingTimer = setTimeout(() => {
+        showLoadingOverlayImmediate();
+      }, 1000);
+    }
+
+    function stopLoadingGuard() {
+      // Cancel scheduled show
+      clearTimeout(_mhvLoadingTimer);
+      _mhvLoadingTimer = null;
+      // If overlay already visible, hide it immediately
+      if (_mhvLoadingShown) hideLoadingOverlay();
+    }
+    // -------------------- /Loading overlay helper --------------------
+
+
     function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset, matchNo, matchDate) {
       let url = `/Match-History/${encodeURIComponent(currentPlayer)}?offset=${offset}&limit=${limit}`;
       if (currentSort) url += `&sort=${encodeURIComponent(currentSort)}`;
@@ -963,6 +1014,9 @@
       if (goalTypes.length > 0) url += `&goalTypes=${encodeURIComponent(goalTypes.join(','))}`;
       if (matchNo) url += `&matchNo=${encodeURIComponent(matchNo)}`;
       if (matchDate) url += `&matchDate=${encodeURIComponent(matchDate)}`;
+
+      startLoadingGuard();
+
 
       fetch(url)
         .then(res => res.text())
@@ -995,10 +1049,15 @@
           const newLoadMoreBtn = doc.getElementById('load-more');
           loadMoreBtn.style.display = newLoadMoreBtn ? 'block' : 'none';
 
+          stopLoadingGuard();
+
           showPopup?.(`${newMatches.length} matches loaded!`);
         })
         .catch(err => console.error(err));
     }
+
+    // Automatically fetch first matches on page load
+    applyFilters();
 
 
   });

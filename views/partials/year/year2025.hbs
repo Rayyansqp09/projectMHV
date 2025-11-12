@@ -307,23 +307,6 @@
 
 <script>
 
-    document.querySelectorAll('.Dt-btn2').forEach(button => {
-        button.addEventListener('click', function () {
-            const container = this.closest('.table-container'); // Locate the current section
-            if (!container) return;
-
-            const table = container.querySelector('table'); // Find the table inside this section
-            const hiddenRows = table.querySelectorAll('.extra-row'); // Find hidden rows
-
-            hiddenRows.forEach(row => {
-                row.style.display = 'table-row'; // Show row
-                row.style.animation = 'slideDown 0.4s ease'; // Optional animation
-            });
-
-            this.style.display = 'none'; // Hide "More" button
-        });
-    });
-
 
     document.addEventListener("DOMContentLoaded", function () {
         const links = document.querySelectorAll("a.dynamic-link");
@@ -341,7 +324,7 @@
     });
 
 
-    function toggleModal(button) {
+    function toggleModal(button) { 
         // Find the closest table-container and get the h2 inside it
         const headingElement = button.closest(".table-container").querySelector("h2");
 

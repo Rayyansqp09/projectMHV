@@ -29,7 +29,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const isDev = true; // true while editing, false to enable caching
+const isDev = false; // true while editing, false to enable caching
 
 
 router.get('/dummy', (req, res) => {
@@ -44,7 +44,7 @@ router.get('/', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  const seasons = ['2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
+  const seasons = ['live_2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
 
   displayHelper.getStats(seasons, (err, stats) => {
     if (err) {
@@ -66,8 +66,8 @@ router.get('/', function (req, res, next) {
 
 
     // Latest season stats (2024_25)
-    const season = '2025_26';
-    const cleanKey = season.replace('_', '');
+    const season = 'live_2025_26';
+    const cleanKey = season.replace(/_/g, '');
     const seasonStats = stats[season] || [];
 
     const mbappeSeason = seasonStats.find(p => p.Name === 'Mbappe') || {};
@@ -107,6 +107,7 @@ router.get('/', function (req, res, next) {
       haalandMatches,
       viniciusMatches
     };
+
 
     res.render('index', data, (err, html) => {
       if (err) {

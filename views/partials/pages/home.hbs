@@ -1,5 +1,65 @@
 <div class="table-container table-container-st">
 
+  <h1 name="" class="stat-title">Last 20 Matches</h1>
+  <div class="table-scroll">
+    <table class="Stats-table">
+      <thead>
+        <tr>
+          <th class="stat-text">MBAPPE</th>
+          <th class="stat-text">HAALAND</th>
+          <th class="stat-text">VINICIUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stat-text">{{mbappe_last20.Goals}}<br><span class="stat-name">GOALS</span></td>
+          <td class="stat-text">{{haaland_last20.Goals}}<br><span class="stat-name">GOALS</span></td>
+          <td class="stat-text">{{vini_last20.Goals}}<br><span class="stat-name">GOALS</span></td>
+        </tr>
+        <tr>
+          <td class="stat-text">{{mbappe_last20.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+          <td class="stat-text">{{haaland_last20.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+          <td class="stat-text">{{vini_last20.GoalRatio}}<br><span class="stat-name">GOAL RATIO</span></td>
+        </tr>
+        <tr>
+          <td class="stat-text">{{mbappe_last20.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+          <td class="stat-text">{{haaland_last20.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+          <td class="stat-text">{{vini_last20.Assists}}<br><span class="stat-name">ASSISTS</span></td>
+        </tr>
+
+        <tr>
+          <td class="stat-text">{{mbappe_last20.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+          <td class="stat-text">{{haaland_last20.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+          <td class="stat-text">{{vini_last20.CC}}<br><span class="stat-name">CHANCE CREATED</span></td>
+        </tr>
+        <tr>
+          <td class="stat-text">{{mbappe_last20.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+          <td class="stat-text">{{haaland_last20.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+          <td class="stat-text">{{vini_last20.Shot}}<br><span class="stat-name">SHOT ON TARGET</span></td>
+        </tr>
+        <tr>
+          <td class="stat-text">{{mbappe_last20.BCC}}<br><span class="stat-name">BIG CHANCE CREATED</span></td>
+          <td class="stat-text">{{haaland_last20.BCC}}<br><span class="stat-name">BIG CHANCE CREATED</span></td>
+          <td class="stat-text">{{vini_last20.BCC}}<br><span class="stat-name">BIG CHANCE CREATED</span></td>
+        </tr>
+        <tr>
+          <td class="stat-text">{{mbappe_last20.Dribbles}}<br><span class="stat-name">DRIBBLES</span></td>
+          <td class="stat-text">{{haaland_last20.Dribbles}}<br><span class="stat-name">DRIBBLES</span></td>
+          <td class="stat-text">{{vini_last20.Dribbles}}<br><span class="stat-name">DRIBBLES</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <button class="Dt-btnu"><a class="dynamic-link" href="alltime">Detailed Stats</a></button>
+  {{#if admin}}
+  <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+  {{/if}}
+</div>
+
+
+<div class="table-container table-container-st">
+
   <h1 name="" class="stat-title">ALL TIME STATS</h1>
   <div class="table-scroll">
     <table class="Stats-table">
@@ -121,6 +181,7 @@
         <td class="stat-text">{{haaland.intAssists}}<br><span class="stat-name">ASSISTS</span></td>
         <td class="stat-text">{{vini.intAssists}}<br><span class="stat-name">ASSISTS</span></td>
       </tr>
+
     </tbody>
   </table>
   <button class="Dt-btnu"><a class="dynamic-link" href="int-stats">Detailed Stats</a></button>

@@ -90,6 +90,121 @@ res.render('index', data, (err, html) => {
   });
 });
 
+router.get('/faq', (req, res) => {
+  displayHelper.getStats('faq', (err, faqData) => {
+    if (err) {
+      console.error('Error getting FAQ:', err);
+      return res.status(500).send('Error loading FAQ');
+    }
+
+    // console.log('FAQ data fetched:', faqData);
+
+    // --- SPLIT DATA BY CATEGORY ---
+    const statistics = faqData.filter(item => item.type === 'Statistics & Records');
+    const technical   = faqData.filter(item => item.type === 'Technical');
+    const about       = faqData.filter(item => item.type === 'About Us');
+    const support     = faqData.filter(item => item.type === 'Support & Contact');
+
+    // Render
+    res.render('user/faq', {
+      admin: true,
+      statistics,
+      technical,
+      about,
+      support
+    });
+  });
+});
+
+
+router.post('/faq/add', (req, res) => {
+  const { question, type, ans } = req.body;
+
+  if (!question || !type || !ans) {
+    return res.status(400).json({ success: false, message: "Missing fields" });
+  }
+
+  const sql = `
+    INSERT INTO faq (question, type, ans)
+    VALUES (?, ?, ?)
+  `;
+
+  db.get().query(sql, [question, type, ans], (err, result) => {
+    if (err) {
+      console.error("❌ Error inserting FAQ:", err);
+      return res.status(500).json({ success: false });
+    }
+
+    console.log("✅ FAQ Inserted:", result.insertId);
+    return res.json({ success: true });
+  });
+});
+
+router.post('/faq/get', (req, res) => {
+    const { id } = req.body;
+
+    if (!id) {
+        return res.status(400).json({ error: "Missing ID" });
+    }
+
+    const sql = "SELECT * FROM faq WHERE no = ?";
+
+    db.get().query(sql, [id], (err, rows) => {
+        if (err) {
+            console.error("❌ Error fetching FAQ:", err);
+            return res.status(500).json({ error: true });
+        }
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: "FAQ not found" });
+        }
+
+        res.json(rows[0]);
+    });
+});
+
+router.post('/faq/edit', (req, res) => {
+    const { id, question, type, ans } = req.body;
+
+    if (!id || !question || !type || !ans) {
+        return res.status(400).json({ error: "Missing fields" });
+    }
+
+    const sql = `
+        UPDATE faq
+        SET question = ?, type = ?, ans = ?
+        WHERE no = ?
+    `;
+
+    db.get().query(sql, [question, type, ans, id], (err) => {
+        if (err) {
+            console.error("❌ Error updating FAQ:", err);
+            return res.status(500).json({ error: true });
+        }
+
+        res.json({ success: true });
+    });
+});
+
+router.post('/faq/delete', (req, res) => {
+    const { id } = req.body;
+
+    if (!id) {
+        return res.status(400).json({ error: "Missing ID" });
+    }
+
+    const sql = "DELETE FROM faq WHERE no = ?";
+
+    db.get().query(sql, [id], (err) => {
+        if (err) {
+            console.error("❌ Error deleting FAQ:", err);
+            return res.status(500).json({ error: true });
+        }
+
+        res.json({ success: true });
+    });
+});
+
 
 // router.get('/sts-update', function(req, res) {
 //   res.send('GET /sts-update route');

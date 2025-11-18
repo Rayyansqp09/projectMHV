@@ -13,6 +13,8 @@ const tableNames = [
   'copa_euro_live',
   'ucl',
   'ucl2',
+  'faq',
+  'last20',
   'mhvinicius',
   'mhmbappe',
   'mhhaaland',

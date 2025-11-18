@@ -1,3 +1,8 @@
+<div id="mhv-loading-overlay" class="show">
+  <div class="loader"></div>
+</div>
+
+
 {{!-- views/match-history.hbs --}}
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
@@ -1076,6 +1081,12 @@
       popupMessage.classList.remove('show');
     }, 2000);
   }
+
+// Hide the initial loading spinner after 1 second
+setTimeout(() => {
+  const overlay = document.getElementById('mhv-loading-overlay');
+  if (overlay) overlay.classList.remove('show');
+}, 800);
 
 
 </script>

@@ -1,6 +1,6 @@
 html,
 body {
-  background: #000000;
+  background: hsl(0, 0%, 5%);
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -589,8 +589,8 @@ p {
   border: 1px solid #fbfbfb24;
   max-width: 1000px;
   min-width: auto;
- padding-left: 15px;
- padding-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin: 3rem auto;
   padding-bottom: 20px;
   padding-top: 30px;
@@ -634,7 +634,7 @@ p {
 .Stats-table td {
   border: none;
   /* remove all cell borders */
-  padding: 11px 60px;
+  padding: 15px 30px;
   /* 20px top/bottom, 30px left/right */
 }
 

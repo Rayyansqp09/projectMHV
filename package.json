@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
-  },
+  "start": "node ./bin/www",
+  "dev": "nodemon ./bin/www",
+  "sync": "browser-sync start --config config/bs.js",
+  "dev-sync": "concurrently \"npm run dev\" \"npm run sync\""
+},
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -21,5 +24,9 @@
     "nodemon": "^3.1.10",
     "razorpay": "^2.9.6",
     "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1"
   }
 }

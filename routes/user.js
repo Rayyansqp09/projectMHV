@@ -29,7 +29,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const isDev = false; // true while editing, false to enable caching
+const isDev = true; // true while editing, false to enable caching
 
 
 router.get('/dummy', (req, res) => {
@@ -44,13 +44,19 @@ router.get('/', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  const seasons = ['live_2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
+  const seasons = ['last20','live_2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
 
   displayHelper.getStats(seasons, (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
+
+    // Last 20 stats
+    const last20Stats = stats['last20'] || [];
+    const mbappe_last20 = last20Stats.find(p => p.Name === 'Mbappe') || {};
+    const haaland_last20 = last20Stats.find(p => p.Name === 'Haaland') || {};
+    const vini_last20 = last20Stats.find(p => p.Name === 'Vinicius') || {};
 
     // All-time stats
     const allTimeStats = stats['alltime'] || [];
@@ -97,6 +103,9 @@ router.get('/', function (req, res, next) {
       mbappe,
       haaland,
       vini,
+      mbappe_last20,
+      haaland_last20,
+      vini_last20,
       [`mbappe_${cleanKey}`]: mbappeSeason,
       [`haaland_${cleanKey}`]: haalandSeason,
       [`vinicius_${cleanKey}`]: viniciusSeason,
@@ -337,7 +346,7 @@ router.get('/mhv', (req, res) => {
 
 router.get('/Match-History/:player', (req, res) => {
   const player = req.params.player.toLowerCase(); // <-- from path, not query
-  const limit = parseInt(req.query.limit) || 10;
+  const limit = parseInt(req.query.limit) || 0;
   const offset = parseInt(req.query.offset) || 0;
 
   const competitionFilter = req.query.competition || '';
@@ -704,6 +713,30 @@ router.post('/vote', (req, res) => {
   });
 });
 
+router.get('/faq', (req, res) => {
+  displayHelper.getStats('faq', (err, faqData) => {
+    if (err) {
+      console.error('Error getting FAQ:', err);
+      return res.status(500).send('Error loading FAQ');
+    }
+
+    // console.log('FAQ data fetched:', faqData);
+
+    // --- SPLIT DATA BY CATEGORY ---
+    const statistics = faqData.filter(item => item.type === 'Statistics & Records');
+    const technical   = faqData.filter(item => item.type === 'Technical');
+    const about       = faqData.filter(item => item.type === 'About Us');
+    const support     = faqData.filter(item => item.type === 'Support & Contact');
+
+    // Render
+    res.render('user/faq', {
+      statistics,
+      technical,
+      about,
+      support
+    });
+  });
+});
 
 
 

@@ -64,6 +64,41 @@
   ✅ Data updated
 </div>
 
+<div class="faq-edit-modal" id="faq-edit-modal">
+  <div class="faq-modal-content">
+    <h2>Edit FAQ</h2>
+
+    <input type="hidden" id="edit-id">
+
+    <label>Question</label>
+    <input type="text" id="edit-question" class="faq-input">
+
+    <label>Category</label>
+    <select id="edit-type" class="faq-input">
+      <option value="Statistics & Records">Statistics & Records</option>
+      <option value="Technical">Technical</option>
+      <option value="About Us">About Us</option>
+      <option value="Support & Contact">Support & Contact</option>
+    </select>
+
+    <label>Answer</label>
+    <textarea id="edit-answer" class="faq-input"></textarea>
+
+    <button id="save-edit-btn" class="faq-submit-btn">Save Changes</button>
+    <button id="close-edit-btn" class="faq-close-btn">Cancel</button>
+  </div>
+</div>
+
+<div class="faq-delete-modal" id="faq-delete-modal">
+  <div class="faq-modal-content">
+    <h3>Delete this FAQ?</h3>
+     <p id="delete-text">Are you sure you want to delete this question?</p>
+
+    <button id="confirm-delete-btn" class="faq-submit-btn">Delete</button>
+    <button id="cancel-delete-btn" class="faq-close-btn">Cancel</button>
+  </div>
+</div>
+
 
 <script>
 

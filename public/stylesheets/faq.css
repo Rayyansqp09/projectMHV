@@ -1,0 +1,660 @@
+/********************************************
+  COLOR VARIABLES
+*********************************************/
+:root {
+  --faq-bg-page: #0D0D0D;
+  --faq-bg-card: #1A1A1A;
+  --faq-bg-panel: #2A2A2A;
+  --faq-gold: #FFD700;
+  --faq-gold-hover: #FFC700;
+  --faq-text: #F5F5F5;
+  --faq-muted: #BDBDBD;
+  --faq-radius: 12px;
+  --faq-transition: 220ms cubic-bezier(.2, .9, .2, 1);
+}
+
+/********************************************
+  WRAPPER
+*********************************************/
+.faq-wrapper {
+  width: 100%;
+  max-width: 1200px;     /* choose any width you want */
+  margin: 0 auto;        /* << centers perfectly */
+
+  padding: 30px 20px;
+  background: var(--faq-bg-page);
+  color: var(--faq-text);
+  font-family: "Montserrat", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+/********************************************
+  HERO SECTION
+*********************************************/
+.faq-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 900px;
+}
+
+.faq-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.faq-subtitle {
+  font-size: 15px;
+  color: var(--faq-muted);
+  margin: 0;
+}
+
+/********************************************
+  SEARCH BAR
+*********************************************/
+.faq-search-wrap {
+  margin-top: 15px;
+}
+
+.faq-search {
+  background: var(--faq-bg-card);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: var(--faq-radius);
+
+  display: flex;
+  align-items: center;
+
+  height: 50px;
+  /* the actual input height */
+  padding: 0 0px;
+
+  transition: var(--faq-transition);
+}
+
+.faq-search:hover,
+.faq-search:focus-within {
+  border-color: rgb(255, 217, 0);
+  background: rgba(255, 215, 0, 0.02);
+}
+
+.faq-search input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: none;
+
+  font-size: 14px;
+  color: var(--faq-text);
+
+  height: 100%;
+  /* fills container */
+  line-height: 0px;
+  /* PERFECT vertical centering */
+  padding: 0;
+  /* remove vertical padding */
+  padding-top: 10px;
+}
+
+.faq-search input::placeholder {
+  color: #999;
+  font-size: 15px;
+  /* or 16px, 17px — your choice */
+}
+
+/* Search icon */
+.faq-search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--faq-muted);
+  margin: 10px;
+  color: #FFD700;
+}
+
+.faq-search-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/********************************************
+  LAYOUT
+*********************************************/
+.faq-main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  margin-top: 70px;
+}
+
+/********************************************
+  SIDEBAR
+*********************************************/
+
+
+
+.faq-sidebar-sticky {
+  position: sticky;
+  top: 20px;
+  margin-left: 20px;
+  width: 100%;
+
+}
+
+.faq-categories {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 250px;
+}
+
+.faq-cat-btn {
+  background: transparent;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  color: var(--faq-muted);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  transition: var(--faq-transition);
+
+  /* FIX: Keep icon and text on same line */
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 7px;
+  /* spacing between icon and text */
+
+  width: 100%;
+  /* optional */
+}
+
+
+.faq-cat-btn:hover {
+  color: var(--faq-text);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateX(3px);
+}
+
+.faq-cat-btn[aria-current="true"] {
+  color: var(--faq-text);
+  background: rgba(255, 215, 0, 0.08);
+  box-shadow: inset 3px 0 0 var(--faq-gold);
+}
+
+/* icon wrapper */
+.faq-cat-icon {
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--faq-muted);
+  margin-right: 10px;
+  flex-shrink: 0;
+  /* keeps icons same size */
+}
+
+/* icon size */
+.faq-cat-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* when active or hover -> make icon gold */
+.faq-cat-btn[aria-current="true"] .faq-cat-icon,
+.faq-cat-btn:hover .faq-cat-icon {
+  color: var(--faq-gold);
+}
+
+
+/********************************************
+ FAQ CONTENT
+*********************************************/
+.faq-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-left: 50px;
+}
+
+/********************************************
+ CONTROLS
+*********************************************/
+
+
+
+/********************************************
+ SECTION TITLES
+*********************************************/
+.faq-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.faq-section-icon {
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--faq-gold);
+  flex-shrink: 0;
+}
+
+
+/* Icon box */
+.faq-section-icon-box {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #1A1A1A;
+  /* your requested background */
+  border: 1px solid #2A2A2A;
+  /* soft minimal border */
+  border-radius: 8px;
+  /* premium rounded square */
+
+  color: var(--faq-gold);
+  /* gold icon */
+  flex-shrink: 0;
+}
+
+.faq-section-icon-box svg {
+  width: 18px;
+  height: 18px;
+}
+
+.faq-section-desc {
+  margin: 3px 0 20px 0;
+  font-size: 14px;
+  color: var(--faq-muted);
+}
+
+/********************************************
+ FAQ ITEMS
+*********************************************/
+.faq-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--faq-bg-card);
+  border-radius: var(--faq-radius);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 14px 18px;
+  transition: var(--faq-transition);
+  
+}
+
+.faq-item:hover {
+  background: rgba(255, 255, 255, 0.02);
+  transform: translateY(-2px);
+   border: 1px solid var(--faq-gold);
+}
+
+/********************************************
+ FAQ TOGGLE BUTTON
+*********************************************/
+.faq-toggle {
+  all: unset;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ height: 40px;
+  width: 700px;     /* ❗ fill the faq-item cleanly */
+}
+
+
+.faq-q-text {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;              /* key fix */
+  align-items: center;        /* centers text vertically */
+  line-height: 1;             /* prevents text shifting */
+  padding: 0;                 /* removes hidden spacing */
+  margin: 0;                  /* removes hidden spacing */
+}
+
+.faq-q-summary {
+  font-size: 13px;
+  color: var(--faq-muted);
+}
+
+/********************************************
+ CHEVRON ICON
+*********************************************/
+.faq-chev {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.faq-chev svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--faq-gold);
+}
+
+
+/********************************************
+ PANEL COLLAPSE
+*********************************************/
+.faq-panel {
+   margin-left: -20px;
+  margin-right: -20px;
+  padding: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height var(--faq-transition), opacity var(--faq-transition), border-color var(--faq-transition);
+  margin-top: 0px;
+  border-top: 1px solid rgba(67, 67, 67, 0.627); /* subtle top border */
+}
+
+.faq-item[aria-expanded="true"] .faq-panel {
+  opacity: 1;
+  max-height: 400px;
+}
+
+.faq-panel p{
+  margin: 15px 20px 0 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #99A1AF;
+}
+
+/********************************************
+ CTA SECTION
+*********************************************/
+.faq-container {
+  width: 122%;
+  margin: 80px auto;
+  padding: 0 auto;
+
+  display: flex;
+  justify-content: center;     /* <-- centers the card perfectly */
+}
+
+.faq-support-card {
+  background: #1A1A1A;
+  border: 1px solid #2A2A2A;
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;              /* fallback centering */
+}
+
+.faq-gold-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #FFD700, transparent);
+}
+
+.faq-icon svg {
+  display: block;
+  margin: 0 auto 0;
+  width: 60px;
+  height: 60px;
+}
+
+.faq-title2 {
+  color: #F5F5F5;
+  margin-bottom: 12px;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.faq-subtitle2 {
+  color: #b3b3b3;
+  max-width: 500px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+}
+
+.faq-contact-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFD700;
+  color: #0D0D0D;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500  ;
+  transition: background 0.2s ease;
+}
+
+.faq-contact-button:hover {
+  background: #FFC700;
+}
+
+.faq-contact-button svg {
+  width: 16px;
+  height: 16px;
+
+}
+
+/********************************************
+ FOOTER
+*********************************************/
+.faq-footer {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.faq-footer a {
+  color: var(--faq-muted);
+}
+
+.faq-last {
+  margin-left: auto;
+  color: var(--faq-muted);
+}
+
+
+/********************************************
+Admin 
+*********************************************/
+
+.faq-add-btn {
+  padding: 10px 16px;
+  background: #FFD700;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.faq-add-btn:hover {
+  background: #FFC700;
+}
+
+/* Background overlay */
+.faq-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+/* Modal box */
+.faq-modal-content {
+  background: #1A1A1A;
+  padding: 25px;
+  border-radius: 10px;
+  width: 400px;
+  border: 1px solid #2A2A2A;
+  color: #fff;
+}
+
+.faq-input {
+  width: 100%;
+  margin: 8px 0 18px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #2A2A2A;
+  color: #fff;
+}
+
+.faq-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #FFD700;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.faq-close-btn {
+  margin-top: 8px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid #555;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+/* Delete and edit button */
+
+.faq-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+.faq-item:hover .faq-actions {
+  opacity: 1;
+}
+
+.faq-edit-btn, .faq-del-btn {
+  background: #2A2A2A;
+  border: 1px solid #444;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.faq-edit-btn:hover {
+  border-color: #FFD700;
+  color: #FFD700;
+}
+
+.faq-del-btn:hover {
+  border-color: #ff4d4d;
+  color: #ff4d4d;
+}
+
+/* deleete conformation btn */
+
+.faq-edit-modal,
+.faq-delete-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.faq-modal-content {
+  background: #1A1A1A;
+  padding: 25px;
+  border-radius: 10px;
+  width: 400px;
+  border: 1px solid #2A2A2A;
+  color: #fff;
+}
+
+.faq-fade-out {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+
+/********************************************
+ RESPONSIVE
+*********************************************/
+@media (max-width: 992px) {
+  .faq-main {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-sidebar {
+    display: none;
+  }
+
+  .faq-title {
+    font-size: 24px;
+  }
+
+  .faq-content {
+    margin-left: 0;
+  }
+  .faq-toggle {
+    width: 100%;
+  }
+  .faq-container {
+    width: 100%;
+  }
+
+}

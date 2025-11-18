@@ -120,17 +120,11 @@ app.use(function (err, req, res, next) {
 });
 
 // ✅ DB Connect & Server Start
-db.connect((err) => {
-  if (err) {
-    console.error(`[${new Date().toISOString()}] ❌ DB connection error:`, err);
-  } else {
-    console.log(`[${new Date().toISOString()}] ✅ Database connected successfully`);
+// Start the server immediately — pool will handle DB
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`🚀 Server started on port ${process.env.PORT || 3000}`);
+});
 
-app.listen(3000, () => {
-  console.log(`[${new Date().toISOString()}] 🚀 Server started on http://localhost:3000`);
-});
-  }
-});
 
 module.exports = app;
 

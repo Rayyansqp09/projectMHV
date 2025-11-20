@@ -1,0 +1,291 @@
+/* ===========================
+   GRAPH SECTION WRAPPER
+   =========================== */
+#graph-section {
+  background: #0D0D0D;
+  padding: 50px 20px;
+}
+
+/* ===========================
+   GRAPH CARD (Outer Box)
+   =========================== */
+#progressGraph {
+  background: #1A1A1A;
+  border: 1px solid #2A2A2A;
+  border-radius: 14px;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 1100px;
+  min-height: 480px;
+}
+
+.chart-fade {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.chart-fade.fade-out {
+  opacity: 0;
+}
+
+.apexcharts-legend-text {
+  display: inline-block;
+  margin: 0 0px;
+}
+
+.apexcharts-legend-series .apexcharts-legend-marker {
+  width: 0 !important;
+  height: 0 !important;
+  margin-right: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+
+.apexcharts-legend-marker {
+  border-radius: 0 !important;
+}
+
+
+
+/* ApexCharts forces its own background.
+   This ensures the background stays dark. */
+.apexcharts-canvas {
+  background: #1A1A1A !important;
+  border-radius: 14px;
+}
+
+/* ===========================
+   TOGGLE ROW (center alignment)
+   =========================== */
+.toggle-row {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+/* ===========================
+   TOGGLE BOX (dark background)
+   =========================== */
+.toggle-box {
+  background: #1A1A1A;
+  border: 1px solid #2A2A2A;
+  padding: 4px;
+  border-radius: 10px;
+  display: inline-flex;
+}
+
+/* ===========================
+   TOGGLE BUTTONS
+   =========================== */
+.toggle-btn {
+  background: transparent;
+  color: #aaa;
+  padding: 10px 25px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.toggle-btn.active {
+  background: #FFD700;
+  color: #000;
+}
+
+.toggle-btn:hover {
+  color: #fff;
+}
+
+/* ===========================
+   TYPOGRAPHY (Optional)
+   =========================== */
+.graph-title {
+  text-align: center;
+  font-size: 28px;
+  color: #FFD700;
+  margin-bottom: 8px;
+}
+
+.graph-subtitle {
+  text-align: center;
+  color: #bbb;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+/* ===========================
+   APEXCHARTS OVERRIDES
+   =========================== */
+.apexcharts-tooltip {
+  background: #111 !important;
+  border: 1px solid #444 !important;
+  color: #fff !important;
+  font-size: 14px !important;
+}
+
+.apexcharts-tooltip-title {
+  background: #222 !important;
+  border-bottom: 1px solid #444 !important;
+}
+
+.apexcharts-xaxis text,
+.apexcharts-yaxis text {
+  fill: #ccc !important;
+}
+
+.apexcharts-legend-text {
+  color: #ddd !important;
+}
+
+/* Make grid lines clean */
+.apexcharts-gridline {
+  stroke: #333 !important;
+}
+
+
+/* ===========================
+   tooltip POP UP
+   =========================== */
+
+   /* REMOVE ALL SHADOWS FROM TOOLTIP */
+.apexcharts-tooltip,
+.apexcharts-tooltip * {
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  text-shadow: none !important;
+}
+
+/* REMOVE HOVER SHADOW */
+.apexcharts-active {
+  filter: none !important;
+}
+
+/* REMOVE POINT MARKER SHADOWS */
+.apexcharts-marker {
+  box-shadow: none !important;
+}
+
+/* REMOVE ANY DEFAULT BORDERS / HIGHLIGHTS */
+.apexcharts-tooltip.apexcharts-theme-dark {
+  border: none !important;
+}
+
+
+
+/* Entire tooltip box */
+.mhv-tooltip-box {
+  background:#2a282877;
+  padding:10px 12px;
+  border:1px solid #9a9c22;
+  border-radius:8px;
+  font-size:13px;
+}
+
+.mhv-tooltip-title {
+  font-weight:400;
+  color:#ffffff;
+  margin-bottom:6px;
+  font-size: 16px;
+}
+
+.mhv-tooltip-row {
+  display:flex;
+  align-items:center;
+  margin:0px 0;
+}
+
+.mhv-tooltip-color {
+  width:12px;
+  height:12px;
+  border-radius:3px;
+  margin-right:6px;
+  display:inline-block;
+}
+
+.mhv-tooltip-label {
+  font-weight:400;
+  margin-right:6px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.mhv-tooltip-value {
+  font-weight:400;
+  font-size: 14px;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 768px) {
+  #progressGraph {
+    padding: 15px;
+    min-height: 380px;
+  }
+
+  .toggle-btn {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  #graph-section {
+    padding: 30px 10px;
+  }
+
+  #progressGraph {
+    padding: 15px;
+    margin: 15px auto;
+    min-height: 300px;
+    border-radius: 10px;
+  }
+
+  .graph-title {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .graph-subtitle {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  .toggle-row {
+    margin: 15px 0;
+  }
+
+  .toggle-box {
+    padding: 3px;
+  }
+
+  .toggle-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .apexcharts-canvas {
+    border-radius: 10px;
+  }
+
+  .mhv-tooltip-box {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .mhv-tooltip-title {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .mhv-tooltip-row {
+    margin: 2px 0;
+  }
+
+  .mhv-tooltip-label,
+  .mhv-tooltip-value {
+    font-size: 12px;
+  }
+}

@@ -83,6 +83,10 @@ app.engine('hbs', hbs.engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
+// ⭐ REGISTER CUSTOM HELPER PROPERLY
+const Handlebars = require('handlebars');
+Handlebars.registerHelper('json', (obj) => JSON.stringify(obj));
+
 
 // Middleware
 app.use(logger('dev'));

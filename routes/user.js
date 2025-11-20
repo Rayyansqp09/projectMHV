@@ -3,6 +3,7 @@ var router = express.Router();
 const db = require('../config/connection'); // adjust to your DB connection
 const tableList = require('../config/table'); // your table list
 const displayHelper = require('../helpers/disply');
+const graphHelper = require("../helpers/graph");
 const articles = require('../helpers/articles.json');
 const { v4: uuidv4 } = require('uuid');
 const votedIPs = new Set(); // Temporary memory; use DB/IP logs in production
@@ -11,6 +12,7 @@ const Razorpay = require("razorpay");
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 const NodeCache = require('node-cache');
+const graph = require('../helpers/graph');
 const pageCache = new NodeCache({ stdTTL: 900 }); // Cache for 5 minutes
 
 
@@ -43,13 +45,18 @@ router.get('/', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  const seasons = ['last20','live_2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
+  const seasons = ['last20', 'live_2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
 
   displayHelper.getStats(seasons, (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
+
+    const mbappeStats = graphHelper.buildPlayerStats(stats['mhmbappe'], "2025-26");
+    const haalandStats = graphHelper.buildPlayerStats(stats['mhhaaland'], "2025-26");
+    const viniStats = graphHelper.buildPlayerStats(stats['mhvinicius'], "2025-26");
+
 
     // Last 20 stats
     const last20Stats = stats['last20'] || [];
@@ -117,7 +124,15 @@ router.get('/', function (req, res, next) {
     };
 
 
-    res.render('index', data, (err, html) => {
+
+    res.render('index', {
+      graph: {
+        mbappe: mbappeStats,
+        haaland: haalandStats,
+        vinicius: viniStats
+      },
+      ...data
+    }, (err, html) => {
       if (err) {
         console.error("❌ Error rendering index:", err);
         return res.status(500).render('error', {
@@ -723,9 +738,9 @@ router.get('/faq', (req, res) => {
 
     // --- SPLIT DATA BY CATEGORY ---
     const statistics = faqData.filter(item => item.type === 'Statistics & Records');
-    const technical   = faqData.filter(item => item.type === 'Technical');
-    const about       = faqData.filter(item => item.type === 'About Us');
-    const support     = faqData.filter(item => item.type === 'Support & Contact');
+    const technical = faqData.filter(item => item.type === 'Technical');
+    const about = faqData.filter(item => item.type === 'About Us');
+    const support = faqData.filter(item => item.type === 'Support & Contact');
 
     // Render
     res.render('user/faq', {

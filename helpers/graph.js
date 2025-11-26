@@ -1,17 +1,16 @@
 module.exports = {
 
-  /* ------------------------------------------
-      1. Sort matches chronologically (ASC)
-     ------------------------------------------ */
+  normalize(value) {
+    if (value === null || value === undefined) return "";
+    return String(value).trim().toLowerCase();
+  },
+
   sortMatches(matches) {
-    return matches.sort((a, b) => 
+    return matches.sort((a, b) =>
       new Date(a.date) - new Date(b.date)
     );
   },
 
-  /* ------------------------------------------
-      2. Build cumulative array for any key
-     ------------------------------------------ */
   buildCumulative(arr, key) {
     let sum = 0;
     return arr.map(row => {
@@ -20,9 +19,6 @@ module.exports = {
     });
   },
 
-  /* ------------------------------------------
-      3. Build GOALS + ASSISTS cumulative
-     ------------------------------------------ */
   buildCumulativeGPlus(arr) {
     let sum = 0;
     return arr.map(row => {
@@ -31,18 +27,7 @@ module.exports = {
     });
   },
 
-  /* ------------------------------------------
-      4. Filter matches for a specific season
-         Example: season = "2025-26"
-     ------------------------------------------ */
-  filterBySeason(matches, seasonCode) {
-    return matches.filter(row => row.season === seasonCode);
-  },
-
-  /* ------------------------------------------
-      5. Build season stats (Goals, Assists, G+)
-     ------------------------------------------ */
-  buildSeasonStats(matches) {
+  buildStats(matches) {
     const sorted = this.sortMatches(matches);
 
     return {
@@ -52,34 +37,68 @@ module.exports = {
     };
   },
 
-  /* ------------------------------------------
-      6. Build all-time stats (entire table)
-     ------------------------------------------ */
-  buildAllTimeStats(matches) {
-    const sorted = this.sortMatches(matches);
+  applyFilter(matches, filter = {}) {
+  const filterKeys = Object.keys(filter);
+
+  return matches.filter(row => {
+    return filterKeys.every(key => {
+
+      // Skip empty conditions
+      if (!filter[key]) return true;
+
+      const rowVal = this.normalize(row[key]);
+      const rawFilter = filter[key];
+
+      // Split AND conditions using &
+      const andGroups = rawFilter.split('&').map(g => g.trim());
+
+      // Every AND group must pass
+      return andGroups.every(group => {
+
+        // Split OR conditions using ,
+        const orParts = group.split(',').map(v => this.normalize(v.trim()));
+
+        // At least ONE OR part must match exactly
+        return orParts.some(expectedValue => rowVal === expectedValue);
+      });
+
+    });
+  });
+},
+
+  /**
+   * Supports:
+   *  - One filter: returns { filtered, allTime }
+   *  - Two filters: returns { filter1, filter2 }
+   */
+  buildMultiFilterStats(matches, filter1 = null, filter2 = null) {
+
+    const allTimeStats = this.buildStats(matches);
+
+    // No filters at all → return all time only twice
+    if (!filter1 && !filter2) {
+      return {
+        filter1: allTimeStats,
+        filter2: allTimeStats
+      };
+    }
+
+    // Only one filter → filtered + allTime
+    if (filter1 && !filter2) {
+      const filteredMatches = this.applyFilter(matches, filter1);
+      return {
+        filter1: this.buildStats(filteredMatches),
+        filter2: allTimeStats
+      };
+    }
+
+    // Two filters → two filtered datasets
+    const filtered1 = this.applyFilter(matches, filter1);
+    const filtered2 = this.applyFilter(matches, filter2);
 
     return {
-      goals: this.buildCumulative(sorted, "goals"),
-      assists: this.buildCumulative(sorted, "assists"),
-      gplus: this.buildCumulativeGPlus(sorted)
-    };
-  },
-
-  /* ------------------------------------------
-      7. MAIN FUNCTION:
-         Takes ALL raw matches & returns:
-         { season: {...}, allTime: {...} }
-     ------------------------------------------ */
-  buildPlayerStats(rawMatches, seasonCode) {
-
-    const allTime = this.buildAllTimeStats(rawMatches);
-
-    const seasonMatches = this.filterBySeason(rawMatches, seasonCode);
-    const season = this.buildSeasonStats(seasonMatches);
-
-    return {
-      season,
-      allTime
+      filter1: this.buildStats(filtered1),
+      filter2: this.buildStats(filtered2)
     };
   }
 

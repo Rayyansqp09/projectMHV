@@ -1,7 +1,7 @@
 <section id="graph-section">
   <!-- Season Toggle -->
   <div class="toggle-row">
-    <div class="toggle-box">
+    <div class="toggle-box" id="modeToggle">
       <button class="toggle-btn active" id="seasonBtn">This Season</button>
       <button class="toggle-btn" id="allTimeBtn">All Time</button>
     </div>
@@ -26,8 +26,10 @@
 
 </section>
 
-
-
+<div class="footer3-card" onclick="location.href='/int-stats#graph-section'">
+  <span>International Stats Graph</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
 
 
 
@@ -376,302 +378,37 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="/javascripts/graph.js"></script>
+
 
 <script>
-  // REAL DATA FROM BACKEND
+  // backend data from route:
   const graphData = {{{ json graph }}};
+  // graph = { mbappe:{season:{goals,assists,gplus}, allTime:{...}}, haaland:{...}, vinicius:{...} }
 
-  let seasonMode = "season";
-  let statType = "goals";
+  // initialize reusable graph
+  initCumulativeGraph({
+    containerId: "progressGraph",   // <div id="progressGraph">
+    wrapperId: "chartWrapper",      // outer div with fade animation
 
-  /* Dummy DATA (replace with your real stats later) */
+    graphData,                      // real data from backend
 
-
-  function randomCumulative(matches, probability) {
-    let arr = [];
-    let sum = 0;
-    for (let i = 0; i < matches; i++) {
-      if (Math.random() < probability) sum++;
-      arr.push(sum);
-    }
-    return arr;
-  }
-
-  function getCurrentData() {
-    return {
-      mbappe: seasonMode === "season"
-        ? graphData.mbappe.season[statType]
-        : graphData.mbappe.allTime[statType],
-
-      haaland: seasonMode === "season"
-        ? graphData.haaland.season[statType]
-        : graphData.haaland.allTime[statType],
-
-      vinicius: seasonMode === "season"
-        ? graphData.vinicius.season[statType]
-        : graphData.vinicius.allTime[statType]
-    };
-  }
-
-
-  function getCategories() {
-    const sample = seasonMode === "season"
-      ? graphData.mbappe.season.goals
-      : graphData.mbappe.allTime.goals;
-
-    return sample.map((_, i) => i + 1);
-  }
-
-
-  function formatStatName(stat) {
-    if (stat === "goals") return "Goals";
-    if (stat === "assists") return "Assists";
-    if (stat === "gplus") return "G+";
-    return "Stat";
-  }
-
-
-  /* --- APEXCHART SETUP --- */
-  var options = {
-    chart: {
-      type: 'line',
-      height: 500,
-      background: '#1A1A1A',
-      toolbar: { show: false },
-      zoom: { enabled: false }   // <— THIS KILLS ZOOM FOREVER
+    modeConfig: {
+      key1: "filter1",               // this page = "season" vs "allTime"
+      key2: "filter2",
+      defaultKey: "filter1",
+      btn1Id: "seasonBtn",
+      btn2Id: "allTimeBtn"
     },
-    stroke: { width: 3, curve: 'smooth' },
-    colors: ["#FF4655", "#00D9FF", "#FFD700"],
-    grid: {
-      borderColor: '#333',
-      xaxis: {
-        lines: { show: true }   // NO 300 LINES ANYMORE
-      },
-      yaxis: {
-        lines: { show: true }    // Keep horizontal lines
+
+    statConfig: {
+      keys: ["goals", "gplus", "assists"],
+      defaultKey: "goals",
+      buttons: {
+        goals:   "goalsBtn",
+        gplus:   "gplusBtn",
+        assists: "assistsBtn"
       }
-    },
-    tooltip: {
-      enabled: true,
-      shared: true,
-      intersect: false,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-
-        const labels = ["Haaland", "Mbappé", "Vinícius"];
-        const colors = ["#FF4655", "#00D9FF", "#FFD700"];
-
-        // DYNAMIC STAT NAME
-        const statNames = {
-          goals: "Goals",
-          assists: "Assists",
-          gplus: "G+"
-        };
-        let statLabel = statNames[statType];   // <--- DYNAMIC
-
-        let match = w.globals.seriesX[0][dataPointIndex];
-
-        let html = `
-    <div class="mhv-tooltip-box">
-      <div class="mhv-tooltip-title">Matches ${match}</div>
-  `;
-
-        for (let i = 0; i < series.length; i++) {
-          let rawVal = series[i][dataPointIndex];
-          let val = (rawVal === undefined || rawVal === null) ? "None" : rawVal;
-
-
-          html += `
-      <div class="mhv-tooltip-row">
-       
-        <span class="mhv-tooltip-label" style="color:${colors[i]}">${labels[i]}:</span>
-        <span class="mhv-tooltip-value" style="color:${colors[i]}">
-  ${val}${val === "None" ? "" : " " + statLabel}
-</span>
-
-      </div>
-    `;
-        }
-
-        html += `</div>`;
-        return html;
-      }
-
-    },
-    legend: {
-      position: "bottom",
-      horizontalAlign: "center",
-      fontSize: "16px",
-
-      labels: {
-        colors: "#ddd"        // default text color (fallback)
-      },
-
-      markers: {
-        show: false           // <--- REMOVE THE ICON COMPLETELY
-      },
-
-      formatter: function (seriesName, opts) {
-        // get color of corresponding line
-        const color = opts.w.globals.colors[opts.seriesIndex];
-
-        // return custom text matching line color
-        return `<span class="legend-text" style="
-      color: ${color};
-      font-weight: 100 !important;
-      padding: 0 0px;
-      font-size: 15px;
-    ">${seriesName}</span>`;
-      }
-    },
-    xaxis: {
-      type: "numeric",
-      min: 1,
-      max: seasonMode === "season" ? 38 : 300,
-      tickAmount: 40,
-      tickPlacement: "between",     // <--- THE FIX
-      labels: {
-        style: { colors: "#ccc" },
-        formatter: (v) => Math.round(v)
-      },
-      axisBorder: {
-        show: true,
-        color: "#444",
-        height: 2
-      },
-      axisTicks: { show: false },
-      title: {
-        text: "Matches", style: {
-          color: "#ccc", fontSize: "14px",
-          fontWeight: 400,
-        }
-      }
-    },
-    yaxis: {
-      labels: {
-        style: { colors: "#ccc" }
-      },
-
-      axisBorder: {
-        show: true,
-        color: "#444",
-        width: 2        // <--- THICK LEFT LINE
-      },
-
-      axisTicks: { show: false },
-
-      title: {
-        text: formatStatName(statType),
-        style: {
-          color: "#ccc", fontSize: "14px",
-          fontWeight: 400,
-        }
-      }
-    },
-    series: [
-      { name: "Haaland", color: "#FF4655", data: getCurrentData().haaland },
-      { name: "Mbappé", color: "#00D9FF", data: getCurrentData().mbappe },
-      { name: "Vinícius", color: "#FFD700", data: getCurrentData().vinicius }
-    ]
-  };
-
-  function setActiveStatButton(activeId) {
-    document.querySelectorAll("#statToggle .toggle-btn")
-      .forEach(btn => btn.classList.remove("active"));
-
-    document.getElementById(activeId).classList.add("active");
-  }
-
-
-  var chart = new ApexCharts(document.querySelector("#progressGraph"), options);
-  chart.render();
-
-  /* --- TOGGLE BUTTON LOGIC --- */
-  function activate(btnId, group) {
-    document.querySelectorAll(group).forEach(b => b.classList.remove("active"));
-    document.getElementById(btnId).classList.add("active");
-  }
-
-  document.getElementById("seasonBtn").onclick = () => {
-    seasonMode = "season";
-    activate("seasonBtn", ".toggle-box:nth-of-type(1) .toggle-btn");
-    updateGraph();
-  };
-
-  document.getElementById("allTimeBtn").onclick = () => {
-    seasonMode = "allTime";
-    activate("allTimeBtn", ".toggle-box:nth-of-type(1) .toggle-btn");
-    updateGraph();
-  };
-
-  document.getElementById("goalsBtn").onclick = () => {
-    statType = "goals";
-    setActiveStatButton("goalsBtn");
-    updateGraph();
-  };
-
-  document.getElementById("gplusBtn").onclick = () => {
-    statType = "gplus";
-    setActiveStatButton("gplusBtn");
-    updateGraph();
-  };
-
-  document.getElementById("assistsBtn").onclick = () => {
-    statType = "assists";
-    setActiveStatButton("assistsBtn");
-    updateGraph();
-  };
-
-  function updateGraph() {
-    let data = getCurrentData();
-
-    // Fade-out before updating
-    const wrapper = document.getElementById("chartWrapper");
-    wrapper.classList.add("fade-out");
-
-    setTimeout(() => {
-
-      // Only update data and scale (FASTEST, CLEANEST)
-      chart.updateOptions({
-        xaxis: {
-          min: 1,
-          max: seasonMode === "season" ? 38 : 300,
-        }
-      }, false, true);
-
-      chart.updateOptions({
-        yaxis: {
-          title: {
-            text: formatStatName(statType),   // <-- DYNAMIC Y-AXIS TITLE
-            style: {
-              color: "#ccc",
-              fontSize: "14px",
-              fontWeight: 400
-            }
-          }
-        }
-      }, false, true);
-
-
-      chart.updateSeries([
-        { name: "Haaland", data: data.haaland },
-        { name: "Mbappé", data: data.mbappe },
-        { name: "Vinícius", data: data.vinicius }
-      ]);
-
-
-
-      // Fade-in after update
-      wrapper.classList.remove("fade-out");
-
-    }, 50);
-  }
-
-
-  document.addEventListener("mouseover", function (e) {
-    if (e.target.dataset && e.target.dataset.color) {
-      e.target.style.color = e.target.dataset.color;
-      e.target.style.background = e.target.dataset.color;
     }
   });
-
 </script>

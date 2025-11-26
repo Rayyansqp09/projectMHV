@@ -63,6 +63,39 @@
     <span class="footer2-arrow">&#8594;</span>
 </div>
 
+<section id="graph-section">
+    <!-- Season Toggle -->
+    <div class="toggle-row">
+        <div class="toggle-box" id="modeToggle">
+            <button class="toggle-btn active" id="seasonBtn">All Time</button>
+            <button class="toggle-btn" id="allTimeBtn">Competitive Games</button>
+        </div>
+    </div>
+
+    <!-- Graph -->
+    <div id="chartWrapper" class="chart-fade">
+        <div id="progressGraph"></div>
+    </div>
+
+
+
+    <!-- Stats Toggle -->
+    <div class="toggle-row">
+        <div class="toggle-box" id="statToggle">
+            <button class="toggle-btn" id="goalsBtn">Goals</button>
+            <button class="toggle-btn" id="gplusBtn">G+</button>
+            <button class="toggle-btn" id="assistsBtn">Assists</button>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="footer3-card" onclick="location.href='/#graph-section'">
+  <span>All Time Stats Graph</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+
 <div class="table-container">
     <h1 name="top10" class="stat-title">vs Top 10 Ranked Teams</h1>
     <table class="Stats-table">
@@ -493,7 +526,7 @@
                 <td class="stat-text">{{ haaland_intr.unlGoals }}<br><span class="stat-name">GOALS</span></td>
                 <td class="stat-text">{{ vini_intr.unlGoals }}<br><span class="stat-name">GOALS</span></td>
             </tr>
-              <tr>
+            <tr>
                 <td class="stat-text">{{ mbappe_intr.unlGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
                 <td class="stat-text">{{ haaland_intr.unlGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
                 <td class="stat-text">{{ vini_intr.unlGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
@@ -512,3 +545,40 @@
 </div>
 
 {{>sts-update}}
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="/javascripts/graph.js"></script>
+
+<script>
+  // backend data from route:
+  const graphData = {{{ json graph }}};
+  // graph = { mbappe:{season:{goals,assists,gplus}, allTime:{...}}, haaland:{...}, vinicius:{...} }
+
+  // initialize reusable graph
+  initCumulativeGraph({
+    containerId: "progressGraph",   // <div id="progressGraph">
+    wrapperId: "chartWrapper",      // outer div with fade animation
+
+    graphData,                      // real data from backend
+
+    modeConfig: {
+      key1: "filter1",               // this page = "season" vs "allTime"
+      key2: "filter2",
+      defaultKey: "filter1",
+      btn1Id: "seasonBtn",
+      btn2Id: "allTimeBtn"
+    },
+
+    statConfig: {
+      keys: ["goals", "gplus", "assists"],
+      defaultKey: "goals",
+      buttons: {
+        goals:   "goalsBtn",
+        gplus:   "gplusBtn",
+        assists: "assistsBtn"
+      }
+    }
+  });
+</script>

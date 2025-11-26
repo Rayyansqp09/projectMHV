@@ -53,9 +53,22 @@ router.get('/', function (req, res, next) {
       return res.status(500).send('Error loading stats');
     }
 
-    const mbappeStats = graphHelper.buildPlayerStats(stats['mhmbappe'], "2025-26");
-    const haalandStats = graphHelper.buildPlayerStats(stats['mhhaaland'], "2025-26");
-    const viniStats = graphHelper.buildPlayerStats(stats['mhvinicius'], "2025-26");
+    const mbappeStats = graphHelper.buildMultiFilterStats(
+
+      stats['mhmbappe'],
+      { season: "2025-26" },
+    );
+
+    const haalandStats = graphHelper.buildMultiFilterStats(
+      stats['mhhaaland'],
+      { season: "2025-26" },
+    );
+
+    const viniStats = graphHelper.buildMultiFilterStats(
+      stats['mhvinicius'],
+      { season: "2025-26" },
+    );
+
 
 
     // Last 20 stats
@@ -123,7 +136,7 @@ router.get('/', function (req, res, next) {
       viniciusMatches
     };
 
-
+    console.log(mbappeStats, haalandStats, viniStats)
 
     res.render('index', {
       graph: {
@@ -256,11 +269,31 @@ router.get('/int-stats', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  displayHelper.getStats(['alltime', 'intr', 'intr2'], (err, stats) => {
+  displayHelper.getStats(['alltime', 'intr', 'intr2', 'mhhaaland', 'mhmbappe', 'mhvinicius'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
+
+    const mbappeStats = graphHelper.buildMultiFilterStats(
+
+      stats['mhmbappe'],
+      { forTeam: "France" },
+      {competition:"World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers"}
+    );
+
+    const haalandStats = graphHelper.buildMultiFilterStats(
+      stats['mhhaaland'],
+      { forTeam: "Norway" },
+      {competition:"World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers"}
+    );
+
+    const viniStats = graphHelper.buildMultiFilterStats(
+      stats['mhvinicius'],
+      { forTeam: "Brazil" },
+      {competition:"World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers"}
+    );
+
     const mbappe_all = stats.alltime.find(p => p.Name === 'Mbappe');
     const mbappe_intr = stats.intr2.find(p => p.Name === 'Mbappe');
     const mbappe_intr1 = stats.intr.find(p => p.Name === 'Mbappe');
@@ -295,7 +328,12 @@ router.get('/int-stats', function (req, res, next) {
       haaland_intr,
       vini_all,
       vini_intr,
-      vini_intr1, mbappe_intr1, haaland_intr1
+      vini_intr1, mbappe_intr1, haaland_intr1,
+      graph: {
+        mbappe: mbappeStats,
+        haaland: haalandStats,
+        vinicius: viniStats
+      },
     }, (err, html) => {
       if (err) return res.status(500).send('Error rendering page');
       pageCache.set('/int-stats', html); // Store in cache

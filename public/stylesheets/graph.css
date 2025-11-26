@@ -3,7 +3,7 @@
    =========================== */
 #graph-section {
   background: #0D0D0D;
-  padding: 50px 20px;
+  padding: 0px 20px;
 }
 
 /* ===========================
@@ -13,16 +13,18 @@
   background: #1A1A1A;
   border: 1px solid #2A2A2A;
   border-radius: 14px;
-  padding: 25px;
-  margin: 25px auto;
+  padding: 15px 25px;
+  margin: 0px auto;
   max-width: 1100px;
   min-height: 480px;
+  margin-bottom: 0;
 }
 
 .chart-fade {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
+
 .chart-fade.fade-out {
   opacity: 0;
 }
@@ -30,6 +32,7 @@
 .apexcharts-legend-text {
   display: inline-block;
   margin: 0 0px;
+  margin-bottom: 0px !important;
 }
 
 .apexcharts-legend-series .apexcharts-legend-marker {
@@ -60,7 +63,8 @@
 .toggle-row {
   display: flex;
   justify-content: center;
-  margin: 25px 0;
+  margin: 20px 0;
+  margin-top: 20px;
 }
 
 /* ===========================
@@ -148,7 +152,7 @@
    tooltip POP UP
    =========================== */
 
-   /* REMOVE ALL SHADOWS FROM TOOLTIP */
+/* REMOVE ALL SHADOWS FROM TOOLTIP */
 .apexcharts-tooltip,
 .apexcharts-tooltip * {
   box-shadow: none !important;
@@ -176,43 +180,43 @@
 
 /* Entire tooltip box */
 .mhv-tooltip-box {
-  background:#2a282877;
-  padding:10px 12px;
-  border:1px solid #9a9c22;
-  border-radius:8px;
-  font-size:13px;
+  background: #2a282877;
+  padding: 10px 12px;
+  border: 1px solid #9a9c22;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
 .mhv-tooltip-title {
-  font-weight:400;
-  color:#ffffff;
-  margin-bottom:6px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 6px;
   font-size: 16px;
 }
 
 .mhv-tooltip-row {
-  display:flex;
-  align-items:center;
-  margin:0px 0;
+  display: flex;
+  align-items: center;
+  margin: 0px 0;
 }
 
 .mhv-tooltip-color {
-  width:12px;
-  height:12px;
-  border-radius:3px;
-  margin-right:6px;
-  display:inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 6px;
+  display: inline-block;
 }
 
 .mhv-tooltip-label {
-  font-weight:400;
-  margin-right:6px;
+  font-weight: 400;
+  margin-right: 6px;
   font-size: 14px;
   margin-bottom: 0;
 }
 
 .mhv-tooltip-value {
-  font-weight:400;
+  font-weight: 400;
   font-size: 14px;
 }
 
@@ -220,9 +224,21 @@
    RESPONSIVE
    =========================== */
 @media (max-width: 768px) {
+
+  #graph-section {
+    padding: 0px 5px;
+  }
+
   #progressGraph {
-    padding: 15px;
+    padding: 15px 0px;
     min-height: 380px;
+    margin-top: 14px;
+  }
+
+  .toggle-row {
+    margin: 0px 0;
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
 
   .toggle-btn {
@@ -233,19 +249,26 @@
 
 @media (max-width: 480px) {
   #graph-section {
-    padding: 30px 10px;
+    padding: 0px 0px;
   }
 
   #progressGraph {
-    padding: 15px;
-    margin: 15px auto;
+    padding: 0px;
+    margin: 0px auto;
     min-height: 300px;
     border-radius: 10px;
+   padding-bottom: 0px;
+  }
+
+  .apexcharts-legend-text {
+    display: inline-block;
+    margin: 0 0px;
+    margin-bottom: 0px !important;
   }
 
   .graph-title {
     font-size: 22px;
-    margin-bottom: 4px;
+    margin-bottom: 0px;
   }
 
   .graph-subtitle {
@@ -255,7 +278,10 @@
 
   .toggle-row {
     margin: 15px 0;
+    margin-top: 40px;
   }
+
+
 
   .toggle-box {
     padding: 3px;

@@ -1,3 +1,12 @@
+<head>
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywords}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+</head>
+
 <div class="table-container" id="alltime">
     <h1 name="" class="stat-title">ALL TIME STATS</h1>
     <table class="Stats-table">
@@ -239,6 +248,11 @@
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
     {{/if}}
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/faq#general'">
+  <span>Does Vinícius Júnior have 2 free-kick goals in his senior career?</span>
+  <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="table-container" id="final">

@@ -72,46 +72,91 @@ router.get('/', function (req, res, next) {
       viniciusMatches
     };
 
-res.render('index', data, (err, html) => {
-  if (err) {
-    console.error("❌ Error rendering index:", err);
-    return res.status(500).render('error', { 
-      message: "Something went wrong while loading the page.",
-      error: {
-        status: err.status || 500,
-        stack: err.stack || err.toString()
+    res.render('index', data, (err, html) => {
+      if (err) {
+        console.error("❌ Error rendering index:", err);
+        return res.status(500).render('error', {
+          message: "Something went wrong while loading the page.",
+          error: {
+            status: err.status || 500,
+            stack: err.stack || err.toString()
+          }
+        });
       }
-    });
-  }
 
-  pageCache.set('/', html);   // 🔥 Cache it!
-  res.send(html);
+      pageCache.set('/', html);   // 🔥 Cache it!
+      res.send(html);
     });
   });
 });
 
+// ...existing code...
 router.get('/faq', (req, res) => {
-  displayHelper.getStats('faq', (err, faqData) => {
+  displayHelper.getStats(['faq', 'alltime'], (err, stats) => {
     if (err) {
       console.error('Error getting FAQ:', err);
       return res.status(500).send('Error loading FAQ');
     }
 
-    // console.log('FAQ data fetched:', faqData);
+    const faqList = Array.isArray(stats) ? stats : (stats.faq || stats['faq'] || []);
+    const allTimeStats = stats.alltime || stats['alltime'] || [];
 
-    // --- SPLIT DATA BY CATEGORY ---
-    const statistics = faqData.filter(item => item.type === 'Statistics & Records');
-    const technical   = faqData.filter(item => item.type === 'Technical');
-    const about       = faqData.filter(item => item.type === 'About Us');
-    const support     = faqData.filter(item => item.type === 'Support & Contact');
+    const mbappe = allTimeStats.find(p => p.Name === 'Mbappe') || {};
+    const haaland = allTimeStats.find(p => p.Name === 'Haaland') || {};
+    const vini = allTimeStats.find(p => p.Name === 'Vinicius') || {};
 
-    // Render
+    const mbappeGoals = (mbappe.Goals || 0) - 4;
+
+    // ----------------------------------------
+    //  PARAGRAPH SPLITTER  (same as user route)
+    // ----------------------------------------
+    const splitParagraphs = (text) => {
+      if (!text) return [];
+      return text
+        .split(/\n\s*\n+/)   // one or more blank lines
+        .map(p => p.trim())
+        .filter(p => p.length);
+    };
+
+    // ----------------------------------------
+    //  REPLACE PLACEHOLDERS + BUILD ansParagraphs
+    // ----------------------------------------
+    const processRows = (faqArray) => {
+      return faqArray.map(row => {
+        let question = (row.question || "")
+          .replace(/{{mbappe.Goals}}/g, mbappe.Goals || 0)
+          .replace(/{{mbappeGoals}}/g, mbappeGoals);
+
+        let ans = (row.ans || "")
+          .replace(/{{mbappe.Goals}}/g, mbappe.Goals || 0)
+          .replace(/{{mbappeGoals}}/g, mbappeGoals);
+
+        // 🔥 VERY IMPORTANT: build paragraph array for HBS
+        row.ansParagraphs = splitParagraphs(ans);
+
+        row.question = question;
+        row.ans = ans;
+
+        return row;
+      });
+    };
+
+    // -----------------------------
+    //  CATEGORIES (processed)
+    // -----------------------------
+    const statistics = processRows(faqList.filter(x => x.type === 'Statistics & Records'));
+    const technical = processRows(faqList.filter(x => x.type === 'Technical'));
+    const about = processRows(faqList.filter(x => x.type === 'About Us'));
+    const support = processRows(faqList.filter(x => x.type === 'Support & Contact'));
+
     res.render('user/faq', {
       admin: true,
       statistics,
       technical,
       about,
-      support
+      support,
+      mbappeGoals,
+      mbappe,
     });
   });
 });
@@ -141,68 +186,68 @@ router.post('/faq/add', (req, res) => {
 });
 
 router.post('/faq/get', (req, res) => {
-    const { id } = req.body;
+  const { id } = req.body;
 
-    if (!id) {
-        return res.status(400).json({ error: "Missing ID" });
+  if (!id) {
+    return res.status(400).json({ error: "Missing ID" });
+  }
+
+  const sql = "SELECT * FROM faq WHERE no = ?";
+
+  db.get().query(sql, [id], (err, rows) => {
+    if (err) {
+      console.error("❌ Error fetching FAQ:", err);
+      return res.status(500).json({ error: true });
     }
 
-    const sql = "SELECT * FROM faq WHERE no = ?";
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "FAQ not found" });
+    }
 
-    db.get().query(sql, [id], (err, rows) => {
-        if (err) {
-            console.error("❌ Error fetching FAQ:", err);
-            return res.status(500).json({ error: true });
-        }
-
-        if (rows.length === 0) {
-            return res.status(404).json({ error: "FAQ not found" });
-        }
-
-        res.json(rows[0]);
-    });
+    res.json(rows[0]);
+  });
 });
 
 router.post('/faq/edit', (req, res) => {
-    const { id, question, type, ans } = req.body;
+  const { id, question, type, ans } = req.body;
 
-    if (!id || !question || !type || !ans) {
-        return res.status(400).json({ error: "Missing fields" });
-    }
+  if (!id || !question || !type || !ans) {
+    return res.status(400).json({ error: "Missing fields" });
+  }
 
-    const sql = `
+  const sql = `
         UPDATE faq
         SET question = ?, type = ?, ans = ?
         WHERE no = ?
     `;
 
-    db.get().query(sql, [question, type, ans, id], (err) => {
-        if (err) {
-            console.error("❌ Error updating FAQ:", err);
-            return res.status(500).json({ error: true });
-        }
+  db.get().query(sql, [question, type, ans, id], (err) => {
+    if (err) {
+      console.error("❌ Error updating FAQ:", err);
+      return res.status(500).json({ error: true });
+    }
 
-        res.json({ success: true });
-    });
+    res.json({ success: true });
+  });
 });
 
 router.post('/faq/delete', (req, res) => {
-    const { id } = req.body;
+  const { id } = req.body;
 
-    if (!id) {
-        return res.status(400).json({ error: "Missing ID" });
+  if (!id) {
+    return res.status(400).json({ error: "Missing ID" });
+  }
+
+  const sql = "DELETE FROM faq WHERE no = ?";
+
+  db.get().query(sql, [id], (err) => {
+    if (err) {
+      console.error("❌ Error deleting FAQ:", err);
+      return res.status(500).json({ error: true });
     }
 
-    const sql = "DELETE FROM faq WHERE no = ?";
-
-    db.get().query(sql, [id], (err) => {
-        if (err) {
-            console.error("❌ Error deleting FAQ:", err);
-            return res.status(500).json({ error: true });
-        }
-
-        res.json({ success: true });
-    });
+    res.json({ success: true });
+  });
 });
 
 
@@ -694,13 +739,13 @@ router.get('/:time', function (req, res, next) {
   }
 
   const seasons = [
-    '2015_16','2016_17','2017_18','2018_19','2019_20',
-    '2020_21','2021_22','2022_23','2023_24','2024_25','2025_26'
+    '2015_16', '2016_17', '2017_18', '2018_19', '2019_20',
+    '2020_21', '2021_22', '2022_23', '2023_24', '2024_25', '2025_26'
   ];
 
   const years = [
-    'year2015','year2016','year2017','year2018','year2019',
-    'year2020','year2021','year2022','year2023','year2024','year2025'
+    'year2015', 'year2016', 'year2017', 'year2018', 'year2019',
+    'year2020', 'year2021', 'year2022', 'year2023', 'year2024', 'year2025'
   ];
 
   let tables = [];

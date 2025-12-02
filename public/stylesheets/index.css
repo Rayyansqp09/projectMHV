@@ -1598,6 +1598,10 @@ p {
   font-weight: 500;
 }
 
+.footer3-cardfaq{
+   text-transform: none !important;
+}
+
 .footer3-card:hover {
   background: #2A2A2A;                  /* lighter on hover */
   border-color: #FFD700;                /* gold glow effect */

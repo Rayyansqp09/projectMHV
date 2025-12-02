@@ -38,6 +38,70 @@ router.get('/dummy', (req, res) => {
 });
 
 
+// -------------------------
+// DYNAMIC SITEMAP.XML
+// -------------------------
+router.get("/sitemap.xml", (req, res) => {
+    const baseUrl = "https://mhvstats.xyz";
+    const today = new Date().toISOString();
+
+    const staticPages = [
+        "", "about", "faq", "vote", "season", "year",
+        "alltime", "club-stats", "int-stats",
+        "feedback", "pay","faq","policy"
+    ];
+
+    const clubSubpages = [
+        "ucl"
+    ].map(p => `club-stats/${p}`);
+
+    const intSubpages = [
+        "wc", "copa-euro"
+    ].map(p => `int-stats/${p}`);
+
+    const matchPages = [
+        "Match-History/mbappe",
+        "Match-History/haaland",
+        "Match-History/vinicius"
+    ];
+
+    const playerPages = ["mbappe", "haaland", "vinicius"];
+
+    const urlList = [
+        ...staticPages,
+        ...clubSubpages,
+        ...intSubpages,
+        ...matchPages,
+        ...playerPages
+    ];
+
+    const xmlUrls = urlList.map(url => `
+    <url>
+        <loc>${baseUrl}/${url}</loc>
+        <lastmod>${today}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.80</priority>
+    </url>
+    `).join("");
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+${xmlUrls}
+
+</urlset>`;
+
+    res.header("Content-Type", "application/xml");
+    res.send(sitemap);
+});
+
+
+
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (!isDev) {
@@ -89,6 +153,8 @@ router.get('/', function (req, res, next) {
     const haaland_ach = allTimeStats_ach.find(p => p.Name === 'Haaland') || {};
     const vini_ach = allTimeStats_ach.find(p => p.Name === 'Vinicius') || {};
 
+    const mbappeGoals = (mbappe.Goals || 0) - 4;
+
 
     // Latest season stats (2024_25)
     const season = 'live_2025_26';
@@ -119,6 +185,7 @@ router.get('/', function (req, res, next) {
       mbappe_ach,
       haaland_ach,
       vini_ach,
+      mbappeGoals,
       mbappe,
       haaland,
       vini,
@@ -136,7 +203,7 @@ router.get('/', function (req, res, next) {
       viniciusMatches
     };
 
-    console.log(mbappeStats, haalandStats, viniStats)
+    // console.log(mbappeStats, haalandStats, viniStats)
 
     res.render('index', {
       graph: {
@@ -189,6 +256,7 @@ router.get('/alltime', function (req, res, next) {
     res.render('user/alltime', {
       title: 'All-Time Goal Scoring Stats | Mbappe vs Haaland vs Vinicius',
       description: 'Compare all-time goal stats: hattricks, pokers, free-kick goals, and final match goals of Mbappe, Haaland, and Vinicius.',
+      keywords: 'all-time stats, Mbappe all-time goals, Haaland all-time goals, Vinicius all-time goals, football records, hattricks, free-kick goals, final match goals',
       admin: false,
 
       // alltime table
@@ -279,19 +347,19 @@ router.get('/int-stats', function (req, res, next) {
 
       stats['mhmbappe'],
       { forTeam: "France" },
-      {competition:"World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers"}
+      { competition: "World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers" }
     );
 
     const haalandStats = graphHelper.buildMultiFilterStats(
       stats['mhhaaland'],
       { forTeam: "Norway" },
-      {competition:"World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers"}
+      { competition: "World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers" }
     );
 
     const viniStats = graphHelper.buildMultiFilterStats(
       stats['mhvinicius'],
       { forTeam: "Brazil" },
-      {competition:"World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers"}
+      { competition: "World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers" }
     );
 
     const mbappe_all = stats.alltime.find(p => p.Name === 'Mbappe');
@@ -570,15 +638,36 @@ router.get('/Match-History/:player', (req, res) => {
 });
 
 router.get('/Haaland', (req, res) => {
-  res.render('user/Haaland'); // looks for dummy.hbs inside views/
+  res.render('user/Haaland', {
+    title: 'Erling Haaland Biography | Stats, Career & Achievements | MHVStats',
+    description: 'Learn about Erling Haaland\'s football career, biography, goals, achievements, and performance statistics compared to Mbappe and Vinicius.',
+    keywords: 'Erling Haaland, Haaland biography, Haaland career, Haaland stats, Manchester City, goals, assists, Haaland vs Mbappe, Haaland vs Vinicius',
+    canonical: '<link rel="canonical" href="https://mhvstats.xyz/Haaland" />',
+    ogImage: 'https://mhvstats.xyz/images/haaland2.webp',
+    admin: false
+  });
 });
 
 router.get('/Mbappe', (req, res) => {
-  res.render('user/Mbappe'); // looks for dummy.hbs inside views/
+  res.render('user/Mbappe', {
+    title: 'Kylian Mbappé Biography | Career Stats & Achievements | MHVStats',
+    description: 'Explore Kylian Mbappé\'s football biography, career highlights, goals, achievements, and detailed statistics compared to Haaland and Vinicius.',
+    keywords: 'Kylian Mbappe, Mbappe biography, Mbappe career, Mbappe stats, PSG, Real Madrid, goals, assists, Mbappe vs Haaland, Mbappe vs Vinicius',
+    canonical: '<link rel="canonical" href="https://mhvstats.xyz/Mbappe" />',
+    ogImage: 'https://mhvstats.xyz/images/mbappe2.webp',
+    admin: false
+  });
 });
 
 router.get('/Vinicius', (req, res) => {
-  res.render('user/Vinicius'); // looks for dummy.hbs inside views/
+  res.render('user/Vinicius', {
+    title: 'Vinícius Júnior Biography | Career, Stats & Achievements | MHVStats',
+    description: 'Discover Vinícius Júnior\'s football biography, career journey, goals, achievements, and performance statistics compared to Mbappe and Haaland.',
+    keywords: 'Vinicius Junior, Vinicius biography, Vinicius career, Vinicius stats, Real Madrid, goals, assists, Vinicius vs Mbappe, Vinicius vs Haaland',
+    canonical: '<link rel="canonical" href="https://mhvstats.xyz/Vinicius" />',
+    ogImage: 'https://mhvstats.xyz/images/vinicius2.webp',
+    admin: false
+  });
 });
 
 
@@ -765,27 +854,71 @@ router.post('/vote', (req, res) => {
   });
 });
 
+// ...existing code...
 router.get('/faq', (req, res) => {
-  displayHelper.getStats('faq', (err, faqData) => {
+  displayHelper.getStats(['faq', 'alltime'], (err, stats) => {
     if (err) {
       console.error('Error getting FAQ:', err);
       return res.status(500).send('Error loading FAQ');
     }
 
-    // console.log('FAQ data fetched:', faqData);
+    const faqList = Array.isArray(stats) ? stats : (stats.faq || stats['faq'] || []);
+    const allTimeStats = stats.alltime || stats['alltime'] || [];
+
+    const mbappe = allTimeStats.find(p => p.Name === 'Mbappe') || {};
+    const haaland = allTimeStats.find(p => p.Name === 'Haaland') || {};
+    const vini = allTimeStats.find(p => p.Name === 'Vinicius') || {};
+
+    const mbappeGoals = (mbappe.Goals || 0) - 4;
+
+    // NEW: split paragraphs using blank lines
+    const splitParagraphs = (text) => {
+      if (!text) return [];
+
+      return text
+        .split(/\n\s*\n+/)       // split on one or more blank lines
+        .map(p => p.trim())      // clean spaces
+        .filter(p => p.length);  // remove empty chunks
+    };
+
+    const replacePlaceholders = (faqArray) => {
+      return faqArray.map(row => {
+        let question = (row.question || "")
+          .replace(/{{mbappe.Goals}}/g, mbappe.Goals || 0)
+          .replace(/{{mbappeGoals}}/g, mbappeGoals);
+
+        let ans = (row.ans || "")
+          .replace(/{{mbappe.Goals}}/g, mbappe.Goals || 0)
+          .replace(/{{mbappeGoals}}/g, mbappeGoals);
+
+        // 🔥 Convert answer into paragraph array using blank lines
+        row.ansParagraphs = splitParagraphs(ans);
+
+        row.question = question;
+        row.ans = ans;
+
+        return row;
+      });
+    };
 
     // --- SPLIT DATA BY CATEGORY ---
-    const statistics = faqData.filter(item => item.type === 'Statistics & Records');
-    const technical = faqData.filter(item => item.type === 'Technical');
-    const about = faqData.filter(item => item.type === 'About Us');
-    const support = faqData.filter(item => item.type === 'Support & Contact');
+    let statistics = replacePlaceholders(faqList.filter(x => x.type === 'Statistics & Records'));
+    let technical = replacePlaceholders(faqList.filter(x => x.type === 'Technical'));
+    let about = replacePlaceholders(faqList.filter(x => x.type === 'About Us'));
+    let support = replacePlaceholders(faqList.filter(x => x.type === 'Support & Contact'));
 
     // Render
     res.render('user/faq', {
+      title: 'Frequently Asked Questions | MHVStats',
+      description: 'Find answers to common questions about MHVStats, including statistics, technical issues, and how to support the project.',
+      canonical: '<link rel="canonical" href="https://mhvstats.xyz/faq" />',
+      keywords: 'FAQ, Mbappe vs Haaland vs Vinicius, football stats, MHVStats questions, site support, data accuracy,Vinicius free kick goals,Haalaand hattricks,Mbappe all-time goals',
       statistics,
       technical,
       about,
-      support
+      support,
+      mbappeGoals,
+      mbappe,
     });
   });
 });
@@ -1016,8 +1149,6 @@ router.get('/:player/:article', (req, res) => {
     related: data.related
   });
 });
-
-
 
 
 module.exports = router;

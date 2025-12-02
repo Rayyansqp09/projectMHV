@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
    window.addEventListener('DOMContentLoaded', () => {
         const hash = window.location.hash;
 
-        if (hash === '#goal', '#final', 'trophies','haaland','mbappe','vinicius','articles','#clubComp', '#superCup', '#clubWc','#int-comp', '#unl','#vote','#club', '#int') {
+        if (hash === '#goal', '#final', 'trophies','haaland','mbappe','vinicius','articles','#clubComp', '#superCup', '#clubWc','#int-comp', '#unl','#vote','#club', '#int','faq-heading') {
             const target = document.querySelector(hash);
             if (!target) return;
 

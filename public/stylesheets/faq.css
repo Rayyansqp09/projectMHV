@@ -443,7 +443,7 @@
 
 .faq-subtitle2 {
   color: #b3b3b3;
-  max-width: 500px;
+  max-width:700px;
   margin: 0 auto 24px;
   line-height: 1.6;
 }
@@ -453,7 +453,7 @@
   align-items: center;
   gap: 8px;
   background: #FFD700;
-  color: #0D0D0D;
+  color: #0D0D0D !important;
   padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;

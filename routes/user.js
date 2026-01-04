@@ -633,9 +633,9 @@ router.get('/favorite-opponents/:player?', function (req, res) {
   const order = req.query.order === 'asc' ? 'ASC' : 'DESC';
 
   const tableMap = {
-    mbappe: 'favOpponent_Mbappe',
-    haaland: 'favOpponent_Haaland',
-    vinicius: 'favOpponent_Vinicius'
+    mbappe: 'favOpponent_mbappe',
+    haaland: 'favOpponent_haaland',
+    vinicius: 'favOpponent_vinicius'
   };
 
   const allowedSort = ['team', 'games', 'goals', 'assists', 'ga'];
@@ -651,12 +651,8 @@ router.get('/favorite-opponents/:player?', function (req, res) {
     limit,
     offset,
     (err, result) => {
-      if (err) {
-        console.error('❌ Favorite Opponents Error:', err);
-        return res.status(500).send('Internal Server Error');
-      }
-
-
+      if (err) return res.status(500).send('Error');
+      
 
       const totalPages = Math.ceil(result.total / limit);
 

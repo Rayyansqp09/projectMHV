@@ -153,7 +153,7 @@
 }
 
 @media (max-width: 348px) {
-    .bottom-bar {
+  .bottom-bar {
     font-size: 12px;
     padding: 0.4rem auto;
     flex-direction: row;
@@ -203,7 +203,7 @@
 /* Mobile short (max-width: 480px) */
 @media (max-width: 400px) {
 
-    .custom-navbar {
+  .custom-navbar {
     padding: 0px 10px;
     font-family: sans-serif;
     position: fixed;
@@ -230,106 +230,114 @@
 
   /* Dropdown styles */
 
-/* 📂 Dropdown Menu */
-.dropdown-menu.custom-dropdown {
-  /* display: grid; */
-  position: absolute;
-  top: 100%;
-  left: -70px;
-  background-color: #1A1A1A;
-  border: 1px solid rgba(255, 215, 0, 0.25);
-  border-radius: 10px;
-  padding: 20px 6px;
-  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.8);
-  min-width: auto; /* wide enough for two columns */
-  z-index: 1000;
-  font-family: 'Inter', sans-serif;
+  /* 📂 Dropdown Menu */
+  .dropdown-menu.custom-dropdown {
+    /* display: grid; */
+    position: absolute;
+    top: 100%;
+    left: -70px;
+    background-color: #1A1A1A;
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 10px;
+    padding: 20px 6px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.8);
+    min-width: auto;
+    /* wide enough for two columns */
+    z-index: 1000;
+    font-family: 'Inter', sans-serif;
 
-   display: none;              /* 🔑 grid for layout */
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0px 10px !important;                    /* row gap + column gap */
-}
+    display: none;
+    /* 🔑 grid for layout */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px 10px !important;
+    /* row gap + column gap */
+  }
 
-/* ✅ Show on hover */
-.dropdown:hover .custom-dropdown {
-  display: grid;
-}
+  /* ✅ Show on hover */
+  .dropdown:hover .custom-dropdown {
+    display: grid;
+  }
 
-/* 🔹 Section wrapper */
-.dropdown-section {
-  margin-bottom: 5px; /* grid handles spacing */
-  margin-top: 0px;
-}
+  /* 🔹 Section wrapper */
+  .dropdown-section {
+    margin-bottom: 5px;
+    /* grid handles spacing */
+    margin-top: 0px;
+  }
 
-/* ✨ Section Heading */
-.dropdown-heading {
-  font-size: 12px;
-  font-weight: 700;
-  color: #FFD700;
-  margin-bottom: 4px;
-  border-left: 3px solid #FFD700;
-  padding-left: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-}
+  /* ✨ Section Heading */
+  .dropdown-heading {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 4px;
+    border-left: 3px solid #FFD700;
+    padding-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
 
-/* 🔗 Links container (auto-flow inside columns) */
-.link-row,
-.link-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-}
+  /* 🔗 Links container (auto-flow inside columns) */
+  .link-row,
+  .link-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
 
-/* 🔗 Links */
-.link-row a,
-.link-grid a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: all 0.25s ease;
-  display: block;
-}
+  /* 🔗 Links */
+  .link-row a,
+  .link-grid a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    display: block;
+  }
 
-.link-row a:hover,
-.link-grid a:hover {
-  background-color: rgba(255, 215, 0, 0.08);
-  color: #FFD700;
-  box-shadow: 0px 0px 6px rgba(255, 215, 0, 0.25);
-}
+  .link-row a:hover,
+  .link-grid a:hover {
+    background-color: rgba(255, 215, 0, 0.08);
+    color: #FFD700;
+    box-shadow: 0px 0px 6px rgba(255, 215, 0, 0.25);
+  }
 
-/* Dropdown container */
-.nav-item.dropdown {
-  position: relative;
-  cursor: pointer;
-  color: #fff;
-  font-weight: 500;
-}
+  /* Dropdown container */
+  .nav-item.dropdown {
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 500;
+  }
 
-/* Dropdown menu hidden by default */
-.dropdown-menu.follow-dropdown {
-  display: none;
-  position: absolute;
-  top: 100%; /* directly below "Follow Us" */
-  left: 50%; /* start at center */
-  transform: translateX(-50%); /* perfectly centered */
-  background-color: #1a1e27;
-  padding: 10px 0px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-  z-index: 999;
-  white-space: nowrap;
-}
+  /* Dropdown menu hidden by default */
+  .dropdown-menu.follow-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* directly below "Follow Us" */
+    left: 50%;
+    /* start at center */
+    transform: translateX(-50%);
+    /* perfectly centered */
+    background-color: #1a1e27;
+    padding: 10px 0px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    white-space: nowrap;
+  }
 
-.follow-dropdown .icon {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1); /* makes black icons white */
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
+  .follow-dropdown .icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    /* makes black icons white */
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
 
   .hide-on-mobile {
     display: none !important;
@@ -371,21 +379,23 @@
     border-top: white;
   }
 
-/* Tab buttons */
-.tab-btn {
-  padding: 5px 7px;
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 500;
-  color: #FFFFFF; /* default text */
-  background-color: #1A1A1A; /* dark theme tab background */
-  border: 2px solid transparent;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  position: relative;
+  /* Tab buttons */
+  .tab-btn {
+    padding: 5px 7px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 500;
+    color: #FFFFFF;
+    /* default text */
+    background-color: #1A1A1A;
+    /* dark theme tab background */
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
 
-  /* subtle inner shadow for depth */
-}
+    /* subtle inner shadow for depth */
+  }
 
   .box {
     padding: 0 5px;
@@ -436,155 +446,186 @@
 
 
   /* Container */
-.table-container {
-  max-width: 1000px;
-  min-width: auto;
-  margin: 0 auto;
-  padding: 20px 10px;
-  width: 100%;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
+  .table-container {
+    max-width: 1000px;
+    min-width: auto;
+    margin: 0 auto;
+    padding: 20px 10px;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    margin-top: 30px;
 
-/* Table Title */
-.stat-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #FFD700;
-  text-align: center;
-  margin-bottom: 0px;
-}
-
-/* Table */
-.Stats-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  background-color: #1A1A1A;
-  color: #FFFFFF;
-  border-radius: 6px;
-   line-height: 0px;
-   margin-top: 20px;
-   margin: 20px auto;
-}
-
-/* Table Header */
-.Stats-table thead {
-  display: table;
-  width: 100%;
-  table-layout: fixed; /* important for alignment with tbody */
-}
-
-.Stats-table thead th {
-  padding: 10px 15px;
-  border-bottom: 2px solid #FFD700;
-  font-weight: bold;
-  background-color: #1A1A1A; /* keep header dark */
-  position: sticky;
-  top: 0; /* stick to top */
-  z-index: 10;
-  font-size: 14px;
-}
-
-/* Table Body */
-.Stats-table tbody {
-  display: block;
-  max-height: 400px;      /* change as needed */
-  overflow-y: scroll;      /* always show vertical scrollbar */
-  width: 100%;
-}
-
-.Stats-table tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed; /* ensures td width matches th */
-}
-
-.Stats-table tbody tr:nth-child(even) {
-  background-color: #2A2A2A;
-}
-
-.Stats-table tbody tr:nth-child(odd) {
-  background-color: #1A1A1A;
-}
-
-/* Cells */
-.Stats-table th,
-.Stats-table td {
-  padding: 10px 15px;
-  border: none;
-    line-height: 25px; /* only for main value */
-}
-
-.Stats-table .stat-name {
-  font-size: 0.6em;
-  color: #555;
-  display: block;
-  margin-top: 4px;
-  line-height: 1em; /* tighter, so it doesn’t inherit 25px */
-  white-space: normal; /* allow wrapping but no extra spacing */
-}
-
-.stat-text{
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-/* Table Body with always-visible scrollbar */
-.Stats-table tbody {
-  display: block;
-  max-height: 250px;      /* change as needed */
-  overflow-y: scroll !;      /* always show vertical scrollbar */
-  width: 100%;
-}
-
-
-.Stats-table tbody::-webkit-scrollbar-track {
-  background: #1A1A1A;     /* track background */
-}
-
-.Stats-table tbody::-webkit-scrollbar-thumb {
-  background-color: #887400b5; /* gold scrollbar */
-}
-
-.Stats-table tbody::-webkit-scrollbar-thumb:hover {
-  background-color: #887400b5; /* slightly brighter on hover */
-}
-
-/* Firefox scrollbar */
-.Stats-table tbody {
-  scrollbar-color: #887400b5 #1A1A1A; /* thumb color | track color */
-}
-
-/* Scroll Down Arrow Indicator */
-.scroll-down-indicator {
-  position: absolute;
-  bottom: 8px; /* a little above the bottom of the table container */
-  left: 50%;   /* center horizontally */
-  transform: translateX(-50%);
-  font-size: 18px;
-  color: #FFD700; /* gold */
-  animation: bounce 1s infinite;
-  pointer-events: none; /* so it doesn’t block table clicks */
-}
-
-/* Bounce animation */
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateX(-50%) translateY(0);
   }
-  40% {
-    transform: translateX(-50%) translateY(4px);
+
+  /* Table Title */
+  .stat-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #FFD700;
+    text-align: center;
+    margin-bottom: 0px;
   }
-  60% {
-    transform: translateX(-50%) translateY(2px);
+
+  /* Table */
+  .Stats-table {
+    min-width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #FFFFFF;
+    border-radius: 6px;
+    line-height: 0px;
+    margin-top: 20px;
+    margin: 20px auto;
   }
-}
+
+  /* Table Header */
+  .Stats-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* important for alignment with tbody */
+  }
+
+  .Stats-table thead th {
+    padding: 10px 15px;
+    border-bottom: 2px solid #FFD700;
+    font-weight: bold;
+    background-color: #1A1A1A;
+    /* keep header dark */
+    position: sticky;
+    top: 0;
+    /* stick to top */
+    z-index: 10;
+    font-size: 14px;
+  }
+
+  /* Table Body */
+  .Stats-table tbody {
+    display: block;
+    max-height: 400px;
+    /* change as needed */
+    overflow-y: scroll;
+    /* always show vertical scrollbar */
+    width: 100%;
+  }
+
+  .Stats-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* ensures td width matches th */
+  }
+
+  /* Cells */
+  .Stats-table th,
+  .Stats-table td {
+    padding: 10px 15px;
+    border: none;
+    line-height: 25px;
+    /* only for main value */
+  }
+
+  .Stats-table .stat-name {
+    font-size: 0.6em;
+    color: #555;
+    display: block;
+    margin-top: 4px;
+    line-height: 1em;
+    /* tighter, so it doesn’t inherit 25px */
+    white-space: normal;
+    /* allow wrapping but no extra spacing */
+  }
+
+  .stat-text {
+    font-size: 1.0rem;
+    font-weight: 500;
+  }
+
+  .stat-text-tb2 {
+    font-size: 0.8rem;
+  }
+
+  .table-date-col{
+    font-size: 0.8rem;
+  }
+
+  .player-name-col{
+    font-size: 0.92rem;
+  }
+
+  /* Table Body with always-visible scrollbar */
+
+  .Stats-table tbody {
+    display: block;
+    max-height: 250px;
+    /* change as needed */
+    overflow-y: scroll !;
+    /* always show vertical scrollbar */
+    width: 100%;
+  }
+
+
+  .Stats-table tbody::-webkit-scrollbar-track {
+    background: #1A1A1A;
+    /* track background */
+  }
+
+  .Stats-table tbody::-webkit-scrollbar-thumb {
+    background-color: #887400b5;
+    /* gold scrollbar */
+  }
+
+  .Stats-table tbody::-webkit-scrollbar-thumb:hover {
+    background-color: #887400b5;
+    /* slightly brighter on hover */
+  }
+
+  /* Firefox scrollbar */
+  .Stats-table tbody {
+    scrollbar-color: #887400b5 #1A1A1A;
+    /* thumb color | track color */
+  }
+
+  /* Scroll Down Arrow Indicator */
+  .scroll-down-indicator {
+    position: absolute;
+    bottom: 8px;
+    /* a little above the bottom of the table container */
+    left: 50%;
+    /* center horizontally */
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #FFD700;
+    /* gold */
+    animation: bounce 1s infinite;
+    pointer-events: none;
+    /* so it doesn’t block table clicks */
+  }
+
+  /* Bounce animation */
+  @keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+      transform: translateX(-50%) translateY(4px);
+    }
+
+    60% {
+      transform: translateX(-50%) translateY(2px);
+    }
+  }
 
 
   .Dt-btnu {
@@ -620,34 +661,35 @@
 
   .stat-titleabove {
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 700;
   }
 
   .stat-title2 {
-  font-family: 'Lato', sans-serif;
-  /* Clean, modern font */
-  text-align: center;
-  /* Centers the title */
-  color: #7c7c7c;
-  /* Bright yellow — great contrast */
-  font-size: clamp(0.6rem, 2vw, 0.9rem);
-  /* Noticeable title size */
-  margin-bottom: 1rem;
-  /* Tight space above subtitle */
-  font-weight: 200;
-  /* Bold and strong */
-  margin-top: 0;
-  
+    font-family: 'Lato', sans-serif;
+    /* Clean, modern font */
+    text-align: center;
+    /* Centers the title */
+    color: #7c7c7c;
+    /* Bright yellow — great contrast */
+    font-size: clamp(0.6rem, 2vw, 0.9rem);
+    /* Noticeable title size */
+    margin-bottom: 1rem;
+    /* Tight space above subtitle */
+    font-weight: 200;
+    /* Bold and strong */
+    margin-top: 0;
+
   }
 
   .looking-box {
-  width: 90%;
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0px 10px; /* Equal left and right space */
-  text-align: center;
-  border-radius: 16px;
-}
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0px 10px;
+    /* Equal left and right space */
+    text-align: center;
+    border-radius: 16px;
+  }
 
   .lookingbox-title {
     font-size: 14px;
@@ -690,7 +732,7 @@
     gap: 1rem;
     /* tighter gap */
     font-size: 10px;
-  
+
   }
 
   .menu-btn {
@@ -843,35 +885,35 @@
     padding: 28px 20px;
   }
 
-.legal-header-title {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
+  .legal-header-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
 
-.legal-heading-main {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-top: 40px;
-  margin-bottom: 12px;
-  border-left: 3px solid #FFD700;
-  padding-left: 10px;
-}
+  .legal-heading-main {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    border-left: 3px solid #FFD700;
+    padding-left: 10px;
+  }
 
-.legal-heading {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-top: 30px;
-  margin-bottom: 8px;
-}
+  .legal-heading {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-bottom: 8px;
+  }
 
-.legal-text {
-  margin-bottom: 18px;
-  font-size: 0.8rem;
-}
+  .legal-text {
+    margin-bottom: 18px;
+    font-size: 0.8rem;
+  }
 
- .mvhv-error-box {
+  .mvhv-error-box {
     padding: 20px;
     max-width: 100%;
   }
@@ -890,7 +932,8 @@
     font-size: 0.8rem;
     padding: 10px;
     line-height: 1.4;
-    max-height: 200px; /* prevents overflow on small screens */
+    max-height: 200px;
+    /* prevents overflow on small screens */
     overflow-y: auto;
   }
 
@@ -1091,7 +1134,7 @@
     width: 100% !important;
   }
 
-  
+
 
   .tab-container {
     display: flex;
@@ -1107,22 +1150,24 @@
     margin: 30;
   }
 
-/* Tab buttons */
-.tab-btn {
-  padding: 5px 7px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 500;
-  color: #FFFFFF; /* default text */
-  background-color: #1A1A1A; /* dark theme tab background */
-  border: 2px solid transparent;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  position: relative;
+  /* Tab buttons */
+  .tab-btn {
+    padding: 5px 7px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    color: #FFFFFF;
+    /* default text */
+    background-color: #1A1A1A;
+    /* dark theme tab background */
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
 
-  /* subtle inner shadow for depth */
-}
-  
+    /* subtle inner shadow for depth */
+  }
+
   .stat-title {
     font-size: 17px;
     margin-bottom: 6px;
@@ -1149,7 +1194,7 @@
     margin-top: 10px;
     justify-items: center;
     margin: 10px -14px;
-    
+
   }
 
   .lookingbox-title {
@@ -1167,7 +1212,7 @@
 
   }
 
-    .text-item a {
+  .text-item a {
     font-size: 10px;
     /* smaller font for mobile */
     padding: 6px 0;
@@ -1179,105 +1224,114 @@
   }
 
 
-    /* Container */
-.table-container {
-  max-width: 1000px;
-  min-width: auto;
-  margin: 0 1px;
-  padding: 20px auto;
-  width: 100%;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
+  /* Container */
+  .table-container {
+    max-width: 1000px;
+    min-width: auto;
+    margin: 0 1px;
+    padding: 20px auto;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
 
-/* Table Title */
-.stat-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #FFD700;
-  text-align: center;
-  margin-bottom: 0px;
-}
+  /* Table Title */
+  .stat-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFD700;
+    text-align: center;
+    margin-bottom: 0px;
+  }
 
-/* Table */
-.Stats-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  background-color: #1A1A1A;
-  color: #FFFFFF;
-  border-radius: 6px;
-   line-height: 0px;
-   margin-top: 20px;
-   margin: 20px auto;
-}
+  /* Table */
+  .Stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    border-radius: 6px;
+    line-height: 0px;
+    margin-top: 20px;
+    margin: 20px auto;
+  }
 
-/* Table Header */
-.Stats-table thead {
-  display: table;
-  width: 100%;
-  table-layout: fixed; /* important for alignment with tbody */
-}
+  /* Table Header */
+  .Stats-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* important for alignment with tbody */
+  }
 
-.Stats-table thead th {
-  padding: 10px 25px;
-  border-bottom: 2px solid #FFD700;
-  font-weight: bold;
-  background-color: #1A1A1A; /* keep header dark */
-  position: sticky;
-  top: 0; /* stick to top */
-  z-index: 10;
-  font-size: 14px;
-}
+  .Stats-table thead th {
+    padding: 10px 25px;
+    border-bottom: 2px solid #FFD700;
+    font-weight: bold;
+    background-color: #1A1A1A;
+    /* keep header dark */
+    position: sticky;
+    top: 0;
+    /* stick to top */
+    z-index: 10;
+    font-size: 14px;
+  }
 
-/* Table Body */
-.Stats-table tbody {
-  display: block;
-  max-height: 400px;      /* change as needed */
-  overflow-y: scroll;      /* always show vertical scrollbar */
-  width: 100%;
-}
+  /* Table Body */
+  .Stats-table tbody {
+    display: block;
+    max-height: 400px;
+    /* change as needed */
+    overflow-y: scroll;
+    /* always show vertical scrollbar */
+    width: 100%;
+  }
 
-.Stats-table tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed; /* ensures td width matches th */
-}
+  .Stats-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* ensures td width matches th */
+  }
 
-.Stats-table tbody tr:nth-child(even) {
-  background-color: #2A2A2A;
-}
+  .Stats-table tbody tr:nth-child(even) {
+    background-color: #2A2A2A;
+  }
 
-.Stats-table tbody tr:nth-child(odd) {
-  background-color: #1A1A1A;
-}
+  .Stats-table tbody tr:nth-child(odd) {
+    background-color: #1A1A1A;
+  }
 
-/* Cells */
-.Stats-table th,
-.Stats-table td {
-  padding: 10px 15px;
-  border: none;
-    line-height: 25px; /* only for main value */
-}
+  /* Cells */
+  .Stats-table th,
+  .Stats-table td {
+    padding: 10px 15px;
+    border: none;
+    line-height: 25px;
+    /* only for main value */
+  }
 
-.Stats-table .stat-name {
-  font-size: 0.6em;
-  color: #555;
-  display: block;
-  margin-top: 4px;
-  line-height: 1em; /* tighter, so it doesn’t inherit 25px */
-  white-space: normal; /* allow wrapping but no extra spacing */
-}
+  .Stats-table .stat-name {
+    font-size: 0.6em;
+    color: #555;
+    display: block;
+    margin-top: 4px;
+    line-height: 1em;
+    /* tighter, so it doesn’t inherit 25px */
+    white-space: normal;
+    /* allow wrapping but no extra spacing */
+  }
 
-.stat-text{
-  font-size: 1rem;
-  font-weight: 500;
-}
+  .stat-text {
+    font-size: 1rem;
+    font-weight: 500;
+  }
 
 
   .dropup-menu {
@@ -1297,12 +1351,14 @@
     margin-bottom: 10px;
   }
 
-.footer-about p {
-  max-width: 400px;
-  margin: 0; /* remove auto centering */
-  font-size: 12px;
-  text-align: left; /* align text left */
-}
+  .footer-about p {
+    max-width: 400px;
+    margin: 0;
+    /* remove auto centering */
+    font-size: 12px;
+    text-align: left;
+    /* align text left */
+  }
 
 
   .footer-links h3,
@@ -1373,7 +1429,7 @@
 
   .footer3-card {
     margin: 10px 1rem;
-    
+
   }
 
   .footer3-card span {
@@ -1537,20 +1593,21 @@
   }
 
   .scroll-label {
-  width: 100%;
-  max-width: 70%;
-  margin: 0 auto;
-  padding: 0.8rem 7rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  background: transparent; /* fully transparent */
-  cursor: pointer;
-  user-select: none;
-  perspective: 800px;
-  text-align: center;
-  margin-top: -2.5rem !important;
-  margin-bottom: -1rem !important;
-}
+    width: 100%;
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 0.8rem 7rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: transparent;
+    /* fully transparent */
+    cursor: pointer;
+    user-select: none;
+    perspective: 800px;
+    text-align: center;
+    margin-top: -2.5rem !important;
+    margin-bottom: -1rem !important;
+  }
 
 
   .tab-container {
@@ -1567,21 +1624,23 @@
     margin: 30;
   }
 
-/* Tab buttons */
-.tab-btn {
-  padding: 5px 7px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  color: #FFFFFF; /* default text */
-  background-color: #1A1A1A; /* dark theme tab background */
-  border: 2px solid transparent;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  position: relative;
+  /* Tab buttons */
+  .tab-btn {
+    padding: 5px 7px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: #FFFFFF;
+    /* default text */
+    background-color: #1A1A1A;
+    /* dark theme tab background */
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
 
-  /* subtle inner shadow for depth */
-}
+    /* subtle inner shadow for depth */
+  }
 
   .looking-box {
     width: 90%;
@@ -1621,114 +1680,123 @@
     padding: 6px 0;
   }
 
-    /* Container */
-.table-container {
-  max-width: 1000px;
-  min-width: auto;
-  margin: 0 auto;
-  padding: 20px auto;
-  width: 80%;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
+  /* Container */
+  .table-container {
+    max-width: 1000px;
+    min-width: auto;
+    margin: 0 auto;
+    padding: 20px auto;
+    width: 80%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
 
-/* Table Title */
-.stat-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #FFD700;
-  text-align: center;
-  margin-bottom: 0px;
-}
+  /* Table Title */
+  .stat-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFD700;
+    text-align: center;
+    margin-bottom: 0px;
+  }
 
-/* Table */
-.Stats-table {
-  width: 80%;
-  border-collapse: collapse;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  background-color: #1A1A1A;
-  color: #FFFFFF;
-  border-radius: 6px;
-   line-height: 0px;
-   margin-top: 20px;
-   margin: 20px auto;
-}
+  /* Table */
+  .Stats-table {
+    width: 80%;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    border-radius: 6px;
+    line-height: 0px;
+    margin-top: 20px;
+    margin: 20px auto;
+  }
 
-/* Table Header */
-.Stats-table thead {
-  display: table;
-  width: 100%;
-  table-layout: fixed; /* important for alignment with tbody */
-}
+  /* Table Header */
+  .Stats-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* important for alignment with tbody */
+  }
 
-.Stats-table thead th {
-  padding: 10px 15px;
-  border-bottom: 2px solid #FFD700;
-  font-weight: bold;
-  background-color: #1A1A1A; /* keep header dark */
-  position: sticky;
-  top: 0; /* stick to top */
-  z-index: 10;
-  font-size: 14px;
-}
+  .Stats-table thead th {
+    padding: 10px 15px;
+    border-bottom: 2px solid #FFD700;
+    font-weight: bold;
+    background-color: #1A1A1A;
+    /* keep header dark */
+    position: sticky;
+    top: 0;
+    /* stick to top */
+    z-index: 10;
+    font-size: 14px;
+  }
 
-/* Table Body */
-.Stats-table tbody {
-  display: block;
-  max-height: 400px;      /* change as needed */
-  overflow-y: scroll;      /* always show vertical scrollbar */
-  width: 100%;
-}
+  /* Table Body */
+  .Stats-table tbody {
+    display: block;
+    max-height: 400px;
+    /* change as needed */
+    overflow-y: scroll;
+    /* always show vertical scrollbar */
+    width: 100%;
+  }
 
-.Stats-table tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed; /* ensures td width matches th */
-}
+  .Stats-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* ensures td width matches th */
+  }
 
-.Stats-table tbody tr:nth-child(even) {
-  background-color: #2A2A2A;
-}
+  .Stats-table tbody tr:nth-child(even) {
+    background-color: #2A2A2A;
+  }
 
-.Stats-table tbody tr:nth-child(odd) {
-  background-color: #1A1A1A;
-}
+  .Stats-table tbody tr:nth-child(odd) {
+    background-color: #1A1A1A;
+  }
 
-/* Cells */
-.Stats-table th,
-.Stats-table td {
-  padding: 10px 15px;
-  border: none;
-    line-height: 25px; /* only for main value */
-}
+  /* Cells */
+  .Stats-table th,
+  .Stats-table td {
+    padding: 10px 15px;
+    border: none;
+    line-height: 25px;
+    /* only for main value */
+  }
 
-.Stats-table .stat-name {
-  font-size: 0.6em;
-  color: #555;
-  display: block;
-  margin-top: 4px;
-  line-height: 1em; /* tighter, so it doesn’t inherit 25px */
-  white-space: normal; /* allow wrapping but no extra spacing */
-}
+  .Stats-table .stat-name {
+    font-size: 0.6em;
+    color: #555;
+    display: block;
+    margin-top: 4px;
+    line-height: 1em;
+    /* tighter, so it doesn’t inherit 25px */
+    white-space: normal;
+    /* allow wrapping but no extra spacing */
+  }
 
-.stat-text{
-  font-size: 1.1rem;
-  font-weight: 500;
-}
+  .stat-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
 
 
-  
+
   .modal-content {
     width: 90%;
   }
 
   .footer3-card {
-   
+
     margin: 10px 1rem;
 
   }
@@ -1807,49 +1875,51 @@
 
   }
 
-/* Container */
-.table-container{
-  border: 1px solid #fbfbfb24;
-  max-width: 1000px;
-  min-width: auto;
-  padding-left: auto;
- padding-right: auto;
-  margin: 3rem 30px;
-  padding-bottom: 20px;
-  padding-top: 30px;
-  
-}
+  /* Container */
+  .table-container {
+    border: 1px solid #fbfbfb24;
+    max-width: 1000px;
+    min-width: auto;
+    padding-left: auto;
+    padding-right: auto;
+    margin: 3rem 30px;
+    padding-bottom: 20px;
+    padding-top: 30px;
 
-/* Title */
-.stat-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: #FFD700;
-  text-align: center;
-  margin-bottom: 0px;
-}
+  }
+
+  /* Title */
+  .stat-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #FFD700;
+    text-align: center;
+    margin-bottom: 0px;
+  }
 
 
-/* Table */
+  /* Table */
 
-.Stats-table {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500; /* regular for body text */
-  width: auto;   /* shrink to content */
- 
-  border-collapse: collapse;
-  /* remove gaps between cells */
-  text-align: center;
-  /* margin-bottom: 20px; */
-  background-color: #1A1A1A;
-  color: #FFFFFF;
-  border-radius: 6px;
-  overflow: hidden;
-  line-height: 25px;
-  /* margin-top: 30px; */
-  margin: 30px auto;
-}
+  .Stats-table {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    /* regular for body text */
+    width: auto;
+    /* shrink to content */
+
+    border-collapse: collapse;
+    /* remove gaps between cells */
+    text-align: center;
+    /* margin-bottom: 20px; */
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    border-radius: 6px;
+    overflow: hidden;
+    line-height: 25px;
+    /* margin-top: 30px; */
+    margin: 30px auto;
+  }
 
 
 }

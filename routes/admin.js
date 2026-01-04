@@ -309,6 +309,7 @@ router.post('/add-match', async (req, res) => {
 // Single router to handle modify or delete
 router.post('/match-action', (req, res) => {
   const { matchNumber, action, data, playerTable } = req.body;
+  console.log(matchNumber, action, data, playerTable);
 
   if (!matchNumber || !action) {
     return res.status(400).json({ success: false, error: 'Missing required fields' });
@@ -339,21 +340,24 @@ router.post('/match-action', (req, res) => {
   }
 });
 
-router.get('/get-match/:matchNumber', (req, res) => {
-  const { matchNumber } = req.params;
+router.get('/get-match/:matchDate', (req, res) => {
+  const { matchDate } = req.params;
   const { playerTable } = req.query;
+  console.log(`Fetching match for date: ${matchDate} from table: ${playerTable}`);
 
-  if (!matchNumber || !playerTable) {
+  if (!matchDate || !playerTable) {
     return res.status(400).json({ success: false, error: 'Missing required fields' });
   }
 
-  displayHelper.getStats(playerTable, (err, allMatches) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ success: false, error: 'Server error' });
-    }
+    displayHelper.getStats(playerTable, (err, allMatches) => {
+    if (err) return res.status(500).json({ success: false });
 
-    const match = allMatches.find(row => row.No == matchNumber);
+    const match = allMatches.find(row => {
+      const localDate = new Date(row.date)
+        .toLocaleDateString('en-CA'); // YYYY-MM-DD
+
+      return localDate === matchDate;
+    });
 
     if (!match) {
       return res.status(404).json({ success: false, error: 'Match not found' });

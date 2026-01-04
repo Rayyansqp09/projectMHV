@@ -1,0 +1,225 @@
+<h2 name="" class="stat-titleabove">PENALTY GOALS</h2>
+
+<div class="table-container" id="gtype">
+    <h1 name="club" class="stat-title">CAREER PENALTY GOALS</h1>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{mbappe.nonPenGoals}}<br><span class="stat-name">NON-PENALTY-GOALS</span></td>
+                <td class="stat-text">{{haaland.nonPenGoals}}<br><span class="stat-name">NON-PENALTY-GOALS</span></td>
+                <td class="stat-text">{{vini.nonPenGoals}}<br><span class="stat-name">NON-PENALTY-GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_penalty.totalPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{haaland_penalty.totalPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{vini_penalty.totalPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{mbappe_penalty.penGoalPercentage}} %<br><span class="stat-name">% OF GOALS CAME
+                        FROM PENALTIES</span></td>
+                <td class="stat-text">{{haaland_penalty.penGoalPercentage}} %<br><span class="stat-name">% OF GOALS CAME
+                        FROM PENALTIES</span></td>
+                <td class="stat-text">{{vini_penalty.penGoalPercentage}} %<br><span class="stat-name">% OF GOALS CAME
+                        FROM PENALTIES</span></td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="gtype">
+    <h1 name="club" class="stat-title">CLUB & COUNTRY</h1>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text"></th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">ALL-TIME</td>
+                <td class="stat-text">{{mbappe_penalty.totalPen}}<br><span class="stat-name">PENALTY GOALS</span>
+                </td>
+                <td class="stat-text">{{haaland_penalty.totalPen}}<br><span class="stat-name">PENALTY GOALS</span>
+                </td>
+                <td class="stat-text">{{vini_penalty.totalPen}}<br><span class="stat-name">PENALTY GOALS</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">NATIONAL TEAM</td>
+                <td class="stat-text">{{mbappe_penalty.intPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{haaland_penalty.intPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{vini_penalty.intPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">CLUB</td>
+                <td class="stat-text">{{mbappe_penalty.clubPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{haaland_penalty.clubPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{vini_penalty.clubPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="gtype">
+    <h1 name="club" class="stat-title">PENALTY GOALS BY COMPETETION</h1>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text"></th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">LEAGUE</td>
+                <td class="stat-text">{{mbappe_penalty.leaguePen}}<br><span class="stat-name">PENALTY GOALS</span>
+                </td>
+                <td class="stat-text">{{haaland_penalty.leaguePen}}<br><span class="stat-name">PENALTY GOALS</span>
+                </td>
+                <td class="stat-text">{{vini_penalty.leaguePen}}<br><span class="stat-name">PENALTY GOALS</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">CHAMPIONS LEAGUE</td>
+                <td class="stat-text">{{mbappe_penalty.uclPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{haaland_penalty.uclPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{vini_penalty.uclPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">WORLD CUP</td>
+                <td class="stat-text">{{mbappe_penalty.wcPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{haaland_penalty.wcPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+                <td class="stat-text">{{vini_penalty.wcPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<section class="performance-insight">
+    <div class="insight-box">
+
+        <h3 class="insight-title">
+            <span class="accent-bar"></span>
+            Penalty Contribution Analysis
+        </h3>
+
+        <p class="insight-text">
+            Kylian Mbappé, Erling Haaland, and Vinícius Júnior show clear differences in penalty usage. Mbappé has
+            scored <span class="highlight"> 47 penalty goals, which make up 11.96% of his total goals</span> . He is
+            regularly the first-choice penalty
+            taker for both club and country. Haaland follows closely with<span class="highlight"> 44 penalty goals,
+                accounting for 14.43% of his
+                total</span>—the highest proportion among the three—reflecting his role as a central striker and
+            consistent
+            designated taker. Vinícius presents a contrasting profile, with just <span class="highlight"> 6 penalty
+                goals, only 4.26% of his
+                total output </span>. He has rarely been the primary penalty taker, often playing alongside designated
+            specialists,
+            meaning his scoring relies almost entirely on open play.
+        </p>
+
+        <p class="insight-text">
+            <strong>Some of their crucial penalty goals</strong>
+        </p>
+
+        <p class="insight-text">
+            <strong>Kylian Mbappé:</strong> He established himself as an "ice-cold" taker during the
+            <span class="highlight">2022 World Cup Final</span>, where he converted
+            <span class="highlight">two penalties during the match</span> to complete his hat-trick.
+            He then stepped up <span class="highlight">first in the shootout</span> to score again,
+            beating <span class="highlight">Emiliano Martínez three times from the spot</span> in a single night.
+        </p>
+
+        <p class="insight-text">
+            <strong>Erling Haaland:</strong> He often uses the penalty spot to decide tight matches.
+            A defining moment was his <span class="highlight">82nd-minute penalty against Crystal Palace (2023)</span>,
+            which secured a <span class="highlight">1–0 win</span> and kept
+            <span class="highlight">Manchester City’s treble hopes alive</span>.
+            More recently, in the <span class="highlight">2025–26 Champions League</span>, he converted a
+            <span class="highlight">late penalty at the Bernabéu</span> to seal a
+            <span class="highlight">2–1 comeback win against Real Madrid</span>.
+        </p>
+
+        <p class="insight-text">
+            <strong>Vinícius Júnior:</strong> He has grown into a penalty option on major occasions.
+            Notable successes include a <span class="highlight">high-pressure penalty in the 2023–24
+                Champions League semi-final against Bayern Munich</span> to secure a draw, and a
+            <span class="highlight">penalty goal in the 2024 FIFA Intercontinental Cup final</span>
+            that sealed a <span class="highlight">3–0 victory</span> and another trophy for his club.
+        </p>
+
+
+        <p class="insight-text">
+            <strong>Even with their impressive conversion rates, all three stars have faced high-pressure moments where
+                they faild to score from the spot</strong>
+        </p>
+
+        <p class="insight-text">
+            Kylian Mbappé’s most notable miss came at the
+            <span class="highlight">Euro 2020 Round of 16</span>, where his
+            <span class="highlight">saved penalty in the shootout against Switzerland</span>
+            led to <span class="highlight">France’s elimination</span>.
+            More recently, in the <span class="highlight">2025–26 La Liga Clásico</span>,
+            he had a <span class="highlight">crucial penalty saved by Wojciech Szczęsny</span>.
+            Although Real Madrid went on to win, the miss drew heavy scrutiny as he pursued
+            scoring milestones.
+        </p>
+
+        <p class="insight-text">
+            Erling Haaland is rarely inaccurate, but his most famous miss came in the
+            <span class="highlight">2023 Champions League quarter-final</span>, where he
+            <span class="highlight">blazed a penalty over the bar against Bayern Munich</span>.
+            In the <span class="highlight">2025–26 season</span>, he has shown rare vulnerability,
+            notably seeing a <span class="highlight">late penalty saved by Giorgi Mamardashvili
+                against Liverpool</span>, a moment that nearly cost Manchester City
+            <span class="highlight">vital points in the title race</span>.
+        </p>
+
+        <p class="insight-text">
+            Vinícius Júnior has far fewer attempts, making his rare misses more noticeable.
+            His most significant international miss came in a
+            <span class="highlight">2024 World Cup qualifier against Venezuela</span>, where a
+            <span class="highlight">saved penalty denied Brazil a win</span>.
+            At club level, his most discussed miss occurred in the
+            <span class="highlight">2025 Champions League match against Atlético Madrid</span>,
+            where he <span class="highlight">sent a penalty over the bar</span> in a game that
+            eventually pushed Real Madrid into
+            <span class="highlight">extra time</span>.
+        </p>
+
+
+    </div>
+</section>

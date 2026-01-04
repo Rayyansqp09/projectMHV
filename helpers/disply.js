@@ -117,13 +117,24 @@ module.exports = {
     if (!matchNumber) return callback(new Error("Match number (No) is required"));
     if (!tableName) return callback(new Error("Table name is required"));
 
-    // Remove playerSelect and matchNumber from updatedData
     delete updatedData.playerSelect;
     delete updatedData.matchNumber;
 
-    // Remove empty or undefined fields
+    // 🔒 protect immutable fields
+    delete updatedData.No;
+    delete updatedData.date;
+
+    // 🔢 enforce numeric types
+    const NUMERIC_FIELDS = ['goals', 'scorFor', 'scorAgainst', 'mnt'];
+    NUMERIC_FIELDS.forEach(field => {
+      if (updatedData[field] !== undefined) {
+        const n = Number(updatedData[field]);
+        updatedData[field] = Number.isNaN(n) ? 0 : n;
+      }
+    });
+
     const filteredData = Object.entries(updatedData).filter(
-      ([key, value]) => value !== null && value !== undefined && value !== ''
+      ([, value]) => value !== null && value !== undefined && value !== ''
     );
 
     if (filteredData.length === 0)
@@ -133,7 +144,6 @@ module.exports = {
     const values = filteredData.map(([, value]) => value);
 
     const setClause = fields.map(field => `${field} = ?`).join(', ');
-
     const sql = `UPDATE \`${tableName}\` SET ${setClause} WHERE \`No\` = ?`;
 
     db.get().query(sql, [...values, matchNumber], (err, result) => {
@@ -161,6 +171,57 @@ module.exports = {
     });
   }
   ,
+  formatDate(date) {
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = String(d.getFullYear());
+    return `${day}/${month}/${year}`;
+  },
+  getStatsPaginated: (table, limit, offset, callback) => {
+    const dataQuery = `
+    SELECT * FROM \`${table}\`
+    LIMIT ? OFFSET ?
+  `;
+
+    const countQuery = `
+    SELECT COUNT(*) AS total FROM \`${table}\`
+  `;
+
+    db.get().query(countQuery, (err, countResult) => {
+      if (err) return callback(err);
+
+      const total = countResult[0].total;
+
+      db.get().query(dataQuery, [limit, offset], (err, rows) => {
+        if (err) return callback(err);
+
+        callback(null, { rows, total });
+      });
+    });
+  }
+  ,
+  getStatsPaginatedSorted: (table, sort, order, limit, offset, callback) => {
+    const countQuery = `SELECT COUNT(*) AS total FROM \`${table}\``;
+
+    const dataQuery = `
+    SELECT * FROM \`${table}\`
+    ORDER BY ${sort} ${order}
+    LIMIT ? OFFSET ?
+  `;
+
+    db.get().query(countQuery, (err, countResult) => {
+      if (err) return callback(err);
+
+      const total = countResult[0].total;
+
+      db.get().query(dataQuery, [limit, offset], (err, rows) => {
+        if (err) return callback(err);
+        callback(null, { rows, total });
+      });
+    });
+  },
+
 
   // ✅ Add the email function to module.exports
   sendUniversalEmail

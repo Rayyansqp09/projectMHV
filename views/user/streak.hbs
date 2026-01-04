@@ -1,0 +1,423 @@
+<h2 name="" class="stat-titleabove">Highest Scoring Streaks</h2>
+<h2 name="club" class="stat-title2">(Consecutive Games with a Goal)</h2>
+
+<div class="table-container" id="gtype">
+    <h1 name="club" class="stat-title">All COMPETETION</h1>
+    <h2 name="club" class="stat-title2">(Club + Country)</h2>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text"></th>
+                <th class="stat-text">Streak</th>
+                <th class="stat-text">Start</th>
+                <th class="stat-text">End</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Mbappe</td>
+                <td class="stat-text">{{mbappe.max_goal_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{mbappe.start_max_goal_streak}}<br><span
+                        class="stat-name"></span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{mbappe.end_max_goal_streak}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">haaland</td>
+                <td class="stat-text">{{haaland.max_goal_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{haaland.start_max_goal_streak}}<br><span
+                        class="stat-name"></span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{haaland.end_max_goal_streak}}<br><span
+                        class="stat-name"></span></td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Vinicius</td>
+                <td class="stat-text">{{vini.max_goal_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{vini.start_max_goal_streak}}<br><span
+                        class="stat-name"></span>
+                </td>
+                <td class="stat-text ignore-highlight table-date-col">{{vini.end_max_goal_streak}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/scoring-Streaks#streak-expl'">
+    <span>Who Has the Most Impressive Goal-Scoring Streak?</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container" id="gtype">
+    <h1 name="club" class="stat-title">National Team</h1>
+    <h2 name="club" class="stat-title2">(for Country)</h2>
+
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text"></th>
+                <th class="stat-text">Streak</th>
+                <th class="stat-text">Start</th>
+                <th class="stat-text">End</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Mbappe</td>
+                <td class="stat-text">{{mbappe.intStreak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{mbappe.intStreak_start}}<br><span
+                        class="stat-name"></span>
+                </td>
+                <td class="stat-text ignore-highlight table-date-col">{{mbappe.intStreak_end}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">haaland</td>
+                <td class="stat-text">{{haaland.intStreak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{haaland.intStreak_start}}<br><span
+                        class="stat-name"></span>
+                </td>
+                <td class="stat-text ignore-highlight table-date-col">{{haaland.intStreak_end}}<br><span
+                        class="stat-name"></span></td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Vinicius</td>
+                <td class="stat-text">{{vini.intStreak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{vini.intStreak_start}}<br><span
+                        class="stat-name"></span>
+                </td>
+                <td class="stat-text ignore-highlight table-date-col">{{vini.intStreak_end}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="gtype">
+    <h1 name="club" class="stat-title">CLUB football</h1>
+    <h2 name="club" class="stat-title2">(for Club only)</h2>
+
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text"></th>
+                <th class="stat-text">Streak</th>
+                <th class="stat-text">Start</th>
+                <th class="stat-text">End</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Mbappe</td>
+                <td class="stat-text">{{mbappe.clubStreak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{mbappe.start_clubStreak}}<br><span
+                        class="stat-name"></span>
+                </td>
+                <td class="stat-text ignore-highlight table-date-col">{{mbappe.end_clubStreak}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">haaland</td>
+                <td class="stat-text">{{haaland.clubStreak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{haaland.start_clubStreak}}<br><span
+                        class="stat-name"></span>
+                </td>
+                <td class="stat-text ignore-highlight table-date-col">{{haaland.end_clubStreak}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Vinicius</td>
+                <td class="stat-text">{{vini.clubStreak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{vini.start_clubStreak}}<br><span
+                        class="stat-name"></span>
+                </td>
+                <td class="stat-text ignore-highlight table-date-col">{{vini.end_clubStreak}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+
+
+<div class="table-container" id="gtype">
+    <h1 name="club" class="stat-title">Goalless Streaks</h1>
+    <h2 name="club" class="stat-title2">(Consecutive Games without a Goal)</h2>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text"></th>
+                <th class="stat-text">Streak</th>
+                <th class="stat-text">Start</th>
+                <th class="stat-text">End</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Mbappe</td>
+                <td class="stat-text">{{mbappe.max_goalless_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{mbappe.start_goalless_streak}}<br><span
+                        class="stat-name"></span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{mbappe.end_goalless_streak}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">haaland</td>
+                <td class="stat-text">{{haaland.max_goalless_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{haaland.start_goalless_streak}}<br><span
+                        class="stat-name"></span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{haaland.end_goalless_streak}}<br><span
+                        class="stat-name"></span></td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Vinicius</td>
+                <td class="stat-text">{{vini.max_goalless_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight table-date-col">{{vini.start_goalless_streak}}<br><span
+                        class="stat-name"></span>
+                </td>
+                <td class="stat-text ignore-highlight table-date-col">{{vini.end_goalless_streak}}<br><span
+                        class="stat-name"></span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+
+<div class="table-container" id="Brace-Hattrick-streak">
+    <h1 name="club" class="stat-title">Brace and hattrick Streaks</h1>
+    <h2 name="club" class="stat-title2">(Brace: 2 or more goals in a games, Hattrick: 3 or more goals in a game)</h2>
+
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text"></th>
+                <th class="stat-text">Brace</th>
+                <th class="stat-text">Hattrick</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Mbappe</td>
+                <td class="stat-text">{{mbappe.max_brace_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight">{{mbappe.max_hattrick_streak}}<br><span
+                        class="stat-name">Games</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">haaland</td>
+                <td class="stat-text">{{haaland.max_brace_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight">{{haaland.max_hattrick_streak}}<br><span
+                        class="stat-name">Games</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text ignore-highlight player-name-col">Vinicius</td>
+                <td class="stat-text">{{vini.max_brace_streak}}<br><span class="stat-name">Games</span></td>
+                <td class="stat-text ignore-highlight">{{vini.max_hattrick_streak}}<br><span
+                        class="stat-name">Games</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
+    {{/if}}
+</div>
+
+
+<section class="performance-insight" id="streak-expl">
+    <div class="insight-box">
+
+        <h3 class="insight-title">
+            <span class="accent-bar"></span>
+            Who Has the Most Impressive Goal-Scoring Streak?
+        </h3>
+
+        <p class="insight-text">
+            Erling Haaland holds the longer goal-scoring streak with
+            <span class="highlight">12 consecutive matches</span>, compared to
+            <span class="highlight">Kylian Mbappé’s 11</span>.
+            Mbappé’s streak came across league matches, Champions League group games,
+            and World Cup qualifiers, including a Champions League hat-trick and a
+            league goal against Atlético Madrid, but it did not include knockout
+            matches from major tournaments.
+        </p>
+
+
+        <p class="insight-text">
+            Haaland’s <span class="highlight">12-game run</span> spanned the Premier League,
+            Champions League group stage, and World Cup qualifiers, featuring goals against
+            Manchester United, Arsenal, and Napoli, along with multiple multi-goal games,
+            including a <span class="highlight">five-goal haul</span> in a qualifier.
+            Like Mbappé’s streak, it did not involve knockout rounds, but it stands out for
+            greater length and higher goal volume against stronger league opposition.
+        </p>
+
+
+        <p class="insight-text">
+            Vinícius Júnior recorded a
+            <span class="highlight">5-match goal-scoring streak</span>, all at club level.
+            The run came entirely in La Liga and the Champions League group stage, with goals
+            against Celta Vigo, Espanyol, Betis, Mallorca, and Celtic. While the streak shows
+            improved consistency in front of goal, it was shorter in length and did not include
+            knockout matches or elite opposition, making it solid but less demanding compared
+            to the longer streaks achieved by Mbappé and Haaland.
+        </p>
+
+        <p class="insight-text">
+            <strong><span class="highlight">Kylian Mbappé – 11-Match Scoring Streak</span></strong><br>
+            <span class="highlight">1 goal</span> – vs Ukraine (World Cup Qualifiers)<br>
+            <span class="highlight">1 goal</span> – vs Iceland (World Cup Qualifiers)<br>
+            <span class="highlight">1 goal</span> – vs Real Sociedad (La Liga)<br>
+            <span class="highlight">2 goals</span> – vs Marseille (Champions League – Group Stage)<br>
+            <span class="highlight">1 goal</span> – vs Espanyol (La Liga)<br>
+            <span class="highlight">2 goals</span> – vs Levante (La Liga)<br>
+            <span class="highlight">1 goal</span> – vs Atlético Madrid (La Liga)<br>
+            <span class="highlight">3 goals</span> – vs FC Kairat (Champions League – Group Stage)<br>
+            <span class="highlight">1 goal</span> – vs Villarreal (La Liga)<br>
+            <span class="highlight">1 goal</span> – vs Azerbaijan (World Cup Qualifiers)<br>
+            <span class="highlight">1 goal</span> – vs Getafe (La Liga)
+        </p>
+
+
+        <p class="insight-text">
+            <strong><span class="highlight">Erling Haaland – 12-Match Scoring Streak</span></strong><br>
+            <span class="highlight">1 goal</span> – vs Brighton (Premier League)<br>
+            <span class="highlight">1 goal</span> – vs Finland (International Friendly)<br>
+            <span class="highlight">5 goals</span> – vs Moldova (World Cup Qualifiers)<br>
+            <span class="highlight">2 goals</span> – vs Manchester United (Premier League)<br>
+            <span class="highlight">1 goal</span> – vs Napoli (Champions League – Group Stage)<br>
+            <span class="highlight">1 goal</span> – vs Arsenal (Premier League)<br>
+            <span class="highlight">2 goals</span> – vs Burnley (Premier League)<br>
+            <span class="highlight">2 goals</span> – vs Monaco (Champions League – Group Stage)<br>
+            <span class="highlight">1 goal</span> – vs Brentford (Premier League)<br>
+            <span class="highlight">3 goals</span> – vs Israel (World Cup Qualifiers)<br>
+            <span class="highlight">2 goals</span> – vs Everton (Premier League)<br>
+            <span class="highlight">1 goal</span> – vs Villarreal (Champions League – Group Stage)
+        </p>
+
+
+        <p class="insight-text">
+            <strong><span class="highlight">Vinícius Júnior – 5-Match Scoring Streak</span></strong><br>
+            <span class="highlight">1 goal</span> – vs Celta Vigo (La Liga)<br>
+            <span class="highlight">1 goal</span> – vs Espanyol (La Liga)<br>
+            <span class="highlight">1 goal</span> – vs Betis (La Liga)<br>
+            <span class="highlight">1 goal</span> – vs Celtic (Champions League – Group Stage)<br>
+            <span class="highlight">1 goal</span> – vs Mallorca (La Liga)
+        </p>
+
+
+
+    </div>
+</section>
+
+<section class="performance-insight">
+    <div class="insight-box">
+
+        <h3 class="insight-title">
+            <span class="accent-bar"></span>
+            Brace and Hat-Trick Streaks Breakdown
+        </h3>
+
+        <p class="insight-text">
+            <strong> <span class="exp-sub-heading">Kylian Mbappe :</span></strong>
+        </p>
+
+        <p class="insight-text">
+            <strong><span class="highlight">Brace Streak – 4 Matches (2+ goals)</span></strong><br>
+            07-12-2021 – <span class="highlight">2 goals</span> vs Club Brugge (Champions League – Group Stage)<br>
+            12-12-2021 – <span class="highlight">2 goals</span> vs Monaco (Ligue 1 – Matchweek 18)<br>
+            19-12-2021 – <span class="highlight">2 goals</span> vs SC Feignies (Coupe de France – Round of 64)<br>
+            03-01-2022 – <span class="highlight">3 goals</span> vs Vannes (Coupe de France – Round of 32)
+        </p>
+
+        <p class="insight-text">
+            <strong><span class="highlight">Hat-Trick Streak – 2 Matches (3+ goals)</span></strong><br>
+            11-11-2023 – <span class="highlight">3 goals</span> vs Reims (Ligue 1 – Matchweek 12)<br>
+            18-11-2023 – <span class="highlight">3 goals</span> vs Gibraltar (UEFA Euro Qualifiers – Group Stage)
+        </p><br>
+
+
+        <p class="insight-text">
+            <strong>Erling Haaland :</strong>
+        </p>
+
+        <p class="insight-text">
+            Erling Haaland has achieved a three-match brace streak and a two-match
+            hat-trick streak twice in his career.
+        </p>
+
+        <p class="insight-text">
+            <strong><span class="highlight">Brace Streak – 3 Matches (2+ goals)</span></strong><br>
+            18-01-2020 – <span class="highlight">3 goals</span> vs Augsburg (Bundesliga – Matchweek 18)<br>
+            24-01-2020 – <span class="highlight">2 goals</span> vs Köln (Bundesliga – Matchweek 19)<br>
+            01-02-2020 – <span class="highlight">2 goals</span> vs Union Berlin (Bundesliga – Matchweek 20)
+        </p>
+
+        <p class="insight-text">
+            14-03-2023 – <span class="highlight">5 goals</span> vs RB Leipzig (Champions League – Round of 16)<br>
+            18-03-2023 – <span class="highlight">3 goals</span> vs Burnley (FA Cup – Quarter Final)<br>
+            08-04-2023 – <span class="highlight">2 goals</span> vs Southampton (Premier League – Matchweek 30)
+        </p>
+
+
+        <p class="insight-text">
+            <strong><span class="highlight">Hat-Trick Streak – 2 Matches (3+ goals)</span></strong><br>
+            14-03-2023 – <span class="highlight">5 goals</span> vs RB Leipzig (Champions League – Round of 16)<br>
+            18-03-2023 – <span class="highlight">3 goals</span> vs Burnley (FA Cup – Quarter Final)
+        </p>
+
+        <p class="insight-text">
+            24-08-2024 – <span class="highlight">3 goals</span> vs Ipswich Town (Premier League – Matchweek 2)<br>
+            31-08-2024 – <span class="highlight">3 goals</span> vs West Ham (Premier League – Matchweek 3)
+        </p> <br>
+
+        <p class="insight-text">
+            <strong>Vinícius Júnior :</strong>
+        </p>
+
+        <p class="insight-text">
+            Vinícius Júnior has not recorded a brace or a hat-trick in consecutive games in his senior career so far.
+        </p>
+
+        <p class="insight-text">
+            To explore total brace, hat-trick, poker, and multi-goal records, visit the <span class="highlight">
+                <a href="/alltime#goal">Scoring Statistics</a> </span> page.
+        </p>
+
+    </div>
+</section>

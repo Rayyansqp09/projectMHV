@@ -92,11 +92,11 @@
 </section>
 
 <div class="footer3-card" onclick="location.href='/#graph-section'">
-  <span>All Time Stats Graph</span>
-  <span class="footer2-arrow">&#8594;</span>
+    <span>All Time Stats Graph</span>
+    <span class="footer2-arrow">&#8594;</span>
 </div>
 
-<div class="table-container">
+<div class="table-container" id="top10">
     <h1 name="top10" class="stat-title">vs Top 10 Ranked Teams</h1>
     <table class="Stats-table">
         <thead>
@@ -546,39 +546,91 @@
 
 {{>sts-update}}
 
+<section class="performance-insight">
+    <div class="insight-box">
+
+        <h3 class="insight-title">
+            <span class="accent-bar"></span>
+            Who Stands Out at International Level?
+        </h3>
+
+        <p class="insight-text">
+            Directly comparing international careers requires context, as the environments these players
+            operate in are fundamentally different. Kylian Mbappé and Vinícius Júnior represent established
+            international superpowers in France and Brazil—teams that dominate possession, control matches,
+            and consistently reach the latter stages of major tournaments. Erling Haaland, by contrast,
+            leads a developing Norway side with limited resources and less exposure to major competitions.
+        </p>
+
+
+        <p class="insight-text">
+            Kylian Mbappé has built one of the strongest international records of his generation with France.
+            He has scored <span class="highlight">55 goals</span> in
+            <span class="highlight">94 matches</span> and consistently delivered in major tournaments,
+            including <span class="highlight">12 World Cup goals</span> across two editions, proving his
+            ability to perform on the biggest stages within an elite team.
+        </p>
+        <p class="insight-text">
+            Erling Haaland represents a contrasting case. Despite playing for a Norway side with limited
+            tournament exposure, he has scored <span class="highlight">55 goals</span> in just
+            <span class="highlight">48 matches</span>, averaging
+            <span class="highlight">1.15 goals per game</span>.
+            This level of efficiency is among the best in modern international football and highlights his
+            ability to produce elite numbers without the support of a dominant national team.
+        </p>
+
+        <p class="insight-text">
+            Vinícius Júnior plays a more role-based part for Brazil. His international goal tally
+            (<span class="highlight">8 goals</span>) is lower, but his impact is reflected through ball
+            progression, movement, and creating space for teammates within a
+            possession-heavy system.
+        </p>
+
+        <p class="insight-text">
+            Overall, Mbappé and Haaland currently lead in measurable international output, each standing out as the key
+            performer for their national teams. Vinícius, while already a world-class player, has not yet matched their
+            statistical impact at international level, though his age and role suggest strong potential for future
+            growth.
+
+        </p>
+
+
+    </div>
+</section>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="/javascripts/graph.js"></script>
 
 <script>
-  // backend data from route:
-  const graphData = {{{ json graph }}};
-  // graph = { mbappe:{season:{goals,assists,gplus}, allTime:{...}}, haaland:{...}, vinicius:{...} }
+    // backend data from route:
+    const graphData = {{{ json graph }}};
+    // graph = { mbappe:{season:{goals,assists,gplus}, allTime:{...}}, haaland:{...}, vinicius:{...} }
 
-  // initialize reusable graph
-  initCumulativeGraph({
-    containerId: "progressGraph",   // <div id="progressGraph">
-    wrapperId: "chartWrapper",      // outer div with fade animation
+    // initialize reusable graph
+    initCumulativeGraph({
+        containerId: "progressGraph",   // <div id="progressGraph">
+        wrapperId: "chartWrapper",      // outer div with fade animation
 
-    graphData,                      // real data from backend
+        graphData,                      // real data from backend
 
-    modeConfig: {
-      key1: "filter1",               // this page = "season" vs "allTime"
-      key2: "filter2",
-      defaultKey: "filter1",
-      btn1Id: "seasonBtn",
-      btn2Id: "allTimeBtn"
-    },
+        modeConfig: {
+            key1: "filter1",               // this page = "season" vs "allTime"
+            key2: "filter2",
+            defaultKey: "filter1",
+            btn1Id: "seasonBtn",
+            btn2Id: "allTimeBtn"
+        },
 
-    statConfig: {
-      keys: ["goals", "gplus", "assists"],
-      defaultKey: "goals",
-      buttons: {
-        goals:   "goalsBtn",
-        gplus:   "gplusBtn",
-        assists: "assistsBtn"
-      }
-    }
-  });
+        statConfig: {
+            keys: ["goals", "gplus", "assists"],
+            defaultKey: "goals",
+            buttons: {
+                goals: "goalsBtn",
+                gplus: "gplusBtn",
+                assists: "assistsBtn"
+            }
+        }
+    });
 </script>

@@ -1,0 +1,622 @@
+.fav-opponents {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.fav-title {
+  font-family: ui-rounded,
+    "Hiragino Maru Gothic ProN",
+    Quicksand,
+    Comfortaa,
+    Manjari,
+    "Arial Rounded MT",
+    "Arial Rounded MT Bold",
+    Calibri,
+    source-sans-pro,
+    sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.fav-subtitle {
+  color: #9aa4b2;
+  margin-bottom: 28px;
+  font-size: 15px;
+}
+
+/* Tabs */
+.fav-player-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.fav-tab {
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+  background: #141414;
+  color: #ddd;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.fav-tab.active {
+  background: #ffd400;
+  color: #000;
+  border-color: #ffd400;
+  font-weight: 600;
+}
+
+/* Table */
+.fav-table-wrapper {
+  border-radius: 10px;
+  padding: 0px;
+  overflow: hidden;
+  border: 1px solid #2c2c2c;
+  width: 63.2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fav-table-wrapper tbody tr:nth-child(even) {
+  background-color: #151515;
+}
+
+.fav-table-wrapper tbody tr:nth-child(odd) {
+  background-color: #1A1A1A;
+}
+
+.fav-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.fav-table th:nth-child(1),
+.fav-table td:nth-child(1) {
+  padding-left: 40px;
+  width: 130px;
+
+}
+
+.fav-table th:nth-child(2),
+.fav-table td:nth-child(2) {
+  padding-left: 0px;
+  width: 200px;
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+
+  .fav-table th:nth-child(3),
+  .fav-table td:nth-child(3),
+  .fav-table th:nth-child(4),
+  .fav-table td:nth-child(4),
+  .fav-table th:nth-child(5),
+  .fav-table td:nth-child(5),
+  .fav-table th:nth-child(6),
+  .fav-table td:nth-child(6) {
+    padding-left: 0px;
+    padding-right: 30px;
+  }
+
+
+  .fav-table td:nth-child(3),
+  .fav-table td:nth-child(4),
+  .fav-table td:nth-child(5),
+  .fav-table td:nth-child(6) {
+    padding-left: 0px;
+    padding-right: 50px;
+  }
+
+}
+
+.fav-table thead th {
+  text-align: left;
+  font-weight: 500;
+  padding: 18px 22px;
+  color: #ffd400;
+  border-bottom: 1px solid #2c2c2c;
+  background-color: #151515;
+  padding-left: 25px;
+}
+
+.fav-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.fav-table tbody tr:hover {
+  background: #222222;
+}
+
+.fav-table tbody td {
+  padding: 18px 22px;
+  color: #e5e7ebf6;
+  padding-left: 25px;
+}
+
+.fav-table tbody td,
+.fav-table thead th {
+  text-align: center;
+}
+
+.fav-table tbody td:nth-child(1),
+.fav-table tbody td:nth-child(2),
+.fav-table thead th:nth-child(1),
+.fav-table thead th:nth-child(2) {
+  text-align: left;
+}
+
+.fav-table tbody td:first-child {
+  color: #9aa4b2;
+}
+
+.sortable .arrow-up,
+.sortable .arrow-down {
+  fill: currentColor;
+  opacity: 0.3;
+}
+
+.sortable.asc .arrow-up {
+  opacity: 1;
+}
+
+.sortable.desc .arrow-down {
+  opacity: 1;
+}
+
+.sort-icon svg {
+  width: 7px;
+  height: 10px;
+}
+
+.sort-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+  transform: translateY(-1px);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  margin-top: 28px;
+}
+
+.pagination button {
+  background: transparent;
+  border: 1px solid #2c2c2c;
+  color: #ffd400;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 36px;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: rgba(255, 212, 0, 0.12);
+  border-color: #ffd400;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+#pageInfo {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  color: #bfbfbf;
+  min-width: 60px;
+  text-align: center;
+}
+
+
+/* Explanation Pergraph Section Css */
+
+.performance-insight {
+  margin-top: 0px;
+  padding: 0 10px;
+  margin-left: 15.3rem;
+  margin-right: 15.3rem;
+  margin-bottom: 3rem;
+}
+
+.insight-box {
+  background: linear-gradient(180deg, #141414, #101010);
+  border-radius: 14px;
+  padding: 28px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.insight-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffd700;
+  font-size: 23px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.accent-bar {
+  width: 4px;
+  height: 20px;
+  background: #ffd700;
+  border-radius: 2px;
+}
+
+.insight-text {
+  color: #d1d5db;
+  font-size: 18.5px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.insight-text:last-child {
+  margin-bottom: 0;
+}
+
+.highlight {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.exp-sub-heading{
+  color: #dfdcdc;
+}
+
+
+/* responsive */
+
+
+/* Mobile short (max-width: 480px) */
+@media (min-width: 480px) and (max-width: 600px) {
+
+  /* Layout */
+  .fav-opponents {
+    margin: 30px auto;
+    padding: 0 10px;
+  }
+
+  .fav-title {
+    font-size: 22px;
+  }
+
+  .fav-subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .fav-player-tabs {
+    gap: 6px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .fav-tab {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Table */
+  .fav-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+  }
+
+  .fav-table {
+    font-size: 15px;
+    min-width: 300px;
+    white-space: nowrap;
+  }
+
+  .fav-table thead th,
+  .fav-table tbody td {
+    padding: 12px 0 12px 17px;
+  }
+
+  .fav-table th:nth-child(1),
+  .fav-table td:nth-child(1) {
+    width: 50px;
+    padding-left: 15px;
+  }
+
+  .fav-table th:nth-child(2),
+  .fav-table td:nth-child(2) {
+    width: 75px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  .fav-table tbody td {
+    text-align: center;
+  }
+
+  .fav-table tbody td:nth-child(1),
+  .fav-table tbody td:nth-child(2) {
+    text-align: left;
+  }
+
+  /* Sort icon alignment */
+  .sort-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0px;
+
+  }
+
+  th[data-sort="team"] .sort-icon {
+    transform: translateY(-1px);
+  }
+
+  .sort-icon svg {
+    width: 7px;
+    height: 12px;
+  }
+
+
+  .performance-insight {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .insight-box {
+    padding: 20px 20px;
+    border-radius: 10px;
+  }
+
+  .insight-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .insight-text {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Layout */
+  .fav-opponents {
+    margin: 30px auto;
+    padding: 0 10px;
+  }
+
+  .fav-title {
+    font-size: 20px;
+  }
+
+  .fav-subtitle {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .fav-player-tabs {
+    gap: 6px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .fav-tab {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* Table */
+  .fav-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+  }
+
+  .fav-table {
+    font-size: 13px;
+    min-width: 300px;
+    white-space: nowrap;
+  }
+
+  .fav-table thead th,
+  .fav-table tbody td {
+    padding: 12px 0 12px 17px;
+  }
+
+  .fav-table th:nth-child(1),
+  .fav-table td:nth-child(1) {
+    width: 50px;
+    padding-left: 15px;
+  }
+
+  .fav-table th:nth-child(2),
+  .fav-table td:nth-child(2) {
+    width: 75px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  .fav-table tbody td {
+    text-align: center;
+  }
+
+  .fav-table tbody td:nth-child(1),
+  .fav-table tbody td:nth-child(2) {
+    text-align: left;
+  }
+
+
+
+  /* Sort icon alignment */
+  .sort-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0px;
+
+  }
+
+  th[data-sort="team"] .sort-icon {
+    transform: translateY(-1px);
+  }
+
+  .sort-icon svg {
+    width: 7px;
+    height: 12px;
+  }
+
+
+  .performance-insight {
+    padding: 0 9pxpx;
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .insight-box {
+    padding: 20px 16px;
+    border-radius: 10px;
+  }
+
+  .insight-title {
+    font-size: 21px !important;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .accent-bar {
+    width: 3px;
+    height: 18px;
+  }
+
+  .insight-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .highlight {
+    font-weight: 600;
+  }
+
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+
+  /* Layout */
+  .fav-opponents {
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+
+  .fav-title {
+    font-size: 26px;
+  }
+
+  .fav-subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .fav-player-tabs {
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .fav-tab {
+    padding: 8px 19px;
+    font-size: 17px;
+  }
+
+  /* Table */
+  .fav-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+  }
+
+  .fav-table {
+    font-size: 17px;
+    min-width: 300px;
+    white-space: nowrap;
+  }
+
+  .fav-table thead th,
+  .fav-table tbody td {
+    padding: 12px 0 12px 20px;
+  }
+
+  .fav-table th:nth-child(1),
+  .fav-table td:nth-child(1) {
+    width: 70px;
+    padding-left: 20px;
+  }
+
+  .fav-table th:nth-child(2),
+  .fav-table td:nth-child(2) {
+    width: 125px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  .fav-table tbody td {
+    text-align: center;
+  }
+
+  .fav-table tbody td:nth-child(1),
+  .fav-table tbody td:nth-child(2) {
+    text-align: left;
+  }
+
+  /* Sort icon alignment */
+  .sort-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0px;
+
+  }
+
+  th[data-sort="team"] .sort-icon {
+    transform: translateY(-1px);
+  }
+
+  .sort-icon svg {
+    width: 7px;
+    height: 12px;
+  }
+
+
+  .performance-insight {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .insight-box {
+    padding: 20px 20px;
+    border-radius: 10px;
+  }
+
+  .insight-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .insight-text {
+    font-size: 19px;
+  }
+}

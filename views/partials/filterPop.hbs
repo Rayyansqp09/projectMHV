@@ -13,64 +13,115 @@
             </select>
 
             <!-- Match Number -->
-            <label for="matchNumber">Match Number:</label>
-            <input type="number" id="matchNumber" name="matchNumber" required placeholder="Enter match number">
+            <label for="matchNumber">Match Date:</label>
+            <input type="date" id="matchDate-fetch" name="date" required placeholder="Enter match date">
 
             <div class="popup-actions">
                 <button type="button" id="fetchMatch" class="btn btn-fetch">Fetch</button>
             </div>
 
             <!-- Match Details (auto-fill when number exists) -->
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
+            <div class="two-col">
+                <div class="field">
+                    <label for="No">No:</label>
+                    <input type="number" id="No" name="No" required>
+                </div>
 
-            <label for="season">Season:</label>
-            <input type="text" id="season" name="season" required>
+                <div class="field">
+                    <label for="season">Season:</label>
+                    <input type="text" id="season" name="season" required>
+                </div>
 
-            <label for="competition">Competition:</label>
-            <input type="text" id="competition" name="competition" required>
+                <div class="field">
+                    <label for="competition">Competition:</label>
+                    <input type="text" id="competition" name="competition" required>
+                </div>
 
-            <label for="stage">Stage:</label>
-            <input type="text" id="stage" name="stage" required>
+                <div class="field">
+                    <label for="stage">Stage:</label>
+                    <input type="text" id="stage" name="stage" required>
+                </div>
 
-            <label for="forTeam">For Team:</label>
-            <input type="text" id="forTeam" name="forTeam" required>
+                <div class="field">
+                    <label for="forTeam">For Team:</label>
+                    <input type="text" id="forTeam" name="forTeam" required>
+                </div>
 
-            <label for="againstTeam">Against Team:</label>
-            <input type="text" id="againstTeam" name="againstTeam" required>
+                <div class="field">
+                    <label for="forRank">Rank:</label>
+                    <input type="number" id="forRank" name="forRank">
+                </div>
 
-            <label for="goals">Goals:</label>
-            <input type="number" id="goals" name="goals">
+                <div class="field">
+                    <label for="againstTeam">Against Team:</label>
+                    <input type="text" id="againstTeam" name="againstTeam" required>
+                </div>
 
-            <label for="assists">Assists:</label>
-            <input type="number" id="assists" name="assists">
+                <div class="field">
+                    <label for="againstRank">Rank:</label>
+                    <input type="number" id="againstRank" name="againstRank">
+                </div>
 
-            <label for="CC">CC:</label>
-            <input type="number" id="CC" name="CC">
+                <div class="field">
+                    <label for="goals">Goals:</label>
+                    <input type="number" id="goals" name="goals">
+                </div>
 
-            <label for="BCC">BCC:</label>
-            <input type="number" id="BCC" name="BCC">
+                <div class="field">
+                    <label for="pen">Penalty Goals:</label>
+                    <input type="number" id="pen" name="pen">
+                </div>
 
-            <label for="Shot">Shot:</label>
-            <input type="number" id="Shot" name="Shot">
+                <div class="field">
+                    <label for="assists">Assists:</label>
+                    <input type="number" id="assists" name="assists">
+                </div>
 
-            <label for="dribbles">Dribbles:</label>
-            <input type="number" id="dribbles" name="dribbles">
+                <div class="field">
+                    <label for="CC">CC:</label>
+                    <input type="number" id="CC" name="CC">
+                </div>
 
-            <label for="mnt">Minutes Played:</label>
-            <input type="number" id="mnt" name="mnt" required>
+                <div class="field">
+                    <label for="BCC">BCC:</label>
+                    <input type="number" id="BCC" name="BCC">
+                </div>
 
-            <label for="Motm">MOTM (1/0):</label>
-            <input type="number" id="Motm" name="Motm" min="0" max="1">
+                <div class="field">
+                    <label for="Shot">Shots:</label>
+                    <input type="number" id="Shot" name="Shot">
+                </div>
 
-            <label for="result">Result:</label>
-            <input type="text" id="result" name="result" required>
+                <div class="field">
+                    <label for="dribbles">Dribbles:</label>
+                    <input type="number" id="dribbles" name="dribbles">
+                </div>
 
-            <label for="scorFor">Score For:</label>
-            <input type="number" id="scorFor" name="scorFor">
+                <div class="field">
+                    <label for="mnt">Minutes Played:</label>
+                    <input type="number" id="mnt" name="mnt" required>
+                </div>
 
-            <label for="scorAgainst">Score Against:</label>
-            <input type="number" id="scorAgainst" name="scorAgainst">
+                <div class="field">
+                    <label for="Motm">MOTM (1/0):</label>
+                    <input type="number" id="Motm" name="Motm" min="0" max="1">
+                </div>
+
+                <div class="field">
+                    <label for="result">Result:</label>
+                    <input type="text" id="result" name="result" required>
+                </div>
+
+                <div class="field">
+                    <label for="scorFor">Score For:</label>
+                    <input type="number" id="scorFor" name="scorFor">
+                </div>
+
+                <div class="field">
+                    <label for="scorAgainst">Score Against:</label>
+                    <input type="number" id="scorAgainst" name="scorAgainst">
+                </div>
+            </div>
 
             <label for="goalTypes">Goal Types (comma-separated):</label>
             <input type="text" id="goalTypes" name="goalTypes">
@@ -91,3 +142,4 @@
         </form>
     </div>
 </div>
+  

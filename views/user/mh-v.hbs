@@ -200,6 +200,11 @@
       </div>
 
       <div class="form-field">
+        <label class="field-label">Big Chance Created</label>
+        <input type="number" name="bigChancesCreated" id="bigChancesCreated" placeholder="Big Chances Created">
+      </div>
+
+      <div class="form-field">
         <label class="field-label">Dribbles</label>
         <input type="number" name="dribbles" id="dribbles" placeholder="Dribbles">
       </div>
@@ -215,7 +220,7 @@
       </div>
 
       <div class="form-field">
-        <label class="field-label"><span class="desktop-only">Specific</span> Number of Match</label>
+        <label class="field-label">Number of Match</label>
         <input type="number" name="matchNo" id="matchNo" placeholder="Enter Match No">
       </div>
 
@@ -357,44 +362,90 @@
         <label for="stage">Stage:</label>
         <input type="text" id="stage" name="stage" required>
 
-        <label for="forTeam">For Team:</label>
-        <input type="text" id="forTeam" name="forTeam" required>
+        <div class="two-col">
 
-        <label for="againstTeam">Against Team:</label>
-        <input type="text" id="againstTeam" name="againstTeam" required>
 
-        <label for="goals">Goals:</label>
-        <input type="number" id="goals" name="goals">
+          <div class="field">
+            <label for="forTeam">For Team:</label>
+            <input type="text" id="forTeam" name="forTeam" required>
+          </div>
 
-        <label for="assists">Assists:</label>
-        <input type="number" id="assists" name="assists">
+          <div class="field">
+            <label for="forRank">Rank</label>
+            <input type="number" id="forRank" name="forRank">
+          </div>
 
-        <label for="CC">CC:</label>
-        <input type="number" id="CC" name="CC">
+          <div class="field">
+            <label for="againstTeam">Against Team:</label>
+            <input type="text" id="againstTeam" name="againstTeam" required>
+          </div>
 
-        <label for="BCC">BCC:</label>
-        <input type="number" id="BCC" name="BCC">
+          <div class="field">
+            <label for="againstRank">Rank</label>
+            <input type="number" id="againstRank" name="againstRank">
+          </div>
 
-        <label for="Shot">Shot:</label>
-        <input type="number" id="shot" name="shot">
 
-        <label for="dribbles">Dribbles:</label>
-        <input type="number" id="dribbles" name="dribbles">
+          <div class="field">
+            <label for="goals">Goals:</label>
+            <input type="number" id="goals" name="goals">
+          </div>
 
-        <label for="mnt">Minute Played:</label>
-        <input type="number" id="mnt" name="mnt" required>
+          <div class="field">
+            <label for="pen">Penalty:</label>
+            <input type="number" id="pen" name="pen">
+          </div>
 
-        <label for="Motm">MOTM (1 or 0):</label>
-        <input type="number" id="motm" name="motm">
+          <div class="field">
+            <label for="assists">Assists:</label>
+            <input type="number" id="assists" name="assists">
+          </div>
 
-        <label for="result">Result:</label>
-        <input type="text" id="result" name="result" required>
+          <div class="field">
+            <label for="CC">CC:</label>
+            <input type="number" id="CC" name="CC">
+          </div>
 
-        <label for="scorFor">Score For:</label>
-        <input type="number" id="scorFor" name="scorFor">
+          <div class="field">
+            <label for="BCC">BCC:</label>
+            <input type="number" id="BCC" name="BCC">
+          </div>
 
-        <label for="scorAgainst">Score Against:</label>
-        <input type="number" id="scorAgainst" name="scorAgainst">
+          <div class="field">
+            <label for="shot">Shot:</label>
+            <input type="number" id="shot" name="shot">
+          </div>
+
+          <div class="field">
+            <label for="dribbles">Dribbles:</label>
+            <input type="number" id="dribbles" name="dribbles">
+          </div>
+
+          <div class="field">
+            <label for="mnt">Minute Played:</label>
+            <input type="number" id="mnt" name="mnt" required>
+          </div>
+
+          <div class="field">
+            <label for="motm">MOTM:</label>
+            <input type="number" id="motm" name="motm">
+          </div>
+
+          <div class="field">
+            <label for="result">Result:</label>
+            <input type="text" id="result" name="result" required>
+          </div>
+
+          <div class="field">
+            <label for="scorFor">Score For:</label>
+            <input type="number" id="scorFor" name="scorFor">
+          </div>
+
+          <div class="field">
+            <label for="scorAgainst">Score Against:</label>
+            <input type="number" id="scorAgainst" name="scorAgainst">
+          </div>
+        </div>
 
         <label for="goalTypes">Goal Types (comma separated):</label>
         <input type="text" id="goalTypes" name="goalTypes">
@@ -680,6 +731,7 @@
 
   //Modify and delete
   document.addEventListener("DOMContentLoaded", () => {
+    let currentMatchNo = null; // ✅ SHARED STATE
     const matchPopup = document.getElementById("matchPopup");
     const openMatchPopupBtn = document.getElementById("openMatchPopup");
     const closeMatchPopupBtn = document.getElementById("closeMatchPopup");
@@ -687,7 +739,7 @@
     const fetchMatchBtn = document.getElementById("fetchMatch");
     const deleteMatchBtn = document.getElementById("deleteMatch");
     const playerSelect = document.getElementById("playerSelect");
-    const matchNumberInput = document.getElementById("matchNumber");
+    const matchDateInput = document.getElementById("matchDate-fetch");
 
 
     // Open popup
@@ -704,16 +756,18 @@
     // Fetch existing match data
     fetchMatchBtn.addEventListener("click", async () => {
       const playerTable = playerSelect.value;
-      const matchNumber = matchNumberInput.value;
+      const matchDate = matchDateInput.value;
 
       if (!playerTable) return alert("Select a player!");
-      if (!matchNumber) return alert("Enter a match number!");
+      if (!matchDate) return alert("Enter a match date!");
 
       try {
-        const res = await fetch(`/admin/get-match/${matchNumber}?playerTable=${playerTable}`);
+        const res = await fetch(`/admin/get-match/${matchDate}?playerTable=${playerTable}`);
         const data = await res.json();
 
         if (!data.success) return alert(data.error || "Match not found");
+
+        currentMatchNo = data.match.No;
 
         // Fill the form with fetched data
         Object.keys(data.match).forEach(key => {
@@ -726,7 +780,6 @@
         alert("Failed to fetch match data");
       }
 
-
     });
 
 
@@ -735,12 +788,13 @@
       e.preventDefault();
 
       const playerTable = playerSelect.value;
-      const matchNumber = matchNumberInput.value;
 
-      if (!playerTable) return alert("Select a player!");
-      if (!matchNumber) return alert("Enter a match number!");
+      if (!currentMatchNo) {
+        return alert("Fetch a match first");
+      }
 
       const formData = Object.fromEntries(new FormData(matchForm).entries());
+
 
       try {
         const res = await fetch('/admin/match-action', {
@@ -748,7 +802,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             action: "modify",
-            matchNumber,
+            matchNumber: currentMatchNo,
             playerTable,
             data: formData
           })
@@ -760,6 +814,7 @@
           alert("Match updated successfully!");
           matchForm.reset();
           matchPopup.style.display = "none";
+          currentMatchNo = null; // ✅ RESET STATE
         } else {
           alert(result.error || "Failed to update match");
         }
@@ -772,12 +827,14 @@
     // Delete match
     deleteMatchBtn.addEventListener("click", async () => {
       const playerTable = document.getElementById("playerSelect").value;
-      const matchNumber = document.getElementById("matchNumber").value;
 
-      if (!playerTable) return alert("Select a player!");
-      if (!matchNumber) return alert("Enter a match number!");
+      if (!currentMatchNo) {
+        return alert("Fetch a match first");
+      }
 
       if (!confirm("Are you sure you want to delete this match?")) return;
+
+      const matchNumber = currentMatchNo;
 
       try {
         const res = await fetch('/admin/match-action', {
@@ -796,6 +853,7 @@
           alert("Match deleted successfully!");
           matchForm.reset();
           matchPopup.style.display = "none";
+          currentMatchNo = null; // ✅ RESET STATE
         } else {
           alert(result.error || "Failed to delete match");
         }
@@ -820,6 +878,7 @@
     const minGoalsInput = document.getElementById('minGoals');
     const minAssistsInput = document.getElementById('minAssists');
     const chancesCreatedInput = document.getElementById('chancesCreated');
+    const bigChancesCreatedInput = document.getElementById('bigChancesCreated');
     const dribblesInput = document.getElementById('dribbles');
     const minutesPlayedInput = document.getElementById('minutesPlayed');
     const resultSelect = document.getElementById('rest');
@@ -843,6 +902,7 @@
     let currentMinGoals = 0;
     let currentMinAssists = 0;
     let currentCC = 0;
+    let currentBCC = 0;
     let currentDribbles = 0;
     let currentMnt = 0;
     let currentStage = '';
@@ -865,6 +925,10 @@
       currentMinGoals = parseInt(minGoalsInput.value) || 0;
       currentMinAssists = parseInt(minAssistsInput.value) || 0;
       currentCC = parseInt(chancesCreatedInput.value) || 0;
+
+      currentBCC = parseInt(bigChancesCreatedInput.value) || 0;
+
+
       currentDribbles = parseInt(dribblesInput.value) || 0;
       currentMnt = parseInt(minutesPlayedInput.value) || 0;
       currentStage = stageSelect.value;
@@ -887,6 +951,7 @@
         currentMinGoals,
         currentMinAssists,
         currentCC,
+        currentBCC,
         currentDribbles,
         currentMnt,
         currentStage,
@@ -908,7 +973,7 @@
     ].forEach(el => el.addEventListener('change', applyFilters));
 
     [
-      minGoalsInput, minAssistsInput, chancesCreatedInput, dribblesInput, minutesPlayedInput,
+      minGoalsInput, minAssistsInput, chancesCreatedInput, bigChancesCreatedInput, dribblesInput, minutesPlayedInput,
       againstTeamInput, matchNoInput
     ].forEach(el => el.addEventListener('input', applyFilters));
 
@@ -939,6 +1004,7 @@
         currentMinGoals,
         currentMinAssists,
         currentCC,
+        currentBCC,
         currentDribbles,
         currentMnt,
         currentStage,
@@ -1001,13 +1067,14 @@
     // -------------------- /Loading overlay helper --------------------
 
 
-    function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset, matchNo, matchDate) {
+    function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, BCC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset, matchNo, matchDate) {
       let url = `/Match-History/${encodeURIComponent(currentPlayer)}?offset=${offset}&limit=${limit}`;
       if (currentSort) url += `&sort=${encodeURIComponent(currentSort)}`;
       if (competition && competition !== 'All') url += `&competition=${encodeURIComponent(competition)}`;
       if (minGoals > 0) url += `&minGoals=${minGoals}`;
       if (minAssists > 0) url += `&minAssists=${minAssists}`;
       if (CC > 0) url += `&CC=${CC}`;
+      if (BCC > 0) url += `&minBCC=${BCC}`;
       if (dribbles > 0) url += `&dribbles=${dribbles}`;
       if (mnt > 0) url += `&mnt=${mnt}`;
       if (stage && stage !== 'All') url += `&stage=${encodeURIComponent(stage)}`;
@@ -1082,11 +1149,11 @@
     }, 1000);
   }
 
-// Hide the initial loading spinner after 1 second
-setTimeout(() => {
-  const overlay = document.getElementById('mhv-loading-overlay');
-  if (overlay) overlay.classList.remove('show');
-}, 800);
+  // Hide the initial loading spinner after 1 second
+  setTimeout(() => {
+    const overlay = document.getElementById('mhv-loading-overlay');
+    if (overlay) overlay.classList.remove('show');
+  }, 800);
 
 
 </script>

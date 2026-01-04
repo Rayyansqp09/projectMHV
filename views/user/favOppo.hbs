@@ -1,0 +1,205 @@
+<section class="fav-opponents">
+
+    <h1 class="fav-title">Favorite Opponents</h1>
+    <p class="fav-subtitle">Top opponents each player has excelled against</p>
+
+    <!-- Player Tabs -->
+    <div class="fav-player-tabs">
+        {{#each players}}
+        <button class="fav-tab {{#if (eq ../activePlayer key)}}active{{/if}}" data-player="{{key}}">
+            {{label}}
+        </button>
+        {{/each}}
+    </div>
+
+    <!-- Table -->
+    <div class="fav-table-wrapper">
+        <table class="fav-table">
+            <thead>
+                <tr>
+                    <th data-sort="no">No <span class="sort-icon"></span></th>
+                    <th data-sort="team" class="sortable">
+                        <span class="th-content">
+                            Teams
+                            <span class="sort-icon">
+                                <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                    <path class="arrow-up" d="M5 0L9 4H1L5 0Z" />
+                                    <path class="arrow-down" d="M5 14L1 10H9L5 14Z" />
+                                </svg>
+                            </span>
+                        </span>
+                    </th>
+                    <th data-sort="games" class="sortable">
+                        <span class="th-content">
+                            Games
+                            <span class="sort-icon">
+                                <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                    <path class="arrow-up" d="M5 0L9 4H1L5 0Z" />
+                                    <path class="arrow-down" d="M5 14L1 10H9L5 14Z" />
+                                </svg>
+                            </span>
+                        </span>
+                    </th>
+
+                    <th data-sort="goals" class="sortable">
+                        <span class="th-content">
+                            Goals
+                            <span class="sort-icon">
+                                <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                    <path class="arrow-up" d="M5 0L9 4H1L5 0Z" />
+                                    <path class="arrow-down" d="M5 14L1 10H9L5 14Z" />
+                                </svg>
+                            </span>
+                        </span>
+                    </th>
+                    <th data-sort="assists" class="sortable">
+                        <span class="th-content">
+                            Assists
+                            <span class="sort-icon">
+                                <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                    <path class="arrow-up" d="M5 0L9 4H1L5 0Z" />
+                                    <path class="arrow-down" d="M5 14L1 10H9L5 14Z" />
+                                </svg>
+                            </span>
+                        </span>
+                    </th>
+                    <th data-sort="ga" class="sortable">
+                        <span class="th-content">
+                            G/A
+                            <span class="sort-icon">
+                                <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                    <path class="arrow-up" d="M5 0L9 4H1L5 0Z" />
+                                    <path class="arrow-down" d="M5 14L1 10H9L5 14Z" />
+                                </svg>
+                            </span>
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                {{#if opponents.length}}
+                {{#each opponents}}
+                <tr>
+                    <td>{{inc @index}}</td>
+                    <td>{{team}}</td>
+                    <td>{{games}}</td>
+                    <td>{{goals}}</td>
+                    <td>{{assists}}</td>
+                    <td>{{ga}}</td>
+                </tr>
+                {{/each}}
+                {{else}}
+                <tr>
+                    <td colspan="6" style="text-align:center; padding:30px;">
+                        No data available
+                    </td>
+                </tr>
+                {{/if}}
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="pagination">
+        <button id="prevBtn">←</button>
+        <span id="pageInfo"></span>
+        <button id="nextBtn">→</button>
+    </div>
+
+
+<script>
+    let currentPage = {{ currentPage }};
+    let totalPages = {{ totalPages }};
+    let currentPlayer = document.querySelector('.fav-tab.active').dataset.player;
+
+    let currentSort = 'ga';
+    let currentOrder = 'desc';
+
+    const tbody = document.querySelector('tbody');
+    const pageInfo = document.getElementById('pageInfo');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updatePaginationUI() {
+        pageInfo.textContent = `${currentPage} / ${totalPages}`;
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages;
+    }
+
+    async function loadPage() {
+        const url = `/favorite-opponents/${currentPlayer}?partial=1&page=${currentPage}&sort=${currentSort}&order=${currentOrder}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        tbody.innerHTML = data.opponents.map((row, i) => `
+    <tr>
+      <td>${(currentPage - 1) * 30 + i + 1}</td>
+      <td>${row.team}</td>
+      <td>${row.games}</td>
+      <td>${row.goals}</td>
+      <td>${row.assists}</td>
+      <td>${row.ga}</td>
+    </tr>
+  `).join('');
+
+        totalPages = data.totalPages;
+        updatePaginationUI();
+    }
+
+    // Pagination
+    prevBtn.onclick = () => {
+        if (currentPage > 1) {
+            currentPage--;
+            loadPage();
+        }
+    };
+
+    nextBtn.onclick = () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            loadPage();
+        }
+    };
+
+    // Sorting
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => {
+            const key = th.dataset.sort;
+
+            if (currentSort === key) {
+                currentOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort = key;
+                currentOrder = 'desc';
+            }
+
+            currentPage = 1;
+            loadPage();
+        });
+    });
+
+    document.querySelectorAll('.fav-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.fav-tab').forEach(t => {
+                t.classList.remove('active');
+            });
+
+            // Add active class to clicked tab
+            tab.classList.add('active');
+
+            // Update state
+            currentPlayer = tab.dataset.player;
+            currentPage = 1;
+
+            // Load new data
+            loadPage();
+        });
+    });
+
+    updatePaginationUI();
+</script>

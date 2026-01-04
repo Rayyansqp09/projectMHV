@@ -76,7 +76,11 @@ app.engine('hbs', hbs.engine({
       });
     },
     eq: (a, b) => a === b,
-    split: (str, sep) => (!str ? [] : str.split(sep).map(s => s.trim()))
+    split: (str, sep) => (!str ? [] : str.split(sep).map(s => s.trim())),
+
+    // ✅ ADD THIS
+    inc: (value) => parseInt(value, 10) + 1
+
   }
 }));
 
@@ -84,8 +88,8 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // ⭐ REGISTER CUSTOM HELPER PROPERLY
-const Handlebars = require('handlebars');
-Handlebars.registerHelper('json', (obj) => JSON.stringify(obj));
+// const Handlebars = require('handlebars');
+// Handlebars.registerHelper('json', (obj) => JSON.stringify(obj));
 
 
 // Middleware

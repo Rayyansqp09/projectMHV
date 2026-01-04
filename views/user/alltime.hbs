@@ -7,6 +7,8 @@
     <meta property="og:description" content="{{description}}">
 </head>
 
+
+
 <div class="table-container" id="alltime">
     <h1 name="" class="stat-title">ALL TIME STATS</h1>
     <table class="Stats-table">
@@ -46,6 +48,11 @@
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
     {{/if}}
 </div>
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/scoring-Streaks#streak-expl'">
+    <span>Who Has the Most Impressive Goal-Scoring Streak?</span>
+    <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="table-container table-container-st" id="club">
@@ -126,7 +133,7 @@
     <span class="footer2-arrow">&#8594;</span>
 </div>
 
-<div class="table-container">
+<div class="table-container" id="ko">
     <h1 name="int" class="stat-title">ALL TIME KNOCKOUT</h1>
     <h2 name="club" class="stat-title2">(Including All Knockout Games, Club and Int)</h2>
     <table class="Stats-table">
@@ -169,7 +176,6 @@
 
 <div class="table-container" id="goal">
     <h1 name="club" class="stat-title">Braces, Hattricks & Poker</h1>
-    <h2 name="club" class="stat-title2">(Braces, Hattricks & Poker)</h2>
 
     <table class="Stats-table">
         <thead>
@@ -186,19 +192,19 @@
                 <td class="stat-text">{{vini.clubGames}}<br><span class="stat-name">GAMES</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.braces}}<br><span class="stat-name">BRACE</span></td>
-                <td class="stat-text">{{haaland.braces}}<br><span class="stat-name">BRACE</span></td>
-                <td class="stat-text">{{vini.braces}}<br><span class="stat-name">BRACE</span></td>
+                <td class="stat-text">{{mbappe.Braces}}<br><span class="stat-name">BRACE</span></td>
+                <td class="stat-text">{{haaland.Braces}}<br><span class="stat-name">BRACE</span></td>
+                <td class="stat-text">{{vini.Braces}}<br><span class="stat-name">BRACE</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.hattricks}}<br><span class="stat-name">HATTRICK</span></td>
-                <td class="stat-text">{{haaland.hattricks}}<br><span class="stat-name">HATTRICK</span></td>
-                <td class="stat-text">{{vini.hattricks}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{mbappe.Hattricks}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{haaland.Hattricks}}<br><span class="stat-name">HATTRICK</span></td>
+                <td class="stat-text">{{vini.Hattricks}}<br><span class="stat-name">HATTRICK</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe.poker}}<br><span class="stat-name">POKER</span></td>
-                <td class="stat-text">{{haaland.poker}}<br><span class="stat-name">POKER</span></td>
-                <td class="stat-text">{{vini.poker}}<br><span class="stat-name">POKER</span></td>
+                <td class="stat-text">{{mbappe.Poker}}<br><span class="stat-name">POKER</span></td>
+                <td class="stat-text">{{haaland.Poker}}<br><span class="stat-name">POKER</span></td>
+                <td class="stat-text">{{vini.Poker}}<br><span class="stat-name">POKER</span></td>
             </tr>
 
         </tbody>
@@ -206,6 +212,11 @@
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
     {{/if}}
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/scoring-Streaks#Brace-Hattrick-streak'">
+    <span>Brace and hattrick Streaks</span>
+    <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="table-container" id="gtype">
@@ -231,9 +242,9 @@
                 <td class="stat-text">{{vini_alltime.fkGoals}}<br><span class="stat-name">FREEKICK</span></td>
             </tr>
             <tr>
-                <td class="stat-text">{{mbappe_alltime.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
-                <td class="stat-text">{{haaland_alltime.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
-                <td class="stat-text">{{vini_alltime.penaltyGoals}}<br><span class="stat-name">PENALTY</span></td>
+                <td class="stat-text">{{mbappe_penalty.totalPen}}<br><span class="stat-name">PENALTY</span></td>
+                <td class="stat-text">{{haaland_penalty.totalPen}}<br><span class="stat-name">PENALTY</span></td>
+                <td class="stat-text">{{vini_penalty.totalPen}}<br><span class="stat-name">PENALTY</span></td>
             </tr>
             <tr>
                 <td class="stat-text">{{mbappe_alltime.obGoals}}<br><span class="stat-name">OUTSIDE THE BOX</span></td>
@@ -251,8 +262,8 @@
 </div>
 
 <div class="footer3-card footer3-cardfaq" onclick="location.href='/faq#general'">
-  <span>Does Vinícius Júnior have 2 free-kick goals in his senior career?</span>
-  <span class="footer2-arrow">&#8594;</span>
+    <span>Does Vinícius Júnior have 2 free-kick goals in his senior career?</span>
+    <span class="footer2-arrow">&#8594;</span>
 </div>
 
 <div class="table-container" id="final">
@@ -304,7 +315,8 @@
         <tbody>
             <tr>
                 <td class="stat-text">{{mbappe_alltime.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
-                <td class="stat-text">{{haaland_alltime.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
+                <td class="stat-text">{{haaland_alltime.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span>
+                </td>
                 <td class="stat-text">{{vini_alltime.sesnPlayed}}<br><span class="stat-name">SEASON PLAYED</span></td>
             </tr>
             <tr>
@@ -320,4 +332,3 @@
 </div>
 
 {{>sts-update}}
-

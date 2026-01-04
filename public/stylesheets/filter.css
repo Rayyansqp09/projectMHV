@@ -89,7 +89,9 @@
   flex-direction: column;
   min-width: 180px;
   /* keep same width as input/select */
+  white-space: nowrap;
 }
+
 
 .filters-top {
   display: flex;
@@ -112,6 +114,7 @@
   margin-left: auto;
   /* push the last field to the right edge */
   margin-right: auto;
+  
 }
 
 
@@ -330,6 +333,18 @@
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.3s ease-in-out;
 }
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 16px;
+}
+
+.two-col .field {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .popup-box h2 {
   margin-bottom: 15px;

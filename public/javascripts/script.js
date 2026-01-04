@@ -144,69 +144,88 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+const rows = document.querySelectorAll("tbody tr");
 
-  const rows = document.querySelectorAll("tbody tr");
+rows.forEach(row => {
+  // THIS ignores specific cells only — perfect control
+  const cells = row.querySelectorAll("td.stat-text:not(.ignore-highlight)");
 
-  rows.forEach(row => {
-    const cells = row.querySelectorAll("td.stat-text");
-    const values = Array.from(cells).map(cell => parseInt(cell.textContent));
+  const values = [...cells].map(cell => parseInt(cell.textContent));
+  const maxValue = Math.max(...values);
+  const countMax = values.filter(v => v === maxValue).length;
 
-    const maxValue = Math.max(...values);
-    const countMax = values.filter(v => v === maxValue).length;
-
-    if (countMax === 1) {
-      // Unique max → full gold
-      cells.forEach(cell => {
-        if (parseInt(cell.textContent) === maxValue) {
-          cell.style.color = "#FFD700"; // gold
-        }
-      });
-    } else if (countMax === 2) {
-      // Two equal max → blue
-      cells.forEach(cell => {
-        if (parseInt(cell.textContent) === maxValue) {
-          cell.style.color = "#FFA500"; // blue
-        }
-      });
-    }
-    // countMax === 3 → all equal → no highlight
-  });
-
-
-
-   window.addEventListener('DOMContentLoaded', () => {
-        const hash = window.location.hash;
-
-        if (hash === '#goal', '#final', 'trophies','haaland','mbappe','vinicius','articles','#clubComp', '#superCup', '#clubWc','#int-comp', '#unl','#vote','#club', '#int','faq-heading') {
-            const target = document.querySelector(hash);
-            if (!target) return;
-
-            const offset = 80; // adjust if you have a fixed header
-            const duration = 1000;
-
-            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-            const startPosition = window.scrollY;
-            const distance = targetPosition - startPosition;
-            let startTime = null;
-
-            function animation(currentTime) {
-                if (!startTime) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
-
-            function easeInOutQuad(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
-
-            requestAnimationFrame(animation);
-        }
+  if (countMax === 1) {
+    // Unique max → gold
+    cells.forEach(cell => {
+      if (parseInt(cell.textContent) === maxValue) {
+        cell.style.color = "#FFD700";
+      }
     });
+  } else if (countMax === 2) {
+    // Two equal max → orange
+    cells.forEach(cell => {
+      if (parseInt(cell.textContent) === maxValue) {
+        cell.style.color = "#FFA500";
+      }
+    });
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Smooth Scroll Core Function
+    function smoothScrollTo(hash) {
+        const target = document.querySelector(hash);
+        if (!target) return;
+
+        const offset = 80;
+        const duration = 600;
+
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+        const startPosition = window.scrollY;
+        const distance = targetPosition - startPosition;
+
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function easeInOutQuad(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+
+    // CLICK HANDLER — FIXED & BULLETPROOF
+    document.addEventListener("click", function (e) {
+        const link = e.target.closest("a[href^='#']");
+        if (!link) return;
+
+        const hash = link.getAttribute("href");
+        if (!hash || hash === "#") return;
+
+        e.preventDefault();
+
+        history.replaceState(null, null, hash);
+
+        smoothScrollTo(hash);
+    });
+
+    // On page load with hash
+    if (window.location.hash) {
+        setTimeout(() => smoothScrollTo(window.location.hash), 50);
+    }
+});
 
 
 

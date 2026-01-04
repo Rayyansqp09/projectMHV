@@ -42,40 +42,40 @@ router.get('/dummy', (req, res) => {
 // DYNAMIC SITEMAP.XML
 // -------------------------
 router.get("/sitemap.xml", (req, res) => {
-    const baseUrl = "https://mhvstats.xyz";
-    const today = new Date().toISOString();
+  const baseUrl = "https://mhvstats.xyz";
+  const today = new Date().toISOString();
 
-    const staticPages = [
-        "", "about", "faq", "vote", "season", "year",
-        "alltime", "club-stats", "int-stats",
-        "feedback", "pay","faq","policy"
-    ];
+  const staticPages = [
+    "", "about", "faq", "vote", "season", "year",
+    "alltime", "club-stats", "int-stats",
+    "feedback", "pay", "faq", "policy"
+  ];
 
-    const clubSubpages = [
-        "ucl"
-    ].map(p => `club-stats/${p}`);
+  const clubSubpages = [
+    "ucl"
+  ].map(p => `club-stats/${p}`);
 
-    const intSubpages = [
-        "wc", "copa-euro"
-    ].map(p => `int-stats/${p}`);
+  const intSubpages = [
+    "wc", "copa-euro"
+  ].map(p => `int-stats/${p}`);
 
-    const matchPages = [
-        "Match-History/mbappe",
-        "Match-History/haaland",
-        "Match-History/vinicius"
-    ];
+  const matchPages = [
+    "Match-History/mbappe",
+    "Match-History/haaland",
+    "Match-History/vinicius"
+  ];
 
-    const playerPages = ["mbappe", "haaland", "vinicius"];
+  const playerPages = ["mbappe", "haaland", "vinicius"];
 
-    const urlList = [
-        ...staticPages,
-        ...clubSubpages,
-        ...intSubpages,
-        ...matchPages,
-        ...playerPages
-    ];
+  const urlList = [
+    ...staticPages,
+    ...clubSubpages,
+    ...intSubpages,
+    ...matchPages,
+    ...playerPages
+  ];
 
-    const xmlUrls = urlList.map(url => `
+  const xmlUrls = urlList.map(url => `
     <url>
         <loc>${baseUrl}/${url}</loc>
         <lastmod>${today}</lastmod>
@@ -84,7 +84,7 @@ router.get("/sitemap.xml", (req, res) => {
     </url>
     `).join("");
 
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset 
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -95,8 +95,8 @@ ${xmlUrls}
 
 </urlset>`;
 
-    res.header("Content-Type", "application/xml");
-    res.send(sitemap);
+  res.header("Content-Type", "application/xml");
+  res.send(sitemap);
 });
 
 
@@ -237,7 +237,7 @@ router.get('/alltime', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  displayHelper.getStats(['all_time', 'alltime'], (err, stats) => {
+  displayHelper.getStats(['all_time', 'alltime', 'penalty'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
@@ -253,6 +253,13 @@ router.get('/alltime', function (req, res, next) {
     const haaland = stats.alltime.find(p => p.Name === 'Haaland') || {};
     const vini = stats.alltime.find(p => p.Name === 'Vinicius') || {};
 
+    // === penalty table ===
+    const mbappe_penalty = stats.penalty.find(p => p.player === 'Mbappe') || {};
+    const haaland_penalty = stats.penalty.find(p => p.player === 'Haaland') || {};
+    const vini_penalty = stats.penalty.find(p => p.player === 'Vinicius') || {};
+
+
+
     res.render('user/alltime', {
       title: 'All-Time Goal Scoring Stats | Mbappe vs Haaland vs Vinicius',
       description: 'Compare all-time goal stats: hattricks, pokers, free-kick goals, and final match goals of Mbappe, Haaland, and Vinicius.',
@@ -267,7 +274,11 @@ router.get('/alltime', function (req, res, next) {
       // all_time table
       mbappe_alltime,
       haaland_alltime,
-      vini_alltime
+      vini_alltime,
+      // penalty table
+      mbappe_penalty,
+      haaland_penalty,
+      vini_penalty
     }, (err, html) => {
       if (err) return res.status(500).send('Error rendering page');
       pageCache.set('/alltime', html); // Cache the rendered HTML
@@ -409,6 +420,265 @@ router.get('/int-stats', function (req, res, next) {
     });
   });
 });
+
+router.get('/By-year', function (req, res, next) {
+
+  const years = [
+    'live2015', 'live2016', 'live2017', 'live2018', 'live2019',
+    'live2020', 'live2021', 'live2022', 'live2023', 'live2024', 'live2025'
+  ];
+
+  const tables = years;
+
+  displayHelper.getStats(tables, (err, stats) => {
+    if (err) {
+      console.error('Error getting stats:', err);
+      return res.status(500).send('Error loading stats');
+    }
+
+    const data = {};
+
+    for (const tableName of tables) {
+
+      const cleanKey = tableName; // DO NOT USE replace('year'), it's useless
+
+      const table = stats[tableName] || [];
+
+      const mbappe = table.find(p => p.Name === 'Mbappe') || {};
+      const haaland = table.find(p => p.Name === 'Haaland') || {};
+      const vinicius = table.find(p => p.Name === 'Vinicius') || {};
+
+      data[`mbappe_${cleanKey}`] = mbappe;
+      data[`haaland_${cleanKey}`] = haaland;
+      data[`vinicius_${cleanKey}`] = vinicius;
+
+      data[`year_${cleanKey}`] = table;
+    }
+
+    // Build year list from 2025 → 2015 (reverse order)
+    const yearsList = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
+
+    const thisYear = {
+      mbappe: {},
+      haaland: {},
+      vinicius: {}
+    };
+
+    yearsList.forEach(yr => {
+      const key = `live${yr}`;
+
+      // Store entire row
+      thisYear.mbappe[yr] = data[`mbappe_${key}`] || {};
+      thisYear.haaland[yr] = data[`haaland_${key}`] || {};
+      thisYear.vinicius[yr] = data[`vinicius_${key}`] || {};
+
+      // Shortcut references
+      const mb = thisYear.mbappe[yr];
+      const hl = thisYear.haaland[yr];
+      const vn = thisYear.vinicius[yr];
+
+      // Add GA = Goals + Assists
+      mb.GA = (mb.Goals || 0) + (mb.Assists || 0);
+      hl.GA = (hl.Goals || 0) + (hl.Assists || 0);
+      vn.GA = (vn.Goals || 0) + (vn.Assists || 0);
+    });
+
+
+    res.render('user/yearTotal', {
+      admin: false,
+      ...data,
+      yearsList,
+      thisYear,
+      title: 'Mbappe vs Haaland vs Vinicius | Stats by calendar year',
+      description: 'Yearly performance breakdown of Mbappe, Haaland, and Vinicius — goals, assists, and matches.'
+    });
+  });
+});
+
+router.get('/Penalty-Goals', function (req, res, next) {
+  if (!isDev) {
+    const cachedPage = pageCache.get('/Penalty-Goals');
+    if (cachedPage) return res.send(cachedPage);
+  }
+
+  displayHelper.getStats(['all_time', 'alltime', 'penalty'], (err, stats) => {
+    if (err) {
+      console.error('Error getting stats:', err);
+      return res.status(500).send('Error loading stats');
+    }
+
+    // === all_time table ===
+    const mbappe_alltime = stats.all_time.find(p => p.Name === 'Mbappe') || {};
+    const haaland_alltime = stats.all_time.find(p => p.Name === 'Haaland') || {};
+    const vini_alltime = stats.all_time.find(p => p.Name === 'Vinicius') || {};
+
+    // === alltime table ===
+    const mbappe = stats.alltime.find(p => p.Name === 'Mbappe') || {};
+    const haaland = stats.alltime.find(p => p.Name === 'Haaland') || {};
+    const vini = stats.alltime.find(p => p.Name === 'Vinicius') || {};
+
+    // === penalty table ===
+    const mbappe_penalty = stats.penalty.find(p => p.player === 'Mbappe') || {};
+    const haaland_penalty = stats.penalty.find(p => p.player === 'Haaland') || {};
+    const vini_penalty = stats.penalty.find(p => p.player === 'Vinicius') || {};
+
+    // === non-penalty goals ===
+    mbappe.nonPenGoals =
+      (mbappe.Goals || 0) - (mbappe_penalty.totalPen || 0);
+
+    haaland.nonPenGoals =
+      (haaland.Goals || 0) - (haaland_penalty.totalPen || 0);
+
+    vini.nonPenGoals =
+      (vini.Goals || 0) - (vini_penalty.totalPen || 0);
+
+
+    res.render('user/pen', {
+      title: 'Penalty Goals Breakdown | Mbappe vs Haaland vs Vinicius',
+      description: 'Compare penalty and non-penalty goal stats of Mbappe, Haaland, and Vinicius including success rates and total goals.',
+      keywords: 'penalty goals,mbappe non-penalty goals,haaland non-penalty goals,vinicius non-penalty goals, Mbappe penalty stats, Haaland penalty stats, Vinicius penalty stats, football penalties, goal statistics',
+      admin: false,
+
+      // alltime table
+      mbappe,
+      haaland,
+      vini,
+
+      // all_time table
+      mbappe_alltime,
+      haaland_alltime,
+      vini_alltime,
+      // penalty table
+      mbappe_penalty,
+      haaland_penalty,
+      vini_penalty,
+
+      mbappe_nonPenGoals: mbappe.nonPenGoals,
+      haaland_nonPenGoals: haaland.nonPenGoals,
+      vini_nonPenGoals: vini.nonPenGoals
+    }, (err, html) => {
+      if (err) return res.status(500).send('Error rendering page');
+      pageCache.set('/Penalty-Goals', html); // Cache the rendered HTML
+      res.send(html);
+    });
+  });
+});
+
+
+
+router.get('/Scoring-Streaks', function (req, res, next) {
+  if (!isDev) {
+    const cachedPage = pageCache.get('/Scoring-Streaks');
+    if (cachedPage) return res.send(cachedPage);
+  }
+
+  displayHelper.getStats('streaks', (err, stats) => {
+    if (err) {
+      console.error('Error getting stats:', err);
+      return res.status(500).send('Error loading stats');
+    }
+
+    stats.forEach(p => {
+      p.start_max_goal_streak = displayHelper.formatDate(p.start_max_goal_streak);
+      p.end_max_goal_streak = displayHelper.formatDate(p.end_max_goal_streak);
+      p.intStreak_start = displayHelper.formatDate(p.intStreak_start);
+      p.intStreak_end = displayHelper.formatDate(p.intStreak_end);
+      p.start_clubStreak = displayHelper.formatDate(p.start_clubStreak);
+      p.end_clubStreak = displayHelper.formatDate(p.end_clubStreak);
+      p.end_goalless_streak = displayHelper.formatDate(p.end_goalless_streak);
+      p.start_goalless_streak = displayHelper.formatDate(p.start_goalless_streak);
+    });
+
+
+    const mbappe = stats.find(p => p.name === 'Mbappe');
+    const haaland = stats.find(p => p.name === 'Haaland');
+    const vini = stats.find(p => p.name === 'Vinicius');
+
+    // console.log('Mbappe All-Time:', mbappe_all);
+    // console.log('Mbappe Club:', mbappe_club);
+
+    // console.log('Haaland All-Time:', haaland_all);
+    // console.log('Haaland Club:', haaland_club);
+
+    // console.log('Vinicius All-Time:', vini_all);
+    // console.log('Vinicius Club:', vini_club);
+
+
+    res.render('user/streak', {
+      title: 'Scoring Streaks | Mbappe vs Haaland vs Vinicius',
+      description: 'Highest Scoring Streaks and Goalless Streak of Mbappe, Haaland, and Vinicius in their careers.',
+      canonical: '<link rel="canonical" href="https://mhvstats.xyz/Scoring-Streaks" />',
+      admin: false,
+      mbappe,
+      haaland,
+      vini
+    }, (err, html) => {
+      if (err) return res.status(500).send('Error rendering page');
+      pageCache.set('/streak', html); // Cache the rendered HTML
+      res.send(html);
+    });
+  });
+});
+
+
+
+router.get('/favorite-opponents/:player?', function (req, res) {
+
+  const player = (req.params.player || 'mbappe').toLowerCase();
+  const page = parseInt(req.query.page) || 1;
+  const limit = 25;
+  const offset = (page - 1) * limit;
+
+  const sort = req.query.sort || 'ga';
+  const order = req.query.order === 'asc' ? 'ASC' : 'DESC';
+
+  const tableMap = {
+    mbappe: 'favOpponent_Mbappe',
+    haaland: 'favOpponent_Haaland',
+    vinicius: 'favOpponent_Vinicius'
+  };
+
+  const allowedSort = ['team', 'games', 'goals', 'assists', 'ga'];
+
+  if (!tableMap[player] || !allowedSort.includes(sort)) {
+    return res.status(400).send('Invalid request');
+  }
+
+  displayHelper.getStatsPaginatedSorted(
+    tableMap[player],
+    sort,
+    order,
+    limit,
+    offset,
+    (err, result) => {
+      if (err) return res.status(500).send('Error');
+
+      const totalPages = Math.ceil(result.total / limit);
+
+      if (req.query.partial === '1') {
+        return res.json({
+          opponents: result.rows,
+          currentPage: page,
+          totalPages
+        });
+      }
+
+      res.render('user/favOppo', {
+        activePlayer: player,
+        opponents: result.rows,
+        currentPage: page,
+        totalPages,
+        players: [
+          { key: 'mbappe', label: 'Mbappé' },
+          { key: 'haaland', label: 'Haaland' },
+          { key: 'vinicius', label: 'Vinícius' }
+        ]
+      });
+    }
+  );
+});
+
+
 router.get('/policy', (req, res) => {
   res.render('user/policy', {
     title: 'Privacy Policy | MHVStats',
@@ -416,6 +686,7 @@ router.get('/policy', (req, res) => {
     header: false
   }); // Make sure views/policy.ejs (or .pug, .hbs) exists
 });
+
 router.get('/about', (req, res) => {
   res.render('user/About', {
     title: 'About MHVStats | Behind the Project',
@@ -475,6 +746,9 @@ router.get('/Match-History/:player', (req, res) => {
   const seasonFilter = req.query.season || 'All';
   const yearFilter = req.query.year || 'All';
   const minCC = parseInt(req.query.CC) || 0;
+  const minBCC = Number(req.query.minBCC);
+  const hasMinBCC = !Number.isNaN(minBCC) && minBCC > 0;
+
   const minDribbles = parseInt(req.query.dribbles) || 0;
   const minMnt = parseInt(req.query.mnt) || 0;
   const forTeamFilter = req.query.forTeam || 'All';
@@ -486,6 +760,8 @@ router.get('/Match-History/:player', (req, res) => {
   // New filters
   const matchNoFilter = req.query.matchNo || '';
   const matchDateFilter = req.query.matchDate; // expected format 'YYYY-MM-DD'
+
+
 
   const tableMap = {
     mbappe: 'mhmbappe',
@@ -558,6 +834,13 @@ router.get('/Match-History/:player', (req, res) => {
     if (resultFilter && resultFilter !== 'All') filteredMatches = filteredMatches.filter(m => (m.result || '').toLowerCase().trim() === resultFilter.toLowerCase().trim());
     if (yearFilter && yearFilter !== 'All') filteredMatches = filteredMatches.filter(m => new Date(m.date).getFullYear().toString() === yearFilter);
     if (minCC > 0) filteredMatches = filteredMatches.filter(m => m.CC >= minCC);
+    if (hasMinBCC) {
+      filteredMatches = filteredMatches.filter(m => {
+        const bcc = Number(m.BCC);
+        return !Number.isNaN(bcc) && bcc >= minBCC;
+      });
+    }
+
     if (minDribbles > 0) filteredMatches = filteredMatches.filter(m => m.dribbles >= minDribbles);
     if (minMnt > 0) filteredMatches = filteredMatches.filter(m => m.mnt >= minMnt);
     if (forTeamFilter && forTeamFilter !== 'All') {
@@ -599,6 +882,15 @@ router.get('/Match-History/:player', (req, res) => {
 
     const totalFilteredMatches = filteredMatches.length;
     const paginatedMatches = filteredMatches.slice(offset, offset + limit);
+    paginatedMatches.forEach((m, index) => {
+      const total = totalFilteredMatches;
+
+      paginatedMatches.forEach((m, index) => {
+        m.rowIndex = total - (offset + index);
+      });
+
+    });
+
 
     // Unique dynamic filters
     function normalizeText(str) { return (str || '').toLowerCase().trim(); }

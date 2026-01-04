@@ -89,36 +89,37 @@
         </div>
 
 
+    </div>
+</div>
 
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const select = document.getElementById("seasonSelect");
+        const contents = document.querySelectorAll(".season-content");
 
-        <script>
-            window.addEventListener("DOMContentLoaded", () => {
-                const select = document.getElementById("seasonSelect");
-                const contents = document.querySelectorAll(".season-content");
+        function showSeasonContent(seasonId) {
+            contents.forEach(div => div.classList.remove("active"));
+            const selectedDiv = document.getElementById(seasonId);
+            if (selectedDiv) selectedDiv.classList.add("active");
+        }
 
-                function showSeasonContent(seasonId) {
-                    contents.forEach(div => div.classList.remove("active"));
-                    const selectedDiv = document.getElementById(seasonId);
-                    if (selectedDiv) selectedDiv.classList.add("active");
-                }
+        // Show content based on initial selected option (2024)
+        showSeasonContent(select.value);
 
-                // Show content based on initial selected option (2024)
-                showSeasonContent(select.value);
+        // When dropdown changes
+        select.addEventListener("change", function () {
+            showSeasonContent(this.value);
+        });
+    });
 
-                // When dropdown changes
-                select.addEventListener("change", function () {
-                    showSeasonContent(this.value);
-                });
-            });
+    const select = document.getElementById("seasonSelect");
+    const contents = document.querySelectorAll(".season-content");
 
-            const select = document.getElementById("seasonSelect");
-            const contents = document.querySelectorAll(".season-content");
-
-            select.addEventListener("change", function () {
-                contents.forEach(div => div.classList.remove("active"));
-                const selected = this.value;
-                if (selected) {
-                    document.getElementById(selected).classList.add("active");
-                }
-            });
-        </script>
+    select.addEventListener("change", function () {
+        contents.forEach(div => div.classList.remove("active"));
+        const selected = this.value;
+        if (selected) {
+            document.getElementById(selected).classList.add("active");
+        }
+    });
+</script>

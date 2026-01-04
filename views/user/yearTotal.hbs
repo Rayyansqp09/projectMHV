@@ -1,0 +1,378 @@
+<h2 name="" class="stat-titleabove" id="year">STATS BY CALENDAR YEAR</h2>
+
+<div class="stat-navigation">
+    <a href="#goals" class="nav-btn">GOALS</a>
+    <a href="#assists" class="nav-btn">ASSISTS</a>
+    <a href="#ga" class="nav-btn">G/A</a>
+    <a href="/By-year#hattrick" class="nav-btn">HATTRICK</a>
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/year'">
+    <span>Detailed Stats By Calendar Year</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+
+<div class="table-container" id="goals">
+    <h2 name="" class="stat-title">Goals - ALL COMPETITIONS</h2>
+    <h2 name="club" class="stat-title2">(Including National Team Games)</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="">YEAR</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each yearsList}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">{{this}}</td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.mbappe this) "Goals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.haaland this) "Goals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.vinicius this) "Goals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="year2025">UPDATE</button>
+    {{/if}}
+
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/faq#general'">
+    <span>Detailed Stats By Calendar Year</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container">
+    <h2 name="club" class="stat-title">GOALS - CLUB COMPETETION</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">YEAR</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each yearsList}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">{{this}}</td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.mbappe this) "clubGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.haaland this) "clubGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.vinicius this) "clubGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="club" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">GOALS - INTERNATIONAL</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">YEAR</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each yearsList}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">{{this}}</td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.mbappe this) "intGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.haaland this) "intGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.vinicius this) "intGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="int" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="assists">
+    <h2 name="int" class="stat-title">ASSISTS - All COMPETITIONS</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">YEAR</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each yearsList}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">{{this}}</td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.mbappe this) "Assists"}}<br>
+                    <span class="stat-name">ASSISTS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.haaland this) "Assists"}}<br>
+                    <span class="stat-name">ASSISTS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.vinicius this) "Assists"}}<br>
+                    <span class="stat-name">ASSISTS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="l" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="ga">
+    <h2 name="ucl" class="stat-title">GOAL Contribution</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">YEAR</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each yearsList}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">{{this}}</td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.mbappe this) "GA"}}<br>
+                    <span class="stat-name">G/A</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.haaland this) "GA"}}<br>
+                    <span class="stat-name">G/A</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.vinicius this) "GA"}}<br>
+                    <span class="stat-name">G/A</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ucl" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="hattrick">
+    <h2 name="final" class="stat-title">Hattricks</h2>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">YEAR</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each yearsList}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">{{this}}</td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.mbappe this) "hattrick"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.haaland this) "hattrick"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.vinicius this) "hattrick"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+
+
+<div class="table-container">
+    <h2 name="final" class="stat-title">FINAL STATS</h2>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">YEAR</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each yearsList}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">{{this}}</td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.mbappe this) "finalGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.haaland this) "finalGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{lookup (lookup ../thisYear.vinicius this) "finalGoals"}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/season'">
+    <span>Stats By Season</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+
+{{>sts-update}}
+
+
+<script>
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("a.dynamic-link");
+        const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
+
+        links.forEach(link => {
+            const originalHref = link.getAttribute("href");
+
+            // If it's already absolute or an external link, skip
+            if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+
+            // Update href to include current path
+            link.setAttribute("href", `${basePath}/${originalHref}`);
+        });
+    });
+
+
+    function toggleModal(button) {
+        // Find the closest table-container and get the h2 inside it
+        const headingElement = button.closest(".table-container").querySelector("h2");
+
+        // ✅ Display the heading text inside the modal
+        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+
+        // ✅ Send the 'name' attribute value to the backend via hidden input
+        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+        const tableName = button.getAttribute("table");
+        document.getElementById("tableNameDisplay").textContent = "Table Name";
+        document.getElementById("tableNameInput").value = tableName;
+
+
+
+        const modal = document.getElementById("modalOverlay");
+        modal.style.display = "flex"; // ensure it uses flex to center
+        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('statsForm');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+
+                // You can add fetch or form submission logic here
+                toggleModal(); // Close the modal
+            });
+        }
+    });
+
+
+</script>

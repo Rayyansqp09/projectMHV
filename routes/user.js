@@ -651,7 +651,12 @@ router.get('/favorite-opponents/:player?', function (req, res) {
     limit,
     offset,
     (err, result) => {
-      if (err) return res.status(500).send('Error');
+      if (err) {
+        console.error('❌ Favorite Opponents Error:', err);
+        return res.status(500).send('Internal Server Error');
+      }
+
+
 
       const totalPages = Math.ceil(result.total / limit);
 

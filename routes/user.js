@@ -45,60 +45,103 @@ router.get("/sitemap.xml", (req, res) => {
   const baseUrl = "https://mhvstats.xyz";
   const today = new Date().toISOString();
 
+  // helper
+  const makeUrl = (path, changefreq, priority) => ({
+    loc: `${baseUrl}/${path}`.replace(/\/$/, ""),
+    lastmod: today,
+    changefreq,
+    priority
+  });
+
+  // -------------------------
+  // STATIC PAGES
+  // -------------------------
   const staticPages = [
-    "", "about", "faq", "vote", "season", "year",
-    "alltime", "club-stats", "int-stats",
-    "feedback", "pay", "faq", "policy"
+    makeUrl("", "weekly", 1.0),
+    makeUrl("about", "monthly", 0.3),
+    makeUrl("faq", "monthly", 0.4),
+    makeUrl("vote", "weekly", 0.6),
+    makeUrl("season", "weekly", 0.7),
+    makeUrl("year", "weekly", 0.7),
+    makeUrl("alltime", "weekly", 0.7),
+    makeUrl("club-stats", "weekly", 0.6),
+    makeUrl("int-stats", "weekly", 0.6),
+    makeUrl("feedback", "monthly", 0.3),
+    makeUrl("pay", "monthly", 0.2),
+    makeUrl("policy", "yearly", 0.1),
+    makeUrl("scoring-streaks", "weekly", 0.6),
+    makeUrl("penalty-goals", "weekly", 0.6)
   ];
 
-  const clubSubpages = [
-    "ucl"
-  ].map(p => `club-stats/${p}`);
-
-  const intSubpages = [
-    "wc", "copa-euro"
-  ].map(p => `int-stats/${p}`);
-
-  const matchPages = [
-    "Match-History/mbappe",
-    "Match-History/haaland",
-    "Match-History/vinicius"
+  // -------------------------
+  // CLUB SUBPAGES
+  // -------------------------
+  const clubPages = [
+    makeUrl("club-stats/ucl", "weekly", 0.6)
   ];
 
-  const playerPages = ["mbappe", "haaland", "vinicius"];
+  // -------------------------
+  // INTERNATIONAL SUBPAGES
+  // -------------------------
+  const intPages = [
+    makeUrl("int-stats/wc", "weekly", 0.6),
+    makeUrl("int-stats/copa-euro", "weekly", 0.6)
+  ];
 
-  const urlList = [
+  // -------------------------
+  // PLAYERS
+  // -------------------------
+  const players = ["mbappe", "haaland", "vinicius"];
+
+  const playerPages = players.map(p =>
+    makeUrl(p, "daily", 0.8)
+  );
+
+  const matchHistoryPages = players.map(p =>
+    makeUrl(`match-history/${p}`, "daily", 0.8)
+  );
+
+  const favoriteOpponentPages = players.map(p =>
+    makeUrl(`favorite-opponents/${p}`, "weekly", 0.7)
+  );
+
+  // -------------------------
+  // MERGE ALL
+  // -------------------------
+  const urls = [
     ...staticPages,
-    ...clubSubpages,
-    ...intSubpages,
-    ...matchPages,
-    ...playerPages
+    ...clubPages,
+    ...intPages,
+    ...playerPages,
+    ...matchHistoryPages,
+    ...favoriteOpponentPages
   ];
 
-  const xmlUrls = urlList.map(url => `
+  // -------------------------
+  // XML BUILD
+  // -------------------------
+  const xmlUrls = urls.map(u => `
     <url>
-        <loc>${baseUrl}/${url}</loc>
-        <lastmod>${today}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.80</priority>
+      <loc>${u.loc}</loc>
+      <lastmod>${u.lastmod}</lastmod>
+      <changefreq>${u.changefreq}</changefreq>
+      <priority>${u.priority}</priority>
     </url>
-    `).join("");
+  `).join("");
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
-                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                      http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 ${xmlUrls}
-
 </urlset>`;
 
-  res.header("Content-Type", "application/xml");
+  res.set("Content-Type", "application/xml");
+  res.set("Cache-Control", "public, max-age=86400");
   res.send(sitemap);
 });
-
 
 
 
@@ -652,7 +695,7 @@ router.get('/favorite-opponents/:player?', function (req, res) {
     offset,
     (err, result) => {
       if (err) return res.status(500).send('Error');
-      
+
 
       const totalPages = Math.ceil(result.total / limit);
 

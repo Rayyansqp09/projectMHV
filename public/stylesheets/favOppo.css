@@ -464,7 +464,7 @@
   .sort-icon {
     display: inline-flex;
     align-items: center;
-    margin-left: 0px;
+    margin-left: -1px !important;
 
   }
 

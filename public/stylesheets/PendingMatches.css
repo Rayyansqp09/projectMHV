@@ -1,0 +1,204 @@
+ .dashboard-container {
+     width: 100%;
+     max-width: 900px;
+     margin: 0 auto;
+ }
+
+ .pm-header-section {
+     margin-top: 50px;
+     margin-bottom: 32px;
+ }
+
+ .pm-title-row {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     margin-bottom: 8px;
+ }
+
+ h1 {
+     font-size: 32px;
+     font-weight: 800;
+     margin: 0;
+ }
+
+ .badge {
+     background-color: #f5bc2d;
+     color: #000000;
+     padding: 4px 12px;
+     border-radius: 20px;
+     font-size: 12px;
+     font-weight: 700;
+ }
+
+ .subtitle {
+     color: #888888;
+     font-size: 16px;
+     margin: 0;
+ }
+
+ .pm-match-card {
+     background-color: #1a1a1a;
+     border: 1px solid #f5bc2d;
+     border-radius: 12px;
+     padding: 32px;
+     margin-bottom: 30px;
+ }
+
+ .pm-card-header {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     margin-bottom: 24px;
+ }
+
+ .pm-card-header {
+     font-weight: 700;
+     font-size: 18px;
+ }
+
+ .separator {
+     color: #555555;
+ }
+
+ .meta-info {
+     color: #888888;
+     font-size: 14px;
+ }
+
+ .score-banner {
+     background-color: #0a0a0a;
+     border-radius: 8px;
+     padding: 24px 40px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 32px;
+ }
+
+ .team {
+     font-weight: 600;
+     font-size: 18px;
+     flex: 1;
+ }
+
+ .team:last-child {
+     text-align: right;
+ }
+
+ .score-container {
+     text-align: center;
+     flex: 1;
+ }
+
+ .score {
+     font-size: 24px;
+     font-weight: 800;
+     letter-spacing: 2px;
+ }
+
+ .result-status {
+     color: #22c55e;
+     font-size: 12px;
+     font-weight: 700;
+     margin-top: 4px;
+ }
+
+ .section-label {
+     color: #888888;
+     font-size: 12px;
+     font-weight: 600;
+     letter-spacing: 1px;
+     margin-bottom: 16px;
+ }
+
+ .pm-stats-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 20px;
+     margin-bottom: 24px;
+ }
+
+ .input-group {
+     display: flex;
+     flex-direction: column;
+     gap: 0px;
+ }
+
+ .input-group label {
+     color: #888888;
+     font-size: 13px;
+ }
+
+ .input-group input {
+     background-color: #262a33;
+     border: 1px solid #3f444e;
+     border-radius: 6px;
+     padding: 10px;
+     color: #ffffff;
+     font-size: 14px;
+     outline: none;
+     margin-top: 4px;
+ }
+
+ .input-group input.highlight-input {
+     border-color: #f5bc2d;
+     box-shadow: 0 0 0 1px #f5bc2d;
+ }
+
+ .input-group input::placeholder {
+     color: #555555;
+ }
+
+ .warning-message {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     color: #f5bc2d;
+     font-size: 13px;
+     margin-bottom: 24px;
+ }
+
+ .action-buttons {
+     display: flex;
+     gap: 16px;
+ }
+
+ .btn-accept,
+ .btn-reject {
+     flex: 1;
+     padding: 14px;
+     border-radius: 8px;
+     font-weight: 700;
+     font-size: 15px;
+     cursor: pointer;
+     border: none;
+     transition: opacity 0.2s;
+ }
+
+ .btn-accept {
+     background-color: #333b4a;
+     color: #6b7280;
+     cursor: not-allowed;
+ }
+
+ .btn-accept.enabled {
+     background-color: #22c55e;
+     /* green */
+     color: #ffffff;
+     cursor: pointer;
+ }
+
+ .btn-accept.enabled:hover {
+     background-color: #16a34a;
+ }
+
+
+ .btn-reject {
+     background-color: #e11d48;
+     color: #ffffff;
+ }
+
+ .btn-reject:hover {
+     opacity: 0.9;
+ }

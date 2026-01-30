@@ -1,0 +1,324 @@
+<div class="dashboard-container">
+    <div class="pm-header-section">
+        <div class="pm-title-row">
+            <h1>Pending Matches</h1>
+            <span class="badge" id="pending-count">
+                {{pendingCount}} Pending
+            </span>
+
+        </div>
+        <p class="subtitle">Matches fetched automatically and waiting for your approval</p>
+    </div>
+
+    {{#each pendingMatches}}
+
+    <div class="pm-match-card" data-id="{{No}}">
+
+        <!-- HEADER -->
+        <div class="pm-card-header">
+            <span class="player-name">{{player}}</span>
+            <span class="separator">•</span>
+            <span class="meta-info">{{No}}</span>
+            <span class="separator">•</span>
+            <span class="meta-info">{{competition}}</span>
+            <span class="separator">•</span>
+            <span class="meta-info">{{season}}</span>
+            <span class="separator">•</span>
+            <span class="meta-info">{{stage}}</span>
+        </div>
+
+        <!-- SCORE -->
+        <div class="score-banner">
+            <div class="team">{{forTeam}}</div>
+
+            <div class="score-container">
+                <div class="score">{{scorFor}} - {{scorAgainst}}</div>
+                <div class="result-status">{{result}}</div>
+            </div>
+
+            <div class="team">{{againstTeam}}</div>
+        </div>
+
+        <!-- STATS -->
+        <div class="pm-stats-section">
+            <h3 class="section-label">PLAYER STATISTICS</h3>
+
+            <div class="pm-stats-grid">
+
+                <input type="hidden" name="player" value="{{player}}">
+
+
+                <div class="input-group">
+                    <label>Date</label>
+                    <input type="date" name="date" value="{{formatDateISO date}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Season</label>
+                    <input type="text" name="season" value="{{season}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Competition</label>
+                    <input type="text" name="competition" value="{{competition}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Stage</label>
+                    <input type="text" name="stage" value="{{stage}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Team</label>
+                    <input type="text" name="forTeam" value="{{forTeam}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Opponent</label>
+                    <input type="text" name="againstTeam" value="{{againstTeam}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Goals</label>
+                    <input type="text" name="goals" value="{{goals}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Penalty</label>
+                    <input type="text" name="pen" value="{{pen}}">
+                </div>
+
+                <div class="input-group">
+                    <label>Assists</label>
+                    <input type="text" name="assists" value="{{assists}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Minutes</label>
+                    <input type="text" name="mnt" value="{{mnt}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Shots</label>
+                    <input type="text" name="Shot" value="{{Shot}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Dribbles</label>
+                    <input type="text" name="dribbles" value="{{dribbles}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Chances Created</label>
+                    <input type="text" name="CC" value="{{CC}}" placeholder="Enter value"
+                        class="{{#unless CC}}highlight-input{{/unless}} required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Big Chances Created</label>
+                    <input type="text" name="BCC" value="{{BCC}}" placeholder="Enter value"
+                        class="{{#unless BCC}}highlight-input{{/unless}} required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Man of the Match</label>
+                    <input type="text" name="Motm" value="{{Motm}}">
+                </div>
+
+                <div class="input-group">
+                    <label>Result</label>
+                    <input type="text" name="result" value="{{result}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Score For</label>
+                    <input type="text" name="scorFor" value="{{scorFor}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Score Against</label>
+                    <input type="text" name="scorAgainst" value="{{scorAgainst}}" class="required-field">
+                </div>
+
+                <div class="input-group">
+                    <label>Goal Types</label>
+                    <input type="text" name="goalTypes" value="{{goalTypes}}" placeholder="Enter value"
+                        class="{{#unless goalTypes}}highlight-input{{/unless}}">
+                </div>
+
+                <div class="input-group">
+                    <label>Assist By</label>
+                    <input type="text" name="astBy" value="{{astBy}}" placeholder="Enter value"
+                        class="{{#unless astBy}}highlight-input{{/unless}}">
+                </div>
+
+                <div class="input-group">
+                    <label>Assist For</label>
+                    <input type="text" name="astFor" value="{{astFor}}" placeholder="Enter value"
+                        class="{{#unless astFor}}highlight-input{{/unless}}">
+                </div>
+
+                <div class="input-group">
+                    <label>Opponent Rank</label>
+                    <input type="text" name="againstRank" value="{{againstRank}}" placeholder="Enter value"
+                        class="{{#unless againstRank}}highlight-input{{/unless}}">
+                </div>
+
+                <div class="input-group">
+                    <label>Team Rank</label>
+                    <input type="text" name="forRank" value="{{forRank}}" placeholder="Enter value"
+                        class="{{#unless forRank}}highlight-input{{/unless}}">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="warning-message">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            Incomplete data - fill all fields to approve
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-accept" disabled>Accept</button>
+            <button class="btn-reject">Reject</button>
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        document.querySelectorAll('.pm-match-card').forEach(card => {
+
+            const requiredFields = card.querySelectorAll('.required-field');
+            const acceptBtn = card.querySelector('.btn-accept');
+            const warning = card.querySelector('.warning-message');
+
+            function isEmpty(value) {
+                return value === null || value === '';
+            }
+
+            function checkFields() {
+                let allFilled = true;
+
+                requiredFields.forEach(input => {
+                    const val = input.value;
+
+                    if (isEmpty(val)) {
+                        allFilled = false;
+                        input.classList.add('highlight-input');
+                    } else {
+                        input.classList.remove('highlight-input');
+                    }
+                });
+
+                if (allFilled) {
+                    acceptBtn.removeAttribute('disabled');
+                    acceptBtn.classList.add('enabled');
+                    warning.style.display = 'none';
+                } else {
+                    acceptBtn.setAttribute('disabled', 'disabled');
+                    acceptBtn.classList.remove('enabled');
+                    warning.style.display = 'flex';
+                }
+            }
+
+            // Initial check
+            checkFields();
+
+            // Re-check on every input
+            requiredFields.forEach(input => {
+                input.addEventListener('input', checkFields);
+                input.addEventListener('change', checkFields);
+            });
+
+        });
+
+    });
+
+    function updatePendingCount() {
+  const badge = document.getElementById('pending-count');
+  const cards = document.querySelectorAll('.pm-match-card');
+  badge.textContent = `${cards.length} Pending`;
+}
+
+</script>
+
+
+<script>
+    document.querySelectorAll('.pm-match-card').forEach(card => {
+        const acceptBtn = card.querySelector('.btn-accept');
+        const rejectBtn = card.querySelector('.btn-reject');
+        const pendingId = card.dataset.id;
+
+        function collectFormData() {
+            const data = {};
+            card.querySelectorAll('input').forEach(input => {
+                if (input.name) data[input.name] = input.value;
+            });
+            return data;
+        }
+
+        // ACCEPT
+        acceptBtn.addEventListener('click', () => {
+            if (acceptBtn.disabled) return;
+
+            const payload = collectFormData();
+            payload.id = pendingId;
+
+            fetch('/admin/pending/accept', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        card.remove();
+                        updatePendingCount();
+                    } else {
+                        alert(data.error || 'Accept failed');
+                    }
+                })
+                .catch(() => alert('Server error'));
+        });
+
+        // REJECT
+        rejectBtn.addEventListener('click', () => {
+            rejectBtn.textContent = 'Rejecting...';
+            rejectBtn.disabled = true;
+
+            fetch('/admin/pending/reject', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: pendingId })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        card.remove();
+                        updatePendingCount();
+                    } else {
+                        alert(data.error || 'Reject failed');
+                        rejectBtn.textContent = 'Reject';
+                        rejectBtn.disabled = false;
+                    }
+                })
+                .catch(() => {
+                    alert('Server error');
+                    rejectBtn.textContent = 'Reject';
+                    rejectBtn.disabled = false;
+                });
+        });
+    });
+</script>

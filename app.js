@@ -28,7 +28,7 @@ db.connect((err) => {
   }
 });
 
- 
+
 // --------------------------------------------------
 // Redirect EC2 domain
 // --------------------------------------------------
@@ -74,6 +74,15 @@ app.engine('hbs', hbs.engine({
         year: "numeric", month: "short", day: "numeric",
         hour: "2-digit", minute: "2-digit"
       });
+    }, formatDateISO: (datetime) => {
+      if (!datetime) return "";
+      const date = new Date(datetime);
+
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+
+      return `${year}-${month}-${day}`;
     },
     eq: (a, b) => a === b,
     split: (str, sep) => (!str ? [] : str.split(sep).map(s => s.trim())),
@@ -123,10 +132,22 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
+const cron = require('node-cron');
+const { runMbappeFetchJob } = require('./ApiData/MbappeMatches');
+
+// TEMP (testing only)
+cron.schedule('* * * * *', () => {
+  console.log('Running Mbappe fetch job...');
+  runMbappeFetchJob();
+});
+
+
+
 
 // --------------------------------------------------
 // Start Server
 // --------------------------------------------------
+
 app.listen(process.env.PORT || 3000, () => {
   console.log(`🚀 Server started on port ${process.env.PORT || 3000}`);
 });

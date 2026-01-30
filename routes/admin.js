@@ -10,7 +10,192 @@ const NodeCache = require('node-cache');
 const pageCache = new NodeCache({ stdTTL: 900 }); // Cache for 5 minutes
 const isDev = false; // true while editing, false to enable caching
 
+
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "1810";
+
+const PLAYER_TABLE_MAP = {
+  Mbappe: 'mhmbappe',
+  Haaland: 'mhhaaland',
+  Vinicius: 'mhvinicius'
+};
+
+function normalizeInt(value) {
+  if (value === '' || value === undefined) return null;
+  return Number(value);
+}
+
+
+function adminAuth(req, res, next) {
+  const auth = req.headers.authorization;
+
+  if (!auth) {
+    res.setHeader("WWW-Authenticate", 'Basic realm="Admin Area"');
+    return res.status(401).send("Authentication required");
+  }
+
+  const base64 = auth.split(" ")[1];
+  const decoded = Buffer.from(base64, "base64").toString("utf8");
+  const [username, password] = decoded.split(":");
+
+  if (username === ADMIN_USER && password === ADMIN_PASS) {
+    next(); // allow access
+  } else {
+    res.setHeader("WWW-Authenticate", 'Basic realm="Admin Area"');
+    return res.status(401).send("Invalid credentials");
+  }
+}
+
+router.use(adminAuth);
+
+
 /* GET users listing. */
+
+router.get('/pending', (req, res) => {
+  displayHelper.getStats('pending_matches', (err, pendingMatches) => {
+    if (err) {
+      console.error('Error fetching pending matches:', err);
+      return res.status(500).send('Failed to load pending matches');
+    }
+
+    res.render('user/PendingMatch', {
+      admin: true,
+      pendingMatches: pendingMatches,
+      pendingCount: pendingMatches.length
+    });
+  });
+});
+
+router.post('/pending/accept', (req, res) => {
+  const { id, player, ...insertData } = req.body;
+
+  console.log(req.body)
+
+  if (!id || !player) {
+    return res.status(400).json({ error: 'Missing required data' });
+  }
+
+  const targetTable = PLAYER_TABLE_MAP[player];
+  if (!targetTable) {
+    return res.status(400).json({ error: 'Invalid player' });
+  }
+
+  // Backend required-field validation (FINAL authority)
+  const requiredFields = [
+    'date', 'season', 'competition', 'stage', 'forTeam', 'againstTeam',
+    'goals', 'assists', 'CC', 'BCC', 'Shot', 'dribbles', 'mnt',
+    'result', 'scorFor', 'scorAgainst'
+  ];
+
+  for (const field of requiredFields) {
+    if (insertData[field] === undefined || insertData[field] === '') {
+      return res.status(400).json({ error: 'Incomplete data' });
+    }
+  }
+
+  const pool = db.get();
+
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Failed to get DB connection' });
+    }
+
+    connection.beginTransaction(err => {
+      if (err) {
+        connection.release();
+        return res.status(500).json({ error: 'Transaction start failed' });
+      }
+
+      // 🔒 sanitize numeric fields
+      const intFields = [
+        'goals', 'pen', 'assists', 'mnt', 'Shot',
+        'dribbles', 'CC', 'BCC', 'Motm',
+        'againstRank', 'forRank'
+      ];
+
+      intFields.forEach(field => {
+        insertData[field] = normalizeInt(insertData[field]);
+      });
+
+      // optional string empties → NULL
+      const stringFields = ['goalTypes', 'astBy', 'astFor'];
+
+      stringFields.forEach(field => {
+        if (insertData[field] === '') insertData[field] = null;
+      });
+
+
+      // 1️⃣ Insert approved match into real table
+      connection.query(
+        `INSERT INTO ${targetTable} SET ?`,
+        insertData,
+        (err) => {
+          if (err) {
+            return connection.rollback(() => {
+              connection.release();
+              console.error(err);
+              res.status(500).json({ error: 'Insert failed' });
+            });
+          }
+
+          // 2️⃣ Delete from pending table
+          connection.query(
+            'DELETE FROM pending_matches WHERE No = ?',
+            [id],
+            (err) => {
+              if (err) {
+                return connection.rollback(() => {
+                  connection.release();
+                  console.error(err);
+                  res.status(500).json({ error: 'Delete failed' });
+                });
+              }
+
+              connection.commit(err => {
+                if (err) {
+                  return connection.rollback(() => {
+                    connection.release();
+                    console.error(err);
+                    res.status(500).json({ error: 'Commit failed' });
+                  });
+                }
+
+                connection.release();
+                res.json({ success: true });
+              });
+            }
+          );
+        }
+      );
+    });
+  });
+});
+
+
+
+router.post('/pending/reject', (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ error: 'Missing pending ID' });
+  }
+
+  db.get().query(
+    'DELETE FROM pending_matches WHERE No = ?',
+    [id],
+    (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Reject failed' });
+      }
+
+      res.json({ success: true });
+    }
+  );
+});
+
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (!isDev) {
@@ -349,7 +534,7 @@ router.get('/get-match/:matchDate', (req, res) => {
     return res.status(400).json({ success: false, error: 'Missing required fields' });
   }
 
-    displayHelper.getStats(playerTable, (err, allMatches) => {
+  displayHelper.getStats(playerTable, (err, allMatches) => {
     if (err) return res.status(500).json({ success: false });
 
     const match = allMatches.find(row => {

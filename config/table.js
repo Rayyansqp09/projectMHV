@@ -20,6 +20,7 @@ const tableNames = [
   'favOpponent_Mbappe',
   'favOpponent_Haaland',
   'favOpponent_Vinicius',
+  'pending_matches',
   'mhvinicius',
   'mhmbappe',
   'mhhaaland',

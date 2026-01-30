@@ -1,26 +1,17 @@
 const db = require('../config/connection');
-const {
-    fetchRecentFixtures,
-    fetchFixtureEvents,
-    fetchFixtureLineups,
-    MBAPPE_NAME
-} = require('../ApiCall/apiFootball');
-
 const { fetchRecentRealMadridMatches } = require('../ApiCall/apiFootball');
-const DUPLICATE_CHECK_ENABLED = true; // 🔁 turn ON later
 
+const DUPLICATE_CHECK_ENABLED = true;
 
-async function runMbappeFetchJob() {
+async function runViniciusFetchJob() {
     try {
         const matches = await fetchRecentRealMadridMatches(5);
-        console.log('Mbappe Matches fetched:', matches.length);
-
-
+        console.log('Vinicius matches fetched:', matches.length);
 
         const connection = db.get();
 
         for (const match of matches) {
-            const date = match.utcDate.split('T')[0]; // YYYY-MM-DD
+            const date = match.utcDate.split('T')[0];
             const competition = match.competition.name;
             const season = match.season.startDate.slice(0, 4);
 
@@ -42,52 +33,43 @@ async function runMbappeFetchJob() {
                 scorFor > scorAgainst ? 'WIN' :
                     scorFor < scorAgainst ? 'LOSS' : 'DRAW';
 
-            // 🔍 duplicate check (unchanged logic)
             let existsInPending = false;
             let existsInHistory = false;
 
             if (DUPLICATE_CHECK_ENABLED) {
-
                 existsInPending = await new Promise((resolve, reject) => {
                     connection.query(
                         `
-      SELECT 1 FROM pending_matches
-      WHERE player = 'Mbappe'
-        AND date = ?
-        AND forTeam = ?
-        AND againstTeam = ?
-      LIMIT 1
-      `,
+            SELECT 1 FROM pending_matches
+            WHERE player = 'Vinicius'
+              AND date = ?
+              AND forTeam = ?
+              AND againstTeam = ?
+            LIMIT 1
+            `,
                         [date, forTeam, againstTeam],
-                        (err, rows) => {
-                            if (err) reject(err);
-                            else resolve(rows.length > 0);
-                        }
+                        (err, rows) => err ? reject(err) : resolve(rows.length > 0)
                     );
                 });
 
                 existsInHistory = await new Promise((resolve, reject) => {
                     connection.query(
                         `
-    SELECT 1
-    FROM mhmbappe
-    WHERE ABS(DATEDIFF(date, ?)) <= 1
-    LIMIT 1
-    `,
+            SELECT 1 FROM mhvinicius
+            WHERE ABS(DATEDIFF(date, ?)) <= 1
+            LIMIT 1
+            `,
                         [date],
-                        (err, rows) => {
-                            if (err) reject(err);
-                            else resolve(rows.length > 0);
-                        }
+                        (err, rows) => err ? reject(err) : resolve(rows.length > 0)
                     );
                 });
-
             }
 
             if (existsInPending || existsInHistory) {
+
                 const source = existsInPending
                     ? 'pending_matches'
-                    : 'mhmbappe';
+                    : 'mhvinicius';
 
                 console.log(
                     `Skipping duplicate match [${source}]:`,
@@ -96,13 +78,11 @@ async function runMbappeFetchJob() {
                     'vs',
                     againstTeam
                 );
-
                 continue;
             }
 
-            // 🧾 Insert into pending (player stats left manual)
             const insertData = {
-                player: 'Mbappe',
+                player: 'Vinicius',
                 date,
                 season,
                 competition,
@@ -121,26 +101,12 @@ async function runMbappeFetchJob() {
                 scorAgainst
             };
 
-            connection.query(
-                'INSERT INTO pending_matches SET ?',
-                insertData,
-                (err, result) => {
-                    if (err) {
-                        console.error('❌ INSERT ERROR:', err.sqlMessage || err);
-                    } else {
-                        console.log('✅ INSERTED ROW ID:', result.insertId);
-                    }
-                }
-            );
-
-            console.log('PENDING MATCH DATA:', insertData);
-
+            connection.query('INSERT INTO pending_matches SET ?', insertData);
         }
 
-
     } catch (err) {
-        console.error('Mbappe fetch job failed:', err);
+        console.error('Vinicius fetch job failed:', err);
     }
 }
 
-module.exports = { runMbappeFetchJob };
+module.exports = { runViniciusFetchJob };

@@ -143,32 +143,6 @@ ${xmlUrls}
   res.send(sitemap);
 });
 
-
-router.get('/test-real-madrid', async (req, res) => {
-  try {
-    const axios = require('axios');
-    const response = await axios.get(
-      'https://v3.football.api-sports.io/teams',
-      {
-        headers: {
-          'x-apisports-key': process.env.API_FOOTBALL_KEY
-        },
-        params: {
-          search: 'Real Madrid'
-        }
-      }
-    );
-
-    res.json(response.data.response);
-  } catch (err) {
-    res.status(500).json(err.response?.data || err.message);
-  }
-});
-
-
-
-
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (!isDev) {

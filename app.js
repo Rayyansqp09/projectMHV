@@ -134,12 +134,15 @@ app.use((err, req, res, next) => {
 
 const cron = require('node-cron');
 const { runMbappeFetchJob } = require('./ApiData/MbappeMatches');
+const { runViniciusFetchJob } = require('./ApiData/ViniciusMatches');
+const { runHaalandFetchJob } = require('./ApiData/HaalandMatches');
 
-// TEMP (testing only)
-cron.schedule('* * * * *', () => {
-  console.log('Running Mbappe fetch job...');
-  runMbappeFetchJob();
+cron.schedule('* * * * *', async () => {
+  await runMbappeFetchJob();
+  await runViniciusFetchJob();
+  await runHaalandFetchJob();
 });
+
 
 
 

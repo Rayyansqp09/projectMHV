@@ -1,40 +1,50 @@
 const db = require('../config/connection');
 const {
-    fetchRecentFixtures,
-    fetchFixtureEvents,
-    fetchFixtureLineups,
-    MBAPPE_NAME
+    fetchRecentPremierLeagueMatches,
+    fetchRecentUCLMatches
 } = require('../ApiCall/apiFootball');
 
-const { fetchRecentRealMadridMatches } = require('../ApiCall/apiFootball');
-const DUPLICATE_CHECK_ENABLED = true; // 🔁 turn ON later
+const DUPLICATE_CHECK_ENABLED = true;
+const MAN_CITY_NAME = 'Manchester City FC';
 
-
-async function runMbappeFetchJob() {
+async function runHaalandFetchJob() {
     try {
-        const matches = await fetchRecentRealMadridMatches(5);
-        console.log('Mbappe Matches fetched:', matches.length);
+        const plMatches = await fetchRecentPremierLeagueMatches(20);
+        const clMatches = await fetchRecentUCLMatches(20);
+
+        const allMatches = [...plMatches, ...clMatches];
+
+        const matches = allMatches
+            .filter(
+                m =>
+                    m.homeTeam.name === MAN_CITY_NAME ||
+                    m.awayTeam.name === MAN_CITY_NAME
+            )
+            .sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate)) // 🔥 SORT
+            .slice(0, 5); // 🔒 LIMIT
 
 
+
+        console.log('Haaland matches fetched:', matches.length);
 
         const connection = db.get();
 
         for (const match of matches) {
-            const date = match.utcDate.split('T')[0]; // YYYY-MM-DD
+            const date = match.utcDate.split('T')[0];
             const competition = match.competition.name;
             const season = match.season.startDate.slice(0, 4);
 
             const home = match.homeTeam.name;
             const away = match.awayTeam.name;
 
-            const forTeam = home === 'Real Madrid CF' ? home : away;
-            const againstTeam = home === 'Real Madrid CF' ? away : home;
+            const forTeam = home === MAN_CITY_NAME ? home : away;
+            const againstTeam = home === MAN_CITY_NAME ? away : home;
 
-            const scorFor = home === 'Real Madrid CF'
+            const scorFor = home === MAN_CITY_NAME
                 ? match.score.fullTime.home
                 : match.score.fullTime.away;
 
-            const scorAgainst = home === 'Real Madrid CF'
+            const scorAgainst = home === MAN_CITY_NAME
                 ? match.score.fullTime.away
                 : match.score.fullTime.home;
 
@@ -42,52 +52,43 @@ async function runMbappeFetchJob() {
                 scorFor > scorAgainst ? 'WIN' :
                     scorFor < scorAgainst ? 'LOSS' : 'DRAW';
 
-            // 🔍 duplicate check (unchanged logic)
             let existsInPending = false;
             let existsInHistory = false;
 
             if (DUPLICATE_CHECK_ENABLED) {
-
                 existsInPending = await new Promise((resolve, reject) => {
                     connection.query(
                         `
-      SELECT 1 FROM pending_matches
-      WHERE player = 'Mbappe'
-        AND date = ?
-        AND forTeam = ?
-        AND againstTeam = ?
-      LIMIT 1
-      `,
+            SELECT 1 FROM pending_matches
+            WHERE player = 'Haaland'
+              AND date = ?
+              AND forTeam = ?
+              AND againstTeam = ?
+            LIMIT 1
+            `,
                         [date, forTeam, againstTeam],
-                        (err, rows) => {
-                            if (err) reject(err);
-                            else resolve(rows.length > 0);
-                        }
+                        (err, rows) => err ? reject(err) : resolve(rows.length > 0)
                     );
                 });
 
                 existsInHistory = await new Promise((resolve, reject) => {
                     connection.query(
                         `
-    SELECT 1
-    FROM mhmbappe
-    WHERE ABS(DATEDIFF(date, ?)) <= 1
-    LIMIT 1
-    `,
+            SELECT 1 FROM mhhaaland
+            WHERE ABS(DATEDIFF(date, ?)) <= 1
+            LIMIT 1
+            `,
                         [date],
-                        (err, rows) => {
-                            if (err) reject(err);
-                            else resolve(rows.length > 0);
-                        }
+                        (err, rows) => err ? reject(err) : resolve(rows.length > 0)
                     );
                 });
-
             }
 
             if (existsInPending || existsInHistory) {
+
                 const source = existsInPending
                     ? 'pending_matches'
-                    : 'mhmbappe';
+                    : 'mhhaaland';
 
                 console.log(
                     `Skipping duplicate match [${source}]:`,
@@ -96,13 +97,11 @@ async function runMbappeFetchJob() {
                     'vs',
                     againstTeam
                 );
-
                 continue;
             }
 
-            // 🧾 Insert into pending (player stats left manual)
             const insertData = {
-                player: 'Mbappe',
+                player: 'Haaland',
                 date,
                 season,
                 competition,
@@ -128,19 +127,15 @@ async function runMbappeFetchJob() {
                     if (err) {
                         console.error('❌ INSERT ERROR:', err.sqlMessage || err);
                     } else {
-                        console.log('✅ INSERTED ROW ID:', result.insertId);
+                        console.log('✅ HAALAND INSERTED ID:', result.insertId);
                     }
                 }
             );
-
-            console.log('PENDING MATCH DATA:', insertData);
-
         }
 
-
     } catch (err) {
-        console.error('Mbappe fetch job failed:', err);
+        console.error('Haaland fetch job failed:', err.message || err);
     }
 }
 
-module.exports = { runMbappeFetchJob };
+module.exports = { runHaalandFetchJob };

@@ -4,6 +4,8 @@ const multer = require('multer');
 const upload = multer(); // For parsing multipart/form-data
 const displayHelper = require('../helpers/disply');
 const db = require('../config/connection');
+const webpush = require('../config/push');
+
 require('dotenv').config();
 
 const NodeCache = require('node-cache');
@@ -49,6 +51,39 @@ function adminAuth(req, res, next) {
 router.use(adminAuth);
 
 
+
+// 🔔 Save admin push subscription
+router.post('/subscribe-push', (req, res) => {
+  console.log('📩 /subscribe-push HIT');
+
+  const { endpoint, keys } = req.body;
+
+  if (!endpoint || !keys) {
+    console.log('❌ Invalid subscription payload');
+    return res.status(400).json({ error: 'Invalid subscription' });
+  }
+
+  const data = {
+    endpoint,
+    p256dh: keys.p256dh,
+    auth: keys.auth
+  };
+
+  db.get().query(
+    'INSERT IGNORE INTO admin_push_subscriptions SET ?',
+    data,
+    err => {
+      if (err) {
+        console.error('❌ Push subscribe error:', err);
+        return res.sendStatus(500);
+      }
+
+      console.log('✅ ADMIN PUSH SUBSCRIPTION SAVED');
+      res.sendStatus(201);
+    }
+  );
+});
+
 /* GET users listing. */
 
 router.get('/pending', (req, res) => {
@@ -61,7 +96,8 @@ router.get('/pending', (req, res) => {
     res.render('user/PendingMatch', {
       admin: true,
       pendingMatches: pendingMatches,
-      pendingCount: pendingMatches.length
+      pendingCount: pendingMatches.length,
+      VAPID_PUBLIC_KEY: process.env.VAPID_PUBLIC_KEY
     });
   });
 });

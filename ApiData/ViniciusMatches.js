@@ -1,11 +1,18 @@
 const db = require('../config/connection');
 const { fetchRecentRealMadridMatches } = require('../ApiCall/apiFootball');
+const { notifyAdmins } = require('../helpers/adminpush');
+const webpush = require('../config/push');
+
+
+
+
+
 
 const DUPLICATE_CHECK_ENABLED = true;
 
 async function runViniciusFetchJob() {
     try {
-        const matches = await fetchRecentRealMadridMatches(5);
+        const matches = await fetchRecentRealMadridMatches(2);
         console.log('Vinicius matches fetched:', matches.length);
 
         const connection = db.get();
@@ -101,7 +108,29 @@ async function runViniciusFetchJob() {
                 scorAgainst
             };
 
-            connection.query('INSERT INTO pending_matches SET ?', insertData);
+            connection.query(
+                'INSERT INTO pending_matches SET ?',
+                insertData,
+                (err, result) => {
+                    if (err) {
+                        console.error('❌ Pending insert failed:', err.sqlMessage || err);
+                        return;
+                    }
+
+                    console.log('✅ Pending match inserted:', result.insertId);
+
+                    // 🔔 NOTIFY ADMINS — CORRECT PLACE
+                    notifyAdmins(
+                        '⚽ New Pending Match',
+                        'A new Vinicius match needs approval',
+                        {
+                            icon: '/images/vini2.webp'
+                        }
+                    );
+
+                }
+            );
+
         }
 
     } catch (err) {

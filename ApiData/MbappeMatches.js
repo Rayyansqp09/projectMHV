@@ -1,4 +1,7 @@
 const db = require('../config/connection');
+const { notifyAdmins } = require('../helpers/adminpush');
+
+
 const {
     fetchRecentFixtures,
     fetchFixtureEvents,
@@ -12,7 +15,7 @@ const DUPLICATE_CHECK_ENABLED = true; // 🔁 turn ON later
 
 async function runMbappeFetchJob() {
     try {
-        const matches = await fetchRecentRealMadridMatches(5);
+        const matches = await fetchRecentRealMadridMatches(2);
         console.log('Mbappe Matches fetched:', matches.length);
 
 
@@ -126,14 +129,25 @@ async function runMbappeFetchJob() {
                 insertData,
                 (err, result) => {
                     if (err) {
-                        console.error('❌ INSERT ERROR:', err.sqlMessage || err);
-                    } else {
-                        console.log('✅ INSERTED ROW ID:', result.insertId);
+                        console.error('❌ Pending insert failed:', err.sqlMessage || err);
+                        return;
                     }
+
+                    console.log('✅ Pending match inserted:', result.insertId);
+
+                    // 🔔 NOTIFY ADMINS — CORRECT PLACE
+                    notifyAdmins(
+                        '⚽ New Pending Match',
+                        'A new Mbappe match needs approval',
+                        {
+                            icon: '/images/mbappe2.webp'
+                        }
+                    );
+
                 }
             );
 
-            console.log('PENDING MATCH DATA:', insertData);
+            // console.log('PENDING MATCH DATA:', insertData);
 
         }
 

@@ -196,6 +196,66 @@
 </div>
 
 <script>
+(async function initAdminPush() {
+  console.log('🚀 Admin push init');
+
+  if (!('serviceWorker' in navigator)) {
+    console.log('❌ No serviceWorker support');
+    return;
+  }
+
+  if (!('PushManager' in window)) {
+    console.log('❌ No PushManager support');
+    return;
+  }
+
+  // 1️⃣ Register Service Worker
+  const reg = await navigator.serviceWorker.register('/sw.js');
+  console.log('🧩 Service Worker registered');
+
+  // 2️⃣ Ask permission
+  const permission = await Notification.requestPermission();
+  console.log('🔐 Permission:', permission);
+
+  if (permission !== 'granted') {
+    console.log('❌ Permission denied');
+    return;
+  }
+
+  // 3️⃣ Get / create subscription
+  let sub = await reg.pushManager.getSubscription();
+
+  if (!sub) {
+    sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: '{{VAPID_PUBLIC_KEY}}'
+    });
+    console.log('📨 New push subscription created');
+  } else {
+    console.log('♻️ Existing subscription reused');
+  }
+
+  // 4️⃣ Send to server
+  const res = await fetch('/admin/subscribe-push', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(sub)
+  });
+
+  console.log('📡 Subscribe response status:', res.status);
+
+  if (res.ok) {
+    console.log('✅ Admin push subscribed (saved in DB)');
+  } else {
+    console.log('❌ Failed to save subscription');
+  }
+})();
+</script>
+
+
+
+
+<script>
     document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('.pm-match-card').forEach(card => {
@@ -247,10 +307,10 @@
     });
 
     function updatePendingCount() {
-  const badge = document.getElementById('pending-count');
-  const cards = document.querySelectorAll('.pm-match-card');
-  badge.textContent = `${cards.length} Pending`;
-}
+        const badge = document.getElementById('pending-count');
+        const cards = document.querySelectorAll('.pm-match-card');
+        badge.textContent = `${cards.length} Pending`;
+    }
 
 </script>
 

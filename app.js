@@ -137,11 +137,16 @@ const { runMbappeFetchJob } = require('./ApiData/MbappeMatches');
 const { runViniciusFetchJob } = require('./ApiData/ViniciusMatches');
 const { runHaalandFetchJob } = require('./ApiData/HaalandMatches');
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 6 * * *', async () => {
   await runMbappeFetchJob();
   await runViniciusFetchJob();
   await runHaalandFetchJob();
-});
+},
+  {
+    timezone: "Asia/Kolkata" 
+  }
+
+);
 
 
 

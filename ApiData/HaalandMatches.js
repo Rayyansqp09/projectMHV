@@ -1,4 +1,6 @@
 const db = require('../config/connection');
+const { notifyAdmins } = require('../helpers/adminpush');
+
 const {
     fetchRecentPremierLeagueMatches,
     fetchRecentUCLMatches
@@ -21,7 +23,7 @@ async function runHaalandFetchJob() {
                     m.awayTeam.name === MAN_CITY_NAME
             )
             .sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate)) // 🔥 SORT
-            .slice(0, 5); // 🔒 LIMIT
+            .slice(0, 2); // 🔒 LIMIT
 
 
 
@@ -125,10 +127,21 @@ async function runHaalandFetchJob() {
                 insertData,
                 (err, result) => {
                     if (err) {
-                        console.error('❌ INSERT ERROR:', err.sqlMessage || err);
-                    } else {
-                        console.log('✅ HAALAND INSERTED ID:', result.insertId);
+                        console.error('❌ Pending insert failed:', err.sqlMessage || err);
+                        return;
                     }
+
+                    console.log('✅ Pending match inserted:', result.insertId);
+
+                    // 🔔 NOTIFY ADMINS — CORRECT PLACE
+                    notifyAdmins(
+                        '⚽ New Pending Match',
+                        'A new Haaland match needs approval',
+                        {
+                            icon: '/images/haaland2.webp'
+                        }
+                    );
+
                 }
             );
         }

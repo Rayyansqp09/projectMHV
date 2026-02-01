@@ -141,7 +141,7 @@ ${xmlUrls}
   res.set("Content-Type", "application/xml");
   res.set("Cache-Control", "public, max-age=86400");
   res.send(sitemap);
-});
+}); 
 
 /* GET home page. */
 router.get('/', function (req, res, next) {

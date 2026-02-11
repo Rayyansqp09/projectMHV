@@ -47,6 +47,7 @@ const tableNames = [
   'live_2024_25',
   'live_2025_26',
   'live_2025_26',
+  ,'live_2026_27',
   'live2025',
   'year2015', 'year2016', 'year2017', 'year2018', 'year2019', 'year2020', 'year2021',
   'year2022', 'year2023', 'year2024', 'year2025',

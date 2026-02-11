@@ -141,7 +141,7 @@ ${xmlUrls}
   res.set("Content-Type", "application/xml");
   res.set("Cache-Control", "public, max-age=86400");
   res.send(sitemap);
-}); 
+});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -535,6 +535,74 @@ router.get('/By-year', function (req, res, next) {
     });
   });
 });
+
+router.get('/By-season', function (req, res, next) {
+
+  const START_YEAR = 2015;
+
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth(); // 0-11
+
+  const SEASON_START_MONTH = 6; // July
+
+  const CURRENT_SEASON_YEAR =
+    currentMonth >= SEASON_START_MONTH
+      ? currentYear
+      : currentYear - 1;
+
+  const seasons = [];
+
+  for (let year = START_YEAR; year <= CURRENT_SEASON_YEAR; year++) {
+    const nextYear = String(year + 1).slice(-2);
+
+    seasons.push({
+      table: `live_${year}_${nextYear}`,
+      label: `${year}/${nextYear}`
+    });
+  }
+
+  seasons.reverse();
+
+  const tableNames = seasons.map(s => s.table);
+
+  displayHelper.getStats(tableNames, (err, stats) => {
+    if (err) {
+      console.error('Error getting stats:', err);
+      return res.status(500).send('Error loading stats');
+    }
+
+    const seasonData = seasons.map(season => {
+      const table = stats[season.table] || [];
+
+      const mb = table.find(p => p.Name === 'Mbappe') || {};
+      const hl = table.find(p => p.Name === 'Haaland') || {};
+      const vn = table.find(p => p.Name === 'Vinicius') || {};
+
+      mb.GA = (mb.Goals || 0) + (mb.Assists || 0);
+      hl.GA = (hl.Goals || 0) + (hl.Assists || 0);
+      vn.GA = (vn.Goals || 0) + (vn.Assists || 0);
+
+      return {
+        season: season.label,
+        mbappe: mb,
+        haaland: hl,
+        vinicius: vn
+      };
+    });
+
+    res.render('user/seasonTotal', {
+      admin: false,
+      seasons: seasonData,
+      title: 'Mbappe vs Haaland vs Vinicius | Stats by Season',
+      description: 'Season performance breakdown of Mbappe, Haaland, and Vinicius — goals, assists, and matches.'
+    });
+
+  });
+
+});
+
+
 
 router.get('/Penalty-Goals', function (req, res, next) {
   if (!isDev) {

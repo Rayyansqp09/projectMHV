@@ -1,0 +1,523 @@
+<h2 name="" class="stat-titleabove" id="year">STATS BY SEASON</h2>
+
+<div class="stat-navigation">
+    <a href="#goals" class="nav-btn">GOALS</a>
+    <a href="#assists" class="nav-btn">ASSISTS</a>
+    <a href="#ga" class="nav-btn">G/A</a>
+    <a href="#hattrick" class="nav-btn">HATTRICK</a>
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/season'">
+    <span>Detailed Stats By Season</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+
+<div class="table-container" id="goals">
+    <h2 name="" class="stat-title">Goals - ALL COMPETITIONS</h2>
+    <h2 name="club" class="stat-title2">(Including National Team Games)</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th>SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.Goals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.Goals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.Goals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="year2025">UPDATE</button>
+    {{/if}}
+
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/season'">
+    <span>Detailed Stats By Season</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container">
+    <h2 name="club" class="stat-title">GOALS - CLUB COMPETETION</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.clubGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.clubGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.clubGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="club" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h2 name="int" class="stat-title">GOALS - INTERNATIONAL</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.intGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.intGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.intGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="int" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="ga">
+    <h2 name="ucl" class="stat-title">GOAL Contributions</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.GA}}<br>
+                    <span class="stat-name">G/A</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.GA}}<br>
+                    <span class="stat-name">G/A</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.GA}}<br>
+                    <span class="stat-name">G/A</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ucl" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+
+<div class="table-container" id="assists">
+    <h2 name="int" class="stat-title">ASSISTS - All COMPETITIONS</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.Assists}}<br>
+                    <span class="stat-name">ASSISTS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.Assists}}<br>
+                    <span class="stat-name">ASSISTS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.Assists}}<br>
+                    <span class="stat-name">ASSISTS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="l" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+
+<div class="table-container" id="hattrick">
+    <h2 name="final" class="stat-title">Hattricks</h2>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.hattrick}}<br>
+                    <span class="stat-name">HATTRICKS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.hattrick}}<br>
+                    <span class="stat-name">HATTRICKS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.hattrick}}<br>
+                    <span class="stat-name">HATTRICKS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+
+
+<div class="table-container">
+    <h2 name="final" class="stat-title">FINAL STATS</h2>
+
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.finalGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.finalGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.finalGoals}}<br>
+                    <span class="stat-name">GOALS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="final" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="footer3-card footer3-cardfaq" onclick="location.href='/season'">
+    <span>Stats By Season</span>
+    <span class="footer2-arrow">&#8594;</span>
+</div>
+
+<div class="table-container" id="cc">
+    <h2 name="ucl" class="stat-title">Chance Created</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.CC}}<br>
+                    <span class="stat-name">CHANCE CREATED</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.CC}}<br>
+                    <span class="stat-name">CHANCE CREATED</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.CC}}<br>
+                    <span class="stat-name">CHANCE CREATED</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ucl" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="bcc">
+    <h2 name="ucl" class="stat-title">Big Chance Created</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.BCC}}<br>
+                    <span class="stat-name">BCC</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.BCC}}<br>
+                    <span class="stat-name">BCC</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.BCC}}<br>
+                    <span class="stat-name">BCC</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container" id="cc">
+    <h2 name="ucl" class="stat-title">successful dribbles</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{!-- Loop from 2025 down to 2015 --}}
+            {{#each seasons}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{season}}
+                </td>
+
+                <td class="stat-text">
+                    {{mbappe.dribbles}}<br>
+                    <span class="stat-name">DRIBBLES</span>
+                </td>
+
+                <td class="stat-text">
+                    {{haaland.dribbles}}<br>
+                    <span class="stat-name">DRIBBLES</span>
+                </td>
+
+                <td class="stat-text">
+                    {{vinicius.dribbles}}<br>
+                    <span class="stat-name">DRIBBLES</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="ucl" table="year2025">UPDATE</button>
+    {{/if}}
+</div>
+
+
+
+{{>sts-update}}
+
+
+<script>
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("a.dynamic-link");
+        const basePath = window.location.pathname.replace(/\/$/, ""); // Remove trailing /
+
+        links.forEach(link => {
+            const originalHref = link.getAttribute("href");
+
+            // If it's already absolute or an external link, skip
+            if (originalHref.startsWith("http") || originalHref.startsWith("/")) return;
+
+            // Update href to include current path
+            link.setAttribute("href", `${basePath}/${originalHref}`);
+        });
+    });
+
+
+    function toggleModal(button) {
+        // Find the closest table-container and get the h2 inside it
+        const headingElement = button.closest(".table-container").querySelector("h2");
+
+        // ✅ Display the heading text inside the modal
+        document.getElementById("statCategoryDisplay").textContent = headingElement.textContent;
+
+        // ✅ Send the 'name' attribute value to the backend via hidden input
+        document.getElementById("statCategoryInput").value = headingElement.getAttribute("name");
+        const tableName = button.getAttribute("table");
+        document.getElementById("tableNameDisplay").textContent = "Table Name";
+        document.getElementById("tableNameInput").value = tableName;
+
+
+
+        const modal = document.getElementById("modalOverlay");
+        modal.style.display = "flex"; // ensure it uses flex to center
+        modal.scrollIntoView({ behavior: "smooth", block: "center" }); // optional smooth scroll
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('statsForm');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+
+                // You can add fetch or form submission logic here
+                toggleModal(); // Close the modal
+            });
+        }
+    });
+
+
+</script>

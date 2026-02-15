@@ -1,6 +1,6 @@
 html,
 body {
-  background: hsl(0, 0%, 5%);
+  background: linear-gradient(to bottom, #0D0D0D, #1A1A1A);
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -15,8 +15,6 @@ body {
   overflow-x: visible;
   overflow-y: visible;
 }
-
-
 
 
 a {
@@ -228,7 +226,8 @@ a:hover {
 
 /* Container and Box Layout */
 .container {
-  display: flex;
+  display: none;
+  /* display: flex; */
   height: 359px;
   box-sizing: border-box;
   padding: 0 7rem !important;
@@ -639,7 +638,7 @@ p {
 /* Table */
 
 .Stats-table {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lexend', sans-serif;
   font-weight: 500;
   /* regular for body text */
   width: auto;
@@ -668,7 +667,8 @@ p {
 .Stats-table th {
   border-bottom: 2px solid #FFD700;
   /* keep header bottom line */
-  color: #FFFFFF;
+  color: #ffffff;
+  /* dark text used on top of yellow */
   font-weight: bold;
   font-size: 17px;
   background-color: #1A1A1A;
@@ -688,15 +688,16 @@ p {
 }
 
 .Stats-table .stat-name {
-  font-size: 0.7em;
+  font-size: 0.5em;
   color: #707070;
   display: block;
   margin-top: 4px;
+  font-weight: 400;
 }
 
 .stat-text {
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .stat-text {
@@ -704,8 +705,14 @@ p {
   text-transform: uppercase;
 }
 
-.Stats-table tbody .stat-text-tb2,.player-name-col {
+.Stats-table tbody .stat-text-tb2,
+.player-name-col {
   color: #c8c7c7 !important;
+}
+
+.stat-name-col {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .extra-row {
@@ -828,6 +835,7 @@ p {
   box-shadow: 0 8px 25px rgba(255, 215, 0, 0.08);
   box-sizing: border-box;
   /* Ensure padding included in width */
+  margin-bottom: 0;
 }
 
 .lookingbox-title {
@@ -2547,7 +2555,7 @@ footer {
   -webkit-overflow-scrolling: touch;
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.6),
+    0 10px 30px rgba(0, 0, 0, 0.6),
     inset 0 0 0 1px rgba(255, 215, 0, 0.25);
 }
 
@@ -2583,4 +2591,212 @@ footer {
   color: #ffd700;
   font-size: 16px;
   cursor: pointer;
+}
+
+
+
+/* ******************Detailed Profiles section in home page ********************* */
+
+.profile-card {
+  position: relative;
+  height: 200px;
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+/* IMAGE */
+.profile-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  z-index: 1;
+}
+
+.profile-card:hover .profile-bg {
+  transform: scale(1.05);
+}
+
+/* DARK GRADIENT */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  background:
+    linear-gradient(to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.75) 25%,
+      rgba(0, 0, 0, 0.45) 50%,
+      rgba(0, 0, 0, 0.2) 70%,
+      transparent 100%);
+}
+
+.profile-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 -80px 80px -20px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+
+
+/* TEXT + BUTTON */
+.profile-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  z-index: 3;
+  /* 🔥 THIS FIXES EVERYTHING */
+}
+
+.profile-content h4 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.profile-content p {
+  font-size: 12px;
+  color: gold;
+  margin: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.arrow-btn {
+  background: gold;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 4;
+}
+
+
+/* ===========================
+   TOGGLE BOX FROM CARD
+   ===========================
+   A container for toggle buttons, styled to match the dark theme.
+   You can place your toggle buttons inside this box for a cohesive look.*/
+
+/* ===== DESKTOP DEFAULT ===== */
+
+.season-form {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Lexend', sans-serif;
+}
+
+/* HEADER */
+.season-header {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 23rem;
+  align-items: right;
+  margin-bottom: 30px;
+}
+
+.season-header h2 {
+  margin: 0;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.live-badge {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 14px;
+  background: rgba(255, 217, 0, 0.2);
+  color: #ffd900;
+}
+
+/* DESKTOP LAYOUT — NO SCROLL */
+.form-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* CARD */
+.form-card {
+  flex: 0 0 220px;
+  background: #2d2a15;
+  border-radius: 16px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* IMAGE */
+.player-img {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.player-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rating {
+  position: absolute;
+  top: 6px;      /* ⬅️ change from bottom to top */
+  right: 6px;
+  background: #ffd900;
+  color: black;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+
+/* TEXT */
+.form-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.stats {
+  font-size: 13px;
+  color: #aaa;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* FORM BARS */
+.form-bars {
+  display: flex;
+  gap: 6px;
+}
+
+.bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 217, 0, 0.2);
+}
+
+.bar.active {
+  background: #ffd900;
 }

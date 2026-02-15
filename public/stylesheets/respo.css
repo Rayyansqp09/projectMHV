@@ -45,7 +45,7 @@
   .footer-top {
     grid-template-columns: 1fr;
     text-align: left !important;
-    margin-top: -55px;
+    margin-top: -20px;
   }
 
   .footer-about h2 {
@@ -84,6 +84,131 @@
     font-size: 11px;
     margin-top: -10px !important;
   }
+
+  
+  /* ******************Detailed Profiles section in home page ********************* */
+
+  .detailed-profiles {
+    padding: 20px;
+    margin-top: 1rem;
+  }
+
+  .section-title {
+    font-size: 17px !important;
+    font-weight: 500 !important;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #FFD700;
+  }
+
+  .profile-card {
+    position: relative;
+    height: 200px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .profile-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .profile-card:hover .profile-bg {
+    transform: scale(1.05);
+  }
+
+  .profile-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+
+  .profile-content h4 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .profile-content p {
+    font-size: 12px;
+    color: gold;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .arrow-btn {
+    background: gold;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+
+  /* *************Form Card in home************ */
+.season-form {
+    padding: 20px;
+  }
+
+  .season-header {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    gap: 0px;
+  }
+
+  .season-header h2 {
+    font-size: 14px;
+  }
+
+  .live-badge {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  /* MOBILE → horizontal scroll */
+  .form-cards {
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .form-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .form-card {
+    flex: 0 0 145px;
+    padding: 14px;
+    scroll-snap-align: center;
+  }
+
+  .form-card h3 {
+    font-size: 14px !important;
+  }
+
+  .stats {
+    font-size: 11px;
+  }
+
+  .bar {
+    height: 4px;
+  }
+
 
 }
 
@@ -464,7 +589,7 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 17px;
     font-weight: 700;
-    color: #FFD700;
+    
     text-align: center;
     margin-bottom: 0px;
   }
@@ -495,7 +620,7 @@
     padding: 10px 15px;
     border-bottom: 2px solid #FFD700;
     font-weight: bold;
-    background-color: #1A1A1A;
+
     /* keep header dark */
     position: sticky;
     top: 0;
@@ -542,7 +667,9 @@
   }
 
   .stat-text {
-    font-size: 1.0rem;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 900;
+    font-size: 1.05rem;
     font-weight: 500;
   }
 
@@ -550,11 +677,11 @@
     font-size: 0.8rem;
   }
 
-  .table-date-col{
+  .table-date-col {
     font-size: 0.8rem;
   }
 
-  .player-name-col{
+  .player-name-col {
     font-size: 0.92rem;
   }
 
@@ -689,6 +816,7 @@
     /* Equal left and right space */
     text-align: center;
     border-radius: 16px;
+    margin-bottom: 0;
   }
 
   .lookingbox-title {
@@ -1976,4 +2104,50 @@
     scrollbar-width: none;
   }
 
+}
+
+
+@media (min-width: 720px) {
+
+  .detailed-profiles {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    text-align: left;
+    font-size: 34px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    color: #FFD700;
+    font-weight: 500;
+  }
+
+  /* GRID ONLY FOR CARDS */
+  .profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+  }
+
+
+  .profile-card {
+    height: 380px;
+    margin-bottom: 0;
+  }
+
+  .profile-content h4 {
+    font-size: 30px;
+  }
+
+  .profile-content p {
+    font-size: 14px;
+  }
+
+  .arrow-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 34px;
+  }
 }

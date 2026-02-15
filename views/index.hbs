@@ -44,18 +44,128 @@
 </div>
 </section>
 
+<section class="season-form">
+
+  <div class="season-header">
+    <h2>Current Season Form</h2>
+    <span class="live-badge">LIVE UPDATES</span>
+  </div>
+
+  <div class="form-cards">
+    <!-- Mbappe -->
+    <div class="form-card">
+      <div class="player-img">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJe4fd-Yy_MSmpcls_z1RZ-uinHBOWI8XM8C0oDJDob2R-Hs8yApTfAktyVeOCdnzmgqRsDa8nN8Xqj70hM0vXpiApCN5dplxRSPBZORoaGVcsQIxc1n7mC_lizUzb2yUiC51PBbgDTDPNjBdJtaOAZljK-Fq2FZ1VmtqLuyX4iTmW8SCdxnGRRn9eoIQqHxQStBnCQW-7YJ9f7NVt3P0C_nnwi5Sh0vOsH7WjNpW5V03S98uszOvpWzHzKlAlIrNA-XBWtc5Nsuc" alt="Mbappe">
+        <span class="rating">8.4</span>
+      </div>
+
+      <h3>K. Mbappe</h3>
+
+      <div class="stats">
+        <span>Goals: 24</span>
+        <span>Assists: 07</span>
+      </div>
+
+      <div class="form-bars">
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+        <div class="bar"></div>
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+      </div>
+    </div>
+
+    <!-- Haaland -->
+    <div class="form-card">
+      <div class="player-img">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWB8cuTKkfaUasPdAjUre2prEoUvM43g8iWjFfzro8hZkmBq23TRu-8L4qfXLnbgGFWYmVnZRTS8rn5FNG8DIEHQdm8C3oImY5tdVUYRYP3F3soonunhVb1PQAxbnHQgYHKZZn116xhVY_OBUlUPf-MIb4M17TXFsuIYPghzeoz24SECav7jMkjU9SVFzYcub5ZnnafChtJ4Lbv4gUxJWcYFSfRo6E-50bqQe85e_h97T0XhnH1vQ_eHxbSPLZhk9Rf3DiCtgdHR8
+" alt="Haaland">
+        <span class="rating">8.9</span>
+      </div>
+
+      <h3>E. Haaland</h3>
+
+      <div class="stats">
+        <span>Goals: 31</span>
+        <span>Assists: 05</span>
+      </div>
+
+      <div class="form-bars">
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+      </div>
+    </div>
+
+    <!-- Vinicius -->
+    <div class="form-card">
+      <div class="player-img">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE1dEnz0NJ0_jzixvn2IZi_SKzbimJ57hg9M3hwciBHeOA1UBRj6LWMq0Y2wVF2yN4pTuxpdIxUX8Bfu5RQT6f0K5C07XjwOmXcLfKK9U-3F6OtSZNiNwKehdNKQ4cEAW8_cm72LqeC-mrLBXXYy1yvy-ySXTHWhgl0dTdhOQnYXlYrs4RM1cML1oq_0SWc_WyEHn0lsdJKgcZNkAWMjuwldwwqNfxV2wbNNypCkvky8V7GWuQLHGa5Z6O-VOEuUq11G0bnMauH8Y
+" alt="Vinicius">
+        <span class="rating">8.2</span>
+      </div>
+
+      <h3>Vinicius Jr.</h3>
+
+      <div class="stats">
+        <span>Goals: 18</span>
+        <span>Assists: 11</span>
+      </div>
+
+      <div class="form-bars">
+        <div class="bar"></div>
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="graph-section">
+  <!-- Season Toggle -->
+  <div class="toggle-row" style="margin-top: 20px;">
+    <div class="toggle-box" id="modeToggle">
+      <button class="toggle-btn active" id="seasonBtn">This Season</button>
+      <button class="toggle-btn" id="allTimeBtn">All Time</button>
+    </div>
+  </div>
+
+
+  <!-- Graph -->
+  <div id="chartWrapper" class="chart-fade">
+    <div id="progressGraph"></div>
+  </div>
+
+
+
+  <!-- Stats Toggle -->
+  <div class="toggle-row">
+    <div class="toggle-box" id="statToggle">
+      <button class="toggle-btn" id="goalsBtn">Goals</button>
+      <button class="toggle-btn" id="gplusBtn">G+</button>
+      <button class="toggle-btn" id="assistsBtn">Assists</button>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="footer3-card" onclick="location.href='/int-stats#graph-section'">
+  <span>International Stats Graph</span>
+  <span class="footer2-arrow">&#8594;</span>
+</div>
+
 <div class="tab-container">
   <button class="tab-btn" value="allTime">All Time Stats</button>
   <button class="tab-btn" value="thisSeason">This Season Stats</button>
   <button class="tab-btn" value="lastFive">Last Five Games</button>
 </div>
-
-<div class="social-icons" style="margin-top: -5px; margin-bottom: -20px;">
-    <a href="https://x.com/MHVstats" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://whatsapp.com/channel/0029VbAHqH1D8SE43me7bF0r" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-</div>
-
-
 
 <div id="allTime" class="stats-content">
   {{> pages/home }}
@@ -102,6 +212,121 @@
   <span>I have a suggestion</span>
   <span class="footer3-arrow">&#8594;</span>
 </div>
+
+<section class="detailed-profiles">
+  <h3 class="section-title">Detailed Profiles</h3>
+
+  <div class="profiles-grid">
+    <!-- Mbappe -->
+    <a href="/mbappe" class="profile-link">
+      <div class="profile-card">
+        <img src="/images/bio/mbappeProfCard.webp" alt="Kylian Mbappe" class="profile-bg">
+
+        <div class="overlay"></div>
+
+        <div class="profile-content">
+          <div>
+            <h4>Kylian Mbappe</h4>
+            <p>The Flash</p>
+          </div>
+
+          <button class="arrow-btn">&#8250;</button>
+        </div>
+      </div>
+    </a>
+
+    <!-- Haaland -->
+    <a href="/haaland" class="profile-link">
+      <div class="profile-card">
+        <img src="/images/bio/haalandProfCard.webp" alt="Erling Haaland" class="profile-bg">
+
+        <div class="overlay"></div>
+
+        <div class="profile-content">
+          <div>
+            <h4>Erling Haaland</h4>
+            <p>The Terminator</p>
+          </div>
+
+          <button class="arrow-btn">&#8250;</button>
+        </div>
+      </div>
+    </a>
+
+    <!-- Vinicius -->
+    <a href="/vinicius" class="profile-link">
+      <div class="profile-card">
+        <img src="/images/bio/vinicius2324.webp" alt="Vinicius Junior" class="profile-bg">
+
+        <div class="overlay"></div>
+
+        <div class="profile-content">
+          <div>
+            <h4>Vinicius Junior</h4>
+            <p>The Samba Star</p>
+          </div>
+
+          <button class="arrow-btn">&#8250;</button>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+<section class="performance-insight">
+    <div class="insight-box">
+
+        <h3 class="insight-title">
+            <span class="accent-bar"></span>
+            Who Stands Out at International Level?
+        </h3>
+
+        <p class="insight-text">
+            Directly comparing international careers requires context, as the environments these players
+            operate in are fundamentally different. Kylian Mbappé and Vinícius Júnior represent established
+            international superpowers in France and Brazil—teams that dominate possession, control matches,
+            and consistently reach the latter stages of major tournaments. Erling Haaland, by contrast,
+            leads a developing Norway side with limited resources and less exposure to major competitions.
+        </p>
+
+
+        <p class="insight-text">
+            Kylian Mbappé has built one of the strongest international records of his generation with France.
+            He has scored <span class="highlight">55 goals</span> in
+            <span class="highlight">94 matches</span> and consistently delivered in major tournaments,
+            including <span class="highlight">12 World Cup goals</span> across two editions, proving his
+            ability to perform on the biggest stages within an elite team.
+        </p>
+        <p class="insight-text">
+            Erling Haaland represents a contrasting case. Despite playing for a Norway side with limited
+            tournament exposure, he has scored <span class="highlight">55 goals</span> in just
+            <span class="highlight">48 matches</span>, averaging
+            <span class="highlight">1.15 goals per game</span>.
+            This level of efficiency is among the best in modern international football and highlights his
+            ability to produce elite numbers without the support of a dominant national team.
+        </p>
+
+        <p class="insight-text">
+            Vinícius Júnior plays a more role-based part for Brazil. His international goal tally
+            (<span class="highlight">8 goals</span>) is lower, but his impact is reflected through ball
+            progression, movement, and creating space for teammates within a
+            possession-heavy system.
+        </p>
+
+        <p class="insight-text">
+            Overall, Mbappé and Haaland currently lead in measurable international output, each standing out as the key
+            performer for their national teams. Vinícius, while already a world-class player, has not yet matched their
+            statistical impact at international level, though his age and role suggest strong potential for future
+            growth.
+
+        </p>
+
+
+    </div>
+</section>
+
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {

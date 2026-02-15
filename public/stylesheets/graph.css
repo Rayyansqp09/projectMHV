@@ -2,7 +2,7 @@
    GRAPH SECTION WRAPPER
    =========================== */
 #graph-section {
-  background: #0D0D0D;
+  /* background: #0D0D0D; */
   padding: 0px 20px;
 }
 
@@ -250,6 +250,7 @@
 @media (max-width: 480px) {
   #graph-section {
     padding: 0px 0px;
+    margin-top: 0px;
   }
 
   #progressGraph {
@@ -278,7 +279,8 @@
 
   .toggle-row {
     margin: 15px 0;
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 25px;
   }
 
 

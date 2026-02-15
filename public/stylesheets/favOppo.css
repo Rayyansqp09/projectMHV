@@ -256,7 +256,7 @@
 
 .insight-text {
   color: #d1d5db;
-  font-size: 18.5px;
+  font-size: 17.5px;
   line-height: 1.7;
   margin-bottom: 14px;
 }
@@ -489,16 +489,20 @@
     border-radius: 10px;
   }
 
-  .insight-title {
-    font-size: 21px !important;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
+.insight-title {
+  font-size: 18px !important;
+  gap: 10px;
+  margin-bottom: 15px;
 
-  .accent-bar {
-    width: 3px;
-    height: 18px;
-  }
+  display: flex;          /* key */
+  align-items: stretch;   /* makes bar match full height */
+}
+
+.accent-bar {
+  width: 3px;
+  height: auto;           /* let flex control height */
+}
+
 
   .insight-text {
     font-size: 15px;

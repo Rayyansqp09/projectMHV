@@ -80,6 +80,7 @@
   margin-bottom: 1.5rem;
 }
 
+
 .field-label {
   font-weight: 500;
   font-size: 0.85rem;
@@ -131,6 +132,7 @@
   width: 180px;
   font-size: 0.95rem !important;
   box-sizing: border-box;
+  color: #000;
 }
 
 /* Optional: Adjust checkbox labels inside dropdowns */
@@ -158,24 +160,34 @@
   /* don’t let it shrink */
 }
 
+.advanced-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
 
 .advanced-toggle {
   background: transparent;
   border: none;
   font-weight: 500;
   color: #000000;
-  margin: 0rem 0;
   cursor: pointer;
-  margin-left: 0px;
+  margin-top: 10px;
+
+  display: inline-flex;
+  align-items: center;   /* vertical alignment */
+  gap: 6px;              /* space between icon and text */
 }
 
-.advanced-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-  transition: all 0.3s ease;
+
+.advancedFltr-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+  color: #000000;
 }
+
 
 .advancedFltr-icon {
   width: 16px;
@@ -198,6 +210,7 @@
 .advanced-filters.hidden {
   display: none;
 }
+
 
 
 .advanced-filters input {
@@ -261,7 +274,7 @@
 
 .button-group {
   display: flex;
-
+ color: #000;
   gap: 0.5rem;
   /* spacing between buttons */
 }

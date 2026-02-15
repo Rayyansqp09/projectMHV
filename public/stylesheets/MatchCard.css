@@ -1,0 +1,505 @@
+.match-history-container {
+    background: #fff;
+    padding: 5px;
+    font-family: 'Segoe UI', sans-serif;
+    /* max-width: 1300px; */
+    margin: auto;
+    width: 100%;
+}
+
+#matches-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    /* space between cards */
+}
+
+
+.cardNew-wrapper {
+    background: #0f0f0f;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+}
+
+.cardNew-card {
+    font-family: 'Lexend', sans-serif;
+}
+
+.cardNew-score,
+.cardNew-statNum,
+.cardNew-metric span {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cardNew-score {
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 2px;
+}
+
+
+.cardNew-card {
+    width: 100%;
+    max-width: 100%;
+    background: #1A1A1A;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+/* MAIN */
+
+.cardNew-main {
+    padding: 10px 13px;
+}
+
+/* TOP ROW */
+
+.cardNew-topRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.cardNew-topLeft {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.cardNew-matchNo {
+    font-size: 10px;
+    /* font-weight: bold; */
+    color: #ffd900;
+    background: rgba(255, 217, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.cardNew-date {
+    font-size: 10px;
+    color: #9ca3af;
+}
+
+.cardNew-topRight {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 9px;
+    font-weight: bold;
+    color: #d1d5db;
+    text-transform: uppercase;
+}
+
+/* MIDDLE */
+
+.cardNew-middleRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    /* instead of space-between */
+    margin-bottom: 16px;
+}
+
+.cardNew-team {
+    text-align: center;
+    flex: 1;
+}
+
+.own-team {
+    color: #4ade80;
+}
+
+.cardNew-teamIcon {
+    font-size: 26px;
+}
+
+.cardNew-teamName {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.cardNew-scoreBlock {
+    text-align: center;
+    padding: 0 0px;
+}
+
+.cardNew-score {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cardNew-result {
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    padding: 2px 0px;
+    border-radius: 999px;
+}
+
+/* BOTTOM */
+
+.cardNew-bottomRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 🔥 this fixes it */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 9px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.cardNew-stats {
+    display: flex;
+    gap: 24px;
+}
+
+.cardNew-stats.desktop-Stat {
+    display: none;
+}
+
+.cardNew-topRight.desktop-Stat {
+    display: none;
+}
+
+
+.cardNew-statNum {
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.gold {
+    color: #FFD700;
+}
+
+.silver {
+    color: #C0C0C0;
+}
+
+.cardNew-statLabel {
+    font-size: 10px;
+    text-transform: uppercase;
+    opacity: .6;
+}
+
+.cardNew-detailsBtn {
+    font-size: 11px;
+    color: #ffd900;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* EXPANDED */
+
+.cardNew-expanded {
+    background: rgba(0, 0, 0, 0.35);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 18px;
+}
+
+.cardNew-section {
+    margin-bottom: 18px;
+}
+
+.cardNew-sectionTitle {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 10px;
+
+}
+
+/* METRICS GRID */
+
+.cardNew-metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.cardNew-metric {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 10px 6px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px; /* 🔥 controls space between number and label */
+}
+
+
+.cardNew-metric div {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cardNew-metric span {
+    font-size: 9px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    line-height: 1; /* try 1 or 1.1 */
+    margin-bottom: 0px;
+}
+
+/* CHIPS */
+
+.cardNew-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.cardNew-chip {
+    background: #2A2A2A;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+/* IMPACT */
+
+.cardNew-impactHeader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+
+.cardNew-impactValue {
+    color: #ffd900;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.cardNew-impactBar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.cardNew-impactFill {
+    width: 92%;
+    height: 100%;
+    background: linear-gradient(to right, #ffd900, #facc15);
+}
+
+/* ================= DESKTOP VERSION ================= */
+@media (min-width: 1024px) {
+
+    .cardNew-stats.desktop-Stat {
+        display: flex;
+        margin-right: 6rem;
+        margin-left: 0;
+        gap: 9rem;
+    }
+
+    .cardNew-stats.mobile-Stat {
+        display: none;
+    }
+
+    .mobile-Stat {
+        display: none;
+    }
+
+    .match-history-container {
+        padding: 3rem 3rem;
+
+    }
+
+    /* STACKED LIST → MORE BREATHING ROOM */
+    #matches-container {
+        gap: 14px;
+    }
+
+    /* CARD */
+    .cardNew-card {
+        border-radius: 22px;
+    }
+
+    /* MAIN */
+    .cardNew-main {
+        padding: 20px 26px;
+    }
+
+    /* TOP ROW */
+    .cardNew-topRow {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .cardNew-matchNo {
+        font-size: 13px;
+        padding: 0px 10px;
+    }
+
+    .cardNew-date {
+        font-size: 13px;
+    }
+
+
+    /* ===== MIDDLE ROW (KEY AREA) ===== */
+
+    .cardNew-middleRow {
+        margin-bottom: 15px;
+    }
+
+    .cardNew-topRight.desktop-Stat {
+        display: flex;
+        align-items: flex-start;
+        /* key change */
+        gap: 8px;
+        margin-right: 5rem;
+    }
+
+    .cardNew-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .cardNew-competition {
+        font-weight: 700;
+        line-height: 1.1;
+        font-size: 0.9rem;
+        color: #FFD700;
+    }
+
+    .cardNew-stage {
+        font-size: 0.7rem;
+        opacity: 0.8;
+        margin-top: 2px;
+    }
+
+
+    .cardNew-teamIcon {
+        font-size: 28px;
+    }
+
+    .cardNew-teamName {
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin-left: 0;
+    }
+
+    /* SCORE — MAKE IT THE HERO */
+    .cardNew-score {
+        font-size: 28px;
+        letter-spacing: 3px;
+    }
+
+    .cardNew-result {
+        font-size: 13px;
+        padding: 4px 14px;
+    }
+
+    .cardNew-statNum {
+        font-size: 25px;
+    }
+
+    /* ===== BOTTOM ===== */
+
+    .cardNew-bottomRow {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+
+
+
+    .cardNew-statLabel {
+        font-size: 11px;
+
+    }
+
+    /* center the button */
+    .cardNew-detailsBtn {
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 0;
+        padding-bottom: 0px;
+    }
+
+    /* ===== EXPANDED SECTION ===== */
+
+    .cardNew-expanded {
+        padding: 18px 25px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* metrics wider, chips narrower */
+        gap: 0px;
+    }
+
+
+
+    .cardNew-sectionTitle {
+        font-size: 13px;
+        margin-top: 0;
+    }
+
+    /* METRICS GRID — MORE COLUMNS ON DESKTOP */
+    .cardNew-metricsGrid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+    }
+
+    .cardNew-section:first-child {
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        padding-right: 24px;
+    }
+
+    .cardNew-section:nth-child(2) {
+        padding-left: 24px;
+    }
+
+
+    .cardNew-metric {
+        padding: 14px 0px;
+    }
+
+    .cardNew-metric div {
+        font-size: 22px;
+    }
+
+    .cardNew-metric span {
+        font-size: 10px;
+    }
+
+    /* CHIPS */
+    .cardNew-chip {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+
+    /* Match Impact should span full width */
+    .cardNew-section:last-child {
+        grid-column: 1 / -1;
+    }
+
+    /* IMPACT BAR */
+    .cardNew-impactHeader {
+        font-size: 13px;
+    }
+
+    .cardNew-impactBar {
+        height: 10px;
+    }
+
+}

@@ -142,4 +142,181 @@
         </form>
     </div>
 </div>
+
+
+{{!-- Reprt popup --}}
+  <div id="statsPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-box">
+      <h2>Report Inaccurate Stats</h2>
+      <form id="statsReportForm">
+        <!-- Email -->
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+        <!-- Match ID -->
+        <label for="matchId">Match No or Date:</label>
+        <input type="text" id="matchId" name="matchId" required placeholder="Enter match ID">
+
+        <!-- Stat Name & Current Stat -->
+        <label for="statName">Stat Name & Current Stat:(According to the page)</label>
+        <input type="text" id="statName" name="statName" required placeholder="e.g., Dribbles: 10">
+
+        <!-- Correct Stat -->
+        <label for="correctStat">Correct Stat:</label>
+        <input type="text" id="correctStat" name="correctStat" required placeholder="Enter correct value">
+
+        <!-- Extra Information -->
+        <label for="extra">Extra Information (Optional):</label>
+        <textarea id="extra" name="extra" placeholder="Provide source or additional details"></textarea>
+
+        <!-- Buttons -->
+        <div class="popup-actions">
+          <button type="submit" class="btn-submit">Submit</button>
+          <button type="button" id="closeStatsPopup" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Please Wait Popup -->
+  <div id="emailSendingPopup" class="mvhv-popup-wait" style="display:none;">
+    <div class="mvhv-popup-box1">
+      <p>✉️ Please wait, sending your email...</p>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div id="mvhvSuccessPopup" class="mvhv-popup-success" style="display:none;">
+    <div class="mvhv-popup-box">
+      <p>📨 Your message was sent successfully! We'll get back to you soon.</p>
+    </div>
+  </div>
+
+  <!-- Add Match Popup -->
+  <div id="addMatchPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-box">
+      <h2>Add New Match</h2>
+      <form id="addMatchForm">
+        <label for="playerTable">Player:</label>
+        <select id="playerTable" name="playerTable" required>
+          <option value="mhmbappe">Mbappe</option>
+          <option value="mhhaaland">Haaland</option>
+          <option value="mhvinicius">Vinicius</option>
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="season">Season:</label>
+        <input type="text" id="season" name="season" required>
+
+        <label for="competition">Competition:</label>
+        <input type="text" id="competition" name="competition" required>
+
+        <label for="stage">Stage:</label>
+        <input type="text" id="stage" name="stage" required>
+
+        <div class="two-col">
+
+
+          <div class="field">
+            <label for="forTeam">For Team:</label>
+            <input type="text" id="forTeam" name="forTeam" required>
+          </div>
+
+          <div class="field">
+            <label for="forRank">Rank</label>
+            <input type="number" id="forRank" name="forRank">
+          </div>
+
+          <div class="field">
+            <label for="againstTeam">Against Team:</label>
+            <input type="text" id="againstTeam" name="againstTeam" required>
+          </div>
+
+          <div class="field">
+            <label for="againstRank">Rank</label>
+            <input type="number" id="againstRank" name="againstRank">
+          </div>
+
+
+          <div class="field">
+            <label for="goals">Goals:</label>
+            <input type="number" id="goals" name="goals">
+          </div>
+
+          <div class="field">
+            <label for="pen">Penalty:</label>
+            <input type="number" id="pen" name="pen">
+          </div>
+
+          <div class="field">
+            <label for="assists">Assists:</label>
+            <input type="number" id="assists" name="assists">
+          </div>
+
+          <div class="field">
+            <label for="CC">CC:</label>
+            <input type="number" id="CC" name="CC">
+          </div>
+
+          <div class="field">
+            <label for="BCC">BCC:</label>
+            <input type="number" id="BCC" name="BCC">
+          </div>
+
+          <div class="field">
+            <label for="shot">Shot:</label>
+            <input type="number" id="shot" name="shot">
+          </div>
+
+          <div class="field">
+            <label for="dribbles">Dribbles:</label>
+            <input type="number" id="dribbles" name="dribbles">
+          </div>
+
+          <div class="field">
+            <label for="mnt">Minute Played:</label>
+            <input type="number" id="mnt" name="mnt" required>
+          </div>
+
+          <div class="field">
+            <label for="motm">MOTM:</label>
+            <input type="number" id="motm" name="motm">
+          </div>
+
+          <div class="field">
+            <label for="result">Result:</label>
+            <input type="text" id="result" name="result" required>
+          </div>
+
+          <div class="field">
+            <label for="scorFor">Score For:</label>
+            <input type="number" id="scorFor" name="scorFor">
+          </div>
+
+          <div class="field">
+            <label for="scorAgainst">Score Against:</label>
+            <input type="number" id="scorAgainst" name="scorAgainst">
+          </div>
+        </div>
+
+        <label for="goalTypes">Goal Types (comma separated):</label>
+        <input type="text" id="goalTypes" name="goalTypes">
+
+        <label for="astBy">Assist By:</label>
+        <input type="text" id="astBy" name="astBy">
+
+        <label for="astFor">Assist For:</label>
+        <input type="text" id="astFor" name="astFor">
+
+        <div class="popup-actions">
+          <button type="submit" class="btn-submit">Add</button>
+          <button type="button" id="closeAddMatchPopup" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   

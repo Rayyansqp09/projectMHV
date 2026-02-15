@@ -1,10 +1,10 @@
 @media (max-width: 350px) {
-    .filters-top {
+  .filters-top {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 0.3rem !important;
-    margin-left: -0.5rem  !important;
+    margin-left: -0.5rem !important;
   }
 
 }
@@ -36,7 +36,7 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 0.3rem !important;
-    margin-left: auto !important  ;
+    margin-left: auto !important;
     margin-right: auto !important;
   }
 
@@ -52,7 +52,7 @@
     padding: 0.6rem 1rem;
     border-radius: 12px;
     width: 149px !important;
-    height: 2.1rem ;
+    height: 2.1rem;
     font-size: 0.95rem !important;
     box-sizing: border-box;
   }
@@ -76,7 +76,7 @@
     gap: 1rem;
     margin-top: 1rem;
     transition: all 0.3s ease;
-   
+
   }
 
   .advanced-filters.hidden {
@@ -225,6 +225,11 @@
     /* keep same width as input/select */
   }
 
+  .filters-box input::placeholder {
+    font-size: 13px;
+    /* change to whatever you want */
+  }
+
 
   .filters-top {
     display: flex;
@@ -244,7 +249,7 @@
     border: none !important;
     padding: 0.6rem 1rem;
     border-radius: 12px;
-    max-width: 170px !important ;
+    max-width: 170px !important;
     height: 2.1rem !important;
     font-size: 0.95rem !important;
     box-sizing: border-box;
@@ -269,7 +274,7 @@
     gap: 1rem;
     margin-top: 1rem;
     transition: all 0.3s ease;
-     /* margin-left: -0.5rem !important; */
+    /* margin-left: -0.5rem !important; */
   }
 
   .advanced-filters.hidden {
@@ -840,7 +845,7 @@
     font-size: 0.9rem !important;
   }
 
-      .goal-type-list {
+  .goal-type-list {
     display: flex;
     flex-wrap: wrap;
     /* allow items to go to the next line if needed */
@@ -851,7 +856,8 @@
 
   .goal-type-item {
     border: 0.5px solid #ccc;
-    border-radius: 4px !important; /* small border radius */
+    border-radius: 4px !important;
+    /* small border radius */
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     font-size: 0.7rem;

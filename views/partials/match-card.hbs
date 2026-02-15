@@ -1,104 +1,224 @@
-<div class="match-card">
-  <div class="card-content">
-    <div class="card-header">
+<link
+  href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@400;500;600;700&family=Montserrat:wght@400;600;700;800&display=swap"
+  rel="stylesheet">
 
-      <div class="fst-row">
-        <span class="match-date">
-          <i class="icon-adjust icon-small no"></i> {{rowIndex}} </span>
-        <span class="date-text"><i data-lucide="calendar" class="icon-date"></i> {{dateFormatted}}</span>
-      </div>
-      <div class="scnd-row">
-        <div class="match-teams">
-          <span class="team-name for">{{forTeam}}</span>
-          <span class="team-name against">vs {{againstTeam}}</span>
+
+<div class="cardNew-wrapper">
+
+  <div class="cardNew-card match-card">
+
+    <!-- MAIN SECTION -->
+    <div class="cardNew-main">
+
+      <!-- TOP ROW -->
+      <div class="cardNew-topRow">
+
+        <div class="cardNew-topLeft">
+          <div class="cardNew-matchNo">#42</div>
+          <div class="cardNew-date">10 APR 2024</div>
         </div>
-        <div class="comp">
-          <span class="competition"><span class="cup">🏆</span>{{competition}}</span>
-          <span class="stage">{{stage}}</span>
+
+        <div class="cardNew-topRight mobile-Stat">
+          <div class="cardNew-trophy">🏆</div>
+          <div class="cardNew-competition">Champions League -</div>
+          <div class="cardNew-competition">Semi Final</div>
         </div>
-        <span class="goals"><img src="/images/goal.png" alt="Goal" class="icon-img" /> {{goals}}</span>
-        <span class="assists"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> {{assists}}</span>
-        <div class="result-badge result-badge-card {{result}} result">{{result}}</div>
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="details-toggle" onclick="toggleCardDetails(this)">Details <span class="arrow">▾</span></button>
-    </div>
-  </div>
-  <div class="card-details">
-    <div class="details-grid">
-      <div class="performance">
-        <strong>Performance</strong>
-        <div><span class="label"><img src="/images/goal.png" alt="Goal" class="icon-img" /> Goals:</span><span
-            class="value">{{goals}}</span></div>
-        <div><span class="label"><i data-lucide="arrow-right" class="icon-sm text-purple"></i> Assists:</span><span
-            class="value text-purple">{{assists}}</span></div>
-        <div><span class="label"><i data-lucide="target" class="icon-sm shot-icon"></i> Shot On Target:</span><span
-            class="value shot-icon">{{Shot}}</span></div>
-        <div><span class="label"><i data-lucide="trending-up" class="icon-sm text-blue"></i> Chances
-            Created:</span><span class="value text-blue">{{CC}}</span></div>
-        <div><span class="label"><i data-lucide="trending-up" class="icon-sm bcc-icon"></i> Big Chances
-            Created:</span><span class="value bcc-icon">{{BCC}}</span></div>
-        <div><span class="label"><i data-lucide="zap" class="icon-sm dribble-icon align-icon"></i> Dribbles:</span><span
-            class="value dribble-icon">{{dribbles}}</span></div>
-        <div><span class="label"><i data-lucide="clock" class="icon-sm text-blue-400 align-icon"></i> Minutes
-            Played:</span><span class="value">{{mnt}}'</span></div>
-      </div>
-      <div class="goal-types">
-        <strong>Goal Types</strong>
-        <div class="goal-type-list">
-          {{#if goalTypes}}
-          {{#each (split goalTypes ",")}}
-          <span class="goal-type-item">{{this}}</span>
-          {{/each}}
-          {{else}}
-          <span class="goal-type-item">None</span>
-          {{/if}}
-        </div>
+
       </div>
 
-      <div class="final-score">
-        <strong>Final Score</strong>
-        <div class="score-box">
-          <div class="score">{{scorFor}}-{{scorAgainst}}</div>
-          <div class="teams"><span class="for-team-score">{{forTeam}} </span>vs {{againstTeam}}</div>
-          <div class="result-badge {{result}}">{{result}}</div>
+
+      <!-- MIDDLE ROW -->
+      <div class="cardNew-middleRow">
+
+        <div class="cardNew-team">
+          <div class="cardNew-teamIcon">🛡️</div>
+          <div class="cardNew-teamName own-team">Paris Saint-Germain</div>
         </div>
+
+        <div class="cardNew-scoreBlock">
+          <div class="cardNew-score">3 - 2</div>
+          <div class="cardNew-result">W</div>
+        </div>
+
+        <div class="cardNew-team">
+          <div class="cardNew-teamIcon">🛡️</div>
+          <div class="cardNew-teamName">FC Barcelona</div>
+        </div>
+
+        <div class="cardNew-topRight desktop-Stat">
+          <div class="cardNew-trophy">🏆</div>
+
+          <div class="cardNew-text">
+            <div class="cardNew-competition">Champions League</div>
+            <div class="cardNew-stage">Semi Final</div>
+          </div>
+        </div>
+
+        <div class="cardNew-stats desktop-Stat">
+          <div class="cardNew-stat">
+            <div class="cardNew-statNum gold">2</div>
+            <div class="cardNew-statLabel">Goals</div>
+          </div>
+
+          <div class="cardNew-stat">
+            <div class="cardNew-statNum silver">1</div>
+            <div class="cardNew-statLabel">Assists</div>
+          </div>
+        </div>
+
       </div>
+
+
+      <!-- BOTTOM ROW -->
+      <div class="cardNew-bottomRow">
+
+        <div class="cardNew-stats mobile-Stat">
+          <div class="cardNew-stat">
+            <div class="cardNew-statNum gold">2</div>
+            <div class="cardNew-statLabel">Goals</div>
+          </div>
+
+          <div class="cardNew-stat">
+            <div class="cardNew-statNum silver">1</div>
+            <div class="cardNew-statLabel">Assists</div>
+          </div>
+        </div>
+
+        <div class="cardNew-detailsBtn" onclick="toggleCardDetails(this)">Details ▲</div>
+
+      </div>
+
     </div>
+
+
+
+    <!-- EXPANDED SECTION -->
+    <div class="cardNew-expanded hidden">
+
+
+      <!-- METRICS -->
+      <div class="cardNew-section">
+
+        <div class="cardNew-sectionTitle">
+          Key Performance Metrics
+        </div>
+
+        <div class="cardNew-metricsGrid">
+
+          <div class="cardNew-metric">
+            <div>2</div><span>Goals</span>
+          </div>
+          <div class="cardNew-metric">
+            <div>1</div><span>Assists</span>
+          </div>
+          <div class="cardNew-metric">
+            <div>4</div><span>Shots Target</span>
+          </div>
+          <div class="cardNew-metric">
+            <div>8</div><span>Dribbles</span>
+          </div>
+          <div class="cardNew-metric">
+            <div>3</div><span>Big Chances</span>
+          </div>
+          <div class="cardNew-metric">
+            <div>5</div><span>Chances</span>
+          </div>
+          <div class="cardNew-metric">
+            <div>82'</div><span>Mins</span>
+          </div>
+          <div class="cardNew-metric">
+            <div>46</div><span>Passes</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- GOAL DISTRIBUTION -->
+      <div class="cardNew-section">
+
+        <div class="cardNew-sectionTitle">
+          Goal Distribution
+        </div>
+
+        <div class="cardNew-chips">
+
+          <div class="cardNew-chip">Right Foot</div>
+          <div class="cardNew-chip">Long Range</div>
+          <div class="cardNew-chip">Header</div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- IMPACT -->
+      <div class="cardNew-section">
+
+        <div class="cardNew-impactHeader">
+          <div>Match Impact</div>
+          <div class="cardNew-impactValue">Elite (9.2)</div>
+        </div>
+
+        <div class="cardNew-impactBar">
+          <div class="cardNew-impactFill"></div>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </div>
 
+
+
 <script>
 
-  hbs.registerHelper('split', function(str, separator) {
-  if (!str) return [];
-  return str.split(separator).map(s => s.trim());
-});
-
-
-  document.querySelectorAll('.goals, .assists').forEach(el => {
-    const value = parseInt(el.textContent.trim(), 10);
-    if (!isNaN(value)) {
-      el.classList.add(value === 0 ? 'zero' : 'nonzero');
-    }
+  hbs.registerHelper('split', function (str, separator) {
+    if (!str) return [];
+    return str.split(separator).map(s => s.trim());
   });
 
+
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".score-box").forEach(box => {
-      const badge = box.querySelector(".result-badge");
-      if (!badge) return;
 
-      const result = badge.textContent.trim().toLowerCase();
+    /* ========= GOALS & ASSISTS ZERO / NONZERO ========= */
+    document.querySelectorAll('.cardNew-stat').forEach(stat => {
+      const numEl = stat.querySelector('.cardNew-statNum');
+      if (!numEl) return;
 
-      if (result === "win") {
-        box.style.backgroundColor = "rgba(34,197,94,0.12)";   // light green
-      } else if (result === "draw") {
-        box.style.backgroundColor = "rgba(245,158,11,0.12)";  // light orange
-      } else if (result === "loss") {
-        box.style.backgroundColor = "rgba(239,68,68,0.12)";   // light red
+      const value = parseInt(numEl.textContent.trim(), 10);
+
+      if (!isNaN(value)) {
+        numEl.classList.add(value === 0 ? 'zero' : 'nonzero');
       }
     });
+
+
+    /* ========= RESULT COLOR FOR SCORE BOX ========= */
+    document.querySelectorAll(".cardNew-scoreBox").forEach(box => {
+
+      const resultEl = box.querySelector(".cardNew-result");
+      if (!resultEl) return;
+
+      const result = resultEl.textContent.trim().toLowerCase();
+
+      if (result === "w" || result === "win") {
+        box.style.backgroundColor = "rgba(34,197,94,0.12)";   // green
+      }
+      else if (result === "d" || result === "draw") {
+        box.style.backgroundColor = "rgba(245,158,11,0.12)";  // orange
+      }
+      else if (result === "l" || result === "loss") {
+        box.style.backgroundColor = "rgba(239,68,68,0.12)";   // red
+      }
+
+    });
+
   });
 
 </script>

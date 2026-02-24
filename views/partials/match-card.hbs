@@ -14,14 +14,14 @@
       <div class="cardNew-topRow">
 
         <div class="cardNew-topLeft">
-          <div class="cardNew-matchNo">#42</div>
-          <div class="cardNew-date">10 APR 2024</div>
+          <div class="cardNew-matchNo">#{{rowIndex}}</div>
+          <div class="cardNew-date">{{dateFormatted}}</div>
         </div>
 
         <div class="cardNew-topRight mobile-Stat">
           <div class="cardNew-trophy">🏆</div>
-          <div class="cardNew-competition">Champions League -</div>
-          <div class="cardNew-competition">Semi Final</div>
+          <div class="cardNew-competition">{{competition}} -</div>
+          <div class="cardNew-competition">{{stage}}</div>
         </div>
 
       </div>
@@ -31,37 +31,42 @@
       <div class="cardNew-middleRow">
 
         <div class="cardNew-team">
-          <div class="cardNew-teamIcon">🛡️</div>
-          <div class="cardNew-teamName own-team">Paris Saint-Germain</div>
+          <div class="cardNew-teamIcon"><span class="material-symbols-outlined cardNew-teamIcon">
+              shield
+            </span></div>
+          <div class="cardNew-teamName own-team">{{forTeam}}</div>
         </div>
 
         <div class="cardNew-scoreBlock">
-          <div class="cardNew-score">3 - 2</div>
-          <div class="cardNew-result">W</div>
+          <div class="cardNew-score">{{scorFor}}-{{scorAgainst}}</div>
+          <div class="cardNew-result {{result}}">{{result}}</div>
         </div>
 
         <div class="cardNew-team">
-          <div class="cardNew-teamIcon">🛡️</div>
-          <div class="cardNew-teamName">FC Barcelona</div>
+          <div class="cardNew-teamIcon"><span class="material-symbols-outlined cardNew-teamIcon opponent">
+              shield
+            </span>
+          </div>
+          <div class="cardNew-teamName">{{againstTeam}}</div>
         </div>
 
         <div class="cardNew-topRight desktop-Stat">
           <div class="cardNew-trophy">🏆</div>
 
           <div class="cardNew-text">
-            <div class="cardNew-competition">Champions League</div>
-            <div class="cardNew-stage">Semi Final</div>
+            <div class="cardNew-competition">{{competition}}</div>
+            <div class="cardNew-stage">{{stage}}</div>
           </div>
         </div>
 
         <div class="cardNew-stats desktop-Stat">
           <div class="cardNew-stat">
-            <div class="cardNew-statNum gold">2</div>
+            <div class="cardNew-statNum">{{goals}}</div>
             <div class="cardNew-statLabel">Goals</div>
           </div>
 
           <div class="cardNew-stat">
-            <div class="cardNew-statNum silver">1</div>
+            <div class="cardNew-statNum">{{assists}}</div>
             <div class="cardNew-statLabel">Assists</div>
           </div>
         </div>
@@ -74,12 +79,12 @@
 
         <div class="cardNew-stats mobile-Stat">
           <div class="cardNew-stat">
-            <div class="cardNew-statNum gold">2</div>
+            <div class="cardNew-statNum">{{goals}}</div>
             <div class="cardNew-statLabel">Goals</div>
           </div>
 
           <div class="cardNew-stat">
-            <div class="cardNew-statNum silver">1</div>
+            <div class="cardNew-statNum">{{assists}}</div>
             <div class="cardNew-statLabel">Assists</div>
           </div>
         </div>
@@ -106,28 +111,28 @@
         <div class="cardNew-metricsGrid">
 
           <div class="cardNew-metric">
-            <div>2</div><span>Goals</span>
+            <div>{{goals}}</div><span>Goals</span>
           </div>
           <div class="cardNew-metric">
-            <div>1</div><span>Assists</span>
+            <div>{{assists}}</div><span>Assists</span>
           </div>
           <div class="cardNew-metric">
-            <div>4</div><span>Shots Target</span>
+            <div>{{Shot}}</div><span>Shots Target</span>
           </div>
           <div class="cardNew-metric">
-            <div>8</div><span>Dribbles</span>
+            <div>{{dribbles}}</div><span>Dribbles</span>
           </div>
           <div class="cardNew-metric">
-            <div>3</div><span>Big Chances</span>
+            <div>{{BCC}}</div><span>Big Chance Created</span>
           </div>
           <div class="cardNew-metric">
-            <div>5</div><span>Chances</span>
+            <div>{{CC}}</div><span>Chance Created</span>
           </div>
           <div class="cardNew-metric">
-            <div>82'</div><span>Mins</span>
+            <div>{{mnt}}'</div><span>Mins</span>
           </div>
           <div class="cardNew-metric">
-            <div>46</div><span>Passes</span>
+            <div></div><span>Passes</span>
           </div>
 
         </div>
@@ -145,9 +150,13 @@
 
         <div class="cardNew-chips">
 
-          <div class="cardNew-chip">Right Foot</div>
-          <div class="cardNew-chip">Long Range</div>
-          <div class="cardNew-chip">Header</div>
+          {{#if goalTypes}}
+          {{#each (split goalTypes ",")}}
+          <span class="cardNew-chip">{{this}}</span>
+          {{/each}}
+          {{else}}
+          <span class="cardNew-chip">None</span>
+          {{/if}}
 
         </div>
 
@@ -220,5 +229,11 @@
     });
 
   });
+
+  // ========= ADD GOLD CLASS FOR POSITIVE STATS =========
+
+
+
+
 
 </script>

@@ -1,0 +1,272 @@
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#111;
+}
+
+.h2h-section{
+  background:#1A1A1A;
+  padding:30px 0;
+  color:#fff;
+}
+
+/* Header */
+
+.h2h-header{
+  padding:0 16px 20px;
+}
+
+.h2h-header h3{
+  margin:0;
+  font-size:20px;
+}
+
+.h2h-header p{
+  margin:4px 0 0;
+  font-size:10px;
+  color:#777;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* Tabs */
+
+.h2h-tabs{
+  display:flex;
+  gap:6px;
+  background:rgba(0,0,0,.4);
+  padding:6px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.05);
+  margin:0 16px 25px;
+}
+
+.h2h-tab{
+  flex:1;
+  padding:10px;
+  font-size:10px;
+  text-transform:uppercase;
+  font-weight:bold;
+  background:none;
+  color:#999;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.h2h-tab-active{
+  background:#FFD700;
+  color:#000;
+}
+
+/* Card */
+
+.h2h-card{
+  margin:0 16px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+/* VS */
+
+.h2h-vs{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+
+.h2h-vs-circle{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:#000;
+  border:2px solid #FFD700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  color:#FFD700;
+  text-shadow:0 0 15px rgba(255,215,0,.7);
+}
+
+/* Players */
+
+.h2h-player{
+  text-align:center;
+  padding:30px 20px;
+}
+
+.h2h-mbappe{
+  background:rgba(0,65,112,.15);
+  border-right:1px solid rgba(255,255,255,.05);
+}
+
+.h2h-haaland{
+  background:rgba(108,171,221,.15);
+}
+
+.h2h-player-top span{
+  font-weight:bold;
+  color: #FFD700;
+}
+
+/* Avatar */
+
+.h2h-avatar{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:0 auto 10px;
+  border:2px solid;
+}
+
+.h2h-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.h2h-avatar-mbappe{ border-color:#004170; }
+.h2h-avatar-haaland{ border-color:#6CABDD; }
+
+/* Stats */
+
+.h2h-stats{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.h2h-stats b{
+  display:block;
+  font-size:24px;
+}
+
+.h2h-stats span{
+  font-size:9px;
+  color:#888;
+  text-transform:uppercase;
+}
+
+/* Draws */
+
+.h2h-draws{
+  grid-column:1 / -1;
+  text-align:center;
+  padding:10px;
+  background:rgba(0,0,0,.4);
+  border-top:1px solid rgba(255,255,255,.05);
+  font-size:12px;
+  color:#aaa;
+}
+
+.h2h-draws b{
+  color:#fff;
+  font-size:20px;
+}
+
+/* ================= DESKTOP ================= */
+
+@media (min-width: 1024px){
+
+  .h2h-section{
+    padding:70px 250px;
+  }
+
+  /* Header */
+
+  .h2h-header{
+    padding:0 60px 30px;
+  }
+
+  .h2h-header h3{
+    font-size:30px;
+  }
+
+  .h2h-header p{
+    font-size:12px;
+    letter-spacing:3px;
+  }
+
+  /* Tabs */
+
+  .h2h-tabs{
+    margin:0 60px 40px;
+    gap:10px;
+    padding:10px;
+    border-radius:16px;
+  }
+
+  .h2h-tab{
+    padding:14px;
+    font-size:12px;
+    border-radius:12px;
+  }
+
+  /* Card */
+
+  .h2h-card{
+    margin:0 60px;
+    border-radius:24px;
+  }
+
+  /* VS */
+
+  .h2h-vs-circle{
+    width:90px;
+    height:90px;
+    font-size:20px;
+    border-width:3px;
+  }
+
+  /* Players */
+
+  .h2h-player{
+    padding:55px 40px;
+  }
+
+  /* Avatar */
+
+  .h2h-avatar{
+    width:120px;
+    height:120px;
+    margin-bottom:16px;
+    border-width:3px;
+  }
+
+  /* Stats */
+
+  .h2h-stats{
+    margin-top:30px;
+    gap:26px;
+  }
+
+  .h2h-stats b{
+    font-size:33px;
+  }
+
+  .h2h-stats span{
+    font-size:12px;
+  }
+
+  /* Draws */
+
+  .h2h-draws{
+    padding:16px;
+    font-size:14px;
+  }
+
+  .h2h-draws b{
+    font-size:26px;
+  }
+
+}

@@ -218,25 +218,20 @@
   transform: translateY(-1px);
 }
 
-/* Default: hide both */
+
+/* Default: hide mobile */
 .mobile-only {
   display: none !important;
 }
 
-.desktop-only {
-  display: none !important;
-}
-
-/* Show on mobile (up to 768px) */
+/* On small screens, swap */
 @media (max-width: 768px) {
-  .mobile-only {
-    display: block;
-  }
-}
-
-/* Show on desktop (769px and above) */
-@media (min-width: 769px) {
   .desktop-only {
-    display: block;
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: inline-block !important;
+    /* or flex, depending on layout */
   }
 }

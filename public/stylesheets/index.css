@@ -154,10 +154,7 @@ a:hover {
   box-shadow: 0px 0px 6px rgba(255, 215, 0, 0.25);
 }
 
-/* 🖥️ Desktop-only section */
-.desktop-only {
-  display: block;
-}
+
 
 
 
@@ -753,7 +750,7 @@ p {
   color: #2A2A2A !important;
   /* keep pure white */
   font-weight: 900;
-  font-size: 36x;
+  font-size: 36px;
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 3rem;
@@ -1479,6 +1476,7 @@ footer {
   color: white;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  margin-top: 10px;
 }
 
 /* BLUE THEME - MBAPPE */
@@ -1565,14 +1563,21 @@ footer {
 }
 
 .donation-container h1 {
+  font-size: 23px;
   color: #111;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .donation-container p {
   color: #555;
   line-height: 1.6;
-  font-size: 16px;
+  font-size: 14px;
+  padding: 10px;
+}
+
+#donationAmount {
+  color: #000000;   /* color of the number you type */
+  font-size: 16px;  /* size of the number you type */
 }
 
 .donate-button {
@@ -1631,10 +1636,11 @@ footer {
 
 
 .footer2-follow {
+  display: none;
   text-align: center;
   margin-top: 30px;
   padding: 20px 0;
-  background: #f9fafb;
+  /* background: #f9fafb; */
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
@@ -1650,6 +1656,7 @@ footer {
   display: flex;
   justify-content: center;
   gap: 20px;
+  color: #ffffff;
 }
 
 .footer2-icon {
@@ -1870,7 +1877,6 @@ footer {
 #mvhvAdForm input:focus,
 #mvhvAdForm textarea:focus {
   border-color: #FFD700;
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
   outline: none;
 }
 
@@ -1924,7 +1930,6 @@ footer {
   font-family: 'Segoe UI', sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
   /* gold glow */
   max-width: 90%;
   width: 420px;
@@ -2084,8 +2089,6 @@ footer {
   max-width: 520px;
   color: #FFFFFF;
   position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(255, 215, 0, 0.08);
   /* subtle gold outline */
   font-family: 'Montserrat', sans-serif;
 }
@@ -2135,7 +2138,6 @@ footer {
 #fbv-modal-form input:focus,
 #fbv-modal-form textarea:focus {
   border-color: #FFD700;
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
   outline: none;
 }
 
@@ -2175,8 +2177,7 @@ footer {
   /* optional: smaller max width */
   color: #FFFFFF;
   position: relative;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-  border: 1px solid #FFD700;
+  border: 1px solid #080808;
 
   max-height: 90vh;
   /* increased visible height */
@@ -2196,10 +2197,9 @@ footer {
 }
 
 #fbv-inaccurate-modal .fbv-modal-content::-webkit-scrollbar-thumb {
-  background-color: #FFD700;
+  background-color: #7c7c7c;
   /* gold scrollbar */
-  border-radius: 5px;
-  border: 1px solid #FFD700;
+  border-radius: 15px;
 }
 
 #fbv-inaccurate-modal .fbv-modal-content::-webkit-scrollbar-thumb:hover {
@@ -2244,7 +2244,7 @@ footer {
   background-color: #2A2A2A;
   /* tertiary background */
   color: #FFFFFF;
-  border: 1px solid #FFD700;
+  border: 1px solid #555555;
   /* gold border */
   border-radius: 5px;
   font-family: 'Segoe UI', sans-serif;
@@ -2253,8 +2253,7 @@ footer {
 
 #fbv-inaccurate-form input:focus,
 #fbv-inaccurate-form textarea:focus {
-  border-color: #FFD700;
-  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  border-color: #ffffff;
 }
 
 #fbv-inaccurate-form textarea {
@@ -2288,7 +2287,6 @@ footer {
   /* secondary dark background */
   padding: 20px 30px;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
   /* subtle gold glow */
   max-width: 350px;
   color: #FFFFFF;

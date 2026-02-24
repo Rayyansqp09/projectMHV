@@ -218,6 +218,10 @@ router.get('/', function (req, res, next) {
     const haalandMatches = getLastFiveMatches('mhhaaland');
     const viniciusMatches = getLastFiveMatches('mhvinicius');
 
+    const mbappeSeasonRating = displayHelper.calculateSeasonRating(mbappeSeason);
+    const haalandSeasonRating = displayHelper.calculateSeasonRating(haalandSeason);
+    const viniciusSeasonRating = displayHelper.calculateSeasonRating(viniciusSeason);
+
     // Final data
     const data = {
       admin: false,
@@ -233,6 +237,10 @@ router.get('/', function (req, res, next) {
       mbappe_last20,
       haaland_last20,
       vini_last20,
+      mbappeSeasonRating,
+      haalandSeasonRating,
+      viniciusSeasonRating,
+
       [`mbappe_${cleanKey}`]: mbappeSeason,
       [`haaland_${cleanKey}`]: haalandSeason,
       [`vinicius_${cleanKey}`]: viniciusSeason,
@@ -828,6 +836,37 @@ router.get('/feedback', (req, res) => {
     header: false
   });
 });
+
+router.get('/head-to-head/:pair?', (req, res) => {
+
+  const pair = (req.params.pair || 'mbappe-haaland').toLowerCase();
+
+  const h2hMap = {
+    'mbappe-haaland': 'h2h_mbappe_haaland',
+    'haaland-vini': 'h2h_haaland_vini',
+    'vini-mbappe': 'h2h_vini_mbappe'
+  };
+
+  if (!h2hMap[pair]) {
+    return res.status(400).send('Invalid pair');
+  }
+
+  displayHelper.getH2HStats(h2hMap[pair], (err, stats) => {
+    if (err) return res.status(500).send('Error');
+
+    // 🔹 If AJAX request → return JSON
+    if (req.query.partial === '1') {
+      return res.json(stats);
+    }
+
+    // 🔹 Otherwise render full page
+    res.render('user/HeadtoHead', {
+      activePair: pair,
+      stats
+    });
+  });
+});
+
 
 
 // 👇 Place this BEFORE your /Match-History/:player route

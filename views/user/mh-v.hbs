@@ -39,6 +39,7 @@
 
   <form class="filters-box" onsubmit="return false;">
     <div class="filters-top">
+
       <div class="form-field">
         <label class="field-label">Competition</label>
         <select name="competition" id="competition">
@@ -266,15 +267,6 @@
         Report
       </button>
 
-      <!-- Popup -->
-      <div id="statsPopup2" class="popup hidden">
-        <div class="popup-content">
-          <button id="openInaccuratePopup" class="popup-btn">Report Inaccurate Stats</button>
-          <button class="popup-btn" onclick="window.location.href='/feedback#report'">Report An Issue / Bug</button>
-          <button id="closePopup" class="popup-close">Close</button>
-        </div>
-      </div>
-
       <div class="sort-container">
         <button type="button" class="clear-button sort-manual bottm-row-item" id="sortBtn"><i
             data-lucide="arrow-up-down" class="sort-icon"></i>Sort</button>
@@ -289,10 +281,11 @@
 
 
 
-  <div class="header-row">
-    <span>Match no</span>
+  <div class="header-row desktop-only">
+    <span>no</span>
     <span><i data-lucide="calendar" class="icon-adjust icon-small"></i> Date</span>
     <span>For</span>
+    <span>Score</span>
     <span>Against</span>
     <span>🏆 Tournament</span>
     <span>Stage</span>
@@ -311,7 +304,7 @@
         class="desktop-only"> Total</span> Goals: <span id="totalGoals">{{totalGoals}} </span><span class="desktop-only"
         style="display: inline;"> Total</span> Assists: <span id="totalAssists">{{totalAssists}}</span>
     </span>
-  </div><br>
+  </div>
 
 
   {{!-- <!-- Loader -->
@@ -339,7 +332,9 @@
 {{!-- loadMoreBtn --}}
 
 {{>filterPop}}
+
 <script>
+
   window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash;
 
@@ -421,7 +416,6 @@
       button.textContent = "Details ▼";
     }
   }
-
 
 
 
@@ -827,11 +821,19 @@
 
     // Sorting
     sortBtn?.addEventListener('click', () => sortPopup.classList.toggle('hidden'));
+
     sortRadios.forEach(radio => radio.addEventListener('change', () => {
       currentSort = radio.value;
       sortPopup.classList.add('hidden');
       applyFilters();
     }));
+
+    document.addEventListener('click', (e) => {
+      if (!sortPopup.contains(e.target) && !sortBtn.contains(e.target)) {
+        sortPopup.classList.add('hidden');
+      }
+    });
+
 
     loadMoreBtn?.addEventListener('click', () => {
       fetchMatches(
@@ -992,5 +994,24 @@
     if (overlay) overlay.classList.remove('show');
   }, 800);
 
-
 </script>
+
+<script>
+function colorStats() {
+  document.querySelectorAll('.cardNew-statNum').forEach(el => {
+    const value = Number(el.textContent.trim());
+    if (value > 0) el.classList.add('gold');
+  });
+}
+
+const observer = new MutationObserver(() => {
+  colorStats();
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+  characterData: true
+});
+</script>
+

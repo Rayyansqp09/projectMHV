@@ -117,16 +117,10 @@
     </div>
   </div>
 
-
-
-  <!-- Scroll Label placed right before .line -->
-  <div class="scroll-label" onclick="window.location.href='/vote'">
-    <span>Vote For Your BEST Now</span>
-  </div>
-
 </section>
 {{/unless}}
 
+{{#unless (eq head "off")}}
 <section class="intro-hero">
   <div class="intro-hero-inner">
 
@@ -137,8 +131,7 @@
       <div class="intro-player">
         <div class="intro-glow"></div>
         <div class="intro-avatar mbappe-border">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnx5kiqh3wDmVP0dQALcLdok9zxzBeU1aLkiBRwWXBdYcEyjgzTytujj8ccCp4mbqh4PhSCmKgJIPyOdJL2bGYycPPtdWpZkIED5yVbQ10VI5K6VrLeNhKdU1QNGW4Zh8NToeoQpWgY_zumdvIqT89_alQ_au33X5lFOF1PlPGGwvC3bbMRXWLutoLFEajBs3ddiINMyFYDfhmEfZUCGIS7xcGSbLzi9xaXVqS8Jh7I82E27YsTUP6OUul3gV0lBT3SS2OqCsnUKg" />
+          <img src="/images/Intro/MbappeIntro.png" />
         </div>
       </div>
 
@@ -146,8 +139,7 @@
       <div class="intro-player intro-player-main">
         <div class="intro-glow intro-glow-strong"></div>
         <div class="intro-avatar intro-avatar-main haaland-border">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuYnscPC1kiJ0L1g064Cu6hwgeAvBd_3y7QNkoDiFvXChm1UxVELz7cB0aeFPJcygO_Qp4uAn4acIKxsfu7L4IvP-DOM_0MANYLLYvI0yYhCEQ9jNbcDhyRFhzrnUh6wRA7WBa_n2zp3O3mg3sNk9d-NH1BM7LyMdPO9UByAfzUFBGozWU6jR4204p8RqNWilUt-Pv-LxGlH8UD9WhzftW_vm1fRlxMMGsIn5ZKSAb6caadB27ubUtYidYXo_RFGmrAKUC1mLME3Q" />
+          <img src="/images/Intro/HaalandIntro.png" />
         </div>
       </div>
 
@@ -155,8 +147,7 @@
       <div class="intro-player">
         <div class="intro-glow"></div>
         <div class="intro-avatar vini-border">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS46y389AdBG96iWOdA-t1hOAfQTLWjxYZP4kwffi8JYfOGDDEtbpQF7PkC9yrcuPltA2KkRoU7NpXfwVqq6JXadlx4aRnVhVHWYsVK6JX5q3Wv49vKW1hjfknWyDr8ZirA2-gMOHghRFU5pX6eeBrtDsk4QGewm-k1A3skQKSBmDlavE9roKzJIEbdeDqTkAogrjIcA0hJ88J4sMLA-MaQJ0bNqis8DeEGydKo8ZpPdXNRh5JD6uEKnPMUWPXlMNXU35MWv_W9nk" />
+          <img src="/images/Intro/ViniIntro.png" />
         </div>
       </div>
 
@@ -183,7 +174,12 @@
 
 
 </section>
+{{/unless}}
 
+<!-- Scroll Label placed right before .line -->
+{{!-- <div class="scroll-label" onclick="window.location.href='/vote'">
+  <span>Vote For Your BEST Now</span>
+</div> --}}
 <div class="line"></div>
 
 

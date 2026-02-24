@@ -1,0 +1,82 @@
+<section class="h2h-section">
+  <div class="h2h-header">
+    <h3>Direct Confrontations</h3>
+    <p>Head-to-Head History</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="h2h-tabs">
+    <button class="h2h-tab h2h-tab-active" data-pair="mbappe-haaland">Mbappé vs Haaland</button>
+    <button class="h2h-tab" data-pair="haaland-vini">Haaland vs Vini</button>
+    <button class="h2h-tab" data-pair="vini-mbappe">Vini vs Mbappé</button>
+
+  </div>
+
+  <!-- Card -->
+  <div class="h2h-card">
+
+    <!-- VS Circle -->
+    <div class="h2h-vs">
+      <div class="h2h-vs-circle">VS</div>
+    </div>
+
+    <!-- Mbappe -->
+    <div class="h2h-player h2h-mbappe">
+      <div class="h2h-player-top">
+        <div class="h2h-avatar h2h-avatar-mbappe">
+          <img src="/images/Intro/mbappeFormCard.png">
+        </div>
+        <span>Mbappe</span>
+      </div>
+
+      <div class="h2h-stats">
+        <div><b>4</b><span>Games</span></div>
+        <div><b>5</b><span>Goals</span></div>
+        <div><b>2</b><span>Assists</span></div>
+        <div><b>4</b><span>Wins</span></div>
+        <div><b>0</b><span>Loses</span></div>
+        <div><b>0</b><span>Draws</span></div>
+      </div>
+    </div>
+
+    <!-- Haaland -->
+    <div class="h2h-player h2h-haaland">
+      <div class="h2h-player-top">
+        <div class="h2h-avatar h2h-avatar-haaland">
+          <img src="/images/Intro/haalandFormCard.png">
+        </div>
+        <span>Haaland</span>
+      </div>
+
+      <div class="h2h-stats">
+        <div><b>4</b><span>Games</span></div>
+        <div><b>5</b><span>Goals</span></div>
+        <div><b>2</b><span>Assists</span></div>
+        <div><b>4</b><span>Wins</span></div>
+        <div><b>0</b><span>Loses</span></div>
+        <div><b>0</b><span>Draws</span></div>
+      </div>
+    </div>
+
+    <!-- Draws -->
+    <div class="h2h-draws">
+      Total Draws: <b>1</b>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.h2h-tab').forEach(tab => {
+    tab.addEventListener('click', async () => {
+
+      const pair = tab.dataset.pair;
+
+      const res = await fetch(`/head-to-head/${pair}?partial=1`);
+      const data = await res.json();
+
+      updateH2HCard(data);
+    });
+  });
+
+</script>

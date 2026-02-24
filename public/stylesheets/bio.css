@@ -231,6 +231,7 @@
     background-color: #2A2A2A;
     overflow: hidden;
     text-align: center;
+
 }
 
 .highlight-quote .quote-background {
@@ -258,7 +259,8 @@
     width: 72px;
     height: 72px;
     color: #FFD700;
-    margin-bottom: 40px;
+    margin-bottom: 1rem !important;
+    margin: 0 auto;
 }
 
 
@@ -476,6 +478,7 @@
     /* required for webkit */
     text-overflow: ellipsis;
     /* show "..." at the end */
+    margin-bottom: 13px;
 }
 
 /* Section background */
@@ -654,7 +657,7 @@ h2 {
 .nm-article-content p,
 li {
     color: #fffffff4;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 300;
 }
 
@@ -800,15 +803,15 @@ li {
         font-size: 15px;
     }
 
-        .bio-section p {
+    .bio-section p {
         font-size: 16px !important;
     }
 
-        .bio-section h2 {
+    .bio-section h2 {
         font-size: 24px;
     }
 
-        .bio-section {
+    .bio-section {
         padding: 25px 8% !important;
     }
 
@@ -828,6 +831,7 @@ li {
         width: 72px;
         height: 72px;
         margin-bottom: 30px;
+        margin: 0 auto;
     }
 
     .highlight-quote .quote-content p {
@@ -848,6 +852,7 @@ li {
     .notable-moments {
         width: 100%;
         padding: 10px 3%;
+        margin-top: 10px;
     }
 
     /* Horizontal scroll container */
@@ -965,9 +970,9 @@ li {
     }
 
     .nm-title-content .nm-short-description {
-    font-size: 14px;
-    margin-bottom: 8px;
-}
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
 
     .nm-article-content {
         padding: 0px 5%;

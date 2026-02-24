@@ -222,11 +222,11 @@
 /* Explanation Pergraph Section Css */
 
 .performance-insight {
-  margin-top: 0px;
+  margin-top: 2.5rem;
   padding: 0 10px;
   margin-left: 15.3rem;
   margin-right: 15.3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .insight-box {
@@ -274,6 +274,44 @@
   color: #dfdcdc;
 }
 
+.gn-vote-wrap {
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center if needed */
+  padding: 0px;             /* breathing space on small screens */
+  padding-bottom: 30px; /* space below the button */
+}
+
+.gn-vote-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: clamp(16px, 2.5vw, 18px); /* responsive text */
+  font-weight: 700;
+  color: #111 !important;
+  background: #FFD600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  max-width: 90vw;           /* prevents overflow on tiny screens */
+  text-align: center;
+}
+
+.gn-vote-btn:hover {
+  background: #ffea00;
+  transform: translateY(-2px);
+}
+
+.gn-vote-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(255, 214, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+  .gn-vote-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
 
 /* responsive */
 

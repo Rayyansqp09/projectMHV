@@ -340,3 +340,221 @@
   height: 100%;
   background: linear-gradient(to right, #ffd900, #ffb700);
 }
+
+
+<section class="match-history-container">
+  <br>
+  <h1 id="match-history" class="match-history-title">Match History-{{playerName}}</h1>
+  <p class="match-history-subtitle">Complete record of all matches played by {{playerFullName}}</p>
+
+  <div class="tab-container-mh">
+    <div class="tab tab-mh" data-target="mbappe" href="/">Mbappe</div>
+    <div class="tab tab-mh" data-target="haaland">Haaland</div>
+    <div class="tab tab-mh" data-target="vinicius">Vinicius</div>
+  </div>
+
+  <form class="filters-box" onsubmit="return false;">
+    <div class="filters-top">
+      <div class="form-field">
+        <label class="field-label">Competition</label>
+        <select name="competition" id="competition">
+          <option>All</option>
+          <option value="World Cup,Copa América,UEFA Euro">International Major Competitions</option>
+          <option
+            value="World Cup,Copa América,UEFA Euro,World Cup Qualifiers,WCQ,UEFA Nations League (A),UEFA Nations League (B),UEFA Euro Qualifiers">
+            International Competitive Games</option>
+          <option
+            value="La liga,Série A,Ligue 1,Bundesliga,Eliteserien,Seria A,National 2 Group D,National 2 Group C,1. divisjon,Premier League,Segunda División B">
+            Domestic League</option>
+          <option value="La liga,Ligue 1,Bundesliga,Eliteserien,Seria A,Série A,Premier League">Domestic League (Top
+            Division
+            Only)</option>
+          {{#each dynamicFilters.competition}}
+          <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Stage</label>
+        <select name="stage" id="stage">
+          <option>All</option>
+          <option>League Stage</option>
+          <option value="Group Stage,League Phase,League phase,Group stage">Group Stage</option>
+          <option>Knockout</option>
+          <option>Round of 16</option>
+          <option>Quarter Final</option>
+          <option>Semi Final</option>
+          <option value="Final,Final (1st Leg)">Final</option>
+          <option value="Knockout Play-offs,Playoffs,play-off round,playoffs">Playoffs</option>
+          <option>3rd Place</option>
+          <option>Preliminary Round</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Season</label>
+        <select name="season" id="season">
+          <option>All</option>
+          <option value="2025-26">2025-26</option>
+          <option value="2024-25">2024-25</option>
+          <option value="2023-24">2023-24</option>
+          <option value="2022-23">2022-23</option>
+          <option value="2021-22">2021-22</option>
+          <option value="2020-21">2020-21</option>
+          <option value="2019-20">2019-20</option>
+          <option value="2018-19">2018-19</option>
+          <option value="2017-18">2017-18</option>
+          <option value="2016-17">2016-17</option>
+          <option value="2015-16">2015-16</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <!-- Add more seasons as needed -->
+        </select>
+      </div>
+
+
+
+      <div class="form-field">
+        <label class="field-label">Minimum Goals</label>
+        <input type="number" name="minGoals" id="minGoals" placeholder="Minimum Goals">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Minimum Assists</label>
+        <input type="number" name="minAssists" id="minAssists" placeholder="Minimum Assists">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">For (team)</label>
+        <select name="for" id="for">
+          <option>All</option>
+          <option
+            value="AS Monaco B,Monaco,Paris SG,Bryne FK,Molde,RB Salzburg,Dortmund,Manchester City,Flamengo,Real Madrid,Real Madrid Castilla">
+            All Clubs
+          </option>
+
+          {{#each dynamicFilters.forTeam}}
+          <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <button type="button" class="advanced-toggle" id="toggleAdvanced">
+      <i data-lucide="settings" class="advancedFltr-icon"></i> Advanced Filters <span id="arrow">▾</span>
+    </button>
+
+    <div class="advanced-filters hidden" id="advancedFilters">
+
+      <div class="form-field">
+        <label class="field-label">Goal Types</label>
+        <div class="dropdown-checkbox">
+          <button type="button" class="dropdown-toggle" onclick="toggleDropdown(this)">
+            Goal Types
+          </button>
+
+          <div class="dropdown-options hidden">
+            <label for="goal-penalty"><input id="goal-penalty" class="goal-type" type="checkbox" name="goalTypes"
+                value="Penalty">Penalty</label>
+
+            <label for="goal-freekick"><input id="goal-freekick" class="goal-type" type="checkbox" name="goalTypes"
+                value="Free Kick">Free Kick</label>
+
+            <label for="goal-outside"><input id="goal-outside" class="goal-type" type="checkbox" name="goalTypes"
+                value="Outside the Box">Outside the Box</label>
+
+            <label for="goal-inside"><input id="goal-inside" class="goal-type" type="checkbox" name="goalTypes"
+                value="Inside the Box">Inside the Box</label>
+
+            <label for="goal-header"><input id="goal-header" class="goal-type" type="checkbox" name="goalTypes"
+                value="Header">Header</label>
+
+            <label for="solo-run"><input id="solo-run" class="goal-type" type="checkbox" name="goalTypes"
+                value="Solo Run">Solo Run</label>
+
+            <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
+                value="Dribble past 3+ players">Dribble Past 3+ Players</label>
+
+            <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
+                value="Dribble past the keeper"> Dribble past the keeper</label>
+
+            <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
+                value="Chip over the keeper">Chip over the keeper</label>
+
+            <label for="goal-dribble"><input id="goal-dribble" class="goal-type" type="checkbox" name="goalTypes"
+                value="Chest">Chest</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Year</label>
+        <select name="year" id="year">
+          <option>All</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <!-- Add more years as needed -->
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Chances Created</label>
+        <input type="number" name="chancesCreated" id="chancesCreated" placeholder="Chances Created">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Big Chance Created</label>
+        <input type="number" name="bigChancesCreated" id="bigChancesCreated" placeholder="Big Chances Created">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Dribbles</label>
+        <input type="number" name="dribbles" id="dribbles" placeholder="Dribbles">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Minutes Played</label>
+        <input type="number" name="minutesPlayed" id="minutesPlayed" placeholder="Minutes Played">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Against (team)</label>
+        <input type="text" name="against" id="against" placeholder="Against">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Number of Match</label>
+        <input type="number" name="matchNo" id="matchNo" placeholder="Enter Match No">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Match Date</label>
+        <input type="date" name="matchDate" id="matchDate">
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Match Result</label>
+        <select name="rest" id="rest">
+          <option>All</option>
+          <option>Win</option>
+          <option>Loss</option>
+          <option>Draw</option>
+        </select>
+      </div>
+    </div>
+
+    </div>
+
+  </form>

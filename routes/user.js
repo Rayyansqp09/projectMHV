@@ -922,7 +922,7 @@ router.get('/Match-History/:player', (req, res) => {
 
   // 👇 Add short + full names
   const playerNames = {
-    mbappe: { name: 'Mbappé', full: 'Kylian Mbappé' },
+    mbappe: { name: 'Mbappe', full: 'Kylian Mbappe' },
     haaland: { name: 'Haaland', full: 'Erling Haaland' },
     vinicius: { name: 'Vinícius', full: 'Vinícius Júnior' }
   };

@@ -53,7 +53,7 @@
     background: #f1f5f9;
     padding: 5px;
     border-radius: 14px;
-    margin: 18px 0;
+    margin: 18px 20px;
 }
 
 .tab-mh {
@@ -1141,9 +1141,10 @@
     .tab-container-mh {
         padding: 6px;
         border-radius: 16px;
-        margin: 18px 0;
+        margin: 18px 25rem;
         margin-top: 20px;
         border: 1px solid #dfdcdc;
+        margin-bottom: 30px;
     }
 
     .tab-mh {

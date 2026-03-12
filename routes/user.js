@@ -845,9 +845,12 @@ router.get('/head-to-head/:players', (req, res) => {
   const pair = `${p1}-${p2}`;
   const table = `hth_${p1}_${p2}`;
 
-  player1 = p1
-  player2 = p2
-  
+
+  const capitalize = s => s[0].toUpperCase() + s.slice(1);
+
+  player1 = capitalize(p1);
+  player2 = capitalize(p2);
+
   displayHelper.getStats([table], (err, stats) => {
     if (err) return res.status(500).send('Error');
 

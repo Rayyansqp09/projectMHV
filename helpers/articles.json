@@ -522,5 +522,49 @@
         }
       ]
     }
+  },
+  "h2h": {
+    "mbappe-haaland": {
+      "title": "The New Vanguard: A Comparative Analysis of Mbappé and Haaland",
+      "paragraphs": [
+        "As the era of Lionel Messi and Cristiano Ronaldo transitions into history, the footballing world has found its next great binary. The rivalry between Kylian Mbappé and Erling Haaland is not merely a competition for goals; it is a clash of two distinct philosophies of attacking excellence.",
+        "I. Direct Head-to-Head History",
+        "While domestic paths have largely kept them apart, their encounters in the UEFA Champions League have served as high-stakes laboratories for comparison.",
+        "2019/20 Round of 16 (Dortmund vs. PSG): This was the definitive starting gun. Haaland announced his arrival with a clinical brace in Germany, while Mbappé provided a vital assist. The second leg saw PSG overturn the lead, but the narrative was set: two titans, each capable of deciding a tie single-handedly.",
+        "2024/25 Round of 32 (Man City vs. Real Madrid): The stakes shifted with Mbappé’s move to Madrid. In a high-octane 2-3 victory for Real Madrid, Haaland showcased his volume-scoring prowess with two goals, while Mbappé’s transition play and goal proved decisive in Madrid’s tactical execution.",
+        "The Trend: Statistically, Haaland thrives in direct matchups, averaging 1.33 goals per game when facing Mbappé. Conversely, Mbappé’s teams have historically found greater success in progressing through knockout stages, suggesting a contrast between individual statistical dominance and team-wide tactical impact.",
+        "II. Tactical Archetypes: The Flair vs. The Machine",
+        "The most compelling aspect of this rivalry is the radical difference in their playing styles.",
+        "The Creative Catalyst (Mbappé): Mbappé is a multi-phase attacker. His game is built on dribbling (2.7 successful per game) and progressive carries (71 per season). He doesn't just finish moves; he initiates them. His presence forces defenses to drop deeper, creating space for midfielders like Bellingham and Vinícius Jr.",
+        "The Box Specialist (Haaland): Haaland is the ultimate 'destroyer.' He operates with a 'Terminator' mindset, focusing almost exclusively on shot-conversion and penalty-box movement. While his passing volume is lower (58% accuracy vs Mbappé’s 81%), his efficiency is historic. He initiates fewer 'dangerous attacks' but finishes them with a higher non-penalty goal percentage."
+      ]
+    },
+    "haaland-vinicius": {
+      "title": "Haaland vs Vinícius Jr : Head-to-Head Comparison.",
+      "paragraphs": [
+        "In the hierarchy of modern football, the rivalry between Erling Haaland and Vinicius Júnior represents a clash of pure efficiency versus creative chaos. While they rarely occupy the same vertical space on the pitch, their impact on the game is equally transformative, serving as the primary 'force multipliers' for the world's two most dominant clubs: Manchester City and Real Madrid.",
+        "I. Head-to-Head: The European Theater",
+        "Because they play in different domestic leagues, their direct competition is almost exclusively staged in the UEFA Champions League. This 'Continental Derby' has become an annual fixture of tactical high-stakes.",
+        "The Decisive Tie (2023/24 Semi-Finals): This series crystallized their roles. Vinicius was the primary outlet for Real Madrid’s transitions, scoring a blistering long-range goal in the first leg. Conversely, Haaland’s presence acted as a 'distraction,' drawing multiple defenders to open space for City's midfielders",
+        "The 2025/26 League Phase: In their most recent European clash, the statistical divergence was stark. Haaland found the net twice, capitalizing on high-volume service, while Vinicius registered two assists and one goal, illustrating his role as both a finisher and a primary playmaker.",
+        "The Verdict: In direct meetings, Haaland tends to lead in raw goals, but Vinicius often boasts higher Expected Threat (xT) and Match Ratings due to his constant ball progression and defensive displacement.",
+        "II. Tactical Archetypes: Specialization vs. Versatility",
+        "The core of this comparison lies in how they interact with the ball and the opposition's defensive structure.",
+        "Erling Haaland (The Specialist): Haaland is a master of the 'minimalist' approach. He often records fewer than 25 touches per 90 minutes, yet his movement creates an immense gravity that pulls center-backs out of position. His game is defined by shot conversion (17.9%) and high-percentage finishing in the 'danger zone' (the 6-yard box).",
+        "Vinicius Jr. (The Volume Dribbler): Vinicius is a high-engagement player. Leading the world in progressive carries (approx. 138 per season) and successful 1v1s, he is a volume dribbler who forces defenders into fouls and yellow cards. His evolution from a pure winger into a 'clutch' interior forward has seen his passing accuracy rise to an impressive 75.7% for a high-risk player."
+      ]
+    },
+    "mbappe-vinicius": {
+      "title": "Mbappé vs Vinicius: Pace and Creativity",
+      "paragraphs": [
+        "The rivalry between Kylian Mbappé and Vinícius Júnior is unique in modern football history. Unlike the distance of the Messi-Ronaldo era, these two have transitioned from being the primary weapons of rival European giants to occupying the same tactical space. This analysis breaks down their competitive history, from their Champions League clashes to their upcoming international showdown.",
+        "I. Direct Competitive History (The Rival Years)",
+        "Before Mbappé’s arrival in Madrid in the summer of 2024, the two faced off in high-stakes European nights. These matches were often framed as the 'Battle of the Left Wing.'",
+        "The 2021/22 UCL Round of 16 (PSG vs. Real Madrid): This remains their most iconic direct confrontation.",
+        "Mbappé's Dominance: Kylian was the undisputed star of the tie, scoring the winner in the first leg and another in the second.",
+        "Vinícius' Response: While Mbappé won the individual 'box score' of the tie, Vinícius provided the crucial assist for Karim Benzema that sparked Madrid’s historic comeback.",
+        "The Narrative Shift: During this era, Mbappé was seen as the 'finished product' and a global icon, while Vinícius was the 'rising challenger' fighting for elite recognition. By the time they became teammates, Vinícius had secured two Champions League titles to Mbappé’s zero, leveling the prestige of the matchup."
+      ]
+    }
   }
 }

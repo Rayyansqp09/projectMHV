@@ -214,7 +214,7 @@
 
 @media (max-width: 384px) {
   .dropup-menu {
-    width: 230px !important;
+    width: 230px;
 
   }
 
@@ -364,7 +364,7 @@
     background-color: #1A1A1A;
     border: 1px solid rgba(255, 215, 0, 0.25);
     border-radius: 10px;
-    padding: 20px 6px;
+    padding: 15px 6px;
     box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.8);
     min-width: auto;
     /* wide enough for two columns */
@@ -387,7 +387,7 @@
   .dropdown-section {
     margin-bottom: 5px;
     /* grid handles spacing */
-    margin-top: 0px;
+    margin-top: 5px;
   }
 
   /* ✨ Section Heading */
@@ -417,7 +417,7 @@
     text-decoration: none;
     font-size: 11px;
     font-weight: 500;
-    padding: 6px 10px;
+    padding: 4px 10px;
     border-radius: 6px;
     transition: all 0.25s ease;
     display: block;
@@ -884,19 +884,19 @@
     min-width: 180px;
     bottom: 35px;
     right: 0;
-    width: 290px;
+    width: 270px;
     margin-right: 0px;
     margin-bottom: 18px;
     height: auto;
-    top: -540px;
+    top: -560px;
   }
 
   .dropup-menu a {
-    padding: 8px;
-    font-size: 13px;
+    padding: 15px;
+    font-size: 14px;
     font-weight: 500;
     padding-left: 20px;
-    padding-top: 10px;
+    /* padding-top: 10px; */
 
   }
 
@@ -908,8 +908,8 @@
   }
 
   .submenu a {
-    padding: 8px;
-    font-size: 13px;
+    padding: 10px;
+    font-size: 14px;
     padding-left: 24px;
     /* 👈 Adds space to make it feel like a sub-item */
     position: relative;

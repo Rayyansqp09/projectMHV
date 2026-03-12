@@ -153,8 +153,7 @@ module.exports = {
       console.log('✅ Modify SQL:', sql);
       console.log('➡️ Values:', values);
     });
-  }
-  ,
+  },
 
   // Delete a match by match number
   deleteMatch: function (tableName, matchNumber, callback) {
@@ -275,6 +274,32 @@ module.exports = {
 
     // 9. Hard Clamp (1.0 to 10.0)
     return Math.max(1, Math.min(10, finalRating)).toFixed(2);
+  },
+  getBars(p1, p2) {
+
+    const exclude = ['player', 'matches'];
+
+    const bars = {};
+
+    Object.keys(p1).forEach(key => {
+
+      if (exclude.includes(key)) return;
+
+      const v1 = p1[key] || 0;
+      const v2 = p2[key] || 0;
+
+      const total = v1 + v2;
+
+      bars[key] = total === 0
+        ? { p1: 50, p2: 50 }
+        : {
+          p1: (v1 / total) * 100,
+          p2: (v2 / total) * 100
+        };
+
+    });
+
+    return bars;
   },
 
 

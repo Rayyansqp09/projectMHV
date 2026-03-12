@@ -837,37 +837,45 @@ router.get('/feedback', (req, res) => {
   });
 });
 
-router.get('/head-to-head/:pair?', (req, res) => {
+router.get('/head-to-head/:players', (req, res) => {
+  const [p1, p2] = req.params.players.split('-');
 
-  const pair = (req.params.pair || 'mbappe-haaland').toLowerCase();
+  if (!p1 || !p2) return res.status(404).send('Invalid URL');
 
-  const h2hMap = {
-    'mbappe-haaland': 'h2h_mbappe_haaland',
-    'haaland-vini': 'h2h_haaland_vini',
-    'vini-mbappe': 'h2h_vini_mbappe'
-  };
+  const pair = `${p1}-${p2}`;
+  const table = `hth_${p1}_${p2}`;
 
-  if (!h2hMap[pair]) {
-    return res.status(400).send('Invalid pair');
-  }
-
-  displayHelper.getH2HStats(h2hMap[pair], (err, stats) => {
+  player1 = p1
+  player2 = p2
+  
+  displayHelper.getStats([table], (err, stats) => {
     if (err) return res.status(500).send('Error');
 
-    // 🔹 If AJAX request → return JSON
-    if (req.query.partial === '1') {
-      return res.json(stats);
-    }
+    // add calculated stat
+    stats.forEach(player => {
+      player.ga = (player.goals || 0) + (player.assists || 0);
+    });
 
-    // 🔹 Otherwise render full page
+    const p1 = stats[0];
+    const p2 = stats[1];
+
+    const bars = displayHelper.getBars(p1, p2);
+    const analysis = articles.h2h[pair];
+
+
     res.render('user/HeadtoHead', {
-      activePair: pair,
-      stats
+      p1,
+      p2,
+      player1,
+      player2,
+      bars,
+      pair,
+      analysis,
+      title: `Head-to-Head: ${p1.player} vs ${p2.player} | MHVStats`,
+      description: `In-depth head-to-head comparison of ${p1.player} and ${p2.player} across all stats. Who has the edge in goals, assists, and more? Find out now!`
     });
   });
 });
-
-
 
 // 👇 Place this BEFORE your /Match-History/:player route
 router.get('/mhv', (req, res) => {

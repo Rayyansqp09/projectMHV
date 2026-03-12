@@ -1,67 +1,222 @@
 <section class="h2h-section">
   <div class="h2h-header">
-    <h3>Direct Confrontations</h3>
-    <p>Head-to-Head History</p>
+    <h2 class="h2h-title">{{player1}} <span class="h2h-title-vs">vs</span> {{player2}}</h2>
+    <p class="h2h-subtitle">Head-to-head history</p>
   </div>
 
-  <!-- Tabs -->
-  <div class="h2h-tabs">
-    <button class="h2h-tab h2h-tab-active" data-pair="mbappe-haaland">Mbappé vs Haaland</button>
-    <button class="h2h-tab" data-pair="haaland-vini">Haaland vs Vini</button>
-    <button class="h2h-tab" data-pair="vini-mbappe">Vini vs Mbappé</button>
+  <div class="h2h-tabs-wrap">
+    <div class="h2h-tabs">
 
+      <a href="/head-to-head/mbappe-haaland" class="h2h-tab {{#if (eq pair 'mbappe-haaland')}}active{{/if}}">
+        Mbappé <span class="vs">vs</span> Haaland
+      </a>
+
+      <a href="/head-to-head/haaland-vinicius" class="h2h-tab {{#if (eq pair 'haaland-vinicius')}}active{{/if}}">
+        Haaland <span class="vs">vs</span> Vinicius
+      </a>
+
+      <a href="/head-to-head/mbappe-vinicius" class="h2h-tab {{#if (eq pair 'mbappe-vinicius')}}active{{/if}}">
+        Vinicius <span class="vs">vs</span> Mbappé
+      </a>
+
+    </div>
   </div>
 
-  <!-- Card -->
   <div class="h2h-card">
-
-    <!-- VS Circle -->
-    <div class="h2h-vs">
-      <div class="h2h-vs-circle">VS</div>
-    </div>
-
-    <!-- Mbappe -->
-    <div class="h2h-player h2h-mbappe">
-      <div class="h2h-player-top">
-        <div class="h2h-avatar h2h-avatar-mbappe">
-          <img src="/images/Intro/mbappeFormCard.png">
+    <div class="h2h-players">
+      <div class="h2h-player">
+        <div class="h2h-avatar h2h-avatar-blue">
+          <img src="/images/Intro/{{player1}}Intro.png">
         </div>
-        <span>Mbappe</span>
+        <span class="h2h-name">{{player1}}</span>
       </div>
 
-      <div class="h2h-stats">
-        <div><b>4</b><span>Games</span></div>
-        <div><b>5</b><span>Goals</span></div>
-        <div><b>2</b><span>Assists</span></div>
-        <div><b>4</b><span>Wins</span></div>
-        <div><b>0</b><span>Loses</span></div>
-        <div><b>0</b><span>Draws</span></div>
-      </div>
-    </div>
+      <div class="h2h-vs">VS</div>
 
-    <!-- Haaland -->
-    <div class="h2h-player h2h-haaland">
-      <div class="h2h-player-top">
-        <div class="h2h-avatar h2h-avatar-haaland">
-          <img src="/images/Intro/haalandFormCard.png">
+      <div class="h2h-player">
+        <div class="h2h-avatar h2h-avatar-yellow">
+          <img src="/images/Intro/{{player2}}Intro.png">
         </div>
-        <span>Haaland</span>
-      </div>
-
-      <div class="h2h-stats">
-        <div><b>4</b><span>Games</span></div>
-        <div><b>5</b><span>Goals</span></div>
-        <div><b>2</b><span>Assists</span></div>
-        <div><b>4</b><span>Wins</span></div>
-        <div><b>0</b><span>Loses</span></div>
-        <div><b>0</b><span>Draws</span></div>
+        <span class="h2h-name">{{player2}}</span>
       </div>
     </div>
 
-    <!-- Draws -->
-    <div class="h2h-draws">
-      Total Draws: <b>1</b>
+    <div class="h2h-stats">
+
+      <!-- Goals -->
+      <div class="h2h-stat">
+        <div class="h2h-stat-head">
+          <span class="h2h-stat-value">{{p1.goals}}</span>
+          <span class="h2h-stat-label">Goals</span>
+          <span class="h2h-stat-value">{{p2.goals}}</span>
+        </div>
+        <div class="h2h-bar">
+          <div class="h2h-bar-blue" style="width:{{bars.goals.p1}}%"></div>
+          <div class="h2h-bar-yellow" style="width:{{bars.goals.p2}}%"></div>
+        </div>
+      </div>
+
+      <!-- Assists -->
+      <div class="h2h-stat">
+        <div class="h2h-stat-head">
+          <span class="h2h-stat-value">{{p1.assists}}</span>
+          <span class="h2h-stat-label">Assists</span>
+          <span class="h2h-stat-value">{{p2.assists}}</span>
+        </div>
+        <div class="h2h-bar">
+          <div class="h2h-bar-blue" style="width:{{bars.assists.p1}}%"></div>
+          <div class="h2h-bar-yellow" style="width:{{bars.assists.p2}}%"></div>
+        </div>
+      </div>
+
+      <div class="h2h-stat">
+        <div class="h2h-stat-head">
+          <span class="h2h-stat-value">{{p1.ga}}</span>
+          <span class="h2h-stat-label">G/A</span>
+          <span class="h2h-stat-value">{{p2.ga}}</span>
+        </div>
+        <div class="h2h-bar">
+          <div class="h2h-bar-blue" style="width:{{bars.ga.p1}}%"></div>
+          <div class="h2h-bar-yellow" style="width:{{bars.ga.p2}}%"></div>
+        </div>
+      </div>
+
+      <!-- Wins -->
+      <div class="h2h-stat">
+        <div class="h2h-stat-head">
+          <span class="h2h-stat-value">{{p1.wins}}</span>
+          <span class="h2h-stat-label">Win</span>
+          <span class="h2h-stat-value">{{p2.wins}}</span>
+        </div>
+        <div class="h2h-bar">
+          <div class="h2h-bar-blue" style="width:{{bars.wins.p1}}%"></div>
+          <div class="h2h-bar-yellow" style="width:{{bars.wins.p2}}%"></div>
+        </div>
+      </div>
+
+      <div class="h2h-stat">
+        <div class="h2h-stat-head">
+          <span class="h2h-stat-value">{{p1.draws}}</span>
+          <span class="h2h-stat-label">Draw</span>
+          <span class="h2h-stat-value">{{p2.draws}}</span>
+        </div>
+        <div class="h2h-bar">
+          <div class="h2h-bar-blue" style="width:{{bars.draws.p1}}%"></div>
+          <div class="h2h-bar-yellow" style="width:{{bars.draws.p2}}%"></div>
+        </div>
+      </div>
+
+      <div class="h2h-stat">
+        <div class="h2h-stat-head">
+          <span class="h2h-stat-value">{{p1.losses}}</span>
+          <span class="h2h-stat-label">Loss</span>
+          <span class="h2h-stat-value">{{p2.losses}}</span>
+        </div>
+        <div class="h2h-bar">
+          <div class="h2h-bar-blue" style="width:{{bars.losses.p1}}%"></div>
+          <div class="h2h-bar-yellow" style="width:{{bars.losses.p2}}%"></div>
+        </div>
+      </div>
+
+      <div class="h2h-more-toggle" onclick="toggleMoreStats()">
+        <span>More Stats</span>
+        <span class="h2h-arrow">▼</span>
+      </div>
+
+      <div class="h2h-more-stats" id="moreStats">
+
+        <div class="h2h-stat">
+          <div class="h2h-stat-head">
+            <span class="h2h-stat-value">{{p1.CC}}</span>
+            <span class="h2h-stat-label">Chance Created</span>
+            <span class="h2h-stat-value">{{p2.CC}}</span>
+          </div>
+          <div class="h2h-bar">
+            <div class="h2h-bar-blue" style="width:{{bars.CC.p1}}%"></div>
+            <div class="h2h-bar-yellow" style="width:{{bars.CC.p2}}%"></div>
+          </div>
+        </div>
+
+        <!-- Chances Created -->
+        <div class="h2h-stat">
+          <div class="h2h-stat-head">
+            <span class="h2h-stat-value">{{p1.BCC}}</span>
+            <span class="h2h-stat-label">Big Chances Created</span>
+            <span class="h2h-stat-value">{{p2.BCC}}</span>
+          </div>
+          <div class="h2h-bar">
+            <div class="h2h-bar-blue" style="width:{{bars.BCC.p1}}%"></div>
+            <div class="h2h-bar-yellow" style="width:{{bars.BCC.p2}}%"></div>
+          </div>
+        </div>
+
+        <!-- Shots -->
+        <div class="h2h-stat">
+          <div class="h2h-stat-head">
+            <span class="h2h-stat-value">{{p1.shots}}</span>
+            <span class="h2h-stat-label">Shots on Target</span>
+            <span class="h2h-stat-value">{{p2.shots}}</span>
+          </div>
+          <div class="h2h-bar">
+            <div class="h2h-bar-blue" style="width:{{bars.shots.p1}}%"></div>
+            <div class="h2h-bar-yellow" style="width:{{bars.shots.p2}}%"></div>
+          </div>
+        </div>
+
+        <div class="h2h-stat">
+          <div class="h2h-stat-head">
+            <span class="h2h-stat-value">{{p1.dribbles}}</span>
+            <span class="h2h-stat-label">Dribbles</span>
+            <span class="h2h-stat-value">{{p2.dribbles}}</span>
+          </div>
+          <div class="h2h-bar">
+            <div class="h2h-bar-blue" style="width:{{bars.dribbles.p1}}%"></div>
+            <div class="h2h-bar-yellow" style="width:{{bars.dribbles.p2}}%"></div>
+          </div>
+        </div>
+
+        <div class="h2h-stat">
+          <div class="h2h-stat-head">
+            <span class="h2h-stat-value">{{p1.penalty_goals}}</span>
+            <span class="h2h-stat-label">Penalty Goals</span>
+            <span class="h2h-stat-value">{{p2.penalty_goals}}</span>
+          </div>
+          <div class="h2h-bar">
+            <div class="h2h-bar-blue" style="width:{{bars.penalty_goals.p1}}%"></div>
+            <div class="h2h-bar-yellow" style="width:{{bars.penalty_goals.p2}}%"></div>
+          </div>
+        </div>
+
+        <div class="h2h-stat">
+          <div class="h2h-stat-head">
+            <span class="h2h-stat-value">{{p1.minutes}}</span>
+            <span class="h2h-stat-label">Minutes Played</span>
+            <span class="h2h-stat-value">{{p2.minutes}}</span>
+          </div>
+          <div class="h2h-bar">
+            <div class="h2h-bar-blue" style="width:{{bars.minutes.p1}}%"></div>
+            <div class="h2h-bar-yellow" style="width:{{bars.minutes.p2}}%"></div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
+
+  </div>
+</section>
+
+<section class="performance-insight">
+  <div class="insight-box">
+
+    <h3 class="insight-title">
+      <span class="accent-bar"></span>
+      {{analysis.title}}
+    </h3>
+
+    {{#each analysis.paragraphs}}
+    <p class="insight-text">{{this}}</p>
+    {{/each}}
 
   </div>
 </section>
@@ -78,5 +233,28 @@
       updateH2HCard(data);
     });
   });
+
+  function toggleMoreStats() {
+    const section = document.getElementById("moreStats");
+    const arrow = document.querySelector(".h2h-arrow");
+
+    if (section.style.display === "block") {
+      section.style.display = "none";
+      arrow.classList.remove("rotate");
+    } else {
+      section.style.display = "block";
+      arrow.classList.add("rotate");
+    }
+  }
+
+  function toggleMoreStats() {
+    const section = document.getElementById("moreStats");
+
+    if (section.style.display === "flex") {
+      section.style.display = "none";
+    } else {
+      section.style.display = "flex";
+    }
+  }
 
 </script>

@@ -837,6 +837,48 @@ router.get('/feedback', (req, res) => {
   });
 });
 
+router.get('/club/:player', (req, res) => {
+
+  const player = req.params.player.toLowerCase();
+
+  const allowedPlayers = ['mbappe', 'haaland', 'vinicius'];
+
+  if (!allowedPlayers.includes(player)) {
+    return res.status(404).send('Invalid player');
+  }
+
+  const table = `${player}_club`;
+
+  const capitalize = s => s[0].toUpperCase() + s.slice(1);
+  const playerName = capitalize(player);
+
+  displayHelper.getStats([table], (err, stats) => {
+    if (err) return res.status(500).send('Error');
+
+    const excludedTeams = ['france', 'brazil', 'norway'];
+
+    // optional: add derived stats (if needed)
+    stats.forEach(row => {
+      row.ga = (row.goals || 0) + (row.assists || 0);
+    });
+
+    const stats_ucl = stats.filter(row =>
+      !excludedTeams.includes(row.club.toLowerCase())
+    );
+
+    console.log(`Club stats for ${playerName}:`, stats);
+
+    res.render('user/player_club', {
+      stats,
+      stats_ucl,
+      player: playerName,
+
+      title: `${playerName} Club Stats | MHVStats`,
+      description: `Detailed club-wise stats of ${playerName} including goals, assists, efficiency metrics, and performance breakdown.`
+    });
+  });
+});
+
 router.get('/head-to-head/:players', (req, res) => {
   const [p1, p2] = req.params.players.split('-');
 
@@ -864,7 +906,6 @@ router.get('/head-to-head/:players', (req, res) => {
 
     const bars = displayHelper.getBars(p1, p2);
     const analysis = articles.h2h[pair];
-
 
     res.render('user/HeadtoHead', {
       p1,
@@ -920,6 +961,7 @@ router.get('/Match-History/:player', (req, res) => {
   // New filters
   const matchNoFilter = req.query.matchNo || '';
   const matchDateFilter = req.query.matchDate; // expected format 'YYYY-MM-DD'
+  const limitMatches = parseInt(req.query.limitMatches) || 0;
 
 
 
@@ -1037,11 +1079,19 @@ router.get('/Match-History/:player', (req, res) => {
     if (sortOption === 'dateAsc') filteredMatches.sort((a, b) => new Date(a.date) - new Date(b.date));
     else filteredMatches.sort((a, b) => new Date(b.date) - new Date(a.date));
 
+    if (limitMatches > 0) {
+      filteredMatches = filteredMatches.slice(0, limitMatches);
+    }
+
     const totalGoals = filteredMatches.reduce((sum, m) => sum + (Number(m.goals) || 0), 0);
     const totalAssists = filteredMatches.reduce((sum, m) => sum + (Number(m.assists) || 0), 0);
+    const totalCC = filteredMatches.reduce((sum, m) => sum + (Number(m.CC) || 0), 0);
+    const totalBCC = filteredMatches.reduce((sum, m) => sum + (Number(m.BCC) || 0), 0);
+    const totalDribbles = filteredMatches.reduce((sum, m) => sum + (Number(m.dribbles) || 0), 0);
 
     const totalFilteredMatches = filteredMatches.length;
     const paginatedMatches = filteredMatches.slice(offset, offset + limit);
+
     paginatedMatches.forEach((m, index) => {
       const total = totalFilteredMatches;
 
@@ -1076,6 +1126,9 @@ router.get('/Match-History/:player', (req, res) => {
       dynamicFilters: { forTeam: uniqueForTeams, competition: uniqueCompetitions },
       totalGoals,
       totalAssists,
+      totalCC,
+      totalBCC,
+      totalDribbles,
       playerName: playerInfo.name,       // 👈 Short name
       playerFullName: playerInfo.full,  // 👈 Full name
 

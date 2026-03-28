@@ -179,7 +179,7 @@
         <label class="field-label">Year</label>
         <select name="year" id="year">
           <option>All</option>
-           <option value="2026">2026</option>
+          <option value="2026">2026</option>
           <option value="2025">2025</option>
           <option value="2024">2024</option>
           <option value="2023">2023</option>
@@ -239,18 +239,51 @@
           <option>Draw</option>
         </select>
       </div>
+
+      <div class="form-field">
+        <label>Show First X Matches</label>
+        <input type="number" id="limitMatches" placeholder="e.g. 10">
+      </div>
+
     </div>
 
     </div>
 
   </form>
 
+
+  <div class="mh-stats-grid">
+    <div class="mh-stat-item mh-with-border">
+      <span class="mh-stat-value mh-gold" id="totalGoals">{{totalGoals}}</span>
+      <span class="mh-stat-label">Goals</span>
+    </div>
+
+    <div class="mh-stat-item mh-with-border">
+      <span class="mh-stat-value mh-silver" id="totalAssists">{{totalAssists}}</span>
+      <span class="mh-stat-label">Assists</span>
+    </div>
+
+    <div class="mh-stat-item mh-with-border">
+      <span class="mh-stat-value mh-white" id="totalCC">{{totalCC}}</span>
+      <span class="mh-stat-label">Chances</span>
+    </div>
+
+    <div class="mh-stat-item mh-with-border">
+      <span class="mh-stat-value mh-white" id="totalBCC">{{totalBCC}}</span>
+      <span class="mh-stat-label">Big Ch.</span>
+    </div>
+
+    <div class="mh-stat-item">
+      <span class="mh-stat-value mh-white" id="totalDribbles">{{totalDribbles}}</span>
+      <span class="mh-stat-label">Dribbles</span>
+    </div>
+  </div>
+
   <div class="filter-bottom-row">
-    <span class="match-count bottm-row-item">
+
+    <span class="match-count bottm-row-item desktop-only">
       Showing {{showingMatches}} of {{totalMatches}} matches
     </span>
-
-
 
     <div class="button-group">
       {{#if admin}}
@@ -294,17 +327,13 @@
     <span>➡️ Assists</span>
   </div>
 
+  <span class="match-count bottm-row-item mobile-only">
+    Showing {{showingMatches}} of {{totalMatches}} matches
+  </span>
+
   <!-- Match Card Component -->
   <div id="matchesContainer">
 
-  </div>
-
-  <div class="totals">
-    <span>
-      Filtered Matches <span class="mobile-only" style="display: inline;">Stats</span>:<span style="display: inline;"
-        class="desktop-only"> Total</span> Goals: <span id="totalGoals">{{totalGoals}} </span><span class="desktop-only"
-        style="display: inline;"> Total</span> Assists: <span id="totalAssists">{{totalAssists}}</span>
-    </span>
   </div>
 
 
@@ -725,6 +754,7 @@
     const sortBtn = document.getElementById('sortBtn');
     const sortPopup = document.getElementById('sortPopup');
     const sortRadios = document.querySelectorAll('input[name="sort"]');
+    const limitMatchesInput = document.getElementById('limitMatches');
 
     let currentOffset = 0;
     let currentLimit = 100;
@@ -747,6 +777,7 @@
     let currentMatchNo = '';
     let currentMatchDate = '';
     let currentSort = '';
+    let currentLimitMatches = 0;
 
     // Get the player from the current URL path
     let pathParts = window.location.pathname.split('/');
@@ -774,6 +805,7 @@
         .map(cb => cb.value);
       currentMatchNo = matchNoInput.value;
       currentMatchDate = matchDateInput.value;
+      currentLimitMatches = parseInt(limitMatchesInput.value) || 0;
 
       currentOffset = 0;
       fetchMatches(
@@ -795,8 +827,10 @@
         currentGoalTypes,
         true,
         currentMatchNo,
-        currentMatchDate
+        currentMatchDate,
+        currentLimitMatches
       );
+
     }
 
     // Event listeners for filters
@@ -810,8 +844,8 @@
     ].forEach(el => el.addEventListener('input', applyFilters));
 
     matchDateInput.addEventListener('change', applyFilters);
-
     goalTypeCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+    limitMatchesInput.addEventListener('input', applyFilters);
 
     clearFiltersBtn?.addEventListener('click', () => {
       document.querySelectorAll('select').forEach(select => select.value = 'All');
@@ -856,7 +890,8 @@
         currentGoalTypes,
         false,
         currentMatchNo,
-        currentMatchDate
+        currentMatchDate,
+        currentLimitMatches
       );
     });
 
@@ -907,7 +942,7 @@
     // -------------------- /Loading overlay helper --------------------
 
     //Load matches with current filters
-    function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, BCC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset, matchNo, matchDate) {
+    function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, BCC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset, matchNo, matchDate, limitMatches) {
       let url = `/Match-History/${encodeURIComponent(currentPlayer)}?offset=${offset}&limit=${limit}`;
       if (currentSort) url += `&sort=${encodeURIComponent(currentSort)}`;
       if (competition && competition !== 'All') url += `&competition=${encodeURIComponent(competition)}`;
@@ -926,6 +961,7 @@
       if (goalTypes.length > 0) url += `&goalTypes=${encodeURIComponent(goalTypes.join(','))}`;
       if (matchNo) url += `&matchNo=${encodeURIComponent(matchNo)}`;
       if (matchDate) url += `&matchDate=${encodeURIComponent(matchDate)}`;
+      if (limitMatches > 0) url += `&limitMatches=${limitMatches}`;
 
       startLoadingGuard();
 
@@ -935,6 +971,13 @@
         .then(html => {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
+
+          console.log("Fetched totalGoals:", doc.querySelector('#totalGoals')?.textContent);
+          console.log("Fetched totalAssists:", doc.querySelector('#totalAssists')?.textContent);
+          console.log("Fetched totalCC:", doc.querySelector('#totalCC')?.textContent);
+          console.log("Fetched totalBCC:", doc.querySelector('#totalBCC')?.textContent);
+          console.log("Fetched totalDribbles:", doc.querySelector('#totalDribbles')?.textContent);
+
           const newMatches = doc.querySelectorAll('#matches-container .match-card');
 
           if (reset) container.innerHTML = '';
@@ -947,15 +990,35 @@
 
           currentOffset += limit;
 
-          const matchCountEl = document.querySelector('.match-count');
-          const newMatchCountEl = doc.querySelector('.match-count');
-          if (matchCountEl && newMatchCountEl) matchCountEl.textContent = newMatchCountEl.textContent;
+          const currentMatchCountEls = document.querySelectorAll('.match-count');
+          const newMatchCountEls = doc.querySelectorAll('.match-count');
+
+          if (currentMatchCountEls.length && newMatchCountEls.length) {
+            currentMatchCountEls.forEach((el, index) => {
+              if (newMatchCountEls[index]) {
+                el.textContent = newMatchCountEls[index].textContent;
+              }
+            });
+          }
 
           const newTotalGoalsEl = doc.querySelector('#totalGoals');
           const newTotalAssistsEl = doc.querySelector('#totalAssists');
-          if (newTotalGoalsEl && newTotalAssistsEl) {
+          const newTotalCCEl = doc.querySelector('#totalCC');
+          const newTotalBCCEl = doc.querySelector('#totalBCC');
+          const newTotalDribblesEl = doc.querySelector('#totalDribbles');
+
+          if (
+            newTotalGoalsEl &&
+            newTotalAssistsEl &&
+            newTotalCCEl &&
+            newTotalBCCEl &&
+            newTotalDribblesEl
+          ) {
             document.getElementById('totalGoals').textContent = newTotalGoalsEl.textContent;
             document.getElementById('totalAssists').textContent = newTotalAssistsEl.textContent;
+            document.getElementById('totalCC').textContent = newTotalCCEl.textContent;
+            document.getElementById('totalBCC').textContent = newTotalBCCEl.textContent;
+            document.getElementById('totalDribbles').textContent = newTotalDribblesEl.textContent;
           }
 
           const newLoadMoreBtn = doc.getElementById('load-more');
@@ -998,21 +1061,20 @@
 </script>
 
 <script>
-function colorStats() {
-  document.querySelectorAll('.cardNew-statNum').forEach(el => {
-    const value = Number(el.textContent.trim());
-    if (value > 0) el.classList.add('gold');
+  function colorStats() {
+    document.querySelectorAll('.cardNew-statNum').forEach(el => {
+      const value = Number(el.textContent.trim());
+      if (value > 0) el.classList.add('gold');
+    });
+  }
+
+  const observer = new MutationObserver(() => {
+    colorStats();
   });
-}
 
-const observer = new MutationObserver(() => {
-  colorStats();
-});
-
-observer.observe(document.body, {
-  childList: true,
-  subtree: true,
-  characterData: true
-});
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    characterData: true
+  });
 </script>
-

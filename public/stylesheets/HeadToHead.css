@@ -6,7 +6,7 @@
 
 .h2h-header {
   padding: 0 24px;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 .h2h-title {
@@ -23,13 +23,16 @@
   color: #94a3b8;
 }
 
-.h2h-tabs-wrap {
+.h2h-tabs-wrap,
+.club-tabs-wrap {
   padding: 0 16px;
   overflow-x: auto;
   margin-bottom: 32px;
+  margin-top: 24px;
 }
 
-.h2h-tabs {
+.h2h-tabs,
+.club-tabs {
   display: flex;
   background: #1A1A1A;
   padding: auto auto;
@@ -39,7 +42,8 @@
   border: 1px solid #262626;
 }
 
-.h2h-tab {
+.h2h-tab,
+.club-tab {
   flex: 1;
   padding: 7px 8px;
   border-radius: 8px;
@@ -51,25 +55,41 @@
   text-transform: uppercase;
   cursor: pointer;
   text-align: center;
-  
+
 }
 
 @media (max-width: 600px) {
-  .h2h-tab {
+
+  .h2h-tab,
+  .club-tab {
     text-align: center;
+  }
+
+  .club-tab {
+    display: flex;
+    align-items: center;
+    /* vertical center */
+    justify-content: center;
+    /* horizontal center */
+    text-align: center;
+    height: 40px;
+    padding: 0 16px;
+    /* optional side spacing */
+    font-size: 11px;
   }
 
   .h2h-tab .vs {
     display: block;
   }
-  
-  .h2h-title-vs{
+
+  .h2h-title-vs {
     margin-left: 3px;
     margin-right: 3px;
   }
 }
 
-.h2h-tab.active {
+.h2h-tab.active,
+.club-tab.active {
   background: #facc15;
   color: #0f172a;
   font-weight: 900;
@@ -233,13 +253,16 @@
   }
 
   /* Tabs centered, no horizontal scroll */
-  .h2h-tabs-wrap {
+  .h2h-tabs-wrap,
+  .club-tabs-wrap {
     max-width: 1100px;
     margin: 0 auto 50px;
     overflow: visible;
+    margin-top: 24px;
   }
 
-  .h2h-tabs {
+  .h2h-tabs,
+  .club-tabs {
     padding: 6px 6px;
     margin: 0 auto;
     min-width: unset;
@@ -248,7 +271,8 @@
     width: fit-content;
   }
 
-  .h2h-tab {
+  .h2h-tab,
+  .club-tab {
     flex: unset;
     padding: 14px 22px;
     font-size: 12px;

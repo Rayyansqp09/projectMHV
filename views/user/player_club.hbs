@@ -1,0 +1,249 @@
+<h2 name="" id="clubComp" class="stat-titleabove">{{player}} - STATS BY CLUBS</h2>
+
+<div class="club-tabs-wrap">
+    <div class="club-tabs">
+
+        <a href="/club/mbappe" class="club-tab {{#if (eq player 'Mbappe')}}active{{/if}}">
+            Mbappé
+        </a>
+
+        <a href="/club/haaland" class="club-tab {{#if (eq player 'Haaland')}}active{{/if}}">
+            Haaland
+        </a>
+
+        <a href="/club/vinicius" class="club-tab {{#if (eq player 'Vinicius')}}active{{/if}}">
+            Vinicius
+        </a>
+
+    </div>
+</div>
+
+<div class="table-container" id="unl">
+    <h1 name="int" class="stat-title">ALL competitions</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">CLUB</th>
+                <th class="stat-text">GAMES</th>
+                <th class="stat-text">GOALS</th>
+                <th class="stat-text">ASSISTS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each stats}}
+            <tr>
+                <td class="stat-text ignore-highlight col-text">
+                    {{club}}
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{games}}<br><span class="stat-name">GAMES</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{goals}}<br><span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{assists}}<br><span class="stat-name">ASSISTS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="unl" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="unl">
+    <h1 name="int" class="stat-title">Per game ratio</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">CLUB</th>
+                <th class="stat-text">Goal Ratio</th>
+                <th class="stat-text">Assist Ratio</th>
+                <th class="stat-text">G/A Ratio</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each stats}}
+            <tr>
+                <td class="stat-text ignore-highlight col-text">
+                    {{club}}<br>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{goals_per_game}}<br><span class="stat-name">Goal Ratio</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{assists_per_game}}<br><span class="stat-name">Assist Ratio</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{ga_per_game}}<br><span class="stat-name">G/A Ratio</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="unl" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="unl">
+    <h1 name="int" class="stat-title">Brace,Hat-trick</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">CLUB</th>
+                <th class="stat-text">Hat-trick</th>
+                <th class="stat-text">Brace</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each stats}}
+            <tr>
+                <td class="stat-text ignore-highlight col-text">
+                    {{club}}<br>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{hattricks}}<br><span class="stat-name">Hat-tricks</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{braces}}<br><span class="stat-name">Braces</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="unl" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="unl">
+    <h1 name="int" class="stat-title">UEFA Champions League</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">CLUB</th>
+                <th class="stat-text">GAMES</th>
+                <th class="stat-text">GOALS</th>
+                <th class="stat-text">ASSISTS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each stats_ucl}}
+            <tr>
+                <td class="stat-text ignore-highlight col-text">
+                    {{club}}<br>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{ucl_games}}<br><span class="stat-name">GAMES</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{ucl_goals}}<br><span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{ucl_assists}}<br><span class="stat-name">ASSISTS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="unl" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container" id="unl">
+    <h1 name="int" class="stat-title">Per game ratio - UCL</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">CLUB</th>
+                <th class="stat-text">Goal Ratio</th>
+                <th class="stat-text">Assist Ratio</th>
+                <th class="stat-text">G/A Ratio</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each stats_ucl}}
+            <tr>
+                <td class="stat-text ignore-highlight col-text">
+                    {{club}}<br>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{ucl_goals_per_game}}<br><span class="stat-name">Goal Ratio</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{ucl_assists_per_game}}<br><span class="stat-name">Assist Ratio</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{ucl_ga_per_game}}<br><span class="stat-name">G/A Ratio</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="unl" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+
+<div class="table-container" id="unl">
+    <h1 name="int" class="stat-title">In Final</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">CLUB</th>
+                <th class="stat-text">GAMES</th>
+                <th class="stat-text">GOALS</th>
+                <th class="stat-text">ASSISTS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each stats}}
+            <tr>
+                <td class="stat-text ignore-highlight col-text">
+                    {{club}}<br>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{final_games}}<br><span class="stat-name">GAMES</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{final_goals}}<br><span class="stat-name">GOALS</span>
+                </td>
+
+                <td class="stat-text ignore-highlight">
+                    {{final_assists}}<br><span class="stat-name">ASSISTS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="unl" table="intr">UPDATE</button>
+    {{/if}}
+</div>

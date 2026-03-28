@@ -209,6 +209,14 @@
     height: 4px;
   }
 
+.col-text {
+  font-size: 13px !important;
+  color: #ffd700 !important;
+  white-space: nowrap;
+  overflow: scroll;
+  
+}
+
 
 }
 

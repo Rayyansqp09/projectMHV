@@ -1578,8 +1578,10 @@ footer {
 }
 
 #donationAmount {
-  color: #000000;   /* color of the number you type */
-  font-size: 16px;  /* size of the number you type */
+  color: #000000;
+  /* color of the number you type */
+  font-size: 16px;
+  /* size of the number you type */
 }
 
 .donate-button {
@@ -2495,22 +2497,21 @@ footer {
 }
 
 /* Mobile screens */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .stat-navigation {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-left: 30px;
-    margin-right: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 
   .stat-navigation .nav-btn {
     width: calc(50% - 10px);
     /* 2 per row */
     text-align: center;
-    padding: 9px 0;
-    font-size: 14px;
+    padding: 9px 0px !important;
+    font-size: 13px !important;
   }
+  
 }
 
 /* Very small phones (≤ 360px) */
@@ -2759,7 +2760,8 @@ footer {
 
 .rating {
   position: absolute;
-  top: 6px;      /* ⬅️ change from bottom to top */
+  top: 6px;
+  /* ⬅️ change from bottom to top */
   right: 6px;
   background: #ffd900;
   color: black;
@@ -2799,4 +2801,9 @@ footer {
 
 .bar.active {
   background: #ffd900;
+}
+
+.col-text {
+  font-size: 21px !important;
+  color: #ffd700 !important;
 }

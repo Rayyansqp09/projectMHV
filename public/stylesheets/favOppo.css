@@ -23,7 +23,7 @@
 
 .fav-subtitle {
   color: #9aa4b2;
-  margin-bottom: 28px;
+  /* margin-bottom: 28px; */
   font-size: 15px;
 }
 
@@ -33,6 +33,7 @@
   justify-content: center;
   gap: 14px;
   margin-bottom: 30px;
+  margin-top: 28px;
 }
 
 .fav-tab {

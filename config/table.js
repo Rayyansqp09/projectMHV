@@ -9,6 +9,7 @@ const tableNames = [
   'wc_live',
   'intr',
   'intr2',
+  'int_by_rank',
   'copa_euro',
   'copa_euro_live',
   'ucl',

@@ -397,7 +397,7 @@ router.get('/int-stats', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  displayHelper.getStats(['alltime', 'intr', 'intr2', 'mhhaaland', 'mhmbappe', 'mhvinicius'], (err, stats) => {
+  displayHelper.getStats(['alltime', 'int_by_rank', 'intr2', 'mhhaaland', 'mhmbappe', 'mhvinicius'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
@@ -424,16 +424,36 @@ router.get('/int-stats', function (req, res, next) {
 
     const mbappe_all = stats.alltime.find(p => p.Name === 'Mbappe');
     const mbappe_intr = stats.intr2.find(p => p.Name === 'Mbappe');
-    const mbappe_intr1 = stats.intr.find(p => p.Name === 'Mbappe');
+    const mbappe_ByRank = stats.int_by_rank.find(p => p.player === 'mbappe');
 
     const haaland_all = stats.alltime.find(p => p.Name === 'Haaland');
     const haaland_intr = stats.intr2.find(p => p.Name === 'Haaland');
-    const haaland_intr1 = stats.intr.find(p => p.Name === 'Haaland');
+    const haaland_ByRank = stats.int_by_rank.find(p => p.player === 'haaland');
 
 
     const vini_all = stats.alltime.find(p => p.Name === 'Vinicius');
     const vini_intr = stats.intr2.find(p => p.Name === 'Vinicius');
-    const vini_intr1 = stats.intr.find(p => p.Name === 'Vinicius');
+    const vini_ByRank = stats.int_by_rank.find(p => p.player === 'vinicius');
+
+    function addGA(player) {
+      if (!player) return null;
+
+      player.top10GA = (Number(player.top10Goals) || 0) + (Number(player.top10Assists) || 0);
+      player.top20GA = (Number(player.top20Goals) || 0) + (Number(player.top20Assists) || 0);
+      player.top40GA = (Number(player.top40Goals) || 0) + (Number(player.top40Assists) || 0);
+      player.top60GA = (Number(player.top60Goals) || 0) + (Number(player.top60Assists) || 0);
+      player.top100GA = (Number(player.top100Goals) || 0) + (Number(player.top100Assists) || 0);
+
+      player.under100GA = (Number(player.under100Goals) || 0) + (Number(player.under100Assists) || 0);
+
+      player.abrGA = (Number(player.abrGoals) || 0) + (Number(player.abrAssists) || 0);
+
+      return player;
+    }
+
+    addGA(mbappe_ByRank);
+    addGA(haaland_ByRank);
+    addGA(vini_ByRank);
 
 
     // console.log('Mbappe All-Time:', mbappe_all);
@@ -456,7 +476,7 @@ router.get('/int-stats', function (req, res, next) {
       haaland_intr,
       vini_all,
       vini_intr,
-      vini_intr1, mbappe_intr1, haaland_intr1,
+      vini_ByRank, mbappe_ByRank, haaland_ByRank,
       graph: {
         mbappe: mbappeStats,
         haaland: haalandStats,

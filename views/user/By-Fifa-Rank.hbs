@@ -1,0 +1,470 @@
+<h1 name="" id="int-comp" class="stat-titleabove">STATS BY FIFA RANK</h1>
+
+
+<div class="table-container" id="top10">
+    <h1 name="top10" class="stat-title">vs Top 10 Ranked Teams</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{ mbappe.top10Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ haaland.top10Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ vini.top10Games }}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top10Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ haaland.top10Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ vini.top10Goals }}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top10GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ haaland.top10GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ vini.top10GoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+
+            <tr>
+                <td class="stat-text">{{ mbappe.top10Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ haaland.top10Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ vini.top10Assists }}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top10GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ haaland.top10GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ vini.top10GA }}<br><span class="stat-name">G+A</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top10Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ haaland.top10Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ vini.top10Shots }}<br><span class="stat-name">Shot on Target</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top10CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top10CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ vini.top10CC }}<br><span class="stat-name">Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top10BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top10BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ vini.top10BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top10Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ haaland.top10Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ vini.top10Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="mejor" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h1 name="top20" class="stat-title">vs Top 20 Ranked Teams</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{ mbappe.top20Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ haaland.top20Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ vini.top20Games }}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top20Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ haaland.top20Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ vini.top20Goals }}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top20GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ haaland.top20GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ vini.top20GoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top20Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ haaland.top20Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ vini.top20Assists }}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top20GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ haaland.top20GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ vini.top20GA }}<br><span class="stat-name">G+A</span></td>
+            </tr>
+
+            <tr>
+                <td class="stat-text">{{ mbappe.top20Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ haaland.top20Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ vini.top20Shots }}<br><span class="stat-name">Shot on Target</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top20CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top20CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ vini.top20CC }}<br><span class="stat-name">Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top20BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top20BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ vini.top20BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top20Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ haaland.top20Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ vini.top20Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="mejor" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h1 name="top40" class="stat-title">vs Top 40 Ranked Teams</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{ mbappe.top40Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ haaland.top40Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ vini.top40Games }}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top40Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ haaland.top40Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ vini.top40Goals }}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top40GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ haaland.top40GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ vini.top40GoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top40Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ haaland.top40Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ vini.top40Assists }}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top40GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ haaland.top40GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ vini.top40GA }}<br><span class="stat-name">G+A</span></td>
+            </tr>
+
+            <tr>
+                <td class="stat-text">{{ mbappe.top40Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ haaland.top40Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ vini.top40Shots }}<br><span class="stat-name">Shot on Target</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top40CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top40CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ vini.top40CC }}<br><span class="stat-name">Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top40BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top40BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ vini.top40BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top40Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ haaland.top40Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ vini.top40Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="mejor" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h1 name="top40" class="stat-title">vs Top 60 Ranked Teams</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{ mbappe.top60Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ haaland.top60Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ vini.top60Games }}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top60Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ haaland.top60Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ vini.top60Goals }}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top60GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ haaland.top60GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ vini.top60GoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top60Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ haaland.top60Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ vini.top60Assists }}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top60GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ haaland.top60GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ vini.top60GA }}<br><span class="stat-name">G+A</span></td>
+            </tr>
+
+            <tr>
+                <td class="stat-text">{{ mbappe.top60Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ haaland.top60Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ vini.top60Shots }}<br><span class="stat-name">Shot on Target</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top60CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top60CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ vini.top60CC }}<br><span class="stat-name">Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top60BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top60BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ vini.top60BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top60Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ haaland.top60Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ vini.top60Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="mejor" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+<div class="table-container">
+    <h1 name="top100" class="stat-title">vs Top 100 Ranked Teams</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{ mbappe.top100Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ haaland.top100Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ vini.top100Games }}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top100Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ haaland.top100Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ vini.top100Goals }}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top100GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ haaland.top100GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ vini.top100GoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top100Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ haaland.top100Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ vini.top100Assists }}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top100GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ haaland.top100GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ vini.top100GA }}<br><span class="stat-name">G+A</span></td>
+            </tr>
+
+            <tr>
+                <td class="stat-text">{{ mbappe.top100Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ haaland.top100Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ vini.top100Shots }}<br><span class="stat-name">Shot on Target</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top100CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top100CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ vini.top100CC }}<br><span class="stat-name">Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top100BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ haaland.top100BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ vini.top100BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.top100Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ haaland.top100Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ vini.top100Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="mejor" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+<div class="table-container">
+    <h1 name="top40" class="stat-title">vs Below 100 Ranked Teams</h1>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{ mbappe.under100Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ haaland.under100Games }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ vini.under100Games }}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.under100Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ haaland.under100Goals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ vini.under100Goals }}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.under100GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ haaland.under100GoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
+                <td class="stat-text">{{ vini.under100GoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.under100Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ haaland.under100Assists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ vini.under100Assists }}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.under100GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ haaland.under100GA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ vini.under100GA }}<br><span class="stat-name">G+A</span></td>
+            </tr>
+
+            <tr>
+                <td class="stat-text">{{ mbappe.under100Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ haaland.under100Shots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ vini.under100Shots }}<br><span class="stat-name">Shot on Target</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.under100CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ haaland.under100CC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ vini.under100CC }}<br><span class="stat-name">Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.under100BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ haaland.under100BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ vini.under100BCC }}<br><span class="stat-name">Big Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.under100Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ haaland.under100Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ vini.under100Dribbles }}<br><span class="stat-name">Dribbles</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="mejor" table="intr">UPDATE</button>
+    {{/if}}
+</div>
+
+<div class="table-container">
+    <h1 name="abr" class="stat-title">VS Higher-Ranked Teams</h1>
+    <h2 name="club" class="stat-title2">(Matches played against opponents with a better FIFA ranking than their team)
+    </h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="stat-text">{{ mbappe.abrGames }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ haaland.abrGames }}<br><span class="stat-name">GAMES</span></td>
+                <td class="stat-text">{{ vini.abrGames }}<br><span class="stat-name">GAMES</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.abrGoals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ haaland.abrGoals }}<br><span class="stat-name">GOALS</span></td>
+                <td class="stat-text">{{ vini.abrGoals }}<br><span class="stat-name">GOALS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.abrGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{ haaland.abrGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{ vini.abrGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.abrAssists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ haaland.abrAssists }}<br><span class="stat-name">ASSISTS</span></td>
+                <td class="stat-text">{{ vini.abrAssists }}<br><span class="stat-name">ASSISTS</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.abrGA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ haaland.abrGA }}<br><span class="stat-name">G+A</span></td>
+                <td class="stat-text">{{ vini.abrGA }}<br><span class="stat-name">G+A</span></td>
+            </tr>
+
+            <tr>
+                <td class="stat-text">{{ mbappe.abrShots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ haaland.abrShots }}<br><span class="stat-name">Shot on Target</span></td>
+                <td class="stat-text">{{ vini.abrShots }}<br><span class="stat-name">Shot on Target</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.abrCC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ haaland.abrCC }}<br><span class="stat-name">Chance Created</span></td>
+                <td class="stat-text">{{ vini.abrCC }}<br><span class="stat-name">Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.abrBCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ haaland.abrBCC }}<br><span class="stat-name">Big Chance Created</span></td>
+                <td class="stat-text">{{ vini.abrBCC }}<br><span class="stat-name">Big Chance Created</span></td>
+            </tr>
+            <tr>
+                <td class="stat-text">{{ mbappe.abrDribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ haaland.abrDribbles }}<br><span class="stat-name">Dribbles</span></td>
+                <td class="stat-text">{{ vini.abrDribbles }}<br><span class="stat-name">Dribbles</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+    {{#if admin}}
+    <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="mejor" table="intr">UPDATE</button>
+    {{/if}}
+</div>

@@ -269,14 +269,40 @@
     </div>
 
     <div class="mh-stat-item mh-with-border">
-      <span class="mh-stat-value mh-white" id="totalBCC">{{totalBCC}}</span>
+      <span class="mh-stat-value mh-silver" id="totalBCC">{{totalBCC}}</span>
       <span class="mh-stat-label">Big Ch.</span>
     </div>
 
-    <div class="mh-stat-item">
+    <div class="mh-stat-item mh-with-border">
       <span class="mh-stat-value mh-white" id="totalDribbles">{{totalDribbles}}</span>
       <span class="mh-stat-label">Dribbles</span>
     </div>
+
+    <div class="mh-stat-item mh-with-border">
+      <span class="mh-stat-value mh-silver" id="totalShot">{{totalShot}}</span>
+      <span class="mh-stat-label">Shot on Target</span>
+    </div>
+
+    <div class="mh-stat-item mh-with-border">
+      <span class="mh-stat-value mh-white" id="goalRatio">{{goalRatio}}</span>
+      <span class="mh-stat-label">Goal Ratio</span>
+    </div>
+
+    <div class="mh-stat-item mh-with-border">
+      <span class="mh-stat-value mh-silver" id="totalPen">{{totalPen}}</span>
+      <span class="mh-stat-label">Penalty Goals</span>
+    </div>
+
+    <div class="mh-stat-item">
+      <span class="mh-stat-value mh-white" id="totalHattricks">{{totalHattricks}}</span>
+      <span class="mh-stat-label">Hattricks</span>
+    </div>
+
+    <div class="mh-stat-item">
+      <span class="mh-stat-value mh-silver" id="totalMinutes">{{totalMinutes}}'</span>
+      <span class="mh-stat-label">Minutes Played</span>
+    </div>
+
   </div>
 
   <div class="filter-bottom-row">
@@ -1006,19 +1032,33 @@
           const newTotalCCEl = doc.querySelector('#totalCC');
           const newTotalBCCEl = doc.querySelector('#totalBCC');
           const newTotalDribblesEl = doc.querySelector('#totalDribbles');
+          const newTotalMinutesEl = doc.querySelector('#totalMinutes');
+          const newTotalShotEl = doc.querySelector('#totalShot');
+          const newTotalPenEl = doc.querySelector('#totalPen');
+          const newTotalHattricksEl = doc.querySelector('#totalHattricks');
+          const newGoalRatioEl = doc.querySelector('#goalRatio');
 
           if (
             newTotalGoalsEl &&
             newTotalAssistsEl &&
             newTotalCCEl &&
             newTotalBCCEl &&
-            newTotalDribblesEl
+            newTotalDribblesEl &&
+            newTotalMinutesEl &&
+            newTotalShotEl &&
+            newTotalPenEl &&
+            newTotalHattricksEl
           ) {
             document.getElementById('totalGoals').textContent = newTotalGoalsEl.textContent;
             document.getElementById('totalAssists').textContent = newTotalAssistsEl.textContent;
             document.getElementById('totalCC').textContent = newTotalCCEl.textContent;
             document.getElementById('totalBCC').textContent = newTotalBCCEl.textContent;
             document.getElementById('totalDribbles').textContent = newTotalDribblesEl.textContent;
+            document.getElementById('totalMinutes').textContent = newTotalMinutesEl.textContent;
+            document.getElementById('totalShot').textContent = newTotalShotEl.textContent;
+            document.getElementById('totalPen').textContent = newTotalPenEl.textContent;
+            document.getElementById('totalHattricks').textContent = newTotalHattricksEl.textContent;
+            document.getElementById('goalRatio').textContent = newGoalRatioEl.textContent;
           }
 
           const newLoadMoreBtn = doc.getElementById('load-more');

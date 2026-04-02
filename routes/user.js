@@ -638,7 +638,7 @@ router.get('/Penalty-Goals', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  displayHelper.getStats(['all_time', 'alltime', 'penalty'], (err, stats) => {
+  displayHelper.getStats(['all_time', 'alltime', 'penalty', 'pen_by_season'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
@@ -658,6 +658,15 @@ router.get('/Penalty-Goals', function (req, res, next) {
     const mbappe_penalty = stats.penalty.find(p => p.player === 'Mbappe') || {};
     const haaland_penalty = stats.penalty.find(p => p.player === 'Haaland') || {};
     const vini_penalty = stats.penalty.find(p => p.player === 'Vinicius') || {};
+
+    // === pen_by_season table ===
+    const pen_by_season = stats.pen_by_season || [];
+
+    pen_by_season
+      .sort((a, b) => parseInt(b.Season.slice(0, 4)) - parseInt(a.Season.slice(0, 4)))
+      .forEach(row => {
+        row.Season = row.Season.replace(/-/g, '/');
+      });
 
     // === non-penalty goals ===
     mbappe.nonPenGoals =
@@ -689,6 +698,7 @@ router.get('/Penalty-Goals', function (req, res, next) {
       mbappe_penalty,
       haaland_penalty,
       vini_penalty,
+      pen_by_season,
 
       mbappe_nonPenGoals: mbappe.nonPenGoals,
       haaland_nonPenGoals: haaland.nonPenGoals,
@@ -701,6 +711,44 @@ router.get('/Penalty-Goals', function (req, res, next) {
   });
 });
 
+
+router.get('/Stats-By-FIFA-Rank', (req, res) => {
+  if (!isDev) {
+    const cachedPage = pageCache.get('/Stats-By-FIFA-Rank');
+    if (cachedPage) return res.send(cachedPage);
+  }
+
+  displayHelper.getStats('int_by_rank', (err, stats) => {
+    if (err) {
+      console.error('Error getting stats:', err);
+      return res.status(500).send('Error loading stats');
+    }
+
+    stats.forEach(player => {
+      player.top10GA = (player.top10Goals || 0) + (player.top10Assists || 0);
+      player.top20GA = (player.top20Goals || 0) + (player.top20Assists || 0);
+      player.top40GA = (player.top40Goals || 0) + (player.top40Assists || 0);
+      player.top60GA = (player.top60Goals || 0) + (player.top60Assists || 0);
+      player.top100GA = (player.top100Goals || 0) + (player.top100Assists || 0);
+      player.under100GA = (player.under100Goals || 0) + (player.under100Assists || 0);
+      player.abrGA = (player.abrGoals || 0) + (player.abrAssists || 0);
+    });
+
+    const mbappe = stats.find(p => p.player === 'mbappe');
+    const haaland = stats.find(p => p.player === 'haaland');
+    const vini = stats.find(p => p.player === 'vinicius');
+
+    res.render('user/By-Fifa-Rank', {
+      title: 'International Stats by FIFA Rank | Mbappe vs Haaland vs Vinicius',
+      description: 'Compare international performance of Mbappe, Haaland, and Vinicius against opponents of different FIFA ranks.',
+      canonical: '<link rel="canonical" href="https://mhvstats.xyz/Stats-By-FIFA-Rank" />',
+      admin: false,
+      mbappe,
+      haaland,
+      vini
+    });
+  });
+});
 
 
 router.get('/Scoring-Streaks', function (req, res, next) {
@@ -810,7 +858,10 @@ router.get('/favorite-opponents/:player?', function (req, res) {
           { key: 'mbappe', label: 'Mbappé' },
           { key: 'haaland', label: 'Haaland' },
           { key: 'vinicius', label: 'Vinícius' }
-        ]
+        ],
+        title: `${player.charAt(0).toUpperCase() + player.slice(1)} Favorite Opponents | MHVStats`,
+        description: `View ${player.charAt(0).toUpperCase() + player.slice(1)}'s favorite opponents with detailed stats on goals, assists, and games played.`,
+        canonical: `<link rel="canonical" href="https://mhvstats.xyz/favorite-opponents/${player}" />`
       });
     }
   );
@@ -1108,9 +1159,18 @@ router.get('/Match-History/:player', (req, res) => {
     const totalCC = filteredMatches.reduce((sum, m) => sum + (Number(m.CC) || 0), 0);
     const totalBCC = filteredMatches.reduce((sum, m) => sum + (Number(m.BCC) || 0), 0);
     const totalDribbles = filteredMatches.reduce((sum, m) => sum + (Number(m.dribbles) || 0), 0);
+    const totalMinutes = filteredMatches.reduce((sum, m) => sum + (Number(m.mnt) || 0), 0);
+    const totalShot = filteredMatches.reduce((sum, m) => sum + (Number(m.Shot) || 0), 0);
+    const totalPen = filteredMatches.reduce((sum, m) => sum + (Number(m.pen) || 0), 0);
+    const totalHattricks = filteredMatches.filter(m => Number(m.goals) >= 3).length;
+
 
     const totalFilteredMatches = filteredMatches.length;
     const paginatedMatches = filteredMatches.slice(offset, offset + limit);
+
+    const goalRatio = totalFilteredMatches > 0
+      ? (totalGoals / totalFilteredMatches).toFixed(2)
+      : '0.00';
 
     paginatedMatches.forEach((m, index) => {
       const total = totalFilteredMatches;
@@ -1149,6 +1209,11 @@ router.get('/Match-History/:player', (req, res) => {
       totalCC,
       totalBCC,
       totalDribbles,
+      totalMinutes,
+      totalShot,
+      totalPen,
+      totalHattricks,
+      goalRatio,
       playerName: playerInfo.name,       // 👈 Short name
       playerFullName: playerInfo.full,  // 👈 Full name
 

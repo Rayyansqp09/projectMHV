@@ -661,7 +661,7 @@
 .mh-stats-grid {
     font-family: Arial, sans-serif;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     gap: 4px;
     width: 100%;
     background: #1A1A1A;
@@ -807,6 +807,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -1193,34 +1194,101 @@
 
 @media (max-width: 769px) {
 
-    .mh-stats-grid {
-        grid-template-columns: repeat(5, 1fr);
-        padding: 20px 10px;
-        border-radius: 10px;
-        backdrop-filter: blur(12px);
-       margin: auto;
-       margin-bottom: 1rem;
-        min-height: auto;
-    }
+/* STATS GRID */
+.mh-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  padding: 14px 8px;
+  border-radius: 10px;
+  backdrop-filter: blur(12px);
+  margin: 0 auto 1rem;
+  gap: 12px 6px; /* row gap / column gap */
+  width: 100%;
+  box-sizing: border-box;
+}
 
-    /* LABEL */
-    .mh-stat-label {
-        font-size: 10px;
-        font-weight: 600;
-        color: #6b7280;
-        text-transform: uppercase;
-        letter-spacing: -0.3px;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-    }
+/* EACH STAT ITEM */
+.mh-stat-item {
+  min-width: 0; /* 🔥 required for ellipsis inside grid */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4px 2px;
+}
 
-    .mh-stat-value {
-        font-size: 15px;
-        font-weight: 700;
-        line-height: 1.2;
-        margin-bottom: 4px;
-    }
+/* OPTIONAL BORDER */
+.mh-with-border {
+  position: relative;
+}
+
+.mh-with-border::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* VALUE */
+.mh-stat-value {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 5px;
+  white-space: nowrap;
+}
+
+/* LABEL */
+.mh-stat-label {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 10px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: -0.2px;
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* OPTIONAL VALUE COLORS */
+.mh-gold {
+  color: #fbbf24;
+}
+
+.mh-silver {
+  color: #d1d5db;
+}
+
+.mh-white {
+  color: #ffffff;
+}
+
+/* SMALLER MOBILE DEVICES */
+@media (max-width: 380px) {
+  .mh-stats-grid {
+    padding: 12px 6px;
+    gap: 10px 4px;
+  }
+
+  .mh-stat-value {
+    font-size: 14px;
+  }
+
+  .mh-stat-label {
+    font-size: 9px;
+    letter-spacing: -0.15px;
+  }
+}
 
 
 }

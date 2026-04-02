@@ -119,14 +119,59 @@
                 <td class="stat-text">{{vini_penalty.wcPen}}<br><span class="stat-name">PENALTY GOALS</span></td>
             </tr>
 
-
-
         </tbody>
     </table>
     {{#if admin}}
     <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="all_time">UPDATE</button>
     {{/if}}
 </div>
+
+<div class="table-container" id="goals">
+    <h2 name="" class="stat-title">PENALTY GOALS - BY SEASON</h2>
+    <h2 name="club" class="stat-title2">(Including National Team Games)</h2>
+    <table class="Stats-table">
+        <thead>
+            <tr>
+                <th>SEASON</th>
+                <th class="stat-text">MBAPPE</th>
+                <th class="stat-text">HAALAND</th>
+                <th class="stat-text">VINICIUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each pen_by_season}}
+            <tr>
+                <td class="stat-text ignore-highlight stat-text-tb2">
+                    {{Season}}
+                </td>
+
+                <td class="stat-text">
+                    {{Mbappe}}<br>
+                    <span class="stat-name">PENS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{Haaland}}<br>
+                    <span class="stat-name">PENS</span>
+                </td>
+
+                <td class="stat-text">
+                    {{Vinicius}}<br>
+                    <span class="stat-name">PENS</span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+
+    {{#if admin}}
+    <button class="Dt-btn" onclick="toggleModal(this)" data-stat="" table="year2025">UPDATE</button>
+    {{/if}}
+
+</div>
+
 
 <section class="performance-insight">
     <div class="insight-box">

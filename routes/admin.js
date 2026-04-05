@@ -11,6 +11,7 @@ require('dotenv').config();
 const NodeCache = require('node-cache');
 const pageCache = new NodeCache({ stdTTL: 900 }); // Cache for 5 minutes
 const isDev = false; // true while editing, false to enable caching
+const { generatePostsAfterMatch } = require('../helpers/postGenerator');
 
 
 const ADMIN_USER = "admin";
@@ -188,7 +189,7 @@ router.post('/pending/accept', (req, res) => {
                 });
               }
 
-              connection.commit(err => {
+              connection.commit(async err => {
                 if (err) {
                   return connection.rollback(() => {
                     connection.release();
@@ -198,6 +199,24 @@ router.post('/pending/accept', (req, res) => {
                 }
 
                 connection.release();
+
+                try {
+                  await generatePostsAfterMatch(player, {
+                    id: id, // pending ID for now, okay
+                    date: insertData.date,
+                    season: insertData.season,
+                    forTeam: insertData.forTeam,
+                    againstTeam: insertData.againstTeam,
+                    goals: insertData.goals,
+                    assists: insertData.assists,
+                    Shot: insertData.Shot,
+                    mnt: insertData.mnt
+                  });
+                } catch (postErr) {
+                  console.error('Post generation failed:', postErr);
+                  // Don't block admin success just because post generation failed
+                }
+
                 res.json({ success: true });
               });
             }
@@ -231,6 +250,56 @@ router.post('/pending/reject', (req, res) => {
   );
 });
 
+router.get('/generated-posts', (req, res) => {
+  db.get().query(
+    `SELECT * FROM generated_posts ORDER BY created_at DESC LIMIT 100`,
+    (err, rows) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('DB Error');
+      }
+
+      res.render('user/generated-posts', {
+        posts: rows
+      });
+    }
+  );
+});
+
+router.post('/delete-post', (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ error: 'Missing ID' });
+  }
+
+  db.get().query(
+    'DELETE FROM generated_posts WHERE id = ?',
+    [id],
+    (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Delete failed' });
+      }
+
+      res.json({ success: true });
+    }
+  );
+});
+
+router.post('/delete-all-posts', (req, res) => {
+  db.get().query(
+    'DELETE FROM generated_posts',
+    (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Delete all failed' });
+      }
+
+      res.json({ success: true });
+    }
+  );
+});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -506,21 +575,64 @@ router.post('/sts-update', upload.none(), function (req, res) {
   });
 });
 
+function getPlayerNameFromTable(playerTable) {
+  switch (playerTable) {
+    case 'mhmbappe':
+      return 'Mbappe';
+    case 'mhhaaland':
+      return 'Haaland';
+    case 'mhvinicius':
+      return 'Vinicius';
+    default:
+      throw new Error('Invalid player table');
+  }
+}
+
 router.post('/add-match', async (req, res) => {
   try {
-    console.log('Form Data Received:', req.body); // Debug
+    console.log('Form Data Received:', req.body);
 
-    const { playerTable, ...matchData } = req.body; // playerTable: table name for the selected player
+    const { playerTable, ...rawMatchData } = req.body;
 
-    // Wrap callback in a Promise for await
+    // Normalize match data once
+    const matchData = {
+      id: null,
+      ...rawMatchData,
+      goals: Number(rawMatchData.goals) || 0,
+      pen: Number(rawMatchData.pen) || 0,
+      assists: Number(rawMatchData.assists) || 0,
+      CC: Number(rawMatchData.CC) || 0,
+      BCC: Number(rawMatchData.BCC) || 0,
+      shot: Number(rawMatchData.shot) || 0,
+      dribbles: Number(rawMatchData.dribbles) || 0,
+      mnt: Number(rawMatchData.mnt) || 0,
+      scorFor: Number(rawMatchData.scorFor) || 0,
+      scorAgainst: Number(rawMatchData.scorAgainst) || 0
+    };
+
+    console.log('MATCH DATA:', matchData);
+
+    // 1. Add match to selected player table
     await new Promise((resolve, reject) => {
-      displayHelper.addMatch(playerTable, matchData, (err, result) => {
+      displayHelper.addMatch(playerTable, rawMatchData, (err, result) => {
         if (err) return reject(err);
         resolve(result);
       });
     });
 
+    // 2. Convert table -> player name
+    const player = getPlayerNameFromTable(playerTable);
+
+    // 3. Trigger post generation
+    try {
+      await generatePostsAfterMatch(player, matchData);
+    } catch (postErr) {
+      console.error('Manual match post generation failed:', postErr);
+      // Don't fail the match add just because post generation failed
+    }
+
     res.json({ success: true, message: 'Match added successfully!' });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, error: 'Failed to add match' });

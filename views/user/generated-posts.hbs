@@ -1,0 +1,299 @@
+{{!-- {{#each posts}}
+<div style="border:1px solid #ccc; padding:15px; margin-bottom:15px; border-radius:10px;">
+  <h3>{{this.player}} — {{this.post_type}}</h3>
+  <p><strong>{{this.title}}</strong></p>
+  <pre style="white-space: pre-wrap; font-family: inherit;">{{this.content}}</pre>
+  <small>Status: {{this.status}} | Match Date: {{this.source_date}}</small>
+</div>
+{{/each}} --}}
+
+<section class="gp-page">
+  <div class="gp-shell">
+
+    <!-- Top Utility Bar -->
+    <header class="gp-toolbar">
+      <div class="gp-toolbar-copy">
+        <p class="gp-eyebrow">Admin Content Workflow</p>
+        <h1 class="gp-title">Generated Twitter/X Templates</h1>
+        <p class="gp-toolbar-note">
+          Review, filter, copy, and publish stat-based post templates generated from the latest football data.
+        </p>
+      </div>
+
+      <div class="gp-toolbar-controls">
+        <div class="gp-control-group">
+          <label for="gpPlayerFilter">Player</label>
+          <select id="gpPlayerFilter" class="gp-select">
+            <option value="all">All Players</option>
+            <option value="mbappe">Mbappé</option>
+            <option value="haaland">Haaland</option>
+            <option value="vinicius">Vinícius</option>
+          </select>
+        </div>
+
+        <div class="gp-control-group">
+          <label for="gpTypeFilter">Template Type</label>
+          <select id="gpTypeFilter" class="gp-select">
+            <option value="all">All Types</option>
+            <option value="match">Match</option>
+            <option value="season_so_far">Season So Far</option>
+            <option value="year_so_far">Year So Far</option>
+            <option value="last_10">Last 10 Games</option>
+            <option value="competition_summary">Competition Form</option>
+            <option value="goal_summary">Goal Summary</option>
+            <option value="milestone">Milestones</option>
+          </select>
+        </div>
+
+        <div class="gp-control-group">
+          <label for="gpSortFilter">Sort</label>
+          <select id="gpSortFilter" class="gp-select">
+            <option value="newest">Newest First</option>
+            <option value="player">Player Name</option>
+            <option value="type">Template Type</option>
+          </select>
+        </div>
+
+      </div>
+
+      <button id="gpDeleteAllBtn" class="gp-delete-all-btn">Delete All</button>
+
+    </header>
+
+    <!-- Feed -->
+    <main class="gp-feed" id="gpPostsFeed">
+
+      {{#each posts}}
+      <!-- CARD 1 -->
+      <article class="gp-card" data-id="{{this.id}}" data-player="{{this.player}}" data-type="{{this.post_type}}"
+        data-date="{{this.source_date}}">
+
+        <div class="gp-card-top">
+          <div class="gp-identity-row">
+            <h2 class="gp-player-name">{{this.player}}</h2>
+            <span class="gp-template-badge">{{this.post_type}}</span>
+          </div>
+
+          <p class="gp-post-angle">{{this.title}}</p>
+        </div>
+
+        <div class="gp-tweet-preview" data-gp-copy-target>{{this.content}}</div>
+
+        <footer class="gp-card-footer">
+          <div class="gp-footer-meta">
+            <span class="gp-status-badge gp-status-draft">{{this.status}}</span>
+            <span class="gp-meta-dot"></span>
+            <span class="gp-meta-text">{{formatDateShort this.source_date}}</span>
+            <span class="gp-meta-dot"></span>
+            {{!-- <span class="gp-meta-text gp-char-count">151 chars</span> --}}
+          </div>
+
+          <button class="gp-delete-btn" type="button">Delete</button>
+          <button class="gp-copy-btn" type="button">Copy</button>
+        </footer>
+      </article>
+
+      {{/each}}
+
+    </main>
+
+    <div class="gp-empty-state gp-hidden" id="gpEmptyState">
+      <div class="gp-empty-card">
+        <p class="gp-empty-kicker">No templates found</p>
+        <h3 class="gp-empty-title">Nothing matches your current filters.</h3>
+        <p class="gp-empty-text">Try switching player, template type, or sorting options.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const gpPlayerFilter = document.getElementById("gpPlayerFilter");
+    const gpTypeFilter = document.getElementById("gpTypeFilter");
+    const gpSortFilter = document.getElementById("gpSortFilter");
+    const gpPostsFeed = document.getElementById("gpPostsFeed");
+    const gpEmptyState = document.getElementById("gpEmptyState");
+
+    function gpGetCards() {
+      return Array.from(gpPostsFeed.querySelectorAll(".gp-card"));
+    }
+
+    function normalize(str) {
+      return (str || "").toString().toLowerCase().trim();
+    }
+
+    function gpApplyFiltersAndSort() {
+      const selectedPlayer = normalize(gpPlayerFilter.value);
+      const selectedType = normalize(gpTypeFilter.value);
+      const selectedSort = gpSortFilter.value;
+
+      let cards = gpGetCards();
+
+      cards.forEach(card => {
+        const cardPlayer = normalize(card.dataset.player);
+        const cardType = normalize(card.dataset.type);
+
+        let matchesPlayer =
+          selectedPlayer === "all" || cardPlayer === selectedPlayer;
+
+        let matchesType = true;
+
+        if (selectedType !== "all") {
+          if (selectedType === "milestone") {
+            matchesType = cardType.startsWith("milestone");
+          } else {
+            matchesType = cardType === selectedType;
+          }
+        }
+
+        card.style.display = (matchesPlayer && matchesType) ? "" : "none";
+      });
+
+      // Filter visible cards
+      cards = cards.filter(card => card.style.display !== "none");
+
+      // Sorting
+      cards.sort((a, b) => {
+        if (selectedSort === "player") {
+          return normalize(a.dataset.player).localeCompare(normalize(b.dataset.player));
+        }
+
+        if (selectedSort === "type") {
+          return normalize(a.dataset.type).localeCompare(normalize(b.dataset.type));
+        }
+
+        // Default: newest first
+        return new Date(b.dataset.date) - new Date(a.dataset.date);
+      });
+
+      // Re-render
+      cards.forEach(card => gpPostsFeed.appendChild(card));
+
+      gpEmptyState.classList.toggle("gp-hidden", cards.length > 0);
+    }
+
+    function gpUpdateCharCounts() {
+      gpGetCards().forEach(card => {
+        const preview = card.querySelector("[data-gp-copy-target]");
+        const countEl = card.querySelector(".gp-char-count");
+        if (!preview || !countEl) return;
+
+        const text = preview.textContent.trim();
+        countEl.textContent = `${text.length} chars`;
+      });
+    }
+
+    function gpSetupCopyButtons() {
+      document.querySelectorAll(".gp-copy-btn").forEach(button => {
+        button.addEventListener("click", async () => {
+          const card = button.closest(".gp-card");
+          const preview = card.querySelector("[data-gp-copy-target]");
+          if (!preview) return;
+
+          const text = preview.textContent.trim();
+          const originalText = button.textContent;
+
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(text);
+            } else {
+              // Fallback for mobile / unsupported browsers
+              const textarea = document.createElement("textarea");
+              textarea.value = text;
+              textarea.style.position = "fixed";
+              textarea.style.left = "-9999px";
+              textarea.style.top = "0";
+              document.body.appendChild(textarea);
+              textarea.focus();
+              textarea.select();
+
+              const successful = document.execCommand("copy");
+              document.body.removeChild(textarea);
+
+              if (!successful) throw new Error("Fallback copy failed");
+            }
+
+            button.textContent = "Copied";
+            button.classList.add("gp-copied");
+
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.classList.remove("gp-copied");
+            }, 1600);
+
+          } catch (error) {
+            console.error("Copy failed:", error);
+            button.textContent = "Failed";
+
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 1600);
+          }
+        });
+      });
+    }
+
+    gpPlayerFilter.addEventListener("change", gpApplyFiltersAndSort);
+    gpTypeFilter.addEventListener("change", gpApplyFiltersAndSort);
+    gpSortFilter.addEventListener("change", gpApplyFiltersAndSort);
+
+    gpUpdateCharCounts();
+    gpSetupCopyButtons();
+    gpApplyFiltersAndSort();
+  })();
+
+  document.querySelectorAll('.gp-delete-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const card = btn.closest('.gp-card');
+      const id = card.dataset.id;
+
+      if (!confirm('Delete this post?')) return;
+
+      try {
+        const res = await fetch('/admin/delete-post', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          card.remove();
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Delete failed');
+      }
+    });
+  });
+
+  const deleteAllBtn = document.getElementById('gpDeleteAllBtn');
+
+  if (deleteAllBtn) {
+    deleteAllBtn.addEventListener('click', async () => {
+      if (!confirm('Delete ALL posts? This cannot be undone.')) return;
+
+      try {
+        const res = await fetch('/admin/delete-all-posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          document.querySelectorAll('.gp-card').forEach(card => card.remove());
+        } else {
+          alert('Delete all failed');
+        }
+
+      } catch (err) {
+        console.error(err);
+        alert('Delete all failed');
+      }
+    });
+  }
+
+</script>

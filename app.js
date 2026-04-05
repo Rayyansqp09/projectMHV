@@ -84,6 +84,13 @@ app.engine('hbs', hbs.engine({
 
       return `${year}-${month}-${day}`;
     },
+
+    // ✅ ADD THIS
+    formatDateShort: (datetime) => {
+      if (!datetime) return "";
+      return new Date(datetime).toDateString();
+    },
+
     eq: (a, b) => a === b,
     split: (str, sep) => (!str ? [] : str.split(sep).map(s => s.trim())),
 
@@ -143,7 +150,7 @@ cron.schedule('0 6 * * *', async () => {
   await runHaalandFetchJob();
 },
   {
-    timezone: "Asia/Kolkata" 
+    timezone: "Asia/Kolkata"
   }
 
 );

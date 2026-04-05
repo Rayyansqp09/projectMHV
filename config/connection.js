@@ -15,7 +15,8 @@ module.exports.connect = function (done) {
     host: process.env.DB_HOST || '127.0.0.1',
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    charset: 'utf8mb4'
   });
 
   // Test connection once

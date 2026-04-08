@@ -207,9 +207,15 @@ router.post('/pending/accept', (req, res) => {
                     season: insertData.season,
                     forTeam: insertData.forTeam,
                     againstTeam: insertData.againstTeam,
+                    competition: insertData.competition,
+                    stage: insertData.stage,
                     goals: insertData.goals,
                     assists: insertData.assists,
                     Shot: insertData.Shot,
+                    CC: insertData.CC,
+                    BCC:insertData.BCC,
+                    dribbles:insertData.dribbles,
+                    pen:insertData.pen,
                     mnt: insertData.mnt
                   });
                 } catch (postErr) {

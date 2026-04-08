@@ -181,18 +181,19 @@ And with that, he now has:
 }
 
 function createMatchPost(player, match) {
+  console.log('Creating match post with data:', match);
   return {
     post_type: 'match',
     title: `${player} vs ${match.againstTeam}`,
     content:
       `📊 ${player}'s latest game vs ${match.againstTeam} :
 
-⚽ Goals: ${match.goals || 0}
-🅰️ Assists: ${match.assists || 0}
-🎯 Shots on target: ${match.shot || 0}
-🎨 Chances created: ${match.CC || 0}
-🔥 Big chances created: ${match.BCC || 0}
-⚡ Dribbles completed: ${match.dribbles || 0}`
+⚽ ${match.goals || 0} Goals
+🅰️ ${match.assists || 0} Assists
+🎯 ${match.shot || 0} Shots on Target
+🎨 ${match.CC || 0} Chances Created
+🔥 ${match.BCC || 0} Big Chances Created
+⚡ ${match.dribbles || 0} Dribbles Completed`
   };
 }
 
@@ -201,7 +202,7 @@ function createSeasonPost(player, stats, season) {
     post_type: 'season_so_far',
     title: `${player} ${season} season so far`,
     content:
-      `📊 ${player} in ${season} so far  ⚔️👇🏻
+      `📊 ${player} in ${season} So Far  ⚔️👇🏻
 
 👕 ${stats.games} Games   
 ⚽ ${stats.goals} Goals
@@ -221,7 +222,7 @@ function createYearPost(player, stats, year) {
     post_type: 'year_so_far',
     title: `${player} ${year} so far`,
     content:
-`📊 ${player} in ${year} so far  ⚔️👇🏻
+`📊 ${player} in ${year} So Far  ⚔️👇🏻
 
 👕 ${stats.games} Games   
 ⚽ ${stats.goals} Goals
@@ -693,6 +694,7 @@ async function generatePostsAfterMatch(player, matchData) {
   const matchPost = createMatchPost(player, matchData);
   if (matchPost) posts.push(matchPost);
 
+  // 2. Goal summary post (if scored)
   const goalSummaryStats = await getGoalSummaryStats(player, matchData);
   const goalSummaryPost = createGoalSummaryPost(player, matchData, goalSummaryStats);
   if (goalSummaryPost) posts.push(goalSummaryPost);
@@ -702,27 +704,27 @@ async function generatePostsAfterMatch(player, matchData) {
 
   if (competitionPost) posts.push(competitionPost);
 
-  // 2. Season so far post
+  // 3. Season so far post
   const seasonStats = await getSeasonStats(player, matchData.season);
   const seasonPost = createSeasonPost(player, seasonStats, matchData.season);
   if (seasonPost) posts.push(seasonPost);
 
-  // 3. Calendar year post
+  // 4. Calendar year post
   const year = new Date(matchData.date).getFullYear();
   const yearStats = await getYearStats(player, year);
   const yearPost = createYearPost(player, yearStats, year);
   if (yearPost) posts.push(yearPost);
 
-  // 4. Last 10 games post
+  // 5. Last 10 games post
   const last10Matches = await getLast10Matches(player);
   const last10Post = createLast10Post(player, last10Matches);
   if (last10Post) posts.push(last10Post);
 
-  // 5. Milestone posts
+  // 6. Milestone posts
   const milestonePosts = await checkMilestones(player, matchData);
   posts.push(...milestonePosts);
 
-  // 6. Finals timeline and summary
+  // 7. Finals timeline and summary
   if (isFinalStage(matchData.stage)) {
     const finalStats = await getFinalStatsFromView(player);
     const finalMatches = await getFinalMatches(player);

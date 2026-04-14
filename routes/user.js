@@ -71,7 +71,10 @@ router.get("/sitemapmhv.xml", (req, res) => {
     makeUrl("pay", "monthly", 0.2),
     makeUrl("policy", "yearly", 0.1),
     makeUrl("scoring-streaks", "weekly", 0.6),
-    makeUrl("penalty-goals", "weekly", 0.6)
+    makeUrl("penalty-goals", "weekly", 0.6),
+    makeUrl("By-season", "weekly", 0.6),
+    makeUrl("By-year", "weekly", 0.6),
+    makeUrl("Stats-By-FIFA-Rank", "monthly", 0.6)
   ];
 
   // -------------------------
@@ -106,6 +109,16 @@ router.get("/sitemapmhv.xml", (req, res) => {
     makeUrl(`favorite-opponents/${p}`, "weekly", 0.7)
   );
 
+  const clubPlayerPages = players.map(p =>
+    makeUrl(`club/${p}`, "weekly", 0.7)
+  );
+
+  const headToHeadPages = [
+  makeUrl("head-to-head/mbappe-haaland", "weekly", 0.7),
+  makeUrl("head-to-head/mbappe-vinicius", "weekly", 0.7),
+  makeUrl("head-to-head/haaland-vinicius", "weekly", 0.7)
+];
+
   // -------------------------
   // MERGE ALL
   // -------------------------
@@ -115,7 +128,9 @@ router.get("/sitemapmhv.xml", (req, res) => {
     ...intPages,
     ...playerPages,
     ...matchHistoryPages,
-    ...favoriteOpponentPages
+    ...favoriteOpponentPages,
+    ...clubPlayerPages,
+    ...headToHeadPages
   ];
 
   // -------------------------

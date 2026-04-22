@@ -1,15 +1,22 @@
 <div id="modalOverlay" class="modalOverlay">
   <button id="closeBtn" class="close-btn">&times;</button>
   <div class="modal-content">
+
     <form action="/admin/sts-update" class="mbappe-theme" id="statsForm" method="POST" enctype="multipart/form-data">
+
       <!-- Player Selection -->
+
       <div class="form-group">
+
         <p id="statCategoryDisplay" style="font-weight: bold;"></p>
         <input name="statname" id="statCategoryInput">
+
       </div>
+
       <div class="form-group">
         <p id="tableNameDisplay" style="font-weight: bold;"></p>
         <input name="tablename" id="tableNameInput">
+
       </div>
 
 
@@ -42,12 +49,12 @@
 
       <div class="form-group">
         <label for="customStatName">Custom Stat Name</label>
-        <input type="text" id="customStatName"  placeholder="e.g., GoalRatio">
+        <input type="text" id="customStatName" placeholder="e.g., GoalRatio">
       </div>
 
       <div class="form-group">
         <label for="customStatValue">Custom Stat Value</label>
-        <input type="text" id="customStatValue"  placeholder="e.g., 0.89">
+        <input type="text" id="customStatValue" placeholder="e.g., 0.89">
       </div>
 
       <div class="button-row">
@@ -93,7 +100,7 @@
 <div class="faq-delete-modal" id="faq-delete-modal">
   <div class="faq-modal-content">
     <h3>Delete this FAQ?</h3>
-     <p id="delete-text">Are you sure you want to delete this question?</p>
+    <p id="delete-text">Are you sure you want to delete this question?</p>
 
     <button id="confirm-delete-btn" class="faq-submit-btn">Delete</button>
     <button id="cancel-delete-btn" class="faq-close-btn">Cancel</button>
@@ -103,19 +110,12 @@
 
 <script>
 
-  // Theme and values
   document.getElementById("playerSelect").addEventListener("change", function () {
     const selected = this.value.toLowerCase();
     const form = document.getElementById("statsForm");
 
-    // Remove all themes before adding the selected one
     form.classList.remove("mbappe-theme", "haaland-theme", "vinicius-theme");
     form.classList.add(`${selected}-theme`);
-
-    const stats = playerStats[selected];
-    document.getElementById("Goals").value = stats.goals;
-    document.getElementById("Assists").value = stats.assists;
-    document.getElementById("Games").value = stats.games;
   });
 
   // Show popup after successful submission
@@ -128,28 +128,28 @@
   }
 
   // Submit form
- const statsForm = document.getElementById('statsForm');
-let isSubmitting = false;
-let submitCount = 0;
+  // const statsForm = document.getElementById('statsForm');
+  let isSubmitting = false;
+  let submitCount = 0;
 
-statsForm.addEventListener('submit', async function (e) {
-  e.preventDefault();
+  statsForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-  submitCount++;
-  console.log(`🔥 Submit triggered #${submitCount}`);
+    submitCount++;
+    log(`🔥 Submit triggered #${submitCount}`);
 
-  if (isSubmitting) {
-    console.warn('Duplicate submit blocked');
-    return;
-  }
-  isSubmitting = true;
+    if (isSubmitting) {
+      console.warn('Duplicate submit blocked');
+      return;
+    }
+    isSubmitting = true;
 
-  const formData = new FormData(this);
-  const response = await fetch('/admin/sts-update', { method: 'POST', body: formData });
+    const formData = new FormData(this);
+    const response = await fetch('/admin/sts-update', { method: 'POST', body: formData });
 
-  response.ok ? showSuccessMessage() : alert('❌ Submit failed');
-  isSubmitting = false;
-});
+    response.ok ? showSuccessMessage() : alert('❌ Submit failed');
+    isSubmitting = false;
+  });
 
 
   // Set initial state

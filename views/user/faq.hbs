@@ -4,13 +4,11 @@
     <meta name="keywords" content="{{keywords}}">
     <meta name="author" content="MHVstats">
     <meta property="og:title" content="{{title}}">
-    <meta property="og:description"
-        content="{{description}}">
+    <meta property="og:description" content="{{description}}">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{title}}">
-    <meta name="twitter:description"
-        content="{{description}}">
+    <meta name="twitter:description" content="{{description}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://mhvstats.xyz/faq">
 </head>
@@ -399,6 +397,7 @@
 
 
 <script>
+    
 
     /***************
      Expand/Collapse FAQ Items
@@ -436,18 +435,21 @@
     const closeBtn = document.getElementById('faq-close');
     const submitBtn = document.getElementById('faq-submit');
 
+
     // Open modal
-    addBtn.addEventListener('click', () => {
-        modal.style.display = 'flex';
-    });
+    if (addBtn) {
+        addBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+    }
 
     // Close modal
-    closeBtn.addEventListener('click', () => {
+    closeBtn?.addEventListener('click', () => {
         modal.style.display = 'none';
     });
 
     // Submit FAQ
-    submitBtn.addEventListener('click', async () => {
+    submitBtn?.addEventListener('click', async () => {
         const question = document.getElementById('faq-question').value;
         const type = document.getElementById('faq-type').value;
         const ans = document.getElementById('faq-ans').value;
@@ -473,6 +475,7 @@
 
 
     (function () {
+        
         const $$ = (s) => Array.from(document.querySelectorAll(s));
         const $ = (s) => document.querySelector(s);
 
@@ -481,36 +484,55 @@
         const toggles = $$('.faq-toggle');
         const categoryBtns = $$('.faq-cat-btn');
 
+        // REMOVE second const
+
+        log("1️⃣ SEARCH ELEMENT:", search);
+
+        log("2️⃣ ITEMS FOUND:", items.length);
 
         /***************
          LIVE SEARCH
         ****************/
         search?.addEventListener('input', () => {
+            log("3️⃣ EVENT FIRED");
+
             const q = search.value.toLowerCase().trim();
+            log("4️⃣ QUERY:", q);
 
             let visible = 0;
 
-            items.forEach((item) => {
+            items.forEach((item, i) => {
                 const text =
                     item.innerText.toLowerCase() +
                     (item.getAttribute('data-keywords') || '').toLowerCase();
 
                 const match = text.includes(q);
-                item.style.display = match ? "block" : "none";
+
+                if (i < 3) { // don't spam, just first few
+                    log(`5️⃣ ITEM ${i} TEXT:`, text);
+                    log(`6️⃣ ITEM ${i} MATCH:`, match);
+                }
+
+                item.style.display = match ? "" : "none";
                 if (match) visible++;
             });
 
-            // Handle "no results" message
-            let empty = $('#faq-empty');
+            log("7️⃣ VISIBLE COUNT:", visible);
+
+            let empty = document.getElementById('faq-empty');
+
             if (!visible) {
+                log("8️⃣ NO RESULTS TRIGGERED");
+
                 if (!empty) {
                     empty = document.createElement('div');
                     empty.id = "faq-empty";
                     empty.className = "faq-empty";
                     empty.textContent = "No results found.";
-                    $('.faq-content').appendChild(empty);
+                    document.querySelector('.faq-content').appendChild(empty);
                 }
             } else if (empty) {
+                log("9️⃣ REMOVING EMPTY STATE");
                 empty.remove();
             }
         });

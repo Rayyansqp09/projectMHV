@@ -16,7 +16,7 @@ const DUPLICATE_CHECK_ENABLED = true; // 🔁 turn ON later
 async function runMbappeFetchJob() {
     try {
         const matches = await fetchRecentRealMadridMatches(2);
-        console.log('Mbappe Matches fetched:', matches.length);
+        log('Mbappe Matches fetched:', matches.length);
 
 
 
@@ -92,7 +92,7 @@ async function runMbappeFetchJob() {
                     ? 'pending_matches'
                     : 'mhmbappe';
 
-                console.log(
+                log(
                     `Skipping duplicate match [${source}]:`,
                     date,
                     forTeam,
@@ -133,7 +133,7 @@ async function runMbappeFetchJob() {
                         return;
                     }
 
-                    console.log('✅ Pending match inserted:', result.insertId);
+                    log('✅ Pending match inserted:', result.insertId);
 
                     // 🔔 NOTIFY ADMINS — CORRECT PLACE
                     notifyAdmins(
@@ -147,7 +147,7 @@ async function runMbappeFetchJob() {
                 }
             );
 
-            // console.log('PENDING MATCH DATA:', insertData);
+            // log('PENDING MATCH DATA:', insertData);
 
         }
 

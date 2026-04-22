@@ -14,7 +14,8 @@ require('dotenv').config();
 const NodeCache = require('node-cache');
 const graph = require('../helpers/graph');
 const pageCache = new NodeCache({ stdTTL: 900 }); // Cache for 5 minutes
-
+const { isDev } = require('../config/env');
+const { log } = require('../config/logger');
 
 
 
@@ -31,8 +32,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const isDev = true; // true while editing, false to enable caching
-
+//const isDev = true; // true while editing, false to enable caching(when not in development)
 
 router.get('/dummy', (req, res) => {
   res.render('user/dummy'); // looks for dummy.hbs inside views/
@@ -268,7 +268,7 @@ router.get('/', function (req, res, next) {
       viniciusMatches
     };
 
-    // console.log(mbappeStats, haalandStats, viniStats)
+    // log(mbappeStats, haalandStats, viniStats)
 
     res.render('index', {
       graph: {
@@ -377,14 +377,14 @@ router.get('/club-stats', function (req, res, next) {
     const vini_club = stats.club2.find(p => p.Name === 'Vinicius');
     const vini_ucl = stats.ucl2.find(p => p.Name === 'Vinicius');
 
-    // console.log('Mbappe All-Time:', mbappe_all);
-    // console.log('Mbappe Club:', mbappe_club);
+    // log('Mbappe All-Time:', mbappe_all);
+    // log('Mbappe Club:', mbappe_club);
 
-    // console.log('Haaland All-Time:', haaland_all);
-    // console.log('Haaland Club:', haaland_club);
+    // log('Haaland All-Time:', haaland_all);
+    // log('Haaland Club:', haaland_club);
 
-    // console.log('Vinicius All-Time:', vini_all);
-    // console.log('Vinicius Club:', vini_club);
+    // log('Vinicius All-Time:', vini_all);
+    // log('Vinicius Club:', vini_club);
 
 
     res.render('user/club-stats', {
@@ -472,14 +472,14 @@ router.get('/int-stats', function (req, res, next) {
     addGA(vini_ByRank);
 
 
-    // console.log('Mbappe All-Time:', mbappe_all);
-    // console.log('Mbappe Intr:', mbappe_intr);
+    // log('Mbappe All-Time:', mbappe_all);
+    // log('Mbappe Intr:', mbappe_intr);
 
-    // console.log('Haaland All-Time:', haaland_all);
-    // console.log('Haaland Intr:', haaland_intr);
+    // log('Haaland All-Time:', haaland_all);
+    // log('Haaland Intr:', haaland_intr);
 
-    // console.log('Vinicius All-Time:', vini_all);
-    // console.log('Vinicius Intr:', vini_intr);
+    // log('Vinicius All-Time:', vini_all);
+    // log('Vinicius Intr:', vini_intr);
 
     res.render('user/int-stats', {
       title: 'International Stats | Mbappe vs Haaland vs Vinicius',
@@ -795,14 +795,14 @@ router.get('/Scoring-Streaks', function (req, res, next) {
     const haaland = stats.find(p => p.name === 'Haaland');
     const vini = stats.find(p => p.name === 'Vinicius');
 
-    // console.log('Mbappe All-Time:', mbappe_all);
-    // console.log('Mbappe Club:', mbappe_club);
+    // log('Mbappe All-Time:', mbappe_all);
+    // log('Mbappe Club:', mbappe_club);
 
-    // console.log('Haaland All-Time:', haaland_all);
-    // console.log('Haaland Club:', haaland_club);
+    // log('Haaland All-Time:', haaland_all);
+    // log('Haaland Club:', haaland_club);
 
-    // console.log('Vinicius All-Time:', vini_all);
-    // console.log('Vinicius Club:', vini_club);
+    // log('Vinicius All-Time:', vini_all);
+    // log('Vinicius Club:', vini_club);
 
 
     res.render('user/streak', {
@@ -953,7 +953,7 @@ router.get('/club/:player', (req, res) => {
       !excludedTeams.includes(row.club.toLowerCase())
     );
 
-    console.log(`Club stats for ${playerName}:`, stats);
+    log(`Club stats for ${playerName}:`, stats);
 
     res.render('user/player_club', {
       stats,
@@ -1209,8 +1209,8 @@ router.get('/Match-History/:player', (req, res) => {
       vinicius: "https://mhvstats.xyz/images/vinicius2.webp"
     };
 
-    // console.log("Player:", player, "Table:", tableName, "Query Params:", req.query);
-    //  console.log(matches)
+    // log("Player:", player, "Table:", tableName, "Query Params:", req.query);
+    //  log(matches)
 
     res.render('user/mh-v', {
       matches: paginatedMatches,
@@ -1352,7 +1352,7 @@ router.post("/pay", async (req, res) => {
 
 
 router.get('/vote', function (req, res, next) {
-  console.log(`[${new Date().toISOString()}] /vote page requested from IP: ${req.ip}`);
+  log(`[${new Date().toISOString()}] /vote page requested from IP: ${req.ip}`);
 
   displayHelper.getStats('votes', (err, votes) => {
     if (err) {
@@ -1368,7 +1368,7 @@ router.get('/vote', function (req, res, next) {
 
     const totalVotes = voteCounts.Mbappe + voteCounts.Haaland + voteCounts.Vinicius;
 
-    console.log(`[${new Date().toISOString()}] Vote data fetched:`, {
+    log(`[${new Date().toISOString()}] Vote data fetched:`, {
       Mbappe: voteCounts.Mbappe,
       Haaland: voteCounts.Haaland,
       Vinicius: voteCounts.Vinicius,
@@ -1411,7 +1411,7 @@ router.post('/vote', (req, res) => {
   }
 
   if (isTesting) {
-    console.log('TESTING MODE: Allowing vote for IP:', ip);
+    log('TESTING MODE: Allowing vote for IP:', ip);
   }
 
 
@@ -1559,7 +1559,7 @@ router.get('/club-stats/:comp', function (req, res, next) {
     const haaland_ach = stats.ucl.find(p => p.Name === 'Haaland');
     const vini_ach = stats.ucl.find(p => p.Name === 'Vinicius');
 
-    // console.log(mbappe, haaland, vini)
+    // log(mbappe, haaland, vini)
 
     // Dynamically render the matching .hbs page like user/ucl.hbs, user/wc.hbs, etc.
     res.render(`user/${comp}`, {
@@ -1630,7 +1630,7 @@ router.get('/int-stats/:comp', function (req, res, next) {
     const vini_all = stats.intr2.find(p => p.Name === 'Vinicius');
 
 
-    // console.log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
+    // log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
 
     res.render(`user/${comp}`, {
       title,

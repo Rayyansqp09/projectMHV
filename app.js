@@ -8,13 +8,19 @@ const NodeCache = require('node-cache');
 const pageCache = new NodeCache({ stdTTL: 300 });
 
 var db = require('./config/connection');   // ✅ ONLY ONCE — KEEP HERE
-
 var adminRouter = require('./routes/admin');
 var userRouter = require('./routes/user');
 
 var hbs = require('express-handlebars');
-
 var app = express();
+
+const { isDev } = require('./config/env');
+const log = require('./config/logger');
+
+app.use((req, res, next) => {
+    res.locals.isDev = isDev;
+    next();
+});
 
 
 // --------------------------------------------------
@@ -24,7 +30,7 @@ db.connect((err) => {
   if (err) {
     console.error("❌ Failed to initialize DB pool:", err);
   } else {
-    console.log("🔥 Database pool initialized");
+    log("🔥 Database pool initialized");
   }
 });
 
@@ -164,7 +170,7 @@ cron.schedule('0 6 * * *', async () => {
 // --------------------------------------------------
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log(`🚀 Server started on port ${process.env.PORT || 3000}`);
+  log(`🚀 Server started on port ${process.env.PORT || 3000}`);
 });
 
 module.exports = app;

@@ -197,28 +197,28 @@
 
 <script>
 (async function initAdminPush() {
-  console.log('🚀 Admin push init');
+  log('🚀 Admin push init');
 
   if (!('serviceWorker' in navigator)) {
-    console.log('❌ No serviceWorker support');
+    log('❌ No serviceWorker support');
     return;
   }
 
   if (!('PushManager' in window)) {
-    console.log('❌ No PushManager support');
+    log('❌ No PushManager support');
     return;
   }
 
   // 1️⃣ Register Service Worker
   const reg = await navigator.serviceWorker.register('/sw.js');
-  console.log('🧩 Service Worker registered');
+  log('🧩 Service Worker registered');
 
   // 2️⃣ Ask permission
   const permission = await Notification.requestPermission();
-  console.log('🔐 Permission:', permission);
+  log('🔐 Permission:', permission);
 
   if (permission !== 'granted') {
-    console.log('❌ Permission denied');
+    log('❌ Permission denied');
     return;
   }
 
@@ -230,9 +230,9 @@
       userVisibleOnly: true,
       applicationServerKey: '{{VAPID_PUBLIC_KEY}}'
     });
-    console.log('📨 New push subscription created');
+    log('📨 New push subscription created');
   } else {
-    console.log('♻️ Existing subscription reused');
+    log('♻️ Existing subscription reused');
   }
 
   // 4️⃣ Send to server
@@ -242,12 +242,12 @@
     body: JSON.stringify(sub)
   });
 
-  console.log('📡 Subscribe response status:', res.status);
+  log('📡 Subscribe response status:', res.status);
 
   if (res.ok) {
-    console.log('✅ Admin push subscribed (saved in DB)');
+    log('✅ Admin push subscribed (saved in DB)');
   } else {
-    console.log('❌ Failed to save subscription');
+    log('❌ Failed to save subscription');
   }
 })();
 </script>

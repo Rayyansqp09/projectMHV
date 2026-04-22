@@ -2,15 +2,15 @@ const db = require('../config/connection');
 const webpush = require('../config/push');
 
 function notifyAdmins(title, body, options = {}) {
-  // console.log('🔔 notifyAdmins() CALLED');
-  // console.log('🔔 Title:', title);
-  // console.log('🔔 Body:', body);
-  // console.log('🖼️ Icon:', options.icon);
+  // log('🔔 notifyAdmins() CALLED');
+  // log('🔔 Title:', title);
+  // log('🔔 Body:', body);
+  // log('🖼️ Icon:', options.icon);
 
   db.get().query('SELECT * FROM admin_push_subscriptions', (err, subs) => {
     if (err) return;
 
-    console.log(`📬 Subscriptions found: ${subs.length}`);
+    log(`📬 Subscriptions found: ${subs.length}`);
 
     subs.forEach((sub, i) => {
       webpush.sendNotification(
@@ -27,7 +27,7 @@ function notifyAdmins(title, body, options = {}) {
           icon: options.icon
         })
       ).then(() => {
-        console.log(`✅ Push sent (${i + 1}/${subs.length})`);
+        log(`✅ Push sent (${i + 1}/${subs.length})`);
       }).catch(err => {
         console.error('❌ Push failed', err.statusCode);
       });

@@ -27,7 +27,7 @@ async function runHaalandFetchJob() {
 
 
 
-        console.log('Haaland matches fetched:', matches.length);
+        log('Haaland matches fetched:', matches.length);
 
         const connection = db.get();
 
@@ -92,7 +92,7 @@ async function runHaalandFetchJob() {
                     ? 'pending_matches'
                     : 'mhhaaland';
 
-                console.log(
+                log(
                     `Skipping duplicate match [${source}]:`,
                     date,
                     forTeam,
@@ -131,7 +131,7 @@ async function runHaalandFetchJob() {
                         return;
                     }
 
-                    console.log('✅ Pending match inserted:', result.insertId);
+                    log('✅ Pending match inserted:', result.insertId);
 
                     // 🔔 NOTIFY ADMINS — CORRECT PLACE
                     notifyAdmins(

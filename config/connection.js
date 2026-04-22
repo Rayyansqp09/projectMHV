@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 require('dotenv').config();
+const log = require('./logger');
 
 const state = {
   pool: null,
@@ -29,7 +30,7 @@ module.exports.connect = function (done) {
     // Save one connection for backward compatibility
     state.connection = connection;
 
-    console.log("✅ MySQL pool connected");
+    log("✅ MySQL pool connected");
     connection.release(); // return to pool
 
     done();

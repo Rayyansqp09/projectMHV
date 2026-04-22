@@ -13,7 +13,7 @@ const DUPLICATE_CHECK_ENABLED = true;
 async function runViniciusFetchJob() {
     try {
         const matches = await fetchRecentRealMadridMatches(2);
-        console.log('Vinicius matches fetched:', matches.length);
+        log('Vinicius matches fetched:', matches.length);
 
         const connection = db.get();
 
@@ -78,7 +78,7 @@ async function runViniciusFetchJob() {
                     ? 'pending_matches'
                     : 'mhvinicius';
 
-                console.log(
+                log(
                     `Skipping duplicate match [${source}]:`,
                     date,
                     forTeam,
@@ -117,7 +117,7 @@ async function runViniciusFetchJob() {
                         return;
                     }
 
-                    console.log('✅ Pending match inserted:', result.insertId);
+                    log('✅ Pending match inserted:', result.insertId);
 
                     // 🔔 NOTIFY ADMINS — CORRECT PLACE
                     notifyAdmins(

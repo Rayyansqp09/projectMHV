@@ -181,7 +181,7 @@ And with that, he now has:
 }
 
 function createMatchPost(player, match) {
-  console.log('Creating match post with data:', match);
+  log('Creating match post with data:', match);
   return {
     post_type: 'match',
     title: `${player} vs ${match.againstTeam}`,

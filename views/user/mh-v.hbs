@@ -998,11 +998,11 @@
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
 
-          console.log("Fetched totalGoals:", doc.querySelector('#totalGoals')?.textContent);
-          console.log("Fetched totalAssists:", doc.querySelector('#totalAssists')?.textContent);
-          console.log("Fetched totalCC:", doc.querySelector('#totalCC')?.textContent);
-          console.log("Fetched totalBCC:", doc.querySelector('#totalBCC')?.textContent);
-          console.log("Fetched totalDribbles:", doc.querySelector('#totalDribbles')?.textContent);
+          log("Fetched totalGoals:", doc.querySelector('#totalGoals')?.textContent);
+          log("Fetched totalAssists:", doc.querySelector('#totalAssists')?.textContent);
+          log("Fetched totalCC:", doc.querySelector('#totalCC')?.textContent);
+          log("Fetched totalBCC:", doc.querySelector('#totalBCC')?.textContent);
+          log("Fetched totalDribbles:", doc.querySelector('#totalDribbles')?.textContent);
 
           const newMatches = doc.querySelectorAll('#matches-container .match-card');
 

@@ -148,6 +148,12 @@
 
 <body>
 
+  <script>
+    window.isDev = {{ isDev }};
+  </script>
+
+  <script src="/javascripts/logger.js"></script>
+
   {{#unless header}}
   {{#if admin}}
   {{> admin-header}}
@@ -212,7 +218,7 @@
                 <a href="/scoring-Streaks">Scoring Streaks</a>
                 <a href="/head-to-head/mbappe-haaland">Head to Head Comparison</a>
                 <a href="/club/mbappe">Stats By Club</a>
-                 <a href="/Stats-By-FIFA-Rank#top10">International Stats By FIFA Rank</a>
+                <a href="/Stats-By-FIFA-Rank#top10">International Stats By FIFA Rank</a>
               </div>
             </div>
 
@@ -387,7 +393,7 @@
       <!-- Contact -->
       <div class="footer-contact">
         <h3>Contact</h3>
-        <p>Email: <a href="mailto:helpmhv@gnail.com">helpmhv@gmail.com</a></p>
+        <p>Email: <a href="mailto:helpmhv@gmail.com">helpmhv@gmail.com</a></p>
         X : <a href="https://x.com/MHVstats">MHVstats</a><br>
       </div>
     </div>
@@ -406,7 +412,6 @@
 
     </div>
   </footer>
-
 
   {{!-- <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

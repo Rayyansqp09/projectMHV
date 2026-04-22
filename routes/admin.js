@@ -5,12 +5,14 @@ const upload = multer(); // For parsing multipart/form-data
 const displayHelper = require('../helpers/disply');
 const db = require('../config/connection');
 const webpush = require('../config/push');
+const { isDev } = require('../config/env');
+const { log } = require('../config/logger');
 
 require('dotenv').config();
 
 const NodeCache = require('node-cache');
 const pageCache = new NodeCache({ stdTTL: 900 }); // Cache for 5 minutes
-const isDev = false; // true while editing, false to enable caching
+
 const { generatePostsAfterMatch } = require('../helpers/postGenerator');
 
 
@@ -55,12 +57,12 @@ router.use(adminAuth);
 
 // 🔔 Save admin push subscription
 router.post('/subscribe-push', (req, res) => {
-  console.log('📩 /subscribe-push HIT');
+  log('📩 /subscribe-push HIT');
 
   const { endpoint, keys } = req.body;
 
   if (!endpoint || !keys) {
-    console.log('❌ Invalid subscription payload');
+    log('❌ Invalid subscription payload');
     return res.status(400).json({ error: 'Invalid subscription' });
   }
 
@@ -79,7 +81,7 @@ router.post('/subscribe-push', (req, res) => {
         return res.sendStatus(500);
       }
 
-      console.log('✅ ADMIN PUSH SUBSCRIPTION SAVED');
+      log('✅ ADMIN PUSH SUBSCRIPTION SAVED');
       res.sendStatus(201);
     }
   );
@@ -106,7 +108,7 @@ router.get('/pending', (req, res) => {
 router.post('/pending/accept', (req, res) => {
   const { id, player, ...insertData } = req.body;
 
-  console.log(req.body)
+  log(req.body)
 
   if (!id || !player) {
     return res.status(400).json({ error: 'Missing required data' });
@@ -476,7 +478,7 @@ router.post('/faq/add', (req, res) => {
       return res.status(500).json({ success: false });
     }
 
-    console.log("✅ FAQ Inserted:", result.insertId);
+    log("✅ FAQ Inserted:", result.insertId);
     return res.json({ success: true });
   });
 });
@@ -553,7 +555,7 @@ router.post('/faq/delete', (req, res) => {
 
 router.post('/sts-update', upload.none(), function (req, res) {
   const formData = req.body;
-  console.log(`[${new Date().toISOString()}] 🛠️ Admin requested stats update:`, formData);
+  log(`[${new Date().toISOString()}] 🛠️ Admin requested stats update:`, formData);
 
   const tableName = formData.tablename;
   delete formData.tablename;
@@ -568,7 +570,7 @@ router.post('/sts-update', upload.none(), function (req, res) {
       return res.status(500).send('Database update failed.');
     }
 
-    console.log(`[${new Date().toISOString()}] ✅ Admin updated stats for "${tableName}" from IP: ${req.ip}`);
+    log(`[${new Date().toISOString()}] ✅ Admin updated stats for "${tableName}" from IP: ${req.ip}`);
 
     db.get().query(`SELECT * FROM ${tableName}`, (err, rows) => {
       if (err) {
@@ -596,7 +598,7 @@ function getPlayerNameFromTable(playerTable) {
 
 router.post('/add-match', async (req, res) => {
   try {
-    console.log('Form Data Received:', req.body);
+    log('Form Data Received:', req.body);
 
     const { playerTable, ...rawMatchData } = req.body;
 
@@ -616,7 +618,7 @@ router.post('/add-match', async (req, res) => {
       scorAgainst: Number(rawMatchData.scorAgainst) || 0
     };
 
-    console.log('MATCH DATA:', matchData);
+    log('MATCH DATA:', matchData);
 
     // 1. Add match to selected player table
     await new Promise((resolve, reject) => {
@@ -648,7 +650,7 @@ router.post('/add-match', async (req, res) => {
 // Single router to handle modify or delete
 router.post('/match-action', (req, res) => {
   const { matchNumber, action, data, playerTable } = req.body;
-  console.log(matchNumber, action, data, playerTable);
+  log(matchNumber, action, data, playerTable);
 
   if (!matchNumber || !action) {
     return res.status(400).json({ success: false, error: 'Missing required fields' });
@@ -682,7 +684,7 @@ router.post('/match-action', (req, res) => {
 router.get('/get-match/:matchDate', (req, res) => {
   const { matchDate } = req.params;
   const { playerTable } = req.query;
-  console.log(`Fetching match for date: ${matchDate} from table: ${playerTable}`);
+  log(`Fetching match for date: ${matchDate} from table: ${playerTable}`);
 
   if (!matchDate || !playerTable) {
     return res.status(400).json({ success: false, error: 'Missing required fields' });
@@ -868,7 +870,7 @@ router.get('/Match-History/:player', (req, res) => {
 
 
 router.get('/vote', function (req, res, next) {
-  console.log(`[${new Date().toISOString()}] /vote page requested from IP: ${req.ip}`);
+  log(`[${new Date().toISOString()}] /vote page requested from IP: ${req.ip}`);
 
   displayHelper.getStats('votes', (err, votes) => {
     if (err) {
@@ -884,7 +886,7 @@ router.get('/vote', function (req, res, next) {
 
     const totalVotes = voteCounts.Mbappe + voteCounts.Haaland + voteCounts.Vinicius;
 
-    console.log(`[${new Date().toISOString()}] Vote data fetched:`, {
+    log(`[${new Date().toISOString()}] Vote data fetched:`, {
       Mbappe: voteCounts.Mbappe,
       Haaland: voteCounts.Haaland,
       Vinicius: voteCounts.Vinicius,
@@ -947,14 +949,14 @@ router.get('/club-stats', function (req, res, next) {
     const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
     const vini_club = stats.club.find(p => p.Name === 'Vinicius');
 
-    console.log('Mbappe All-Time:', mbappe_all);
-    console.log('Mbappe Club:', mbappe_club);
+    log('Mbappe All-Time:', mbappe_all);
+    log('Mbappe Club:', mbappe_club);
 
-    console.log('Haaland All-Time:', haaland_all);
-    console.log('Haaland Club:', haaland_club);
+    log('Haaland All-Time:', haaland_all);
+    log('Haaland Club:', haaland_club);
 
-    console.log('Vinicius All-Time:', vini_all);
-    console.log('Vinicius Club:', vini_club);
+    log('Vinicius All-Time:', vini_all);
+    log('Vinicius Club:', vini_club);
 
     res.render('user/club-stats', {
       admin: true,
@@ -982,14 +984,14 @@ router.get('/int-stats', function (req, res, next) {
     const vini_all = stats.all_time.find(p => p.Name === 'Vinicius');
     const vini_intr = stats.intr.find(p => p.Name === 'Vinicius');
 
-    console.log('Mbappe All-Time:', mbappe_all);
-    console.log('Mbappe Intr:', mbappe_intr);
+    log('Mbappe All-Time:', mbappe_all);
+    log('Mbappe Intr:', mbappe_intr);
 
-    console.log('Haaland All-Time:', haaland_all);
-    console.log('Haaland Intr:', haaland_intr);
+    log('Haaland All-Time:', haaland_all);
+    log('Haaland Intr:', haaland_intr);
 
-    console.log('Vinicius All-Time:', vini_all);
-    console.log('Vinicius Intr:', vini_intr);
+    log('Vinicius All-Time:', vini_all);
+    log('Vinicius Intr:', vini_intr);
 
     res.render('user/int-stats', {
       admin: true,
@@ -1022,7 +1024,7 @@ router.get('/club-stats/:comp', function (req, res, next) {
     const haaland = stats.find(p => p.Name === 'Haaland');
     const vini = stats.find(p => p.Name === 'Vinicius');
 
-    console.log(mbappe, haaland, vini)
+    log(mbappe, haaland, vini)
 
     // Dynamically render the matching .hbs page like user/ucl.hbs, user/wc.hbs, etc.
     res.render(`user/${comp}`, {
@@ -1057,7 +1059,7 @@ router.get('/int-stats/:comp', function (req, res, next) {
     const haaland_cu = stats.copa_euro.find(p => p.Name === 'Haaland');
     const vini_cu = stats.copa_euro.find(p => p.Name === 'Vinicius');
 
-    console.log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
+    log(mbappe_wc, haaland_wc, vini_wc, mbappe_cu, haaland_cu, vini_cu)
 
     res.render(`user/${comp}`, {
       admin: true,

@@ -17,7 +17,7 @@ async function sendUniversalEmail({ from, subject, text }) {
     to: "helpmhv@gmail.com",
     subject,
     text
-  });
+  }); 
 }
 
 module.exports = {
@@ -82,8 +82,8 @@ module.exports = {
       if (err) return callback(err);
       callback(null, result);
 
-      console.log('✅ SQL:', sql);
-      console.log('➡️ Values:', values);
+      log('✅ SQL:', sql);
+      log('➡️ Values:', values);
     });
   },
 
@@ -107,8 +107,8 @@ module.exports = {
       if (err) return callback(err);
       callback(null, result);
 
-      console.log('✅ SQL:', sql);
-      console.log('➡️ Values:', values);
+      log('✅ SQL:', sql);
+      log('➡️ Values:', values);
     });
   },
 
@@ -150,8 +150,8 @@ module.exports = {
       if (err) return callback(err);
       callback(null, result);
 
-      console.log('✅ Modify SQL:', sql);
-      console.log('➡️ Values:', values);
+      log('✅ Modify SQL:', sql);
+      log('➡️ Values:', values);
     });
   },
 
@@ -166,7 +166,7 @@ module.exports = {
       if (err) return callback(err);
       callback(null, result);
 
-      console.log('✅ Delete SQL:', sql);
+      log('✅ Delete SQL:', sql);
     });
   }
   ,

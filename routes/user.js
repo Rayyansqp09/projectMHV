@@ -15,7 +15,7 @@ const NodeCache = require('node-cache');
 const graph = require('../helpers/graph');
 const pageCache = new NodeCache({ stdTTL: 900 }); // Cache for 5 minutes
 const { isDev } = require('../config/env');
-const { log } = require('../config/logger');
+const  log  = require('../config/logger');
 
 
 
@@ -166,9 +166,10 @@ router.get('/', function (req, res, next) {
     if (cachedPage) return res.send(cachedPage);
   }
 
-  const seasons = ['last20', 'live_2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius'];
+  const seasons = ['last20', 'live_2025_26', 'all_time', 'alltime', 'mhhaaland', 'mhmbappe', 'mhvinicius','ucl2'];
 
   displayHelper.getStats(seasons, (err, stats) => {
+    log('Stats fetched for home page:', stats);
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
@@ -198,7 +199,7 @@ router.get('/', function (req, res, next) {
     const haaland_last20 = last20Stats.find(p => p.Name === 'Haaland') || {};
     const vini_last20 = last20Stats.find(p => p.Name === 'Vinicius') || {};
 
-    // All-time stats
+    // All-time stats 
     const allTimeStats = stats['alltime'] || [];
     const mbappe = allTimeStats.find(p => p.Name === 'Mbappe') || {};
     const haaland = allTimeStats.find(p => p.Name === 'Haaland') || {};
@@ -221,6 +222,12 @@ router.get('/', function (req, res, next) {
     const mbappeSeason = seasonStats.find(p => p.Name === 'Mbappe') || {};
     const haalandSeason = seasonStats.find(p => p.Name === 'Haaland') || {};
     const viniciusSeason = seasonStats.find(p => p.Name === 'Vinicius') || {};
+
+    // All-time stats
+    const ucl = stats['ucl2'] || [];
+    const mbappe_ucl = ucl.find(p => p.Name === 'Mbappe') || {};
+    const haaland_ucl = ucl.find(p => p.Name === 'Haaland') || {};
+    const vini_ucl = ucl.find(p => p.Name === 'Vinicius') || {};
 
     // 🔥 Get last 5 matches for each player
     function getLastFiveMatches(playerKey) {
@@ -250,12 +257,16 @@ router.get('/', function (req, res, next) {
       mbappe,
       haaland,
       vini,
+      mbappe_ucl,
+      haaland_ucl,
+      vini_ucl,
       mbappe_last20,
       haaland_last20,
       vini_last20,
       mbappeSeasonRating,
       haalandSeasonRating,
       viniciusSeasonRating,
+
 
       [`mbappe_${cleanKey}`]: mbappeSeason,
       [`haaland_${cleanKey}`]: haalandSeason,
@@ -1540,16 +1551,11 @@ router.get('/club-stats/:comp', function (req, res, next) {
     return res.status(404).send('Competition not found');
   }
 
-  displayHelper.getStats(['ucl2', 'ucl', 'club'], (err, stats) => {
+  displayHelper.getStats(['ucl2', 'ucl'], (err, stats) => {
     if (err) {
       console.error('Error getting stats:', err);
       return res.status(500).send('Error loading stats');
     }
-
-
-    const mbappe_club = stats.club.find(p => p.Name === 'Mbappe');
-    const haaland_club = stats.club.find(p => p.Name === 'Haaland');
-    const vini_club = stats.club.find(p => p.Name === 'Vinicius');
 
     const mbappe = stats.ucl2.find(p => p.Name === 'Mbappe');
     const haaland = stats.ucl2.find(p => p.Name === 'Haaland');
@@ -1570,9 +1576,6 @@ router.get('/club-stats/:comp', function (req, res, next) {
       mbappe,
       haaland,
       vini,
-      mbappe_club,
-      haaland_club,
-      vini_club,
       vini_ach,
       haaland_ach,
       mbappe_ach

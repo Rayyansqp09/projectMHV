@@ -2,6 +2,7 @@
 
 <div class="table-container" id="gtype">
     <h1 name="club" class="stat-title">CAREER PENALTY GOALS</h1>
+    <h2 name="club" class="stat-title2">(Excluding Penalty Shootouts)</h2>
 
     <table class="Stats-table">
         <thead>
@@ -183,14 +184,17 @@
 
         <p class="insight-text">
             Kylian Mbappé, Erling Haaland, and Vinícius Júnior show clear differences in penalty usage. Mbappé has
-            scored <span class="highlight"> 47 penalty goals, which make up 11.96% of his total goals</span> . He is
+            scored <span class="highlight"> {{mbappe_penalty.totalPen}} penalty goals, which make up
+                {{mbappe_penalty.penGoalPercentage}} of his total goals</span> . He is
             regularly the first-choice penalty
-            taker for both club and country. Haaland follows closely with<span class="highlight"> 44 penalty goals,
-                accounting for 14.43% of his
+            taker for both club and country. Haaland follows closely with<span class="highlight">
+                {{haaland_penalty.totalPen}} penalty goals,
+                accounting for {{haaland_penalty.penGoalPercentage}} of his
                 total</span>—the highest proportion among the three—reflecting his role as a central striker and
             consistent
-            designated taker. Vinícius presents a contrasting profile, with just <span class="highlight"> 6 penalty
-                goals, only 4.26% of his
+            designated taker. Vinícius presents a contrasting profile, with just <span class="highlight">
+                {{vini_penalty.totalPen}} penalty
+                goals, only {{vini_penalty.penGoalPercentage}} of his
                 total output </span>. He has rarely been the primary penalty taker, often playing alongside designated
             specialists,
             meaning his scoring relies almost entirely on open play.

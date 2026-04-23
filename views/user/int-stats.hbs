@@ -138,7 +138,8 @@
 
         </tbody>
     </table>
-     <button class="Dt-btnu"><a class="dynamic-link" href="/Stats-By-FIFA-Rank#top10">Detailed Stats By FIFA Rank</a></button>
+    <button class="Dt-btnu"><a class="dynamic-link" href="/Stats-By-FIFA-Rank#top10">Detailed Stats By FIFA
+            Rank</a></button>
     {{#if admin}}
     <button name="int" class="Dt-btn" onclick="toggleModal(this)" data-stat="mejor" table="intr">UPDATE</button>
     {{/if}}
@@ -264,7 +265,8 @@
             </tr>
             <tr>
                 <td class="stat-text">{{ mbappe_ByRank.abrGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
-                <td class="stat-text">{{ haaland_ByRank.abrGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
+                <td class="stat-text">{{ haaland_ByRank.abrGoalRatio }}<br><span class="stat-name">GOAL RATIO</span>
+                </td>
                 <td class="stat-text">{{ vini_ByRank.abrGoalRatio }}<br><span class="stat-name">GOAL RATIO</span></td>
             </tr>
             <tr>
@@ -574,26 +576,31 @@
 
 
         <p class="insight-text">
-            Kylian Mbappé has built one of the strongest international records of his generation with France.
-            He has scored <span class="highlight">55 goals</span> in
-            <span class="highlight">94 matches</span> and consistently delivered in major tournaments,
-            including <span class="highlight">12 World Cup goals</span> across two editions, proving his
-            ability to perform on the biggest stages within an elite team.
+            Kylian Mbappé has built one of the strongest international records of his generation with France national
+            team.<span class="highlight"> Across {{mbappe_all.intGames}} matches, he has produced
+                {{mbappe_all.intGoals}} goals and {{mbappe_all.intAssists}} assists ({{mbappe_all.intGoalRatio}} goals
+                per game)</span>, combining elite
+            scoring with high-level chance creation. His output has also translated to the biggest stage, with 15 FIFA
+            World Cup goals across two editions—underlining his ability to deliver consistently within a top-tier
+            international setup.
         </p>
         <p class="insight-text">
-            Erling Haaland represents a contrasting case. Despite playing for a Norway side with limited
-            tournament exposure, he has scored <span class="highlight">55 goals</span> in just
-            <span class="highlight">48 matches</span>, averaging
-            <span class="highlight">1.15 goals per game</span>.
-            This level of efficiency is among the best in modern international football and highlights his
-            ability to produce elite numbers without the support of a dominant national team.
+            Erling Haaland represents a contrasting case. Despite playing for a Norway national team side with limited
+            tournament exposure,<span class="highlight"> he has scored {{haaland_all.intGoals}} goals in just {{haaland_all.intGames}} matches, alongside {{haaland_all.intAssists}} assists, averaging {{haaland_all.intGoalRatio}} goals
+            per game</span>. His profile is far more scoring-centric, but that efficiency is among the best in modern
+            international football, showing he can generate elite output without the support of a dominant national
+            team.
         </p>
 
         <p class="insight-text">
-            Vinícius Júnior plays a more role-based part for Brazil. His international goal tally
-            (<span class="highlight">8 goals</span>) is lower, but his impact is reflected through ball
-            progression, movement, and creating space for teammates within a
-            possession-heavy system.
+            Vinícius Júnior represents a more uncertain international case. Across <span
+                class="highlight">{{vini_all.intGames}} appearances</span> for the Brazil
+            national team, he has recorded <span class="highlight">{{vini_all.intGoals}} goals and
+                {{vini_all.intAssists}} assists</span>—modest output for a player of his club pedigree. While
+            he remains a high-level ball carrier, capable of progressing play, beating defenders, and stretching
+            defensive lines, that threat has not consistently translated into decisive end product. Unlike elite
+            international attackers who impose themselves through goals or assists, his influence has been intermittent,
+            often dependent on the overall system rather than individually dominant.
         </p>
 
         <p class="insight-text">

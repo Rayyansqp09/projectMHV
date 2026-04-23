@@ -6,7 +6,7 @@ const displayHelper = require('../helpers/disply');
 const db = require('../config/connection');
 const webpush = require('../config/push');
 const { isDev } = require('../config/env');
-const { log } = require('../config/logger');
+const  log  = require('../config/logger');
 
 require('dotenv').config();
 

@@ -23,14 +23,14 @@
 
 
 <div class="looking-box">
-  <h2 class="lookingbox-title">ARE YOU LOOKING FOR</h2>
+  <h3 class="lookingbox-title">ARE YOU LOOKING FOR</h3>
   <div class="text-group">
     <div class="text-item"><a href="/club-stats/ucl">UCL STATS</a></div>
     <div class="text-item"><a href="/Match-History/mbappe#match-history">MATCH HISTORY</a></div>
     <div class="text-item"><a href="/int-stats/wc">WORLD CUP STATS</a></div>
     <div class="text-item"><a href="/club-stats#clubcomp">LEAGUE STATS</a></div>
 
-    <div class="text-item"><a href="/season">STATS BY SESON</a></div>
+    <div class="text-item"><a href="/season">STATS BY SEASON</a></div>
     <div class="text-item"><a href="/alltime#final">STATS IN FINALS</a></div>
     <div class="text-item"><a href="/head-to-head/mbappe-haaland">HEAD-TO-HEAD</a></div>
 
@@ -428,29 +428,38 @@
 
 
     <p class="insight-text">
-      Across their careers, Erling Haaland holds the strongest scoring rate, with <span class="highlight">344 goals in
-        416 games</span>, giving him a
-      <span class="highlight">0.83 goals-per-game ratio</span>. Kylian Mbappé follows with <span class="highlight">424
-        goals in 564 games</span>, resulting in a <span class="highlight">0.75 goals-per-game ratio</span>, while
-      Vinícius Júnior is well behind, scoring <span class="highlight">140 goals in 474 games (0.30 ratio)</span>.
+      Across their careers, Erling Haaland holds the strongest scoring rate, with <span
+        class="highlight">{{haaland.Goals}} goals in
+        {{haaland.Games}} games</span>, giving him a
+      <span class="highlight">{{haaland.GoalRatio}} goals-per-game ratio</span>. Kylian Mbappé follows with <span
+        class="highlight">{{mbappe.Goals}}
+        goals in {{mbappe.Games}} games</span>, resulting in a <span class="highlight">{{mbappe.GoalRatio}}
+        goals-per-game ratio</span>, while
+      Vinícius Júnior is well behind, scoring <span class="highlight">{{vini.Goals}} goals in {{vini.Games}} games
+        ({{vini.GoalRatio}} ratio)</span>.
     </p>
     <p class="insight-text">
       At club level, the pattern remains similar. Haaland has scored
-      <span class="highlight">289 goals in 368 games (0.79 per game)</span>, while
+      <span class="highlight">{{haaland.ClubGoals}} goals in {{haaland.ClubGames}} games ({{haaland.ClubGoalRatio}} per
+        game)</span>, while
       Mbappé has
-      <span class="highlight">369 goals in 470 games (0.78 per game)</span>.
+      <span class="highlight">{{mbappe.ClubGoals}} goals in {{mbappe.ClubGames}} games ({{mbappe.ClubGoalRatio}} per
+        game)</span>.
       Vinícius again trails with
-      <span class="highlight">132 goals in 429 games (0.31 per game)</span>.
+      <span class="highlight">{{vini.ClubGoals}} goals in {{vini.ClubGames}} games ({{vini.ClubGoalRatio}} per
+        game)</span>.
       The gap between Haaland and Mbappé is narrow, with both producing elite-level scoring across multiple seasons,
       while Vinícius’ output reflects a more creative role rather than a goal-focused one.
     </p>
     <p class="insight-text">
       International football further separates the profiles. Haaland’s
-      <span class="highlight">55 goals in 48 games (1.15 goals per game)</span> stands
+      <span class="highlight">{{haaland.intGoals}} goals in {{haaland.intGames}} games (1.15 goals per game)</span>
+      stands
       out clearly, while Mbappé’s
-      <span class="highlight">55 goals in 94 games (0.58 goals per game)</span> remains strong and consistent at the
+      <span class="highlight">{{mbappe.intGoals}} goals in {{mbappe.intGames}} games (0.58 goals per game)</span>
+      remains strong and consistent at the
       highest level. Vinícius’ national team output is much lower, with
-      <span class="highlight">8 goals in 45 games (0.18 goals per game)</span>,
+      <span class="highlight">{{vini.intGoals}} goals in {{vini.intGames}} games (0.18 goals per game)</span>,
       reinforcing that goal scoring has not been his primary contribution.
     </p>
 
@@ -484,39 +493,45 @@
 
     <p class="insight-text">
       Across their careers, Kylian Mbappé leads in total assists, recording
-      <span class="highlight">146 assists in 564 games (0.26 assists per game)</span>.
+      <span class="highlight">{{mbappe.Assists}} assists in {{mbappe.Games}} games (0.26 assists per game)</span>.
       At club level, he produced
-      <span class="highlight">111 assists in 470 matches</span>, while at international level he added
-      <span class="highlight">59 assists</span>, showing that his creative output translates across competitions.
+      <span class="highlight">{{mbappe.ClubAssists}} assists in {{mbappe.ClubGames}} matches</span>, while at
+      international level he added
+      <span class="highlight">{{mbappe.intAssists}} assists</span>, showing that his creative output translates across
+      competitions.
       While scoring remains his primary strength, these numbers confirm that playmaking has been a consistent secondary
       part of his game.
     </p>
 
     <p class="insight-text">
       Vinícius Júnior stands out when assist contribution is measured relative to role. He registered
-      <span class="highlight">93 assists in 474 games (0.20 assists per game)</span>, with
-      <span class="highlight">87 assists</span> coming at club level. Assists make up a large share of his overall
+      <span class="highlight">{{vini.Assists}} assists in {{vini.Games}} games (0.20 assists per game)</span>, with
+      <span class="highlight">{{vini.ClubAssists}} assists</span> coming at club level. Assists make up a large share of
+      his overall
       attacking output, reflecting his responsibility in ball progression, chance creation, and final passes rather than
       pure finishing. His national team assists remain low
-      <span class="highlight">(6 in 45 games)</span>, but this is offset by strong club and European output.
+      <span class="highlight">({{vini.intAssists}} in {{vini.intGames}} games)</span>, but this is offset by strong club
+      and European output.
     </p>
 
     <p class="insight-text">
       Erling Haaland ranks clearly behind in creative metrics. With
-      <span class="highlight">59 assists in 416 games (0.14 assists per game)</span>,
+      <span class="highlight">{{haaland.Assists}} assists in {{haaland.Games}} games (0.14 assists per game)</span>,
       most of his assists come incidentally from finishing actions rather than structured creation. His club assists
-      <span class="highlight">(52 in 368 games)</span> and limited national output
-      <span class="highlight">(7 assists)</span> underline that chance creation is not a core part of his role.
+      <span class="highlight">({{haaland.ClubAssists}} in {{haaland.ClubGames}} games)</span> and limited national
+      output
+      <span class="highlight">({{haaland.intAssists}} assists)</span> underline that chance creation is not a core part
+      of his role.
     </p>
 
     <p class="insight-text">
       The Champions League data sharpens the contrast further. Using UEFA-recognised non-Opta assists, Vinícius leads
       with
-      <span class="highlight">30 assists in 70 matches (0.43 assists per game)</span>,
+      <span class="highlight">{{vini_ucl.Assists}} assists in {{vini_ucl.Games}} matches</span>,
       showing elite creative influence at the highest level. Mbappé follows with
-      <span class="highlight">24 assists in 91 matches (0.26 per game)</span>,
+      <span class="highlight">{{mbappe_ucl.Assists}} assists in {{mbappe_ucl.Games}} matches</span>,
       maintaining steady contribution alongside scoring. Haaland trails far behind with
-      <span class="highlight">5 assists in 56 matches (0.09 per game)</span>,
+      <span class="highlight">{{haaland_ucl.Assists}} assists in {{haaland_ucl.Games}} matches</span>,
       reinforcing his focus on finishing rather than creation.
     </p>
 
@@ -544,36 +559,36 @@
 
     <p class="insight-text">
       Across their careers, Kylian Mbappé has created
-      <span class="highlight">810 chances in 564 games (1.44 per game)</span>,
+      <span class="highlight">{{mbappe.CC}} chances in {{mbappe.Games}} games (1.44 per game)</span>,
       the highest among the three. He also produced
-      <span class="highlight">225 big chances (0.40 per game)</span>,
+      <span class="highlight">{{mbappe.BCC}} big chances (0.40 per game)</span>,
       showing that he not only creates frequently but also generates high-quality opportunities.
     </p>
 
     <p class="insight-text">
       Vinícius Júnior follows closely with
-      <span class="highlight">613 chances in 474 games (1.29 per game)</span>,
+      <span class="highlight">{{vini.CC}} chances in {{vini.Games}} games (1.29 per game)</span>,
       along with
-      <span class="highlight">131 big chances created (0.28 per game)</span>.
+      <span class="highlight">{{vini.BCC}} big chances created (0.28 per game)</span>.
       While his total volume is lower than Mbappé’s, his role as a wide creator explains his strong numbers,
       particularly in buildup phases.
     </p>
 
     <p class="insight-text">
       Erling Haaland trails significantly, creating
-      <span class="highlight">305 chances in 416 games (0.73 per game)</span>,
+      <span class="highlight">{{haaland.CC}} chances in {{haaland.Games}} games (0.73 per game)</span>,
       with
-      <span class="highlight">90 big chances created (0.22 per game)</span>.
+      <span class="highlight">{{haaland.BCC}} big chances created (0.22 per game)</span>.
       His lower numbers reflect his role as a central finisher rather than a creative hub.
     </p>
 
     <p class="insight-text">
       In the Champions League, the separation becomes sharper. Vinícius has created
-      <span class="highlight">127 chances in 70 matches (1.81 per game)</span>,
+      <span class="highlight">{{mbappe_ucl.CC}} chances in {{mbappe_ucl.Games}} matches (1.81 per game)</span>,
       an elite rate and the highest of the three. Mbappé follows with
-      <span class="highlight">138 chances in 91 games (1.52 per game)</span>,
+      <span class="highlight">{{mbappe_ucl.BCC}} big chances (1.52 per game)</span>,
       while Haaland again records
-      <span class="highlight">0.73 chances per game</span>,
+      <span class="highlight">{{haaland_ucl.CC}} chances per game</span>,
       mirroring his overall rate.
     </p>
 
@@ -597,31 +612,32 @@
 
     <h3 class="insight-title">
       <span class="accent-bar"></span>
-      Who’s the Best at Shot Convertion?
+      Who’s the Best at Shot Conversion?
     </h3>
 
     <p class="insight-text">
       The shooting numbers show a clear contrast in style and efficiency between the three.
       In terms of volume, Kylian Mbappé leads with
-      <span class="highlight">974 shots on target in 564 games (1.73 per game)</span>,
+      <span class="highlight">{{mbappe.Shot}} shots on target in {{mbappe.Games}} games (1.73 per game)</span>,
       compared to Erling Haaland with
-      <span class="highlight">670 in 416 games (1.61 per game)</span>,
+      <span class="highlight">{{haaland.Shot}} in {{haaland.Games}} games (1.61 per game)</span>,
       and Vinícius Júnior with
-      <span class="highlight">428 in 474 games (0.90 per game)</span>
+      <span class="highlight">{{vini.Shot}} in {{vini.Games}} games (0.90 per game)</span>
       (all figures based on recorded and available match data).
     </p>
 
     <p class="insight-text">
       However, when it comes to efficiency, Haaland leads clearly. He converts
-      <span class="highlight">51.3% of his shots on target into goals (344 goals from 670)</span>,
+      <span class="highlight">51.3% of his shots on target into goals ({{haaland.Goals}} goals from
+        {{haaland.Shot}})</span>,
       compared to Mbappé’s
-      <span class="highlight">43.5% (424 from 974)</span>
+      <span class="highlight">43.5% ({{mbappe.Goals}} from {{mbappe.Shot}})</span>
       and Vinícius’
-      <span class="highlight">32.7% (140 from 428)</span>.
+      <span class="highlight">32.7% ({{vini.Goals}} from {{vini.Shot}})</span>.
       This highlights Haaland’s ability to turn accurate attempts into goals at a higher rate.
     </p>
 
-    <p class="insight-text">
+    {{!-- <p class="insight-text">
       Penalty data also adds context. Mbappé has
       <span class="highlight">363 non-penalty goals from 424 total</span>,
       Haaland has
@@ -630,7 +646,7 @@
       <span class="highlight">133 non-penalty goals from 140</span>.
       This shows that the majority of goals for all three come from open play, though Haaland’s overall conversion rate
       remains the strongest.
-    </p>
+    </p> --}}
 
     <p class="insight-text">
       Despite Haaland’s superior efficiency, his role as a central striker explains much of that advantage. He operates
@@ -667,11 +683,12 @@
 
     <p class="insight-text">
       Mbappé has completed
-      <span class="highlight">1286 successful dribbles in 564 games (2.28 per game)</span>,
+      <span class="highlight">{{mbappe.Dribbles}} successful dribbles in {{mbappe.Games}} games (2.28 per game)</span>,
       the highest total and rate among the three. Vinícius follows with
-      <span class="highlight">977 successful dribbles in 474 games (2.06 per game)</span>,
+      <span class="highlight">{{vini.Dribbles}} successful dribbles in {{vini.Games}} games (2.06 per game)</span>,
       also maintaining strong volume. Haaland is far behind, with
-      <span class="highlight">225 successful dribbles in 416 games (0.54 per game)</span>.
+      <span class="highlight">{{haaland.Dribbles}} successful dribbles in {{haaland.Games}} games (0.54 per
+        game)</span>.
     </p>
 
     <p class="insight-text">
@@ -692,10 +709,13 @@
     <p class="insight-text">
       (For clarity, hat tricks here are counted as three or more goals in a single game, as some sources only include
       exactly three.) The overall numbers show that Erling Haaland leads in total hat tricks, with <span
-        class="highlight">27 in 416 games</span>, averaging one every <span class="highlight">15.4 games</span>. Close
-      behind is Kylian Mbappé, who has recorded <span class="highlight">24 hat tricks in 564 games</span>, one every
-      <span class="highlight">23.5 games</span>. Vinícius Júnior has <span class="highlight">4 hat tricks in
-        474 games</span>, averaging one every <span class="highlight">118.5 games.</span>
+        class="highlight">{{haaland.Hattricks}} in {{haaland.Games}} games</span>, averaging one every <span
+        class="highlight">15.4 games</span>. Close
+      behind is Kylian Mbappé, who has recorded <span class="highlight">{{mbappe.Hattricks}} hat tricks in
+        {{mbappe.Games}} games</span>, one every
+      <span class="highlight">23.5 games</span>. Vinícius Júnior has <span class="highlight">{{vini.Hattricks}} hat
+        tricks in
+        {{vini.Games}} games</span>, averaging one every <span class="highlight">118.5 games.</span>
     </p>
     <p class="insight-text">
       When looking at non-penalty hat tricks, the gap narrows slightly. Haaland has <span class="highlight">20
@@ -780,13 +800,12 @@
     </p>
 
     <p class="insight-text">
-      Even so, the numbers still highlight clear differences. Mbappé and Haaland are level on total goals with <span
-        class="highlight">55 each</span>, but Mbappé reached that mark in <span class="highlight">94 matches </span>,
-      while Haaland did so in just <span class="highlight">48</span>, giving Haaland a far superior scoring rate.
-      However, Mbappé compensates with overall involvement, providing <span class="highlight">59 assists</span> compared
-      to Haaland’s <span class="highlight">7</span>. Vinícius has <span class="highlight">8 goals and 6 assists in 45
-        matches</span>, a solid return but still below
-      the other two at this stage.
+      Even so, the numbers still highlight clear differences. Mbappé and Haaland are almost level on total goals, with
+      Mbappé on <span class="highlight">{{mbappe.intGoals}}</span> goals in {{mbappe.intGames}} matches and Haaland on <span class="highlight">{{haaland.intGoals}} goals in
+      {{haaland.intGames}} matches</span>, giving Haaland a far superior scoring rate. However, Mbappé compensates with overall
+      involvement, providing <span class="highlight">59 assists compared to Haaland’s {{haaland.intAssists}}</span>. Vinícius has <span
+      class="highlight">{{vini.intGoals}} goals and {{vini.intAssists}} assists in {{vini.intGames}} matches</span>, a
+      solid return but still below the other two at this stage.
     </p>
 
 
@@ -877,6 +896,7 @@
       timing.
     </p>
   </div>
+  
 </section>
 <section class="performance-insight">
   <div class="insight-box">

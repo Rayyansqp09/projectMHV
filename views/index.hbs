@@ -440,13 +440,13 @@
     </p>
     <p class="insight-text">
       At club level, the pattern remains similar. Haaland has scored
-      <span class="highlight">{{haaland.ClubGoals}} goals in {{haaland.ClubGames}} games ({{haaland.ClubGoalRatio}} per
+      <span class="highlight">{{haaland.clubGoals}} goals in {{haaland.clubGames}} games ({{haaland.clubGoalRatio}} per
         game)</span>, while
       Mbappé has
-      <span class="highlight">{{mbappe.ClubGoals}} goals in {{mbappe.ClubGames}} games ({{mbappe.ClubGoalRatio}} per
+      <span class="highlight">{{mbappe.clubGoals}} goals in {{mbappe.clubGames}} games ({{mbappe.clubGoalRatio}} per
         game)</span>.
       Vinícius again trails with
-      <span class="highlight">{{vini.ClubGoals}} goals in {{vini.ClubGames}} games ({{vini.ClubGoalRatio}} per
+      <span class="highlight">{{vini.clubGoals}} goals in {{vini.clubGames}} games ({{vini.clubGoalRatio}} per
         game)</span>.
       The gap between Haaland and Mbappé is narrow, with both producing elite-level scoring across multiple seasons,
       while Vinícius’ output reflects a more creative role rather than a goal-focused one.
@@ -495,7 +495,7 @@
       Across their careers, Kylian Mbappé leads in total assists, recording
       <span class="highlight">{{mbappe.Assists}} assists in {{mbappe.Games}} games (0.26 assists per game)</span>.
       At club level, he produced
-      <span class="highlight">{{mbappe.ClubAssists}} assists in {{mbappe.ClubGames}} matches</span>, while at
+      <span class="highlight">{{mbappe.clubAssists}} assists in {{mbappe.clubGames}} matches</span>, while at
       international level he added
       <span class="highlight">{{mbappe.intAssists}} assists</span>, showing that his creative output translates across
       competitions.
@@ -506,7 +506,7 @@
     <p class="insight-text">
       Vinícius Júnior stands out when assist contribution is measured relative to role. He registered
       <span class="highlight">{{vini.Assists}} assists in {{vini.Games}} games (0.20 assists per game)</span>, with
-      <span class="highlight">{{vini.ClubAssists}} assists</span> coming at club level. Assists make up a large share of
+      <span class="highlight">{{vini.clubAssists}} assists</span> coming at club level. Assists make up a large share of
       his overall
       attacking output, reflecting his responsibility in ball progression, chance creation, and final passes rather than
       pure finishing. His national team assists remain low
@@ -518,7 +518,7 @@
       Erling Haaland ranks clearly behind in creative metrics. With
       <span class="highlight">{{haaland.Assists}} assists in {{haaland.Games}} games (0.14 assists per game)</span>,
       most of his assists come incidentally from finishing actions rather than structured creation. His club assists
-      <span class="highlight">({{haaland.ClubAssists}} in {{haaland.ClubGames}} games)</span> and limited national
+      <span class="highlight">({{haaland.clubAssists}} in {{haaland.clubGames}} games)</span> and limited national
       output
       <span class="highlight">({{haaland.intAssists}} assists)</span> underline that chance creation is not a core part
       of his role.
@@ -771,9 +771,9 @@
 
     <p class="insight-text">
       Even though Vinícius technically leads in total, his goals came outside the top tier, Mbappé’s came at the highest
-      level, and Haaland rarely takes free kicks at all, leaving them to designated specialists. He plays in a
-      Manchester City side where Kevin De Bruyne and Phil Foden are established set-piece takers. The low numbers across
-      the board reflect role rather than technical limitation.
+      level, and Haaland has rarely taken free kicks, as these were usually handled by specialists. At Manchester City,
+      they were mainly taken by players like Kevin De Bruyne and Phil Foden. The low numbers across all three players
+      reflect their roles rather than any lack of ability.
     </p>
     <p class="insight-text">
       Overall, There is no "dominant" taker in this group. Vinícius holds the highest volume (technically), while Mbappé
@@ -801,10 +801,13 @@
 
     <p class="insight-text">
       Even so, the numbers still highlight clear differences. Mbappé and Haaland are almost level on total goals, with
-      Mbappé on <span class="highlight">{{mbappe.intGoals}}</span> goals in {{mbappe.intGames}} matches and Haaland on <span class="highlight">{{haaland.intGoals}} goals in
-      {{haaland.intGames}} matches</span>, giving Haaland a far superior scoring rate. However, Mbappé compensates with overall
-      involvement, providing <span class="highlight">59 assists compared to Haaland’s {{haaland.intAssists}}</span>. Vinícius has <span
-      class="highlight">{{vini.intGoals}} goals and {{vini.intAssists}} assists in {{vini.intGames}} matches</span>, a
+      Mbappé on <span class="highlight">{{mbappe.intGoals}}</span> goals in {{mbappe.intGames}} matches and Haaland on
+      <span class="highlight">{{haaland.intGoals}} goals in
+        {{haaland.intGames}} matches</span>, giving Haaland a far superior scoring rate. However, Mbappé compensates
+      with overall
+      involvement, providing <span class="highlight">59 assists compared to Haaland’s {{haaland.intAssists}}</span>.
+      Vinícius has <span class="highlight">{{vini.intGoals}} goals and {{vini.intAssists}} assists in {{vini.intGames}}
+        matches</span>, a
       solid return but still below the other two at this stage.
     </p>
 
@@ -853,8 +856,9 @@
 
     <p class="insight-text">
       Kylian Mbappé remains the standard-bearer for sustained offensive volume. Having burst onto the scene with
-      Monaco's miraculous 2017 Champions League run, he has maintained a decade of world-class output. By February 2026,
-      Mbappé has surpassed <span class="highlight">340 club goals and contributed over 110 assists in roughly 460
+      Monaco's miraculous 2017 Champions League run, he has maintained a decade of world-class output
+      Mbappé has surpassed <span class="highlight">{{mbappe.clubGoals}} club goals and contributed over
+        {{mbappe.clubAssists}} assists in roughly {{mbappe.clubGames}} club
         appearances</span>. His impact is
       defined by a rare "dual-threat" profile—he is as much a playmaker as he is a finisher. His move to Real Madrid for
       the 2024/25 season silenced critics who questioned his ability outside of France; he secured the Pichichi Trophy
@@ -867,15 +871,17 @@
 
     <p class="insight-text">
       In contrast, Erling Haaland has redefined the limits of scoring efficiency. While he has fewer total appearances
-      than Mbappé, his strike rate is unprecedented. As of 2026, Haaland has amassed over<span class="highlight"> 285
-        club goals in just 350
-        appearances</span>, including an absurd<span class="highlight"> 105 goals in his first 120 Premier League
+      than Mbappé, his strike rate is unprecedented. Haaland has amassed over<span class="highlight">
+        {{haaland.clubGoals}}
+        club goals in just {{haaland.clubGames}}
+        appearances</span>, including an absurd<span class="highlight"> 105 goals in
+        his first 120 Premier League
         games</span>.
     </p>
 
     <p class="insight-text">
       Haaland’s greatness is most visible in the UEFA Champions League, where he maintains a ratio of over<span
-        class="highlight"> 1.0 goals per
+        class="highlight"> {{haaland.clubGoalRatio}} goals per
         game—</span> the highest in the history of the competition. His "Triple Crown" 2022/23 season with Manchester
       City remains
       his crowning achievement, where he broke the Premier League single-season <span class="highlight">scoring record
@@ -886,7 +892,8 @@
     </p>
     <p class="insight-text">
       Vinícius Júnior represents a different archetype: the clutch, high-impact transitional attacker. Though his raw
-      scoring totals—roughly<span class="highlight"> 135 goals and 85 assists in 410 matches</span>—may seem lower than
+      scoring totals—roughly<span class="highlight"> {{vini.clubGoals}} goals and {{vini.clubAssists}} assists in
+        {{vini.clubGames}} matches</span>— may seem lower than
       the others, his influence is
       measured in "silverware moments." Vinícius has mastered the art of the Champions League final, scoring the winning
       goals in both the 2022 and 2024 finals. His evolution from a raw dribbler at Flamengo to the 2024 FIFA "The Best"
@@ -896,7 +903,7 @@
       timing.
     </p>
   </div>
-  
+
 </section>
 <section class="performance-insight">
   <div class="insight-box">

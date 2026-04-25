@@ -1,5 +1,6 @@
 // public/js/mhv-graph.js
 
+
 function initCumulativeGraph(config) {
   const {
     containerId,      // "progressGraph"

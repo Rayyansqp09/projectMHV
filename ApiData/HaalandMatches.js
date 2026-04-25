@@ -1,5 +1,6 @@
 const db = require('../config/connection');
 const { notifyAdmins } = require('../helpers/adminpush');
+const  log  = require('../config/logger');
 
 const {
     fetchRecentPremierLeagueMatches,

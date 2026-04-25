@@ -17,7 +17,7 @@ async function sendUniversalEmail({ from, subject, text }) {
     to: "helpmhv@gmail.com",
     subject,
     text
-  }); 
+  });
 }
 
 module.exports = {
@@ -85,6 +85,27 @@ module.exports = {
       log('✅ SQL:', sql);
       log('➡️ Values:', values);
     });
+  },
+
+  mapByName(arr = []) {
+    const map = {};
+    for (const item of arr) {
+      const key = item.Name || item.player || item.name; // 🔥 FIX HERE
+      if (key) {
+        map[key.toLowerCase()] = item;
+      }
+    }
+    return map;
+  },
+
+  getPlayers(arr = []) {
+    const map = this.mapByName(arr);
+
+    return {
+      mbappe: map['mbappe'] || {},
+      haaland: map['haaland'] || {},
+      vinicius: map['vinicius'] || {}
+    };
   },
 
   addMatch: function (tableName, data, callback) {

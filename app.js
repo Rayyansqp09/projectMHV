@@ -13,6 +13,9 @@ var userRouter = require('./routes/user');
 
 var hbs = require('express-handlebars');
 var app = express();
+const compression = require('compression');
+
+app.use(compression()); // ✅ now valid
 
 const { isDev } = require('./config/env');
 const log = require('./config/logger');
@@ -30,7 +33,7 @@ db.connect((err) => {
   if (err) {
     console.error("❌ Failed to initialize DB pool:", err);
   } else {
-    log("🔥 Database pool initialized");
+    console.log("🔥 Database pool initialized");
   }
 });
 
@@ -115,11 +118,13 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 // Middleware
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 // Routes
@@ -170,7 +175,8 @@ cron.schedule('0 6 * * *', async () => {
 // --------------------------------------------------
 
 app.listen(process.env.PORT || 3000, () => {
-  log(`🚀 Server started on port ${process.env.PORT || 3000}`);
+  console.log(`🚀 Server started on port ${process.env.PORT || 3000}`);
+  console.log(`⚙️  isDev:`, isDev);
 });
 
 module.exports = app;

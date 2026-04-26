@@ -85,7 +85,7 @@
     margin-top: -10px !important;
   }
 
-  
+
   /* ******************Detailed Profiles section in home page ********************* */
 
   .detailed-profiles {
@@ -159,7 +159,7 @@
 
 
   /* *************Form Card in home************ */
-.season-form {
+  .season-form {
     padding: 20px;
   }
 
@@ -209,13 +209,13 @@
     height: 4px;
   }
 
-.col-text {
-  font-size: 13px !important;
-  color: #ffd700 !important;
-  white-space: nowrap;
-  overflow: scroll;
-  
-}
+  .col-text {
+    font-size: 13px !important;
+    color: #ffd700 !important;
+    white-space: nowrap;
+    overflow: scroll;
+
+  }
 
 
 }
@@ -597,7 +597,7 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 17px;
     font-weight: 700;
-    
+
     text-align: center;
     margin-bottom: 0px;
   }
@@ -1137,6 +1137,46 @@
     margin-top: 5px;
 
   }
+
+  .performance-insight {
+    padding: 0 9pxpx;
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .insight-box {
+    padding: 20px 16px;
+    border-radius: 10px;
+  }
+
+  .insight-title {
+    font-size: 18px !important;
+    gap: 10px;
+    margin-bottom: 15px;
+
+    display: flex;
+    /* key */
+    align-items: stretch;
+    /* makes bar match full height */
+  }
+
+  .accent-bar {
+    width: 3px;
+    height: auto;
+    /* let flex control height */
+  }
+
+
+  .insight-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .highlight {
+    font-weight: 600;
+  }
+
 }
 
 @media (min-width: 401px) and (max-width: 500px) {
@@ -1629,6 +1669,26 @@
     padding: 6px;
   }
 
+  .performance-insight {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .insight-box {
+    padding: 20px 20px;
+    border-radius: 10px;
+  }
+
+  .insight-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .insight-text {
+    font-size: 15px;
+  }
+
 }
 
 /* tab-phone (600px to 768px) */
@@ -1948,6 +2008,26 @@
   .stat-title {
     font-size: 23px;
     margin-bottom: 6px;
+  }
+
+  .performance-insight {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .insight-box {
+    padding: 20px 20px;
+    border-radius: 10px;
+  }
+
+  .insight-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .insight-text {
+    font-size: 19px;
   }
 
 }

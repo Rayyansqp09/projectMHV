@@ -2511,7 +2511,7 @@ footer {
     padding: 9px 0px !important;
     font-size: 13px !important;
   }
-  
+
 }
 
 /* Very small phones (≤ 360px) */
@@ -2807,3 +2807,118 @@ footer {
   font-size: 21px !important;
   color: #ffd700 !important;
 }
+
+/* Explanation Pergraph Section Css */
+
+.performance-insight {
+  margin-top: 2.5rem;
+  padding: 0 10px;
+  margin-left: 15.3rem;
+  margin-right: 15.3rem;
+  margin-bottom: 2.5rem;
+}
+
+.insight-box {
+  background: linear-gradient(180deg, #141414, #101010);
+  border-radius: 14px;
+  padding: 28px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.insight-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffd700;
+  font-size: 23px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.accent-bar {
+  width: 4px;
+  height: 20px;
+  background: #ffd700;
+  border-radius: 2px;
+}
+
+.insight-text {
+  color: #d1d5db;
+  font-size: 17.5px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.insight-text:last-child {
+  margin-bottom: 0;
+}
+
+.highlight {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.exp-sub-heading {
+  color: #dfdcdc;
+}
+
+
+.gn-vote-wrap {
+  display: flex;
+  justify-content: center;
+  /* horizontal center */
+  align-items: center;
+  /* vertical center if needed */
+  padding: 0px;
+  /* breathing space on small screens */
+  padding-bottom: 30px;
+  /* space below the button */
+}
+
+.gn-vote-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: clamp(16px, 2.5vw, 18px);
+  /* responsive text */
+  font-weight: 700;
+  color: #111 !important;
+  background: #FFD600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  max-width: 90vw;
+  /* prevents overflow on tiny screens */
+  text-align: center;
+}
+
+.gn-vote-btn:hover {
+  background: #ffea00;
+  transform: translateY(-2px);
+}
+
+.gn-vote-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(255, 214, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+  .gn-vote-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+#modalOverlay,.successPopup {
+  display: none;
+  position: fixed;
+}
+
+.desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: inline-block !important;
+    /* or flex, depending on layout */
+  }

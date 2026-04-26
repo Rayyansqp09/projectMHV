@@ -1,7 +1,8 @@
 <link
   href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@400;500;600;700&family=Montserrat:wght@400;600;700;800&display=swap"
-  rel="stylesheet">
+  rel="stylesheet" />
 
+<link rel="stylesheet" href="/stylesheets/MatchCard.css" />
 
 <div class="cardNew-wrapper">
 
@@ -51,7 +52,16 @@
         </div>
 
         <div class="cardNew-topRight desktop-Stat">
-          <div class="cardNew-trophy">🏆</div>
+          <div class="cardNew-trophy">
+            <svg class="mh-header-icons" style="color: rgb(242, 255, 2);" viewBox="0 0 24 24">
+              <path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978" />
+              <path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978" />
+              <path d="M18 9h1.5a1 1 0 0 0 0-5H18" />
+              <path d="M4 22h16" />
+              <path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" />
+              <path d="M6 9H4.5a1 1 0 0 1 0-5H6" />
+            </svg>
+          </div>
 
           <div class="cardNew-text">
             <div class="cardNew-competition">{{competition}}</div>
@@ -188,8 +198,8 @@
 <script>
 
   // hbs.registerHelper('split', function (str, separator) {
-   // if (!str) return [];
-    //return str.split(separator).map(s => s.trim());
+  // if (!str) return [];
+  //return str.split(separator).map(s => s.trim());
   //});
 
 

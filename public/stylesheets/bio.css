@@ -260,7 +260,9 @@
     height: 72px;
     color: #FFD700;
     margin-bottom: 1rem !important;
+    stroke-width: 1.5; /* 🔥 THIS replaces "bold" */
     margin: 0 auto;
+
 }
 
 

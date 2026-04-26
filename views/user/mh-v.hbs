@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/stylesheets/MatchCard.css" />
+
 <div id="mhv-loading-overlay" class="show">
   <div class="loader"></div>
 </div>
@@ -129,7 +131,13 @@
     </div>
 
     <button type="button" class="advanced-toggle" id="toggleAdvanced">
-      <i data-lucide="settings" class="advancedFltr-icon"></i> Advanced Filters <span id="arrow">▾</span>
+
+      <svg viewBox="0 0 24 24" fill="none" class="advancedFltr-icon">
+        <path
+          d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+      Advanced Filters <span id="arrow">▾</span>
     </button>
 
     <div class="advanced-filters hidden" id="advancedFilters">
@@ -328,8 +336,15 @@
       </button>
 
       <div class="sort-container">
-        <button type="button" class="clear-button sort-manual bottm-row-item" id="sortBtn"><i
-            data-lucide="arrow-up-down" class="sort-icon"></i>Sort</button>
+        <button type="button" class="clear-button sort-manual bottm-row-item" id="sortBtn">
+          <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="m21 16-4 4-4-4" />
+            <path d="M17 20V4" />
+            <path d="m3 8 4-4 4 4" />
+            <path d="M7 4v16" />
+          </svg>
+          Sort
+        </button>
         <div id="sortPopup" class="sort-popup hidden">
           <label><input type="radio" name="sort" value="dateDesc">Date: Newest → Oldest</label>
           <label><input type="radio" name="sort" value="dateAsc">Date: Oldest → Newest</label>
@@ -343,14 +358,35 @@
 
   <div class="header-row desktop-only">
     <span>no</span>
-    <span><i data-lucide="calendar" class="icon-adjust icon-small"></i> Date</span>
+    <span><svg class="mh-header-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M8 2v4" />
+        <path d="M16 2v4" />
+        <rect width="18" height="18" x="3" y="4" rx="2" />
+        <path d="M3 10h18" />
+      </svg> Date</span>
     <span>For</span>
     <span>Score</span>
     <span>Against</span>
-    <span>🏆 Tournament</span>
+    <span><svg class="mh-header-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978" />
+        <path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978" />
+        <path d="M18 9h1.5a1 1 0 0 0 0-5H18" />
+        <path d="M4 22h16" />
+        <path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" />
+        <path d="M6 9H4.5a1 1 0 0 1 0-5H6" />
+      </svg> Tournament</span>
     <span>Stage</span>
-    <span>🎯 Goals</span>
-    <span>➡️ Assists</span>
+    <span><svg class="mh-header-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 13V2l8 4-8 4" />
+        <path d="M20.561 10.222a9 9 0 1 1-12.55-5.29" />
+        <path d="M8.002 9.997a5 5 0 1 0 8.9 2.02" />
+      </svg> Goals</span>
+    <span><svg class="mh-header-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="m15 10.42 4.8-5.07" />
+        <path d="M19 18h3" />
+        <path
+          d="M9.5 22 21.414 9.415A2 2 0 0 0 21.2 6.4l-5.61-4.208A1 1 0 0 0 14 3v2a2 2 0 0 1-1.394 1.906L8.677 8.053A1 1 0 0 0 8 9c-.155 6.393-2.082 9-4 9a2 2 0 0 0 0 4h14" />
+      </svg> Assists</span>
   </div>
 
   <span class="match-count bottm-row-item mobile-only">
@@ -459,18 +495,18 @@
 
 
   // Funtion to toggle match card details and scroll into view if expanding
-  function toggleCardDetails(button) {
 
+  function toggleCardDetails(button) {
     const card = button.closest('.cardNew-card');
+    if (!card) return;
+
     const expanded = card.querySelector('.cardNew-expanded');
+    if (!expanded) return;
 
     expanded.classList.toggle('hidden');
 
-    if (expanded.classList.contains('hidden')) {
-      button.textContent = "Details ▲";
-    } else {
-      button.textContent = "Details ▼";
-    }
+    const isHidden = expanded.classList.contains('hidden');
+    button.textContent = isHidden ? "Details ▲" : "Details ▼";
   }
 
 
@@ -752,7 +788,7 @@
 
   });
 
-  lucide.createIcons();
+
 
 </script>
 
@@ -1011,7 +1047,7 @@
             container.innerHTML = `<div id="noMatchesMessage">No matches found.</div>`;
           } else {
             newMatches.forEach(card => container.appendChild(card));
-            lucide.createIcons();
+
           }
 
           currentOffset += limit;

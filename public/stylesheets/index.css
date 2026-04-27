@@ -2909,12 +2909,20 @@ footer {
   }
 }
 
-#modalOverlay,.successPopup {
+#modalOverlay,
+.successPopup {
   display: none;
   position: fixed;
 }
 
-.desktop-only {
+/* Default: hide mobile */
+.mobile-only {
+  display: none !important;
+}
+
+/* On small screens, swap */
+@media (max-width: 768px) {
+  .desktop-only {
     display: none !important;
   }
 
@@ -2922,3 +2930,54 @@ footer {
     display: inline-block !important;
     /* or flex, depending on layout */
   }
+}
+
+.icon-x {
+  width: 17px;
+  height: 17px;
+  color: white;
+  margin-bottom: -1px;
+}
+
+.icon-x path {
+  fill: currentColor;
+}
+
+.icon-x-footer {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  color: rgba(255, 255, 255, 0.805);
+  transform: translateY(+3px);
+  /* up (-) or down (+) */
+}
+
+.icon-x-footer path {
+  fill: currentColor;
+}
+
+.icon-x-about {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  color: rgb(255, 255, 255);
+  /* up (-) or down (+) */
+}
+
+.icon-x-about path {
+  fill: currentColor;
+}
+
+.icon-x-about :hover {
+  color: blue;
+}
+
+@media (max-width: 600px) {
+  .icon-x-about {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  color: rgb(255, 255, 255);
+}
+
+}

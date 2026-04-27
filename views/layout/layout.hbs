@@ -21,14 +21,30 @@
 
   <!-- Google tag (gtag.js) -->
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K14T15VP8P"></script>
-
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    window.addEventListener("load", () => {
+      const loadGTM = () => {
+        const s = document.createElement("script");
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-K14T15VP8P";
+        s.async = true;
 
-    gtag('config', 'G-K14T15VP8P');
+        s.onload = () => {
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+
+          window.gtag('js', new Date());
+          window.gtag('config', 'G-K14T15VP8P');
+        };
+
+        document.body.appendChild(s);
+      };
+
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadGTM);
+      } else {
+        setTimeout(loadGTM, 1);
+      }
+    });
   </script>
 
   <!-- Required meta tags -->
@@ -139,8 +155,24 @@
       })(window, document, "clarity", "script", "t6m52gplub");
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4230217863557428"
-    crossorigin="anonymous"></script>
+  <!-- delayed loading of adsbygoogle.js to improve page load performance and Core Web Vitals -->
+  <script>
+    window.addEventListener("load", () => {
+      const loadAds = () => {
+        const s = document.createElement("script");
+        s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4230217863557428";
+        s.async = true;
+        s.crossOrigin = "anonymous";
+        document.body.appendChild(s);
+      };
+
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadAds);
+      } else {
+        setTimeout(loadAds, 1);
+      }
+    });
+  </script>
 
 </head>
 

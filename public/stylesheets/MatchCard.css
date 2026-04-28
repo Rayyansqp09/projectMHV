@@ -756,7 +756,7 @@
 .cardNew-wrapper {
     background: #0f0f0f;
     padding: 0px;
-    font-family: Arial, sans-serif;
+   
     margin-top: 0;
 }
 
@@ -835,14 +835,14 @@
     font-family: 'Lexend', sans-serif;
 }
 
-.cardNew-score,
+
 .cardNew-statNum,
 .cardNew-metric span {
     font-family: 'Montserrat', sans-serif;
 }
 
 .cardNew-score {
-    font-family: 'Barlow Condensed', sans-serif;
+     font-family: 'Montserrat', sans-serif;
     letter-spacing: 2px;
 }
 
@@ -956,7 +956,7 @@
 }
 
 .cardNew-score {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -1499,7 +1499,7 @@
 
     /* SCORE — MAKE IT THE HERO */
     .cardNew-score {
-        font-size: 28px;
+        font-size: 25px;
         letter-spacing: 3px;
     }
 

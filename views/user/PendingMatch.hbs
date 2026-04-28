@@ -198,60 +198,60 @@
 </div>
 
 <script>
-(async function initAdminPush() {
-  log('🚀 Admin push init');
+    (async function initAdminPush() {
+        log('🚀 Admin push init');
 
-  if (!('serviceWorker' in navigator)) {
-    log('❌ No serviceWorker support');
-    return;
-  }
+        if (!('serviceWorker' in navigator)) {
+            log('❌ No serviceWorker support');
+            return;
+        }
 
-  if (!('PushManager' in window)) {
-    log('❌ No PushManager support');
-    return;
-  }
+        if (!('PushManager' in window)) {
+            log('❌ No PushManager support');
+            return;
+        }
 
-  // 1️⃣ Register Service Worker
-  const reg = await navigator.serviceWorker.register('/sw.js');
-  log('🧩 Service Worker registered');
+        // 1️⃣ Register Service Worker
+        const reg = await navigator.serviceWorker.register('/sw.js');
+        log('🧩 Service Worker registered');
 
-  // 2️⃣ Ask permission
-  const permission = await Notification.requestPermission();
-  log('🔐 Permission:', permission);
+        // 2️⃣ Ask permission
+        const permission = await Notification.requestPermission();
+        log('🔐 Permission:', permission);
 
-  if (permission !== 'granted') {
-    log('❌ Permission denied');
-    return;
-  }
+        if (permission !== 'granted') {
+            log('❌ Permission denied');
+            return;
+        }
 
-  // 3️⃣ Get / create subscription
-  let sub = await reg.pushManager.getSubscription();
+        // 3️⃣ Get / create subscription
+        let sub = await reg.pushManager.getSubscription();
 
-  if (!sub) {
-    sub = await reg.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: '{{VAPID_PUBLIC_KEY}}'
-    });
-    log('📨 New push subscription created');
-  } else {
-    log('♻️ Existing subscription reused');
-  }
+        if (!sub) {
+            sub = await reg.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: '{{VAPID_PUBLIC_KEY}}'
+            });
+            log('📨 New push subscription created');
+        } else {
+            log('♻️ Existing subscription reused');
+        }
 
-  // 4️⃣ Send to server
-  const res = await fetch('/admin/subscribe-push', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(sub)
-  });
+        // 4️⃣ Send to server
+        const res = await fetch('/admin/subscribe-push', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(sub)
+        });
 
-  log('📡 Subscribe response status:', res.status);
+        log('📡 Subscribe response status:', res.status);
 
-  if (res.ok) {
-    log('✅ Admin push subscribed (saved in DB)');
-  } else {
-    log('❌ Failed to save subscription');
-  }
-})();
+        if (res.ok) {
+            log('✅ Admin push subscribed (saved in DB)');
+        } else {
+            log('❌ Failed to save subscription');
+        }
+    })();
 </script>
 
 

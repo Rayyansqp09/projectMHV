@@ -212,7 +212,7 @@
 }
 
 #pageInfo {
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  /* font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif; */
   font-size: 14px;
   color: #bfbfbf;
   min-width: 60px;

@@ -2,6 +2,31 @@
 <link rel="stylesheet" href="/stylesheets/MatchCard.css" />
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#ffd900",
+          "background-light": "#f8f8f5",
+          "background-dark": "#1A1A1A",
+          "neutral-dark": "#0D0D0D",
+          "card-dark": "#2A2A2A",
+        },
+        fontFamily: {
+          "display": ["Lexend", "sans-serif"]
+        },
+        borderRadius: {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+      },
+    },
+  }
+</script>
 
 
 <div id="mhv-loading-overlay" class="show">

@@ -1,11 +1,27 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 const NodeCache = require('node-cache');
 const pageCache = new NodeCache({ stdTTL: 300 });
+const rateLimit = require('express-rate-limit');
+
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const adminLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 50, // stricter
+});
+
+
 
 var db = require('./config/connection');   // ✅ ONLY ONCE — KEEP HERE
 var adminRouter = require('./routes/admin');
@@ -13,16 +29,16 @@ var userRouter = require('./routes/user');
 
 var hbs = require('express-handlebars');
 var app = express();
+const helmet = require('helmet');
 const compression = require('compression');
 
-app.use(compression()); // ✅ now valid
 
 const { isDev } = require('./config/env');
 const log = require('./config/logger');
 
 app.use((req, res, next) => {
-    res.locals.isDev = isDev;
-    next();
+  res.locals.isDev = isDev;
+  next();
 });
 
 
@@ -110,7 +126,16 @@ app.engine('hbs', hbs.engine({
 }));
 
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '7d',        // cache for 7 days
+  etag: true,          // enable ETag validation
+  lastModified: true   // enable Last-Modified header
+}));
+
+app.use(compression()); // ✅ now valid
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
 
 // ⭐ REGISTER CUSTOM HELPER PROPERLY
 // const Handlebars = require('handlebars');
@@ -126,6 +151,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 
+app.use('/', generalLimiter);      // normal users
+app.use('/admin', adminLimiter);   // admin protection
 
 // Routes
 app.use('/admin', adminRouter);

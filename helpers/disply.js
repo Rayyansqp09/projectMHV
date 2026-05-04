@@ -83,8 +83,8 @@ module.exports = {
       if (err) return callback(err);
       callback(null, result);
 
-      log('✅ SQL:', sql);
-      log('➡️ Values:', values);
+      console.log('✅ SQL:', sql);
+      console.log('➡️ Values:', values);
     });
   },
 
@@ -129,8 +129,8 @@ module.exports = {
       if (err) return callback(err);
       callback(null, result);
 
-      log('✅ SQL:', sql);
-      log('➡️ Values:', values);
+      console.log('✅ SQL:', sql);
+      console.log('➡️ Values:', values);
     });
   },
 
@@ -172,8 +172,8 @@ module.exports = {
       if (err) return callback(err);
       callback(null, result);
 
-      log('✅ Modify SQL:', sql);
-      log('➡️ Values:', values);
+      console.log('✅ Modify SQL:', sql);
+      console.log('➡️ Values:', values);
     });
   },
 
@@ -188,7 +188,7 @@ module.exports = {
       if (err) return callback(err);
       callback(null, result);
 
-      log('✅ Delete SQL:', sql);
+      console.log('✅ Delete SQL:', sql);
     });
   }
   ,

@@ -1169,7 +1169,9 @@ router.get('/Match-History/:player', (req, res) => {
       totalHattricks,
       goalRatio,
       playerName: playerInfo.name,       // 👈 Short name
+      player: player,                   // 👈 Player key (mbappe/haaland/vinicius)
       playerFullName: playerInfo.full,  // 👈 Full name
+      admin: false,
 
       // 👇 Pass SEO variables
       title: `All Matches ${playerInfo.name} | Match History & Stats | MHV`,
@@ -1626,7 +1628,7 @@ router.get('/:time', function (req, res, next) {
 
     let pageTitle = '';
     let metaDescription = '';
-    
+
     if (time === 'season') {
       pageTitle = 'Mbappe vs Haaland vs Vinicius | Stats by season';
       metaDescription = 'Compare football stats of Mbappe, Haaland, and Vinicius by each season from 2015-16 to 2024-25.';

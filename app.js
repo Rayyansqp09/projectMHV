@@ -18,7 +18,7 @@ const generalLimiter = rateLimit({
 
 const adminLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 50, // stricter
+  max: 500, // stricter
 });
 
 
@@ -150,9 +150,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+const session = require('express-session');
 
-app.use('/', generalLimiter);      // normal users
-app.use('/admin', adminLimiter);   // admin protection
+app.use(session({
+  secret: 'your-secret-key',   // change this later
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use((req, res, next) => {
+  req.session.isAdmin = req.originalUrl.startsWith('/admin');
+  next();
+});
+
+if (!isDev) {
+  // Only apply these when not in development
+  app.use('/', generalLimiter);      // normal users
+  app.use('/admin', adminLimiter);   // admin protection
+}
 
 // Routes
 app.use('/admin', adminRouter);
@@ -192,9 +207,6 @@ cron.schedule('0 6 * * *', async () => {
   }
 
 );
-
-
-
 
 
 // --------------------------------------------------

@@ -436,9 +436,10 @@
   <!-- Handlebars Template -->
   <div id="matches-container">
     {{#each matches}}
-    {{> match-card this}}
+    {{> match-card this admin=@root.admin}}
     {{/each}}
   </div>
+
   <div id="noMatchesMessage" class="hidden">No matches found.</div>
 
   <div class="pagination">
@@ -816,9 +817,6 @@
     });
 
   });
-
-
-
 </script>
 
 <script>
@@ -1034,7 +1032,14 @@
 
     //Load matches with current filters
     function fetchMatches(offset, limit, competition, minGoals, minAssists, CC, BCC, dribbles, mnt, stage, season, year, result, forTeam, againstTeam, goalTypes, reset, matchNo, matchDate, limitMatches) {
-      let url = `/Match-History/${encodeURIComponent(currentPlayer)}?offset=${offset}&limit=${limit}`;
+      const isAdmin = window.location.pathname.startsWith('/admin');
+
+      const basePath = isAdmin
+        ? '/admin/Match-History/'
+        : '/Match-History/';
+
+      let url = `${basePath}${encodeURIComponent(currentPlayer)}?offset=${offset}&limit=${limit}`;
+
       if (currentSort) url += `&sort=${encodeURIComponent(currentSort)}`;
       if (competition && competition !== 'All') url += `&competition=${encodeURIComponent(competition)}`;
       if (minGoals > 0) url += `&minGoals=${minGoals}`;
@@ -1182,4 +1187,55 @@
     subtree: true,
     characterData: true
   });
+</script>
+
+<script>
+  //delete button match card
+  async function deleteMatch(matchNumber, player) {
+
+    const tableMap = {
+      mbappe: 'mhmbappe',
+      haaland: 'mhhaaland',
+      vinicius: 'mhvinicius'
+    };
+
+    const playerTable = tableMap[player];
+
+    console.log("DELETE:", matchNumber, player, playerTable);
+
+    if (!playerTable) {
+      alert("Invalid player");
+      return;
+    }
+
+    if (!confirm(`Delete match #${matchNumber}?`)) return;
+
+    try {
+      const res = await fetch('/admin/match-action', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          action: "delete",
+          matchNumber,
+          playerTable
+        })
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        alert("Deleted");
+        document.querySelector(`[data-match="${matchNumber}"]`)?.remove();
+      } else {
+        alert(result.error || "Failed");
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("Error deleting");
+    }
+  }
+
 </script>

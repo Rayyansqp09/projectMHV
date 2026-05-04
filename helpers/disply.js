@@ -1,6 +1,7 @@
 const db = require('../config/connection');
 const validTables = require('../config/table');
 const nodemailer = require("nodemailer");
+const log = require('../config/logger');
 
 // Define the email sending function
 async function sendUniversalEmail({ from, subject, text }) {

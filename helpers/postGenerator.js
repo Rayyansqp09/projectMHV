@@ -1,5 +1,6 @@
 const db = require('../config/connection');
 const displayHelper = require('../helpers/disply');
+const log = require('../config/logger');
 
 // 🔥 Keep it here
 function getPlayerTable(player) {

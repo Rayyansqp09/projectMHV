@@ -90,12 +90,16 @@ module.exports = {
 
   mapByName(arr = []) {
     const map = {};
+
     for (const item of arr) {
-      const key = item.Name || item.player || item.name; // 🔥 FIX HERE
+      const key = (item.Name || item.player || item.name || '')
+        .toLowerCase();
+
       if (key) {
-        map[key.toLowerCase()] = item;
+        map[key] = item;
       }
     }
+
     return map;
   },
 

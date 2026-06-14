@@ -637,6 +637,17 @@
   const openAddMatchBtn = document.getElementById("openAddMatchPopup");
   const closeAddMatchBtn = document.getElementById("closeAddMatchPopup");
   const addMatchForm = document.getElementById("addMatchForm");
+  const addMatchLoadingPopup = document.getElementById(
+    "add-match-loading-popup"
+  );
+
+  const addMatchLoadingTitle = document.getElementById(
+    "add-match-loading-title"
+  );
+
+  const addMatchLoadingMessage = document.getElementById(
+    "add-match-loading-message"
+  );
 
   // Open popup
   openAddMatchBtn.addEventListener("click", () => {
@@ -652,33 +663,67 @@
   addMatchForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = Object.fromEntries(new FormData(addMatchForm).entries());
+    const formData = Object.fromEntries(
+      new FormData(addMatchForm).entries()
+    );
 
-    // If goalTypes is a string, convert it to comma separated string if needed
     if (formData.goalTypes) {
-      formData.goalTypes = formData.goalTypes.split(',').map(s => s.trim()).join(',');
+      formData.goalTypes = formData.goalTypes
+        .split(',')
+        .map(s => s.trim())
+        .join(',');
     }
+
+    const submitBtn = addMatchForm.querySelector(
+      'button[type="submit"]'
+    );
+
+    submitBtn.disabled = true;
+
+    addMatchLoadingTitle.textContent = "Please Wait";
+    addMatchLoadingMessage.textContent =
+      "Adding match and generating posts...";
+
+    addMatchLoadingPopup.style.display = "flex";
 
     try {
       const res = await fetch("/admin/add-match", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
       });
 
       const result = await res.json();
 
       if (result.success) {
-        alert("Match added successfully!");
-        addMatchForm.reset();
-        addMatchPopup.style.display = "none";
-        // Optionally, refresh the matches list or append the new match dynamically
+        addMatchLoadingTitle.textContent = "Success";
+        addMatchLoadingMessage.textContent =
+          "Match added successfully!";
+
+        setTimeout(() => {
+          addMatchLoadingPopup.style.display = "none";
+
+          addMatchForm.reset();
+          addMatchPopup.style.display = "none";
+
+        }, 1200);
+
       } else {
-        alert("Failed to add match. " + result.error);
+        addMatchLoadingTitle.textContent = "Failed";
+        addMatchLoadingMessage.textContent =
+          result.error || "Failed to add match";
       }
+
     } catch (err) {
       console.error(err);
-      alert("Something went wrong. Please try again.");
+
+      addMatchLoadingTitle.textContent = "Error";
+      addMatchLoadingMessage.textContent =
+        err.message || "Something went wrong";
+    } finally {
+      submitBtn.disabled = false;
     }
   });
 
@@ -699,6 +744,7 @@
     openMatchPopupBtn.addEventListener("click", () => {
       matchPopup.style.display = "flex";
     });
+
 
     // Close popup
     closeMatchPopupBtn.addEventListener("click", () => {

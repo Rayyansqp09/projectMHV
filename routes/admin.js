@@ -642,8 +642,12 @@ router.post('/add-match', async (req, res) => {
     res.json({ success: true, message: 'Match added successfully!' });
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, error: 'Failed to add match' });
+    console.error('Add Match Error:', err);
+
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Failed to add match'
+    });
   }
 });
 

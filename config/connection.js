@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 require('dotenv').config();
 const log = require('./logger');
 
@@ -10,14 +10,24 @@ const state = {
 module.exports.connect = function (done) {
   if (state.pool) return done(); // already connected
 
+  console.log({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME
+  });
+
   // Create a MySQL connection pool
   state.pool = mysql.createPool({
     connectionLimit: 10,
-    host: process.env.DB_HOST || '127.0.0.1',
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    charset: 'utf8mb4'
+    charset: 'utf8mb4',
+    connectTimeout: 60000,
+    acquireTimeout: 60000
   });
 
   // Test connection once

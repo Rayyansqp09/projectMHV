@@ -193,6 +193,9 @@ router.get('/', cache(), function (req, res, next) {
     const { mbappe: mbappe_last20, haaland: haaland_last20, vinicius: vini_last20 } =
       displayHelper.getPlayers(stats['last20']);
 
+    console.log("ALLTIME FIRST ROW:", stats['alltime']?.[0]);
+    console.log("ALL_TIME FIRST ROW:", stats['all_time']?.[0]);
+
     const { mbappe, haaland, vinicius: vini } =
       displayHelper.getPlayers(stats['alltime']);
 

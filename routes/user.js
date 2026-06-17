@@ -523,9 +523,14 @@ router.get('/By-year', cache(), function (req, res, next) {
       const vn = thisYear.vinicius[yr];
 
       // Add GA = Goals + Assists
-      mb.GA = (mb.Goals || 0) + (mb.Assists || 0);
-      hl.GA = (hl.Goals || 0) + (hl.Assists || 0);
-      vn.GA = (vn.Goals || 0) + (vn.Assists || 0);
+      const addGA = player => {
+        player.GA = Number(player.Goals || 0) + Number(player.Assists || 0);
+      };
+
+      addGA(mb);
+      addGA(hl);
+      addGA(vn);
+      
     });
 
 
@@ -582,7 +587,7 @@ router.get('/By-season', cache(), function (req, res, next) {
       const { mbappe: mb, haaland: hl, vinicius: vn } = displayHelper.getPlayers(table);
 
       function addGA(player) {
-        player.GA = (player.Goals || 0) + (player.Assists || 0);
+        player.GA = Number(player.Goals || 0) + Number(player.Assists || 0);
         return player;
       }
 

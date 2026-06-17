@@ -692,13 +692,13 @@ router.get('/Stats-By-FIFA-Rank', cache(), (req, res) => {
     }
 
     stats.forEach(player => {
-      player.top10GA = (player.top10Goals || 0) + (player.top10Assists || 0);
-      player.top20GA = (player.top20Goals || 0) + (player.top20Assists || 0);
-      player.top40GA = (player.top40Goals || 0) + (player.top40Assists || 0);
-      player.top60GA = (player.top60Goals || 0) + (player.top60Assists || 0);
-      player.top100GA = (player.top100Goals || 0) + (player.top100Assists || 0);
-      player.under100GA = (player.under100Goals || 0) + (player.under100Assists || 0);
-      player.abrGA = (player.abrGoals || 0) + (player.abrAssists || 0);
+      player.top10GA = Number(player.top10Goals || 0) + Number(player.top10Assists || 0);
+      player.top20GA = Number(player.top20Goals || 0) + Number(player.top20Assists || 0);
+      player.top40GA = Number(player.top40Goals || 0) + Number(player.top40Assists || 0);
+      player.top60GA = Number(player.top60Goals || 0) + Number(player.top60Assists || 0);
+      player.top100GA = Number(player.top100Goals || 0) + Number(player.top100Assists || 0);
+      player.under100GA = Number(player.under100Goals || 0) + Number(player.under100Assists || 0);
+      player.abrGA = Number(player.abrGoals || 0) + Number(player.abrAssists || 0);
     });
 
     const { mbappe, haaland, vinicius: vini } = displayHelper.getPlayers(stats);

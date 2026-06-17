@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-const log  = require('../config/logger');
+const log = require('../config/logger');
 
 var app = require('../app');
 var debug = require('debug')('projectmvh:server');
@@ -26,8 +26,12 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, '0.0.0.0'); // 👈 This makes your server accessible via your laptop's IP
+server.listen(port, '0.0.0.0', () => {
+  console.log(`🚀 Server started on port ${port}`);
+  console.log(`⚙️ isDev: ${process.env.NODE_ENV !== 'production'}`);
+}); // 👈 This makes your server accessible via your laptop's IP
 log("Server running on http://<your-ip>:3000");
+
 server.on('error', onError);
 server.on('listening', onListening);
 

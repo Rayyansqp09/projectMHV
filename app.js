@@ -213,9 +213,9 @@ cron.schedule('0 6 * * *', async () => {
 // Start Server
 // --------------------------------------------------
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`🚀 Server started on port ${process.env.PORT || 3000}`);
-  console.log(`⚙️  isDev:`, isDev);
-});
+// app.listen(process.env.PORT || 3000, () => {
+//   console.log(`🚀 Server started on port ${process.env.PORT || 3000}`);
+//   console.log(`⚙️  isDev:`, isDev);
+// });
 
 module.exports = app;

@@ -44,7 +44,7 @@ router.get('/dummy', (req, res) => {
 // DYNAMIC SITEMAP.XML
 // -------------------------
 router.get("/sitemapmhv.xml", (req, res) => {
-  const baseUrl = "https://mhvstats.xyz";
+  const baseUrl = "https://mhvstats.onrender.com";
   const today = new Date().toISOString();
 
   // helper

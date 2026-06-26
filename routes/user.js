@@ -530,7 +530,7 @@ router.get('/By-year', cache(), function (req, res, next) {
       addGA(mb);
       addGA(hl);
       addGA(vn);
-      
+
     });
 
 
@@ -931,13 +931,23 @@ router.get('/head-to-head/:players', (req, res) => {
 
     // add calculated stat
     stats.forEach(player => {
-      player.ga = (player.goals || 0) + (player.assists || 0);
+      player.ga = Number(player.goals || 0) + Number(player.assists || 0);
     });
 
     const p1 = stats[0];
     const p2 = stats[1];
 
     const bars = displayHelper.getBars(p1, p2);
+
+    Object.keys(bars).forEach(key => {
+      console.log(
+        key,
+        p1[key],
+        p2[key],
+        bars[key]
+      );
+    });
+
     const analysis = articles.h2h[pair];
 
     res.render('user/HeadtoHead', {

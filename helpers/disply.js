@@ -311,8 +311,8 @@ module.exports = {
 
       if (exclude.includes(key)) return;
 
-      const v1 = p1[key] || 0;
-      const v2 = p2[key] || 0;
+      const v1 = Number(p1[key]) || 0;
+      const v2 = Number(p2[key]) || 0;
 
       const total = v1 + v2;
 

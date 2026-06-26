@@ -1,3 +1,3 @@
-const isDev = false; // 🔴 YOU control this
+const isDev = true; // 🔴 YOU control this
 
 module.exports = { isDev };

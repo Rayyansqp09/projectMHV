@@ -591,7 +591,7 @@
 
   /* Table Title */
   .stat-title {
-    
+
     font-size: 17px;
     font-weight: 700;
 
@@ -604,7 +604,7 @@
     min-width: 100%;
     border-collapse: collapse;
     text-align: center;
-    
+
     font-weight: 500;
     color: #FFFFFF;
     border-radius: 6px;
@@ -622,7 +622,7 @@
   }
 
   .Stats-table thead th {
-    padding: 10px 15px;
+    padding: 10px 0px;
     border-bottom: 2px solid #FFD700;
     font-weight: bold;
 
@@ -631,7 +631,7 @@
     top: 0;
     /* stick to top */
     z-index: 10;
-    font-size: 14px;
+    font-size: 13px !important;
   }
 
   /* Table Body */
@@ -672,7 +672,7 @@
   }
 
   .stat-text {
-   
+
     font-weight: 900;
     font-size: 1.05rem;
     font-weight: 500;
@@ -797,7 +797,7 @@
   }
 
   .stat-title2 {
-   
+
     /* Clean, modern font */
     text-align: center;
     /* Centers the title */
@@ -1410,7 +1410,7 @@
 
   /* Table Title */
   .stat-title {
-    
+
     font-size: 18px;
     font-weight: 700;
     color: #FFD700;
@@ -1423,7 +1423,7 @@
     width: 100%;
     border-collapse: collapse;
     text-align: center;
-    
+
     font-weight: 500;
     background-color: #1A1A1A;
     color: #FFFFFF;
@@ -1442,7 +1442,7 @@
   }
 
   .Stats-table thead th {
-    padding: 10px 25px;
+    padding: 10px 15px;
     border-bottom: 2px solid #FFD700;
     font-weight: bold;
     background-color: #1A1A1A;
@@ -1451,7 +1451,7 @@
     top: 0;
     /* stick to top */
     z-index: 10;
-    font-size: 14px;
+    font-size: 13px !important;
   }
 
   /* Table Body */
@@ -1853,7 +1853,7 @@
   .lookingbox-title {
     font-size: 17px;
     margin-top: 10px;
-    
+
     margin-bottom: 0px;
   }
 
@@ -1885,7 +1885,7 @@
 
   /* Table Title */
   .stat-title {
-    
+
     font-size: 18px;
     font-weight: 700;
     color: #FFD700;
@@ -1898,7 +1898,7 @@
     width: 80%;
     border-collapse: collapse;
     text-align: center;
-    
+
     font-weight: 500;
     background-color: #1A1A1A;
     color: #FFFFFF;
@@ -1917,7 +1917,7 @@
   }
 
   .Stats-table thead th {
-    padding: 10px 15px;
+    padding: 10px 10px;
     border-bottom: 2px solid #FFD700;
     font-weight: bold;
     background-color: #1A1A1A;
@@ -1926,7 +1926,7 @@
     top: 0;
     /* stick to top */
     z-index: 10;
-    font-size: 14px;
+    font-size: 13px !important;
   }
 
   /* Table Body */
@@ -2112,7 +2112,7 @@
   /* Table */
 
   .Stats-table {
-    
+
     font-weight: 500;
     /* regular for body text */
     width: auto;

@@ -223,7 +223,7 @@ function createYearPost(player, stats, year) {
     post_type: 'year_so_far',
     title: `${player} ${year} so far`,
     content:
-`📊 ${player} in ${year} So Far  ⚔️👇🏻
+      `📊 ${player} in ${year} So Far  ⚔️👇🏻
 
 👕 ${stats.games} Games   
 ⚽ ${stats.goals} Goals
@@ -426,7 +426,7 @@ async function getCompetitionSummaryStats(player, matchData) {
 function createCompetitionSummaryPost(player, matchData, stats) {
   if (!matchData.competition) return null;
 
-  const ga = stats.goals + stats.assists;
+  const ga = Number(stats.goals) + Number(stats.assists);
 
   return {
     post_type: 'competition_summary',
@@ -526,7 +526,7 @@ ${finalMatches
 
 
 function createFinalSummaryPost(player, stats) {
-  const ga = stats.finalGoals + stats.finalAssists;
+  const ga = Number(stats.finalGoals ?? 0) + Number(stats.finalAssists ?? 0);
 
   return {
     post_type: 'final_summary',

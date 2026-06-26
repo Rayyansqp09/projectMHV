@@ -939,14 +939,14 @@ router.get('/head-to-head/:players', (req, res) => {
 
     const bars = displayHelper.getBars(p1, p2);
 
-    Object.keys(bars).forEach(key => {
-      console.log(
-        key,
-        p1[key],
-        p2[key],
-        bars[key]
-      );
-    });
+    // Object.keys(bars).forEach(key => {
+    //   console.log(
+    //     key,
+    //     p1[key],
+    //     p2[key],
+    //     bars[key]
+    //   );
+    // });
 
     const analysis = articles.h2h[pair];
 
